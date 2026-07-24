@@ -1,0 +1,1288 @@
+openapi: 3.0.0
+info:
+  title: Account Level Webhooks Book Commands Tag Management API
+  version: 1.0.0
+servers:
+- url: https://api.ocrolus.com
+security:
+- oauth: []
+tags:
+- name: Tag Management
+paths:
+  /v2/analytics/tags:
+    post:
+      summary: Create tag
+      operationId: create-tag
+      tags:
+      - Tag Management
+      description: This API enables the creation of custom tags to classify transactions using user-defined criteria, including include/exclude terms, amount thresholds, and recurrence patterns.
+      requestBody:
+        description: Example of body to be sent for tag creation.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - description
+              - color
+              properties:
+                name:
+                  type: string
+                  description: The name of the tag you want to create.
+                  example: Deposits
+                description:
+                  type: string
+                  description: A description of the tag you want to create.
+                  example: baker street
+                color:
+                  type: string
+                  description: A hex code to visually represent the tag in the Dashboard.
+                  example: '#777'
+                customization:
+                  type: object
+                  description: Contains matching logic to automatically apply the tag to transactions.
+                  properties:
+                    amount:
+                      type: object
+                      description: Threshold logic (gt, lt, eq) for transaction amounts.
+                      properties:
+                        lt:
+                          type: number
+                          description: Less than (LT) threshold or lower limit for transaction amounts.
+                          example: 10
+                        gt:
+                          type: number
+                          description: Greater than (GT) threshold or upper limit for transaction amounts.
+                          example: 100
+                        eq:
+                          type: number
+                          description: Equal to threshold for transaction amounts.
+                          example: 50
+                    include_terms:
+                      type: array
+                      items:
+                        type: string
+                      description: Keywords to include in description match.
+                      example:
+                      - create inc 1
+                      - create inc 2
+                    exclude_terms:
+                      type: array
+                      items:
+                        type: string
+                      description: Keywords to exclude from description match.
+                      example:
+                      - create exc 1
+                      - create exc 2
+                    recurrence:
+                      type: object
+                      description: Optional pattern-based tagging criteria, such as min_days or max_days, used to identify recurring transactions.
+                      properties:
+                        min_days:
+                          type: integer
+                          description: Minimum number of days between recurring transactions.
+                          example: 30
+                        max_days:
+                          type: integer
+                          description: Maximum number of days between recurring transactions.
+                          example: 60
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for the successful response of creating tag.
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      uuid:
+                        type: string
+                        format: uuid
+                        example: 1b1a82db-b323-4a09-9d09-1fa4d926d3db
+                        description: A unique identifier (UUID) for the newly created tag.
+              examples:
+                Success:
+                  value:
+                    uuid: 1b1a82db-b323-4a09-9d09-1fa4d926d3db
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '415':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Request body unavailable:
+                  value:
+                    status: 415
+                    message: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+    get:
+      summary: Retrieve all tags (custom and system tags)
+      operationId: get-all-tags
+      tags:
+      - Tag Management
+      description: "This API is used to retrieves all available tags in the system, including both system-defined and custom-created tags. You can use the optional query parameter `is_system_tag` to filter the results:\n\nExamples:\n  - To retrieve all system-defined tags:\n    GET /v2/analytics/tags?is_system_tag=true\n\n  - To retrieve all custom-created tags:\n    GET /v2/analytics/tags?is_system_tag=false\n"
+      parameters:
+      - name: tag_type
+        in: query
+        description: This parameter is used to set the filter the to retrieve either system tags or custom tags at a time.
+        required: false
+        schema:
+          type: string
+          example: system
+          enum:
+          - system
+          - custom
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Tags Retrieved Successfully
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for the successful response of fetching all custom and system tags.
+                properties:
+                  tags:
+                    type: array
+                    description: List of the retrieved tags based on the specified parameters.
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          type: string
+                          format: uuid
+                          example: 61cc4be0-aa13-40ca-8a95-6fa74041fb29
+                          description: Unique identifier of the retrieved tag.
+                        name:
+                          type: string
+                          example: deposits
+                          description: Name of the retrieved tag.
+                        description:
+                          type: string
+                          example: Indicates whether this transaction represents a credit. This will always be true if the value of amount is positive.
+                          description: Description of the tag.
+                        color:
+                          type: string
+                          example: '#E5F6FD'
+                          description: Hexadecimal color code of tag in Dashboard.
+                        is_system_tag:
+                          type: boolean
+                          example: true
+                          description: Indicates whether the tag is system-defined (`true`) or custom-created (`false`).
+                        created_ts:
+                          type: string
+                          format: date-time
+                          example: '2022-11-30T14:44:28.630940'
+                          description: Timestamp when the retrieved tag was created.
+                        updated_ts:
+                          type: string
+                          format: date-time
+                          example: '2024-01-19T15:44:12.336760'
+                          description: Timestamp when the retrieved tag was last updated.
+              examples:
+                Tags Retrieved Successfully:
+                  value:
+                    tags:
+                    - uuid: 61cc4be0-aa13-40ca-8a95-6fa74041fb29
+                      name: deposits
+                      description: Indicates whether this transaction represents a credit. Will always be true if the value of amount is positive.
+                      color: '#E5F6FD'
+                      is_system_tag: true
+                      created_ts: '2022-11-30T14:44:28.630940'
+                      updated_ts: '2024-01-19T15:44:12.336760'
+                    - uuid: ed80ca7b-4dbb-4dac-baed-089e255c7ee7
+                      name: testtag
+                      description: ''
+                      color: '#B020E2'
+                      is_system_tag: false
+                      created_ts: '2024-03-19T14:10:40.182351'
+                      updated_ts: '2024-03-19T14:11:38.935639'
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: integer
+                    description: A numerical code that indicates the status of the request.
+                  message:
+                    type: string
+                    description: A textual description that indicates details about this response's status.
+              examples:
+                Tag not:
+                  value:
+                    status: 404
+                    message: Tag not found.
+  /v2/analytics/tags/{tag_uuid}:
+    get:
+      summary: Retrieve a tag
+      operationId: get-tag
+      tags:
+      - Tag Management
+      description: 'This API is used to retrieve details of a specific tag based on the specified `tag_uuid`. The response includes the tag''s name, description, color, type (system or custom), include and exclude terms, and other configuration details.
+
+        '
+      parameters:
+      - name: tag_uuid
+        in: path
+        description: Unique identifier of the tag whose details are to be retrieved.
+        required: true
+        schema:
+          type: string
+          example: 13e6d579-4699-43e2-a419-8a29bcb5f922
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for successful retrieval of a tag details.
+                properties:
+                  uuid:
+                    type: string
+                    format: uuid
+                    description: Unique identifier of the tag whose details are retrieved.
+                    example: 41761692-032e-4b03-9b36-e96c03c9a7bc
+                  name:
+                    type: string
+                    description: Name of the retrieved tag.
+                    example: demo_tag
+                  description:
+                    type: string
+                    description: Detailed description of the tag.
+                    example: for demo testing
+                  color:
+                    type: string
+                    description: Hexadecimal color code of tag in Dashboard.
+                    example: '#f5ce03'
+                  is_system_tag:
+                    type: boolean
+                    description: Indicates whether the tag is a system-defined tag (`true`) or a custom tag (`false`).
+                    example: false
+                  created_ts:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the tag was created.
+                    example: '2023-09-13T12:05:52.789616'
+                  updated_ts:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the tag was last updated.
+                    example: '2023-11-23T10:48:02.074384'
+                  customization:
+                    type: object
+                    description: Customization details for the tag.
+                    properties:
+                      include_terms:
+                        type: array
+                        items:
+                          type: string
+                        description: Terms that will apply the specified tag when found in the transaction description.
+                        example:
+                        - hh
+                      exclude_terms:
+                        type: array
+                        items:
+                          type: string
+                        description: Terms which when found in the description of transaction would be tagged as the above tag.
+                        example: []
+                      amount:
+                        type: object
+                        description: Amount-related conditions.
+                        properties:
+                          gt:
+                            type: number
+                            nullable: true
+                            description: The specified greater than value. If a transaction has an amount greater than the specified value, the system will automatically apply the tag to that transaction.
+                          lt:
+                            type: number
+                            nullable: true
+                            description: The specified less than value. If a transaction has an amount less than the specified value, the system will automatically apply the tag to that transaction.
+                          eq:
+                            type: number
+                            nullable: true
+                            description: The specified equal to value. If a transaction has an amount equal to the specified value, the system will automatically apply the specified tag to that transaction.
+                      recurrence:
+                        type: object
+                        description: Recurrence-related conditions.
+                        properties:
+                          max_days:
+                            type: integer
+                            nullable: true
+                            description: The maximum numebr of days until when the transction is ignored. If a transaction recur within the specified `max_days`, the system will automatically apply the specified tag to that transaction.
+                            example: null
+                          min_days:
+                            type: integer
+                            nullable: true
+                            description: The minumum numebr of days until when the transction is ignored. If a transaction recur within the specified `min_days`, the system will automatically apply the specified tag to that transaction.
+                            example: null
+              examples:
+                All Tags:
+                  value:
+                    uuid: 41761692-032e-4b03-9b36-e96c03c9a7bc
+                    name: demo_tag
+                    description: for demo testing
+                    color: '#f5ce03'
+                    is_system_tag: false
+                    created_ts: '2023-09-13T12:05:52.789616'
+                    updated_ts: '2023-11-23T10:48:02.074384'
+                    customization:
+                      include_terms:
+                      - hh
+                      exclude_terms: []
+                      amount:
+                        gt: null
+                        lt: null
+                        eq: null
+                      recurrence:
+                        max_days: null
+                        min_days: null
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Invalid tag UUID
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Invalid tag UUID:
+                  value:
+                    status: 400
+                    message: Invalid tag UUID
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Tag not found:
+                  value:
+                    status: 404
+                    message: Tag not found.
+    put:
+      summary: Modify tag
+      operationId: modify-tag
+      tags:
+      - Tag Management
+      description: This API allows you to modify an existing custom tag. You can update the tag's name, description, color, and customization logic.
+      parameters:
+      - name: tag_uuid
+        in: path
+        required: true
+        description: The unique identifier of the tag that you want to modify.
+        example: 13e6d579-4699-43e2-a419-8a29bcb5f922
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Example of body to be sent for tag modification.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - description
+              - color
+              properties:
+                name:
+                  type: string
+                  description: The updated name of the tag.
+                  example: Deposit
+                description:
+                  type: string
+                  description: The updated description of the tag.
+                  example: baker street 123
+                color:
+                  type: string
+                  description: The updated hex code to visually represent the tag in the Dashboard.
+                  example: '#777'
+                customization:
+                  type: object
+                  description: Contains matching logic to automatically apply the tag to transactions.
+                  properties:
+                    amount:
+                      type: object
+                      description: Threshold logic (gt, lt, eq) for transaction amounts.
+                      properties:
+                        lt:
+                          type: number
+                          description: Less than (LT) threshold or lower limit for transaction amounts.
+                          example: 10
+                        gt:
+                          type: number
+                          description: Greater than (GT) threshold or upper limit for transaction amounts.
+                          example: 100
+                        eq:
+                          type: number
+                          description: Equal to threshold for transaction amounts.
+                          example: 50
+                    include_terms:
+                      type: array
+                      items:
+                        type: string
+                      description: Keywords to include in description match.
+                      example:
+                      - create inc 1
+                      - create inc 2
+                    exclude_terms:
+                      type: array
+                      items:
+                        type: string
+                      description: Keywords to exclude from description match.
+                      example:
+                      - create exc 1
+                      - create exc 2
+                    recurrence:
+                      type: object
+                      description: Optional pattern-based tagging criteria, such as min_days or max_days, used to identify recurring transactions.
+                      properties:
+                        min_days:
+                          type: integer
+                          description: Minimum number of days between recurring transactions.
+                          example: 30
+                        max_days:
+                          type: integer
+                          description: Maximum number of days between recurring transactions.
+                          example: 60
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '204':
+          description: Tag Modified Successfully
+          content:
+            application/json:
+              schema:
+                title: Tag Modified Successfully
+              examples:
+                Tag Modified Successfully:
+                  value: {}
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Tag not found:
+                  value:
+                    status: 404
+                    message: Tag not found.
+        '415':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Request body unavailable:
+                  value:
+                    status: 415
+                    message: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+    delete:
+      summary: Delete tag
+      description: "This API allows you to delete a custom tag. System-defined tags cannot be deleted using this endpoint.\n\n\n  ---\n\n  > \U0001F6A7 **No turning back!**\n    > This action is not reversible, meaning that you can't recover deleted tags. Make sure you're ready!\n"
+      operationId: delete-tag
+      tags:
+      - Tag Management
+      parameters:
+      - name: tag_uuid
+        in: path
+        required: true
+        description: The unique identifier of the tag that you want to delete.
+        schema:
+          type: string
+          format: uuid
+          example: 13e6d579-4699-43e2-a419-8a29bcb5f922
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '204':
+          description: Tag Deleted Successfully
+          content:
+            application/json:
+              schema:
+                title: Tag Deleted Successfully
+              examples:
+                Tag Deleted Successfully:
+                  value: {}
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                tag not found:
+                  value:
+                    status: 404
+                    message: Tag not found.
+  /v2/analytics/revenue-deduction-tags:
+    get:
+      summary: Retrieve revenue deduction tags
+      operationId: get-revenue-deduction-tags
+      tags:
+      - Tag Management
+      description: 'Retrieves a list of all current revenue deduction tags. These tags represent transaction categories that are excluded from **Total Credits** when calculating **Net Revenue**.
+
+        '
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Tags Retrieved Successfully
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for the successful response of fetching revenue deduction tags.
+                properties:
+                  revenue_deduction_tags:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - fintech_loan
+                    - bank_loan
+                    - other_loan
+                    - fintech_mca
+                    - bank_cash_advance
+                    - investment
+                    - gambling
+                    - card_rewards
+                    - reversed
+                    - sba
+                    - nsf
+                    - overdraft
+                    - returned_item
+                    - federal_tax
+                    - state_tax
+                    - payroll_tax
+                    - payroll
+                    - insurance
+                    - benefits
+                    - crypto
+                    - internal_transfer
+                    - other_transfer
+                    - revenue_deduction_other
+                    description: A list of revenue deduction tags.
+              examples:
+                Tags Retrieved Successfully:
+                  value:
+                    revenue_deduction_tags:
+                    - fintech_loan
+                    - bank_loan
+                    - other_loan
+                    - fintech_mca
+                    - bank_cash_advance
+                    - investment
+                    - gambling
+                    - card_rewards
+                    - reversed
+                    - sba
+                    - nsf
+                    - overdraft
+                    - returned_item
+                    - federal_tax
+                    - state_tax
+                    - payroll_tax
+                    - payroll
+                    - insurance
+                    - benefits
+                    - crypto
+                    - internal_transfer
+                    - other_transfer
+                    - revenue_deduction_other
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '401':
+          description: Authentication Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Authentication Failed:
+                  value:
+                    status: 401
+                    message: Authentication failed.
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Tag not found:
+                  value:
+                    status: 404
+                    message: Tag not found.
+    put:
+      summary: Update revenue deduction tag
+      operationId: update-revenue-deduction-tag
+      tags:
+      - Tag Management
+      description: 'This API allows you to update the list of tags that should be deducted from all credits to calculate net revenue. Only the tag names provided in the request body will be used as revenue deduction tags after the update, and existing values will be replaced.
+
+        '
+      requestBody:
+        description: The tag names mentioned in the body are the tags that would be present in the deduction part of the revenue formula.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                revenue_deduction_tags:
+                  type: array
+                  items:
+                    type: string
+                    description: A list of tags to be used as a revenue deduction tag.
+                    example: revenue
+                    enum:
+                    - revenue
+                    - expense
+                    - tax
+                    - discount
+                    - fintech_loan
+                    - bank_loan
+                    - other_loan
+                    - fintech_mca
+                    - bank_cash_advance
+                    - investment
+                    - gambling
+                    - card_rewards
+                    - reversed
+                    - sba
+                    - nsf
+                    - overdraft
+                    - returned_item
+                    - federal_tax
+                    - state_tax
+                    - payroll_tax
+                    - payroll
+                    - insurance
+                    - benefits
+                    - crypto
+                    - internal_transfer
+                    - other_transfer
+                    - revenue_deduction_other
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '204':
+          description: Tags Updated Successfully
+          content:
+            application/json:
+              schema:
+                title: Tags Updated Successfully
+              examples:
+                Tags Updated Successfully:
+                  value: {}
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '415':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Request body unavailable:
+                  value:
+                    status: 415
+                    message: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+  /v2/analytics/book/{book_uuid}/transactions:
+    put:
+      summary: Override transaction tag
+      operationId: override-transaction-tag
+      tags:
+      - Tag Management
+      description: 'This API allows you to manually override the tags applied to a transaction within a specific Book. You can assign one or more tag UUIDs to a transaction using its primary key (`txn_pk`).
+
+        '
+      parameters:
+      - name: book_uuid
+        in: path
+        required: true
+        description: The unique identifier of the Book in which the transaction has to be overridden.
+        schema:
+          type: string
+          format: uuid
+          example: 16e6d579-4699-43e2-a419-8a29bcb5t678
+      requestBody:
+        description: Example payload to apply two tags to a transaction.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                txns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      txn_pk:
+                        type: integer
+                        description: Primary key of the transaction whose tags are being overridden.
+                        example: 2234917046
+                      tags:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tag_uuid:
+                              type: string
+                              format: uuid
+                              description: The UUID of the tag to apply.
+                              example: db6be451-95c1-48f4-bf15-9c9c14c1a8ab
+                            apply_to_txn:
+                              type: boolean
+                              description: Must be set to true to apply the tag and set to false to remove the tag.
+                              example: true
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '204':
+          description: Tag Override Successful
+          content:
+            application/json:
+              schema:
+                title: Tag Override Successful
+              examples:
+                Tag Override Successful:
+                  value: {}
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - title: Invalid auth
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        message:
+                          type: string
+                          example: Book not found
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Bad request
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                    message:
+                      type: string
+                      description: A textual description that indicates details about this response's status.
+              examples:
+                Invalid auth:
+                  value:
+                    status: 400
+                    code: 1200
+                    message: Authentication failed
+                    meta:
+                      status: 400
+                      msg: Authentication failed
+                      code: 1200
+                Bad request:
+                  value:
+                    status: 400
+                    message:
+                      A textual description that indicates details about this response's status: null
+        '403':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                No permission to access Book:
+                  value:
+                    status: 404
+                    message: No permission to access this Book
+        '404':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Tag not found:
+                  value:
+                    status: 404
+                    message: Tag not found
+                Book not found:
+                  value:
+                    status: 404
+                    message: Book not found
+        '415':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1v2~1analytics~1tags/get/responses/404/content/application~1json/schema'
+              examples:
+                Request body unavailable:
+                  value:
+                    status: 415
+                    message: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+components:
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: 'OAuth 2.0 support via client credentials flow. See [here](doc:using-api-credentials) for usage information.
+
+        '
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.ocrolus.com/oauth/token
+          scopes: {}

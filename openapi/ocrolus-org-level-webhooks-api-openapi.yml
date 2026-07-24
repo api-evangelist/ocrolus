@@ -1,0 +1,742 @@
+openapi: 3.0.0
+info:
+  title: Account Level Webhooks Book Commands Org Level Webhooks API
+  version: 1.0.0
+servers:
+- url: https://api.ocrolus.com
+security:
+- oauth: []
+tags:
+- name: Org Level Webhooks
+paths:
+  /webhook:
+    post:
+      tags:
+      - Org Level Webhooks
+      summary: Add webhook
+      description: 'Set up an org-level webhook for your organization so your application can receive and respond to Ocrolus events in real time. Use this endpoint to create or update the webhook configuration. Ocrolus then delivers event payloads to your application as they occur, allowing you to automate downstream workflows.
+
+
+        ---
+
+        You can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).
+
+
+        > 📘
+
+        > Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it''s working properly.'
+      operationId: add-webhook
+      requestBody:
+        description: Create a new webhook
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook_body'
+        required: true
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        '400':
+          description: Webhook not created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_3'
+  /webhook/{webhook_uuid}/rotate-secret:
+    post:
+      summary: Configure webhook secret
+      description: 'This API configures the secret key for a specific org-level webhook. Use this endpoint to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.
+
+        '
+      operationId: configure-webhook-secret-org-level
+      tags:
+      - Org Level Webhooks
+      parameters:
+      - name: webhook_uuid
+        in: path
+        required: true
+        description: The unique identifier of the webhook.
+        schema:
+          type: string
+          format: uuid
+        example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - secret_key
+              properties:
+                secret_key:
+                  type: string
+                  description: The new webhook secret key. Must be between 16 and 128 characters long.
+                  example: sample_secret_1230ab
+                  required:
+                  - name
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for the successful response of new secret key.
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        description: Indicates the request status.
+                      message:
+                        type: string
+                        description: Confirmation message.
+              examples:
+                Success:
+                  value:
+                    status: success
+                    message: Webhook secret rotated successfully
+        '404':
+          description: Webhook Not Found
+          content:
+            application/json:
+              examples:
+                Webhook not found:
+                  value:
+                    error: Webhook not found
+              schema:
+                properties:
+                  status:
+                    type: integer
+                    description: A numerical code that indicates the status of the request.
+                  message:
+                    type: string
+                    description: A textual description that indicates details about this response's status.
+  /webhook/{webhook_uuid}/delete:
+    delete:
+      tags:
+      - Org Level Webhooks
+      summary: Delete webhook
+      description: Delete a webhook using the webhook's universally unique identification code (UUID).
+      operationId: delete-webhook
+      parameters:
+      - name: webhook_uuid
+        in: path
+        description: The unique identification code (UUID) of the webhook.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: Webhook not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_4'
+  /webhooks:
+    get:
+      tags:
+      - Org Level Webhooks
+      summary: List webhooks
+      description: 'This API retrieves a list of all the webhooks configured for your organization.
+
+
+        ---
+
+        You can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).'
+      operationId: list-webhooks
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+  /webhook/{webhook_uuid}/events:
+    get:
+      tags:
+      - Org Level Webhooks
+      summary: List webhook events
+      description: 'This API retrieves a list of events configured for a webhook using the webhook''s universally unique identification code (UUID).
+
+
+        ---
+
+        You can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).'
+      operationId: list-events
+      parameters:
+      - name: webhook_uuid
+        in: path
+        description: The unique identification identifier of the webhook.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        '400':
+          description: Webhook with uuid {uuid} not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_4'
+  /webhook/{webhook_uuid}:
+    get:
+      tags:
+      - Org Level Webhooks
+      summary: Retrieve webhook
+      description: 'This API retrieves a specific webhook using its universally unique identification code (UUID).
+
+
+        ---
+
+        You can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).'
+      operationId: get-webhook
+      parameters:
+      - name: webhook_uuid
+        in: path
+        description: The unique identification code (UUID) of the webhook.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        '400':
+          description: Webhook not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_4'
+  /webhook/{webhook_uuid}/test:
+    post:
+      tags:
+      - Org Level Webhooks
+      summary: Test webhook
+      description: 'This API sends a test payload to your configured webhook endpoint using a provided event.
+
+
+        ---
+
+        This endpoint requires users to provide an `event_uuid` for a notification event that you have configured a webhook for.
+
+
+        You can find configured notifications event and their uuids by using the [List events for Webhook endpoint](ref:list-events).'
+      operationId: test-org-webhook
+      parameters:
+      - name: webhook_uuid
+        in: path
+        description: The unique identification code (UUID) of the webhook.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - event_uuid
+              properties:
+                event_uuid:
+                  type: string
+                  description: The unique universal identification code of the event that you would like to test for.
+              example:
+                event_uuid: fbb4df31-1987-4c27-8eee-764b113e356
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Successful Test
+                type: object
+                properties:
+                  event_name:
+                    description: The name of the notification event delievered by Ocrolus.
+                    type: string
+                  severity:
+                    description: The configured importance level for this type of event.
+                    type: string
+                  uploaded_docs:
+                    type: array
+                    items:
+                      type: object
+                  notification_reason:
+                    description: A written explanation of the event that triggered the notification.
+                    type: string
+                  notification_type:
+                    description: Describes the type of notification the event triggered.
+                    type: string
+                  book_uuid:
+                    description: A unique identification code (uuid) of the <<glossary:Book>> from which the event was triggered from.
+                    type: string
+              example:
+                value:
+                  event_name: book.verified
+                  severity: MODERATE
+                  uploaded_docs:
+                  - uuid: f2dc8261-f043-4031-9f5e-921d15c87ac3
+                    status: COMPLETED
+                  notification_reason: Book is verified
+                  notification_type: STATUS
+                  book_uuid: 940cd2ca-a00b-4695-a76c-d59873bc759c
+  /webhook/{webhook_uuid}/update:
+    post:
+      tags:
+      - Org Level Webhooks
+      summary: Update webhook
+      description: 'This API updates the settings for a webhook in your organization by using the webhook''s universally unique identification code (UUID).
+
+
+        ---
+
+        You can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).'
+      operationId: update-webhook
+      parameters:
+      - name: webhook_uuid
+        in: path
+        description: The unique identification code (UUID) of the webhook.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+      requestBody:
+        description: Update webhook
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook_uuid_update_body'
+        required: true
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        '400':
+          description: Webhook not updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_5'
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        description:
+          minLength: 3
+          type: string
+          description: A brief description of the webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
+          example: Trigger when a document failed in verification.
+        url:
+          type: string
+          description: A unique resource locator (URL) of the webhook. Ocrolus will attempt to send a notification to this URL to notify about any configured events.
+          example: https://www.ocrolus.com/
+        uuid:
+          type: string
+          description: The universally unique identification code (UUID) of the webhook.
+          format: uuid
+          readOnly: true
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+        is_active:
+          type: boolean
+          description: Determines if notificiations will be sent to the provided webhook.
+          readOnly: true
+          example: true
+          default: true
+        created_on:
+          type: string
+          description: The timestamp at which the webhook is created.
+          readOnly: true
+          example: '2022-10-03T09:41:38.000Z'
+        last_modified_date:
+          type: string
+          description: The timestamp at which the webhook was last modified.
+          readOnly: true
+          example: '2022-10-03T09:41:38.000Z'
+    inline_response_200_1:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_1_response'
+    inline_response_400_4:
+      allOf:
+      - $ref: '#/components/schemas/ErrorStructure'
+      - type: object
+        properties:
+          message:
+            type: string
+            description: The message pertaining to the error code.
+            example: Webhook with uuid {uuid} not found
+            default: Webhook with uuid {uuid} not found
+          meta:
+            $ref: '#/components/schemas/inline_response_400_4_meta'
+    ErrorStructure:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The error response status received from the server.
+          example: '400'
+          default: '400'
+        code:
+          type: string
+          description: The error response code corresponding to the response status.
+          example: '1000'
+          default: '1000'
+        response:
+          type: object
+          description: The error response received from the server.
+          nullable: true
+          example: null
+        meta:
+          $ref: '#/components/schemas/ErrorStructure_meta'
+    Event:
+      type: object
+      properties:
+        description:
+          minLength: 3
+          type: string
+          description: A written description of the event.
+          example: Trigger when a document failed in verification.
+        uuid:
+          type: string
+          description: The universally unique identification code (UUID) of the event.
+          format: uuid
+          readOnly: true
+          example: 9be5c090-7dd6-465b-950e-885b95e1863a
+        is_active:
+          type: boolean
+          description: Determines if notificiations will be sent to the provided webhook.
+          example: true
+          default: false
+        name:
+          minLength: 3
+          type: string
+          description: The name of the notification event delivered by Ocrolus.
+          example: event_webhook
+        reason:
+          type: string
+          description: Describes the type of notification the event triggered.
+          example: event_webhook
+        type:
+          type: string
+          description: The type of the event. The current supported event types are `STATUS` and `ISSUE`.
+          example: ISSUE
+          enum:
+          - STATUS
+          - ISSUE
+        severity:
+          type: string
+          description: The configured importance level for this type of event.
+          example: HIGH
+          enum:
+          - LOW
+          - MODERATE
+          - HIGH
+    inline_response_200_5_response:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    inline_response_400_3:
+      allOf:
+      - $ref: '#/components/schemas/ErrorStructure'
+      - type: object
+        properties:
+          message:
+            type: string
+            description: The message pertaining to the error code.
+            example: You need to pass both username and password
+            default: Webhook with url https://www.google.com/ already exists
+            enum:
+            - You need to pass both username and password
+            - Webhook with url https://www.google.com/ already exists
+            - 'url: URL host invalid, top level domain required'
+            - 'url: invalid or missing URL scheme'
+            - Event(s) with name book.verified doesnt exist
+            - 'description: length of value must be at least 3'
+          meta:
+            $ref: '#/components/schemas/inline_response_400_3_meta'
+    inline_response_400_3_meta:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: The message pertaining to the error code.
+          example: You need to pass both username and password
+          default: Webhook with url https://www.google.com/ already exists
+          enum:
+          - You need to pass both username and password
+          - Webhook with url https://www.google.com/ already exists
+          - 'url: URL host invalid, top level domain required'
+          - 'url: invalid or missing URL scheme'
+          - Event(s) with name book.verified doesnt exist
+          - 'description: length of value '
+    inline_response_200_5:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_5_response'
+    inline_response_200_4:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_4_response'
+    webhook_body:
+      type: object
+      properties:
+        webhook:
+          type: object
+          $ref: '#/components/schemas/Webhook'
+          description: An object containing information about the webhook you are configuring for.
+          properties:
+            url:
+              type: string
+              description: The URL of the endpoint that will receive notifications of Ocrolus events . This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
+              example: https://webhook_endpoint_url.com/example
+            description:
+              type: string
+              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
+              example: Webhook notification testing
+          required:
+          - url
+        event_names:
+          minItems: 1
+          uniqueItems: true
+          description: An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
+          type: array
+          items:
+            type: string
+            example:
+            - book.verified
+    ErrorStructure_meta:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The error response status received from the server.
+          example: '400'
+          default: '400'
+        code:
+          type: string
+          description: The error response code corresponding to the response status.
+          example: '1000'
+          default: '1000'
+    inline_response_200_4_response:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The universally unique identification code (UUID) of the webhook.
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    inline_response_400_4_meta:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: The message pertaining to the error code.
+          example: Webhook with uuid {uuid} not found
+          default: Webhook with uuid {uuid} not found
+    webhook_uuid_update_body:
+      type: object
+      properties:
+        webhook:
+          type: object
+          $ref: '#/components/schemas/Webhook'
+          description: An object containing information about the webhook you are configuring for.
+          properties:
+            url:
+              type: string
+              description: The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
+              example: https://webhook_endpoint_url.com/example
+            description:
+              type: string
+              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
+              example: Webhook notification testing
+            is_active:
+              type: boolean
+              description: Determines if notificiations will be sent to the provided webhook.
+        event_names:
+          minItems: 1
+          uniqueItems: true
+          description: 'An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
+
+
+            The event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.'
+          type: array
+          items:
+            type: string
+            example:
+            - book.verified
+    inline_response_200_3:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            type: object
+            nullable: true
+    inline_response_400_5:
+      allOf:
+      - $ref: '#/components/schemas/ErrorStructure'
+      - type: object
+        properties:
+          message:
+            type: string
+            description: The message pertaining to the error code.
+            example: Webhook with uuid {uuid} not found
+            default: Webhook with url https://www.google.com/ already exists
+            enum:
+            - You need to pass both username and password
+            - Webhook with url https://www.google.com/ already exists
+            - 'url: URL host invalid, top level domain required'
+            - 'url: invalid or missing URL scheme'
+            - Event(s) with name book.verified doesnt exist
+            - 'description: length of value must be at least 3'
+          meta:
+            $ref: '#/components/schemas/inline_response_400_5_meta'
+    SuccessStructure:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The success response status received from the server.
+          example: '200'
+          default: '200'
+        message:
+          type: string
+          description: The success message received from the server corresponding to the response status.
+          example: OK
+          default: OK
+    inline_response_400_5_meta:
+      type: object
+      properties:
+        msg:
+          type: string
+          description: The message pertaining to the error code.
+          example: Webhook with uuid {uuid} not found
+          default: Webhook with url https://www.google.com/ already exists
+          enum:
+          - You need to pass both username and password
+          - Webhook with url https://www.google.com/ already exists
+          - 'url: URL host invalid, top level domain required'
+          - 'url: invalid or missing URL scheme'
+          - Event(s) with name book.verified doesnt exist
+          - 'description: length of value must be at least 3'
+    inline_response_200_6:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/Webhook'
+    inline_response_200_1_response:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: 'OAuth 2.0 support via client credentials flow. See [here](doc:using-api-credentials) for usage information.
+
+        '
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.ocrolus.com/oauth/token
+          scopes: {}

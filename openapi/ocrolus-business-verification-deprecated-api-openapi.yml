@@ -1,0 +1,636 @@
+openapi: 3.0.0
+info:
+  title: Account Level Webhooks Book Commands Business Verification (Deprecated) API
+  version: 1.0.0
+servers:
+- url: https://api.ocrolus.com
+security:
+- oauth: []
+tags:
+- name: Business Verification (Deprecated)
+paths:
+  /v2/book/{book_uuid}/business:
+    post:
+      summary: Create business verification (Deprecated)
+      operationId: create-business
+      deprecated: true
+      tags:
+      - Business Verification (Deprecated)
+      description: "Create a new business for verification and due diligence. \n\n---\n\nOnce created, we will automatically begin verifying the legitimacy of the business.\n\n\nWe have partnered with Middesk to bring you this data. To use this endpoint, please follow the following steps:\n1. Sign up for an account with [Middesk](https://middesk.com/).\n2. Get your Middesk production API key (we don't support sandbox accounts at the moment).\n3. Call our [Vendor Auth](ref:vendor-auth) with `middesk` as the vendor name and put the API key in the request body.\n4. Set up an Ocrolus webhook by calling [Configure Webhook](ref:configure-webhook) to get back the Middesk results as soon as they are done processing.\n5. Call this endpoint with the uuid for a Book containing one of your business loan applicants to get the verification process started.\n- Make sure the Book is verified before making the call.\n6. Get the results back in a timely way with the webhook you set up earlier!\n7. Or you can also call the [Retrieve business verification](ref:retrieve-business) endpoint with the book_uuid and business_uuid in case you prefer to get back the results this way."
+      parameters:
+      - name: book_uuid
+        in: path
+        required: true
+        description: The unique identifier of the <<glossary:Book>> that contains the <<glossary:Document>>s associated with the newly-created business.
+        schema:
+          type: string
+          format: uuid
+      - name: name
+        in: query
+        required: false
+        description: The legal name of the business.
+        schema:
+          type: string
+      - name: addresses
+        in: query
+        required: false
+        description: One or more addresses from which the business operates.
+        schema:
+          type: array
+          items:
+            type: object
+      - name: website
+        in: query
+        required: false
+        description: The URL of the business' public-facing website.
+        schema:
+          type: string
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessBusinessVerification'
+              examples:
+                Success:
+                  $ref: '#/components/examples/SuccessBusinessVerification'
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              examples:
+                Book not found:
+                  value:
+                    status: 400
+                    code: 1401
+                    response: null
+                    message: Book not found
+                    meta:
+                      status: 400
+                      msg: Book not found
+                      code: 1401
+                Missing Required Parameters:
+                  value:
+                    status: 400
+                    code: 1103
+                    response: null
+                    message: Required pk or book uuid
+                    meta:
+                      status: 400
+                      msg: Required pk or book uuid
+                      code: 1103
+                No Permission:
+                  value:
+                    status: 400
+                    code: 2102
+                    response: null
+                    message: No permission to access this book
+                    meta:
+                      status: 400
+                      msg: No permission to access this book
+                      code: 2102
+              schema:
+                oneOf:
+                - title: Book not found
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      example: null
+                    message:
+                      type: string
+                      default: OK
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          description: A numerical code that indicates the status of the request.
+                          example: 400
+                        message:
+                          type: string
+                          description: A textual description that indicates details about this response's status.
+                          example: Book not found
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Missing Required Parameter
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      example: 400
+                      description: A numerical code that indicates the status of the request.
+                    code:
+                      type: integer
+                      example: 1103
+                      description: A numerical code that indicates the nature of an error.
+                    response:
+                      type: object
+                      example: null
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      example: Required pk or book uuid
+                      description: A textual description that indicates details about this response's status.
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        msg:
+                          type: string
+                          example: Required pk or book uuid
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1103
+                          description: A numerical code that indicates the nature of an error.
+                - title: No Permission
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      example: 400
+                      description: A numerical code that indicates the status of the request.
+                    code:
+                      type: integer
+                      example: 2102
+                      description: A numerical code that indicates the nature of an error.
+                    response:
+                      type: object
+                      example: null
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      example: No permission to access this book
+                      description: A textual description that indicates details about this response's status.
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        msg:
+                          type: string
+                          example: No permission to access this book
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 2102
+                          description: A numerical code that indicates the nature of an error.
+  /v2/book/{book_uuid}/business/{business_uuid}:
+    get:
+      summary: Retrieve business verification (Deprecated)
+      operationId: retrieve-business
+      deprecated: true
+      tags:
+      - Business Verification (Deprecated)
+      description: Retrieve an existing business and its associated firmographic data.
+      parameters:
+      - name: book_uuid
+        in: path
+        required: true
+        description: The unique identifier of the <<glossary:Book>> that contains Documents associated with this business.
+        schema:
+          type: string
+          format: uuid
+      - name: business_uuid
+        in: path
+        required: true
+        description: The unique identifier of the business itself.
+        schema:
+          type: string
+          format: uuid
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessBusinessVerification'
+              examples:
+                Success:
+                  $ref: '#/components/examples/SuccessBusinessVerification'
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              examples:
+                Book not found:
+                  value:
+                    status: 400
+                    code: 1401
+                    response: null
+                    message: Book not found
+                    meta:
+                      status: 400
+                      msg: Book not found
+                      code: 1401
+                Missing Required Parameters:
+                  value:
+                    status: 400
+                    code: 1103
+                    response: null
+                    message: Required pk or book uuid
+                    meta:
+                      status: 400
+                      msg: Required pk or book uuid
+                      code: 1103
+                No Permission:
+                  value:
+                    status: 400
+                    code: 2102
+                    response: null
+                    message: No permission to access this book
+                    meta:
+                      status: 400
+                      msg: No permission to access this book
+                      code: 2102
+              schema:
+                oneOf:
+                - title: Book not found
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      description: A numerical code that indicates the status of the request.
+                      example: 400
+                    code:
+                      type: integer
+                      description: A numerical code that indicates the nature of an error.
+                      example: 1401
+                    response:
+                      type: object
+                      description: An object received from the server that potentially contains data.
+                      example: null
+                    message:
+                      type: string
+                      default: OK
+                      description: A textual description that indicates details about this response's status.
+                      example: Book not found
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          description: A numerical code that indicates the status of the request.
+                          example: 400
+                        message:
+                          type: string
+                          description: A textual description that indicates details about this response's status.
+                          example: Book not found
+                        code:
+                          type: integer
+                          example: 1401
+                          description: A numerical code that indicates the nature of an error.
+                - title: Missing Required Parameter
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      example: 400
+                      description: A numerical code that indicates the status of the request.
+                    code:
+                      type: integer
+                      example: 1103
+                      description: A numerical code that indicates the nature of an error.
+                    response:
+                      type: object
+                      example: null
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      example: Required pk or book uuid
+                      description: A textual description that indicates details about this response's status.
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        msg:
+                          type: string
+                          example: Required pk or book uuid
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 1103
+                          description: A numerical code that indicates the nature of an error.
+                - title: No Permission
+                  type: object
+                  properties:
+                    status:
+                      type: integer
+                      example: 400
+                      description: A numerical code that indicates the status of the request.
+                    code:
+                      type: integer
+                      example: 2102
+                      description: A numerical code that indicates the nature of an error.
+                    response:
+                      type: object
+                      example: null
+                      description: An object received from the server that potentially contains data.
+                    message:
+                      type: string
+                      example: No permission to access this book
+                      description: A textual description that indicates details about this response's status.
+                    meta:
+                      type: object
+                      description: An object received from the server that potentially contains information about the request.
+                      properties:
+                        status:
+                          type: integer
+                          example: 400
+                          description: A numerical code that indicates the status of the request.
+                        msg:
+                          type: string
+                          example: No permission to access this book
+                          description: A textual description that indicates details about this response's status.
+                        code:
+                          type: integer
+                          example: 2102
+                          description: A numerical code that indicates the nature of an error.
+  /v1/developer/auth/vendor/{vendor_name}:
+    put:
+      summary: Vendor authentication (Deprecated)
+      operationId: vendor-auth
+      deprecated: true
+      tags:
+      - Business Verification (Deprecated)
+      description: Store a vendor-generated API key to enable third-party integrations.
+      parameters:
+      - name: vendor_name
+        in: path
+        description: The vendor that you're granting Ocrolus access to. Currently, we only support the value of `middesk`.
+        required: true
+        schema:
+          type: string
+          enum:
+          - middesk
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - api_key
+              properties:
+                api_key:
+                  type: string
+                  description: The API key provided by the vendor given in `vendor_name`. Their documentation will explain how you can obtain a key.
+            example:
+              api_key: EXAMPLE_API_KEY
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                    status: 200
+                    message: OK
+                    response: Successfully stored API key
+              schema:
+                title: Success
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: A numerical code that indicates the status of the request.
+                    example: 200
+                  message:
+                    type: string
+                    description: A textual description that indicates details about this response's status.
+                    example: OK
+                  response:
+                    type: string
+                    description: Data potentially retained from the servor.
+                    example: Successfully stored API key
+components:
+  examples:
+    SuccessBusinessVerification:
+      summary: Success
+      value:
+        book_uuid: c383ac62-61b8-43eb-a71f-88c8037ad681
+        business_uuid: 950335c1-1c55-432a-8be7-2961a03d0b5b
+        middesk_response:
+          object: business
+          id: 5966eefe-7ba5-4e98-9f95-1e8d0bca6ec6
+          name: Middesk
+          external_id: '12345678'
+          created_at: '2019-02-04T18:17:20.421Z'
+          updated_at: '2019-02-04T18:17:20.421Z'
+          status: pending
+          addresses:
+          - object: address
+            address_line1: 577 howard street
+            address_line2: suite 400
+            city: san francisco
+            state: CA
+            postal_code: '94105'
+            full_address: 577 howard st, suite 400, san francisco CA 94105
+            created_at: '2019-02-04T18:17:20.533Z'
+            updated_at: '2019-02-04T18:17:20.533Z'
+          people:
+          - object: person
+            name: Kyle Mack
+            submitted: true
+          phone_numbers:
+          - object: phone_number
+            phone_number: '6507970487'
+          website:
+            url: https://www.middesk.com
+          tin:
+            tin: 12-3410000
+          subscription: null
+  schemas:
+    SuccessBusinessVerification:
+      title: Success
+      type: object
+      properties:
+        book_uuid:
+          type: string
+          description: A universal unique identification code for a <<glossary:Book>>.
+          example: c383ac62-61b8-43eb-a71f-88c8037ad681
+        business_uuid:
+          example: 950335c1-1c55-432a-8be7-2961a03d0b5b
+          description: A universal unique identification code for a business.
+          type: string
+        middesk_response:
+          type: object
+          description: An object potentially containg information from Middesk.
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                description: The type of information returned.
+                example: business
+              id:
+                type: string
+                description: The identification code for the business.
+                example: 5966eefe-7ba5-4e98-9f95-1e8d0bca6ec6
+              name:
+                type: string
+                description: The source of the information.
+                example: Middesk
+              external_id:
+                type: string
+                description: An external identification code.
+                example: '12345678'
+              created_at:
+                type: string
+                description: A timestamp of when the record of the business was created.
+                example: '2019-02-04T18:17:20.421Z'
+              updated_at:
+                type: string
+                description: A timestamp of when the record of the business was last updated.
+                example: '2019-02-04T18:17:20.421Z'
+              status:
+                type: string
+                description: The verification status of the business.
+                example: pending
+              addresses:
+                type: array
+                description: Known addresses for the business.
+                items:
+                  type: object
+                  properties:
+                    object:
+                      type: string
+                      description: The type of information returned.
+                      example: address
+                    address_line1:
+                      type: string
+                      description: The first line of the address.
+                      example: 577 howard street
+                    address_line2:
+                      type: string
+                      description: The second line of the address.
+                      example: suite 400
+                    city:
+                      type: string
+                      description: The city of the address.
+                      example: san francisco
+                    state:
+                      type: string
+                      description: The state of the address.
+                      example: CA
+                    postal_code:
+                      type: string
+                      description: The postal code of the address.
+                      example: '94105'
+                    full_address:
+                      type: string
+                      description: The full address.
+                      example: 577 howard st, suite 400, san francisco CA 94105
+                    created_at:
+                      type: string
+                      description: A timestamp of when the record of the address was created.
+                      example: '2019-02-04T18:17:20.533Z'
+                    updated_at:
+                      type: string
+                      description: A timestamp of when the record of the address was last updated.
+                      example: '2019-02-04T18:17:20.533Z'
+              people:
+                type: array
+                description: An array of people associated with the business.
+                items:
+                  type: object
+                  properties:
+                    object:
+                      type: string
+                      description: The type of information returned.
+                      example: person
+                    name:
+                      type: string
+                      description: The name of the person.
+                      example: Kyle Mack
+                    submitted:
+                      type: boolean
+                      description: The submitted value attributed to this person.
+                      example: true
+              phone_numbers:
+                type: array
+                description: Phone numbers associated with the business.
+                items:
+                  type: object
+                  properties:
+                    object:
+                      type: string
+                      description: The type of information returned.
+                      example: phone_number
+                    phone_number:
+                      type: string
+                      description: A phone number associated with the business.
+                      example: '6507970487'
+              website:
+                type: object
+                description: Websites associated with the business.
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      description: URL of the website.
+                      example: https://www.middesk.com
+              tin:
+                type: object
+                items:
+                  type: object
+                  properties:
+                    tin:
+                      type: string
+                      example: 12-3410000
+              subscription:
+                type: string
+                example: null
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: 'OAuth 2.0 support via client credentials flow. See [here](doc:using-api-credentials) for usage information.
+
+        '
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.ocrolus.com/oauth/token
+          scopes: {}

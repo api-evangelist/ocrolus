@@ -1,0 +1,377 @@
+openapi: 3.0.0
+info:
+  title: Account Level Book Commands Webhooks API
+  version: 1.0.0
+servers:
+- url: https://api.ocrolus.com
+security:
+- oauth: []
+tags:
+- name: Webhooks
+paths:
+  /v1/account/settings/update/webhook_endpoint:
+    post:
+      summary: Configure webhook
+      description: "Set up a webhook for your account so your application can react to Ocrolus events.\n\n---\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> \U0001F4D8 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\n> \U0001F6A7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+      operationId: configure-webhook
+      tags:
+      - Webhooks
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - webhook_endpoint
+              - upload
+              properties:
+                webhook_endpoint:
+                  type: string
+                  format: url
+                  description: 'The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall''s allowlist.
+
+
+                    The domain will be checked for validity, although the webhook itself won''t be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.'
+                event:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    $ref: '#/components/schemas/WebhookEventType'
+                  description: 'A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.
+
+                    The event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.
+
+                    '
+              example:
+                webhook_endpoint: https://webhook_endpoint_url.com/example
+                event:
+                - book.verified
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/JsonResponse'
+                - properties:
+                    response:
+                      $ref: '#/components/schemas/WebhookRegistration'
+              examples:
+                SuccessfulWebhookRegistration:
+                  $ref: '#/components/examples/SuccessfulWebhookRegistration'
+        '400':
+          description: Client Errors
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/JsonResponse'
+                - properties:
+                    response:
+                      $ref: '#/components/schemas/WebhookRegistration'
+              examples:
+                FailedWebhookRegistration:
+                  $ref: '#/components/examples/FailedWebhookRegistration'
+  /v1/account/settings/webhook_details:
+    get:
+      summary: Get webhook configuration
+      description: 'Retrieve your most recent webhook configuration.
+
+
+        ---
+
+
+        Returns the same object as that of the most recent [webhook registration](ref:configure-webhook).
+
+
+        You can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).
+
+
+        > 🚧 We have a better version!
+
+        > This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.'
+      operationId: webhook-configuration
+      tags:
+      - Webhooks
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/JsonResponse'
+                - properties:
+                    response:
+                      $ref: '#/components/schemas/WebhookRegistration'
+              examples:
+                SuccessfulWebhookRegistration:
+                  $ref: '#/components/examples/SuccessfulWebhookRegistration'
+  /v1/account/settings/test_webhook_endpoint:
+    get:
+      summary: Test webhook
+      description: "Send a test payload to your configured webhook endpoint. \n\n---\nRequests to this endpoint will send a `POST` request with a test payload of the following JSON in the request body:\n\n```json\n{\n  \"status\": \"VERIFICATION_COMPLETE\",\n  \"uploaded_doc_pk\": 0,\n  \"book_pk\": 0\n}\n```\n\n> \U0001F4D8 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\nIf the webhook fails for any reason, the corresponding HTTP status code and message will be provided in the response's `message` and `code` attributes.\n\n> \U0001F6A7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+      operationId: test-webhook
+      tags:
+      - Webhooks
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: 'The configured webhook returned successfully.
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/JsonResponse'
+                - properties:
+                    response:
+                      required:
+                      - message
+                      properties:
+                        resp_code:
+                          type: integer
+                          description: 'The status code that your webhook returned.
+
+                            '
+                        message:
+                          type: string
+                          description: 'Details about the response that your webhook returned. If the response wasn''t a success, this attribute will contain the reason.
+
+                            '
+              examples:
+                SuccessfulWebhookTest:
+                  $ref: '#/components/examples/SuccessfulWebhookTest'
+                FailedWebhookTest:
+                  $ref: '#/components/examples/FailedWebhookTest'
+      callbacks:
+        WebhookTest:
+          '{$response.body.webhook_endpoint}':
+            summary: Webhook Test Event
+            post:
+              summary: Webhook Test Payload
+              description: "A simple test object that approximates the structure of a full webhook payload. The payload will be as follows:\n\n```json\n{\n  \"status\": \"VERIFICATION_COMPLETE\",\n  \"uploaded_doc_pk\": 0,\n  \"book_pk\": 0\n}\n```\n"
+              responses:
+                '200':
+                  description: 'Your webhook endpoint should return a status of `200 OK` to indicate that it''s working properly. The content of the response payload doesn''t matter.
+
+                    '
+                default:
+                  description: 'If your webhook returns anything besides a 200, the test is considered to have failed.
+
+                    '
+  /v1/account/settings/webhook/rotate-secret:
+    post:
+      summary: Configure webhook secret
+      description: 'This API configures the secret key for account-level webhook signature verification. Use this API to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.
+
+        > 🚧 We have a better version!
+
+        > This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.
+
+        '
+      operationId: configure-webhook-secret-account-level
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - secret_key
+              properties:
+                secret_key:
+                  type: string
+                  description: The new webhook secret key. Must be between 16 and 128 characters long.
+                  example: sample_secret_1230ab
+                  required:
+                  - name
+      x-readme:
+        samples-languages:
+        - curl
+        - python
+        explorer-enabled: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                title: Success
+                type: object
+                description: Schema for the successful response of new secret key.
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        description: Indicates the request status.
+                      message:
+                        type: string
+                        description: Confirmation message.
+              examples:
+                Success:
+                  value:
+                    status: success
+                    message: Webhook secret rotated successfully
+        '404':
+          description: Webhook Not Found
+          content:
+            application/json:
+              examples:
+                Webhook not found:
+                  value:
+                    error: Webhook not found
+              schema:
+                properties:
+                  status:
+                    type: integer
+                    description: A numerical code that indicates the status of the request.
+                  message:
+                    type: string
+                    description: A textual description that indicates details about this response's status.
+components:
+  schemas:
+    WebhookEventType:
+      type: string
+      description: 'The type of event that Ocrolus broadcasts.
+
+        '
+      enum:
+      - ANALYTICS_COMPLETED
+      - book.analytics_v2.generated
+      - book.classified
+      - book.completed
+      - book.detect.signal_found
+      - book.detect.signal_not_found
+      - BOOK_VERIFIED
+      - book.income.generated
+      - book.income.updated
+      - document.classification_failed
+      - document.classification_succeeded
+      - document.detect.signal_found
+      - document.detect.signal_not_found
+      - document.detect.unable_to_process
+      - document.upload_failed
+      - document.upload_succeeded
+      - DOC_VERIFIED
+      - image_group.upload_failed
+      - image_group.upload_succeeded
+      - IMAGE_GROUP_VERIFIED
+      - mixed_document.rejected
+      - network.book.created (BETA)
+      - network.book.funded (BETA)
+      - plaid.upload_failed
+      - plaid.upload_succeeded
+    JsonResponse:
+      type: object
+      required:
+      - status
+      - message
+      - response
+      properties:
+        status:
+          type: integer
+          default: 200
+          description: 'Numerical code indicating the status of this request. Will be 200 for a successful response.
+
+            '
+        code:
+          type: integer
+          description: 'Numerical code indicating the nature of an error. Will not be present if the response is successful.
+
+            '
+        message:
+          type: string
+          default: OK
+          description: 'A textual description that indicates details about this response''s status. Will be "OK" for a successful request.
+
+            '
+    WebhookRegistration:
+      description: 'An object that describes the active webhook registration. Only one webhook can be registered at this time; if you need multiple event handlers, your implementation should inspect the request payload and direct events as needed.
+
+        '
+      required:
+      - webhook_endpoint
+      - events
+      properties:
+        webhook_endpoint:
+          type: string
+          format: url
+          description: 'The value of `webhook_endpoint` that was provided in the request. Can contain query parameters, port numbers, authentication credentials, and other URL components.
+
+            '
+        events:
+          type: array
+          description: 'The webhook events that were successfully registered. Invalid event names will not be included here.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+  examples:
+    SuccessfulWebhookTest:
+      summary: Success
+      value:
+        status: 200
+        response:
+          resp_code: 200
+          message: Success calling webhook endpoint
+        message: OK
+    FailedWebhookRegistration:
+      summary: Failed Registration
+      value:
+        status: 400
+        code: 1806
+        response: null
+        message: One of the input is invalid
+        meta:
+          status: 400
+          msg: One of the input is invalid
+          code: 1806
+    FailedWebhookTest:
+      summary: Failed Test
+      value:
+        status: 200
+        response:
+          message: 'Error: Failed to invoke webhook end point 401 Client Error: UNAUTHORIZED for url: https://httpbin.org/status/401'
+        message: OK
+    SuccessfulWebhookRegistration:
+      summary: Success
+      value:
+        status: 200
+        response:
+          webhook_endpoint: https://webhook_endpoint_url.com/example
+          events:
+          - DOC_VERIFIED
+          - BOOK_VERIFIED
+        message: OK
+  securitySchemes:
+    oauth:
+      type: oauth2
+      description: 'OAuth 2.0 support via client credentials flow. See [here](doc:using-api-credentials) for usage information.
+
+        '
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.ocrolus.com/oauth/token
+          scopes: {}
