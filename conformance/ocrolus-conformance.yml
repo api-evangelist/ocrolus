@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/ ; https://security.ocrolus.com/
+standards:
+- id: oauth2
+  conforms: true
+  evidence: openapi securitySchemes oauth2 client credentials
+- id: oauth2-client-credentials-rfc6749
+  conforms: true
+  evidence: 'docs: RFC 6749 s4.4'
+- id: jwt-rfc7519
+  conforms: true
+  evidence: access tokens are JWTs (RFC 7519)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: custom JSON error envelope, not application/problem+json
+- id: webhooks
+  conforms: true
+  evidence: account- and org-level signed webhooks
+- id: soc2
+  conforms: true
+  evidence: SOC 2 & SOC 3
+- id: iso27001
+  conforms: true
+  evidence: ISO/IEC 27001
+- id: pci-dss
+  conforms: true
+  evidence: PCI DSS
+- id: csa-star
+  conforms: true
+  evidence: CSA STAR Level 1
+- id: gdpr
+  conforms: true
+  evidence: GDPR
+- id: ccpa
+  conforms: true
+  evidence: CCPA/CPRA
+- id: glba
+  conforms: true
+  evidence: GLBA

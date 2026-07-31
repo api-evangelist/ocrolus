@@ -1,0 +1,165 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/reference/ocrolus-status-codes-api
+format: ocrolus-json
+envelope:
+  description: Errors return a JSON body with a status other than 200, a descriptive message, and a numeric
+    code identifying the error category.
+  fields:
+  - status
+  - message
+  - code
+  - response
+http_statuses:
+- status: 400
+  meaning: Bad request / application error (Ocrolus returns most application errors as HTTP 400 with a
+    numeric code)
+- status: 401
+  meaning: Unauthorized - missing or invalid access token
+- status: 403
+  meaning: Forbidden - token lacks permission for the resource
+- status: 404
+  meaning: Resource not found
+- status: 412
+  meaning: Precondition failed
+- status: 415
+  meaning: Unsupported media type
+- status: 422
+  meaning: Unprocessable entity (e.g. book transaction limit exceeded)
+- status: 425
+  meaning: Too early - analytics still processing, retry momentarily
+- status: 429
+  meaning: Too many requests - rate limit exceeded (20 req/s per organization)
+- status: 500
+  meaning: Internal server error
+error_codes:
+- code: 1002
+  message: Could not decode JSON string
+- code: 1003
+  message: Request validation failure; check parameter values and types.
+- code: 1005
+  message: Request verification rate limit exceeded
+- code: 1100
+  message: The request could not be processed
+- code: 1101
+  message: The requested endpoint does not exist
+- code: 1103
+  message: Required parameter not found
+- code: 1104
+  message: The parameter value is not a valid file
+- code: 1109
+  message: The file is not a valid PDF
+- code: 1200
+  message: Authentication failed
+- code: 1204
+  message: Invalid API key credentials
+- code: 1306
+  message: Email and/or password not found
+- code: 1307
+  message: Account is not active
+- code: 1308
+  message: Account is not verified
+- code: 1313
+  message: Account info not found
+- code: 1316
+  message: Account does not have required manager permissions
+- code: 1317
+  message: Account is not a member of the organization
+- code: 1323
+  message: Your organization has been deleted
+- code: 1398
+  message: Organization not found
+- code: 1399
+  message: Account not found
+- code: 1401
+  message: Book not found
+- code: 1402
+  message: Book already exists
+- code: 1404
+  message: Book containing documents pending verification
+- code: 1500
+  message: A DocumentError occurred
+- code: 1501
+  message: Document not found
+- code: 1502
+  message: Document exists
+- code: 1504
+  message: PageDoc not found
+- code: 1508
+  message: Page index out of range
+- code: 1511
+  message: Mixed document is pending classification.
+- code: 1512
+  message: Document contains more than the maximum allowed pages
+- code: 1513
+  message: An error occured while processing instant ML document.
+- code: 1601
+  message: Transaction not found
+- code: 1609
+  message: Transaction is already marked as a transfer
+- code: 1702
+  message: Bank account was not found
+- code: 2100
+  message: Invalid permission
+- code: 2101
+  message: No permission to access this endpoint
+- code: 2102
+  message: No permission to access this book
+- code: 2103
+  message: Account permission error
+- code: 2104
+  message: No permission to access this doc
+- code: 2105
+  message: No permission to access this page
+- code: 2106
+  message: No permission to access this txn
+- code: 2107
+  message: No permission to access this form
+- code: 2108
+  message: No permission to access this uploaded image group
+- code: 2109
+  message: No permission to access this bank account
+- code: 2110
+  message: No permission to upload any document
+- code: 2111
+  message: No permission to create new books
+- code: 2300
+  message: Database error
+- code: 2401
+  message: Error fetching final result from paystub service
+- code: 2500
+  message: Error from mortgage service
+- code: 5001
+  message: Filter exists
+- code: 5002
+  message: Filter not found
+- code: 6001
+  message: Form type not found
+- code: 7001
+  message: Tag not found
+- code: 7002
+  message: Image group not found
+- code: 7003
+  message: No form config found
+- code: 7004
+  message: Page index missing from uploaded images in the image bucket
+- code: 8001
+  message: This endpoint only accepts 1 file uploaded each time
+- code: 8002
+  message: This book has reached the maximum allowable uploads.
+- code: 9001
+  message: The analytics generation exceeded the maximum execution time.
+- code: 9002
+  message: Analytics is not supported for this type of case
+- code: 9003
+  message: Analytics (JSON) can only process analytics for bank statements
+- code: 9101
+  message: This organization does not have the permission required to retrieve the SentiLink score.
+- code: 9102
+  message: SentiLink score could not be retrieved due to an invalid field.
+- code: 9103
+  message: SentiLink score could not be retrieved due to a missing field.
+- code: 9104
+  message: SentiLink is not reachable. Please try again later
+- code: 9006
+  message: No transactions found in the book

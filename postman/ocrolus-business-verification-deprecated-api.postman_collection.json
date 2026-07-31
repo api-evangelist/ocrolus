@@ -1,0 +1,581 @@
+{
+  "info": {
+    "_postman_id": "e37bdba6-fdfe-4de8-95ab-19e495049e5f",
+    "name": "Account Level Webhooks Book Commands Business Verification (Deprecated) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:24:52.000Z",
+    "updatedAt": "2026-07-28T02:24:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e37bdba6-fdfe-4de8-95ab-19e495049e5f"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "{book_uuid}",
+              "item": [
+                {
+                  "name": "business",
+                  "item": [
+                    {
+                      "name": "{business_uuid}",
+                      "item": [
+                        {
+                          "name": "Retrieve business verification (Deprecated)",
+                          "id": "d987b33d-c770-403a-bc8b-6a444fc030ac",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business/:business_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business",
+                                ":business_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "96506b00-e103-4221-9ad0-4a0901b3d4cc",
+                                  "key": "book_uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the <<glossary:Book>> that contains Documents associated with this business."
+                                },
+                                {
+                                  "id": "986bd8c2-4d95-4375-a885-ce93c5317ff0",
+                                  "key": "business_uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the business itself."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve an existing business and its associated firmographic data."
+                          },
+                          "response": [
+                            {
+                              "id": "d39eb2e8-3356-476f-baa1-9cab90ae2320",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/business/:business_uuid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "business",
+                                    ":business_uuid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    },
+                                    {
+                                      "key": "business_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"book_uuid\": \"<string>\",\n  \"business_uuid\": \"<string>\",\n  \"middesk_response\": {}\n}",
+                              "createdAt": "2026-07-28T02:24:53.000Z",
+                              "updatedAt": "2026-07-28T02:24:53.000Z",
+                              "uid": "35240-d39eb2e8-3356-476f-baa1-9cab90ae2320"
+                            },
+                            {
+                              "id": "d383553b-1665-4581-a0af-db5081fc62ab",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/business/:business_uuid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "business",
+                                    ":business_uuid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    },
+                                    {
+                                      "key": "business_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"OK\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:24:53.000Z",
+                              "updatedAt": "2026-07-28T02:24:53.000Z",
+                              "uid": "35240-d383553b-1665-4581-a0af-db5081fc62ab"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:24:53.000Z",
+                          "updatedAt": "2026-07-28T02:24:53.000Z",
+                          "uid": "35240-d987b33d-c770-403a-bc8b-6a444fc030ac"
+                        }
+                      ],
+                      "id": "8e087d9b-5d92-435c-a1c2-8b240ca0208c",
+                      "createdAt": "2026-07-28T02:24:53.000Z",
+                      "updatedAt": "2026-07-28T02:24:53.000Z",
+                      "uid": "35240-8e087d9b-5d92-435c-a1c2-8b240ca0208c"
+                    },
+                    {
+                      "name": "Create business verification (Deprecated)",
+                      "id": "ee1674a1-c0b2-4ef1-b6d7-3eb26cf13894",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/book/:book_uuid/business?name=<string>&website=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "book",
+                            ":book_uuid",
+                            "business"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal name of the business.",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The URL of the business' public-facing website.",
+                              "key": "website",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "69177f6b-e28b-465d-ae47-b7a7ba5ef19d",
+                              "key": "book_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the <<glossary:Book>> that contains the <<glossary:Document>>s associated with the newly-created business."
+                            }
+                          ]
+                        },
+                        "description": "Create a new business for verification and due diligence. \n\n---\n\nOnce created, we will automatically begin verifying the legitimacy of the business.\n\n\nWe have partnered with Middesk to bring you this data. To use this endpoint, please follow the following steps:\n1. Sign up for an account with [Middesk](https://middesk.com/).\n2. Get your Middesk production API key (we don't support sandbox accounts at the moment).\n3. Call our [Vendor Auth](ref:vendor-auth) with `middesk` as the vendor name and put the API key in the request body.\n4. Set up an Ocrolus webhook by calling [Configure Webhook](ref:configure-webhook) to get back the Middesk results as soon as they are done processing.\n5. Call this endpoint with the uuid for a Book containing one of your business loan applicants to get the verification process started.\n- Make sure the Book is verified before making the call.\n6. Get the results back in a timely way with the webhook you set up earlier!\n7. Or you can also call the [Retrieve business verification](ref:retrieve-business) endpoint with the book_uuid and business_uuid in case you prefer to get back the results this way."
+                      },
+                      "response": [
+                        {
+                          "id": "45b56cb3-2007-477c-9a38-5c5fa32a5396",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business?name=<string>&website=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The legal name of the business.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The URL of the business' public-facing website.",
+                                  "key": "website",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"book_uuid\": \"<string>\",\n  \"business_uuid\": \"<string>\",\n  \"middesk_response\": {}\n}",
+                          "createdAt": "2026-07-28T02:24:53.000Z",
+                          "updatedAt": "2026-07-28T02:24:53.000Z",
+                          "uid": "35240-45b56cb3-2007-477c-9a38-5c5fa32a5396"
+                        },
+                        {
+                          "id": "9d9e988d-8530-4969-99d6-c3aae95fb875",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business?name=<string>&website=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The legal name of the business.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The URL of the business' public-facing website.",
+                                  "key": "website",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"OK\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:53.000Z",
+                          "updatedAt": "2026-07-28T02:24:53.000Z",
+                          "uid": "35240-9d9e988d-8530-4969-99d6-c3aae95fb875"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:53.000Z",
+                      "updatedAt": "2026-07-28T02:24:53.000Z",
+                      "uid": "35240-ee1674a1-c0b2-4ef1-b6d7-3eb26cf13894"
+                    }
+                  ],
+                  "id": "4f93f17e-e21f-4555-bd8d-b6e12ca9ac2a",
+                  "createdAt": "2026-07-28T02:24:53.000Z",
+                  "updatedAt": "2026-07-28T02:24:53.000Z",
+                  "uid": "35240-4f93f17e-e21f-4555-bd8d-b6e12ca9ac2a"
+                }
+              ],
+              "id": "cfcc3ad9-f4b4-4983-80f1-0f52845a90ff",
+              "createdAt": "2026-07-28T02:24:53.000Z",
+              "updatedAt": "2026-07-28T02:24:53.000Z",
+              "uid": "35240-cfcc3ad9-f4b4-4983-80f1-0f52845a90ff"
+            }
+          ],
+          "id": "693d463a-a2b5-4898-b757-0e4fa72794c3",
+          "createdAt": "2026-07-28T02:24:53.000Z",
+          "updatedAt": "2026-07-28T02:24:53.000Z",
+          "uid": "35240-693d463a-a2b5-4898-b757-0e4fa72794c3"
+        }
+      ],
+      "id": "7599ac3b-badc-479a-8f10-3352b308e558",
+      "createdAt": "2026-07-28T02:24:53.000Z",
+      "updatedAt": "2026-07-28T02:24:53.000Z",
+      "uid": "35240-7599ac3b-badc-479a-8f10-3352b308e558"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "developer",
+          "item": [
+            {
+              "name": "auth",
+              "item": [
+                {
+                  "name": "vendor",
+                  "item": [
+                    {
+                      "name": "{vendor_name}",
+                      "item": [
+                        {
+                          "name": "Vendor authentication (Deprecated)",
+                          "id": "deedd44d-621a-4a19-9ff7-db788c5168b7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"api_key\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/developer/auth/vendor/:vendor_name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "developer",
+                                "auth",
+                                "vendor",
+                                ":vendor_name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0d0f5f40-233f-4125-9e3b-ea5fea68f821",
+                                  "key": "vendor_name",
+                                  "value": "middesk",
+                                  "description": "(Required) The vendor that you're granting Ocrolus access to. Currently, we only support the value of `middesk`."
+                                }
+                              ]
+                            },
+                            "description": "Store a vendor-generated API key to enable third-party integrations."
+                          },
+                          "response": [
+                            {
+                              "id": "48dddd18-0cd6-4384-86e4-6762f66e0fe7",
+                              "name": "Successful Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_key\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/developer/auth/vendor/:vendor_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "developer",
+                                    "auth",
+                                    "vendor",
+                                    ":vendor_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vendor_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:24:53.000Z",
+                              "updatedAt": "2026-07-28T02:24:53.000Z",
+                              "uid": "35240-48dddd18-0cd6-4384-86e4-6762f66e0fe7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:24:53.000Z",
+                          "updatedAt": "2026-07-28T02:24:53.000Z",
+                          "uid": "35240-deedd44d-621a-4a19-9ff7-db788c5168b7"
+                        }
+                      ],
+                      "id": "e47c66c6-6d0f-4c8c-bb90-39deb6bcb044",
+                      "createdAt": "2026-07-28T02:24:53.000Z",
+                      "updatedAt": "2026-07-28T02:24:53.000Z",
+                      "uid": "35240-e47c66c6-6d0f-4c8c-bb90-39deb6bcb044"
+                    }
+                  ],
+                  "id": "1eb26bdd-031d-4fde-86ea-550008686a6b",
+                  "createdAt": "2026-07-28T02:24:53.000Z",
+                  "updatedAt": "2026-07-28T02:24:53.000Z",
+                  "uid": "35240-1eb26bdd-031d-4fde-86ea-550008686a6b"
+                }
+              ],
+              "id": "0e18d718-45bc-4090-8ee1-1f224c289c32",
+              "createdAt": "2026-07-28T02:24:53.000Z",
+              "updatedAt": "2026-07-28T02:24:53.000Z",
+              "uid": "35240-0e18d718-45bc-4090-8ee1-1f224c289c32"
+            }
+          ],
+          "id": "2a4fab18-af73-4d54-bf01-067c8bdd85f4",
+          "createdAt": "2026-07-28T02:24:53.000Z",
+          "updatedAt": "2026-07-28T02:24:53.000Z",
+          "uid": "35240-2a4fab18-af73-4d54-bf01-067c8bdd85f4"
+        }
+      ],
+      "id": "d37e3986-b63b-46af-8c37-932ee2bdede1",
+      "createdAt": "2026-07-28T02:24:53.000Z",
+      "updatedAt": "2026-07-28T02:24:53.000Z",
+      "uid": "35240-d37e3986-b63b-46af-8c37-932ee2bdede1"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

@@ -1,0 +1,1230 @@
+{
+  "info": {
+    "_postman_id": "0e12ac23-d4a0-4ae8-93db-e90167553f46",
+    "name": "Account Level Webhooks Book Commands Org Level Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:17.000Z",
+    "updatedAt": "2026-07-28T02:25:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0e12ac23-d4a0-4ae8-93db-e90167553f46"
+  },
+  "item": [
+    {
+      "name": "webhook",
+      "item": [
+        {
+          "name": "{webhook_uuid}",
+          "item": [
+            {
+              "name": "rotate-secret",
+              "item": [
+                {
+                  "name": "Configure webhook secret",
+                  "id": "08f8f143-0ef5-41a2-a7f8-151d8c391bfa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid/rotate-secret",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid",
+                        "rotate-secret"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dc9a814d-04f7-460f-83b0-757bc0c8e8f9",
+                          "key": "webhook_uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identifier of the webhook."
+                        }
+                      ]
+                    },
+                    "description": "This API configures the secret key for a specific org-level webhook. Use this endpoint to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "cf349aff-bc3c-47f9-ad8b-44c18f286cc5",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/rotate-secret",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "rotate-secret"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"response\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-cf349aff-bc3c-47f9-ad8b-44c18f286cc5"
+                    },
+                    {
+                      "id": "817831b8-ca0a-4b16-8829-0c5fb1adf114",
+                      "name": "Webhook Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/rotate-secret",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "rotate-secret"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-817831b8-ca0a-4b16-8829-0c5fb1adf114"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-08f8f143-0ef5-41a2-a7f8-151d8c391bfa"
+                }
+              ],
+              "id": "b47ba51e-625a-42af-a170-fc877f5b4661",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-b47ba51e-625a-42af-a170-fc877f5b4661"
+            },
+            {
+              "name": "delete",
+              "item": [
+                {
+                  "name": "Delete webhook",
+                  "id": "f0c80c13-667a-407f-a37e-0712c65ee491",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid/delete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid",
+                        "delete"
+                      ],
+                      "variable": [
+                        {
+                          "id": "92830199-9154-4222-aff6-1649da336bd0",
+                          "key": "webhook_uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identification code (UUID) of the webhook."
+                        }
+                      ]
+                    },
+                    "description": "Delete a webhook using the webhook's universally unique identification code (UUID)."
+                  },
+                  "response": [
+                    {
+                      "id": "41a64ea1-fa77-43e9-ac46-8c68103a007d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "delete"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-41a64ea1-fa77-43e9-ac46-8c68103a007d"
+                    },
+                    {
+                      "id": "8a9007a4-fcd1-4e33-8f81-8c223324e323",
+                      "name": "Webhook not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "delete"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"400\",\n  \"code\": \"1000\",\n  \"response\": {},\n  \"meta\": {\n    \"status\": \"400\",\n    \"code\": \"1000\",\n    \"msg\": \"Webhook with uuid {uuid} not found\"\n  },\n  \"message\": \"Webhook with uuid {uuid} not found\"\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-8a9007a4-fcd1-4e33-8f81-8c223324e323"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-f0c80c13-667a-407f-a37e-0712c65ee491"
+                }
+              ],
+              "id": "943952c5-311d-4f71-b999-fbc855079f5d",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-943952c5-311d-4f71-b999-fbc855079f5d"
+            },
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "List webhook events",
+                  "id": "c8dac1e6-b80b-4aae-b87a-7d8a7f0bf964",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid",
+                        "events"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ae8d2d07-dbd3-41be-9f11-cdc8dc757da4",
+                          "key": "webhook_uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identification identifier of the webhook."
+                        }
+                      ]
+                    },
+                    "description": "This API retrieves a list of events configured for a webhook using the webhook's universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+                  },
+                  "response": [
+                    {
+                      "id": "508e93b9-4bb0-4952-86ce-f09d11761a82",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {\n    \"events\": [\n      {\n        \"description\": \"<string>\",\n        \"uuid\": \"<uuid>\",\n        \"is_active\": false,\n        \"name\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"type\": \"STATUS\",\n        \"severity\": \"LOW\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"uuid\": \"<uuid>\",\n        \"is_active\": false,\n        \"name\": \"<string>\",\n        \"reason\": \"<string>\",\n        \"type\": \"ISSUE\",\n        \"severity\": \"LOW\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-508e93b9-4bb0-4952-86ce-f09d11761a82"
+                    },
+                    {
+                      "id": "76e8bb4c-46cb-4acd-9505-ad87232c35a1",
+                      "name": "Webhook with uuid {uuid} not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"400\",\n  \"code\": \"1000\",\n  \"response\": {},\n  \"meta\": {\n    \"status\": \"400\",\n    \"code\": \"1000\",\n    \"msg\": \"Webhook with uuid {uuid} not found\"\n  },\n  \"message\": \"Webhook with uuid {uuid} not found\"\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-76e8bb4c-46cb-4acd-9505-ad87232c35a1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-c8dac1e6-b80b-4aae-b87a-7d8a7f0bf964"
+                }
+              ],
+              "id": "29496d76-1543-4072-a6f2-2c5198b21e2c",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-29496d76-1543-4072-a6f2-2c5198b21e2c"
+            },
+            {
+              "name": "test",
+              "item": [
+                {
+                  "name": "Test webhook",
+                  "id": "78ad363f-759c-4fc6-8261-a86ed620bc39",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event_uuid\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid",
+                        "test"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b112def5-54f3-4e55-b3fc-aef879433c33",
+                          "key": "webhook_uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identification code (UUID) of the webhook."
+                        }
+                      ]
+                    },
+                    "description": "This API sends a test payload to your configured webhook endpoint using a provided event.\n\n---\nThis endpoint requires users to provide an `event_uuid` for a notification event that you have configured a webhook for.\n\nYou can find configured notifications event and their uuids by using the [List events for Webhook endpoint](ref:list-events)."
+                  },
+                  "response": [
+                    {
+                      "id": "36d3fdbf-20d1-4d02-9176-3080dca6f287",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_uuid\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"event_name\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"notification_reason\": \"<string>\",\n  \"notification_type\": \"<string>\",\n  \"book_uuid\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-36d3fdbf-20d1-4d02-9176-3080dca6f287"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-78ad363f-759c-4fc6-8261-a86ed620bc39"
+                }
+              ],
+              "id": "6452bb6b-62a0-41af-ae20-9d06a518d357",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-6452bb6b-62a0-41af-ae20-9d06a518d357"
+            },
+            {
+              "name": "update",
+              "item": [
+                {
+                  "name": "Update webhook",
+                  "id": "e8ebd2f5-c2de-4602-a244-92232f5a0b01",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid/update",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid",
+                        "update"
+                      ],
+                      "variable": [
+                        {
+                          "id": "912f2ada-89fe-4f3e-89d4-d73d5a58ba53",
+                          "key": "webhook_uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) The unique identification code (UUID) of the webhook."
+                        }
+                      ]
+                    },
+                    "description": "This API updates the settings for a webhook in your organization by using the webhook's universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+                  },
+                  "response": [
+                    {
+                      "id": "24a4c2ff-57b1-49ee-9877-5102642442a3",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/update",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "update"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {}\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-24a4c2ff-57b1-49ee-9877-5102642442a3"
+                    },
+                    {
+                      "id": "b6f17770-21de-487c-92e2-c8b652659306",
+                      "name": "Webhook not updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webhook/:webhook_uuid/update",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhook",
+                            ":webhook_uuid",
+                            "update"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"400\",\n  \"code\": \"1000\",\n  \"response\": {},\n  \"meta\": {\n    \"status\": \"400\",\n    \"code\": \"1000\",\n    \"msg\": \"Webhook with url https://www.google.com/ already exists\"\n  },\n  \"message\": \"Webhook with url https://www.google.com/ already exists\"\n}",
+                      "createdAt": "2026-07-28T02:25:18.000Z",
+                      "updatedAt": "2026-07-28T02:25:18.000Z",
+                      "uid": "35240-b6f17770-21de-487c-92e2-c8b652659306"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-e8ebd2f5-c2de-4602-a244-92232f5a0b01"
+                }
+              ],
+              "id": "cba52a04-9b60-471b-b800-64a5104be975",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-cba52a04-9b60-471b-b800-64a5104be975"
+            },
+            {
+              "name": "Retrieve webhook",
+              "id": "be2208ed-bf87-4677-825d-ea48b70db52d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook/:webhook_uuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook",
+                    ":webhook_uuid"
+                  ],
+                  "variable": [
+                    {
+                      "id": "39a6f78a-9d0a-469d-b6c7-0316c3e4228e",
+                      "key": "webhook_uuid",
+                      "value": "<uuid>",
+                      "description": "(Required) The unique identification code (UUID) of the webhook."
+                    }
+                  ]
+                },
+                "description": "This API retrieves a specific webhook using its universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+              },
+              "response": [
+                {
+                  "id": "b82b565d-234c-483c-ba67-b96ed72eb25f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-b82b565d-234c-483c-ba67-b96ed72eb25f"
+                },
+                {
+                  "id": "49a9a7e7-c458-411a-8e63-6d56daf79bcf",
+                  "name": "Webhook not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhook_uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhook_uuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhook_uuid"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"400\",\n  \"code\": \"1000\",\n  \"response\": {},\n  \"meta\": {\n    \"status\": \"400\",\n    \"code\": \"1000\",\n    \"msg\": \"Webhook with uuid {uuid} not found\"\n  },\n  \"message\": \"Webhook with uuid {uuid} not found\"\n}",
+                  "createdAt": "2026-07-28T02:25:18.000Z",
+                  "updatedAt": "2026-07-28T02:25:18.000Z",
+                  "uid": "35240-49a9a7e7-c458-411a-8e63-6d56daf79bcf"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-be2208ed-bf87-4677-825d-ea48b70db52d"
+            }
+          ],
+          "id": "a4e23a68-b44c-40b9-9ddd-b985990ac4d0",
+          "createdAt": "2026-07-28T02:25:18.000Z",
+          "updatedAt": "2026-07-28T02:25:18.000Z",
+          "uid": "35240-a4e23a68-b44c-40b9-9ddd-b985990ac4d0"
+        },
+        {
+          "name": "Add webhook",
+          "id": "4ea588f4-d297-4f47-a342-6a40f6773281",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook"
+              ]
+            },
+            "description": "Set up an org-level webhook for your organization so your application can receive and respond to Ocrolus events in real time. Use this endpoint to create or update the webhook configuration. Ocrolus then delivers event payloads to your application as they occur, allowing you to automate downstream workflows.\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).\n\n> \ud83d\udcd8\n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly."
+          },
+          "response": [
+            {
+              "id": "d041f47c-74ae-415f-b6a7-85cf5e1f3155",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {\n    \"uuid\": \"<uuid>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-d041f47c-74ae-415f-b6a7-85cf5e1f3155"
+            },
+            {
+              "id": "45fb720b-2da4-497a-afc8-b5c7574c9208",
+              "name": "Webhook not created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook\": {\n    \"description\": \"<string>\",\n    \"url\": \"<string>\",\n    \"uuid\": \"<uuid>\",\n    \"is_active\": true,\n    \"created_on\": \"<string>\",\n    \"last_modified_date\": \"<string>\"\n  },\n  \"event_names\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"400\",\n  \"code\": \"1000\",\n  \"response\": {},\n  \"meta\": {\n    \"status\": \"400\",\n    \"code\": \"1000\",\n    \"msg\": \"Webhook with url https://www.google.com/ already exists\"\n  },\n  \"message\": \"Webhook with url https://www.google.com/ already exists\"\n}",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-45fb720b-2da4-497a-afc8-b5c7574c9208"
+            }
+          ],
+          "createdAt": "2026-07-28T02:25:18.000Z",
+          "updatedAt": "2026-07-28T02:25:18.000Z",
+          "uid": "35240-4ea588f4-d297-4f47-a342-6a40f6773281"
+        }
+      ],
+      "id": "530fa643-9154-46c1-8874-5fcc91d19cef",
+      "createdAt": "2026-07-28T02:25:18.000Z",
+      "updatedAt": "2026-07-28T02:25:18.000Z",
+      "uid": "35240-530fa643-9154-46c1-8874-5fcc91d19cef"
+    },
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "List webhooks",
+          "id": "18eb51df-2ac8-45dd-b352-feba13697a3f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "This API retrieves a list of all the webhooks configured for your organization.\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+          },
+          "response": [
+            {
+              "id": "8284e761-6541-476c-bff7-5ba38a53d812",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"200\",\n  \"message\": \"OK\",\n  \"response\": {\n    \"webhooks\": [\n      {\n        \"description\": \"<string>\",\n        \"url\": \"<string>\",\n        \"uuid\": \"<uuid>\",\n        \"is_active\": true,\n        \"created_on\": \"<string>\",\n        \"last_modified_date\": \"<string>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"url\": \"<string>\",\n        \"uuid\": \"<uuid>\",\n        \"is_active\": true,\n        \"created_on\": \"<string>\",\n        \"last_modified_date\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:25:18.000Z",
+              "updatedAt": "2026-07-28T02:25:18.000Z",
+              "uid": "35240-8284e761-6541-476c-bff7-5ba38a53d812"
+            }
+          ],
+          "createdAt": "2026-07-28T02:25:18.000Z",
+          "updatedAt": "2026-07-28T02:25:18.000Z",
+          "uid": "35240-18eb51df-2ac8-45dd-b352-feba13697a3f"
+        }
+      ],
+      "id": "638f3fdb-abdb-4c39-967f-a1134e6e9294",
+      "createdAt": "2026-07-28T02:25:18.000Z",
+      "updatedAt": "2026-07-28T02:25:18.000Z",
+      "uid": "35240-638f3fdb-abdb-4c39-967f-a1134e6e9294"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

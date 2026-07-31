@@ -1,0 +1,632 @@
+{
+  "info": {
+    "_postman_id": "3897a529-a0a7-4bcb-9160-2b2b20b94352",
+    "name": "Account Level Book Commands Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:21.000Z",
+    "updatedAt": "2026-07-28T02:25:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3897a529-a0a7-4bcb-9160-2b2b20b94352"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "account",
+          "item": [
+            {
+              "name": "settings",
+              "item": [
+                {
+                  "name": "update",
+                  "item": [
+                    {
+                      "name": "webhook_endpoint",
+                      "item": [
+                        {
+                          "name": "Configure webhook",
+                          "id": "c8324b4d-89c9-4700-bec3-3338b53f8519",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.",
+                                  "key": "webhook_endpoint",
+                                  "value": "<string>",
+                                  "type": "text"
+                                },
+                                {
+                                  "description": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n",
+                                  "key": "event",
+                                  "value": "plaid.upload_succeeded,document.detect.signal_found",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/settings/update/webhook_endpoint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "settings",
+                                "update",
+                                "webhook_endpoint"
+                              ]
+                            },
+                            "description": "Set up a webhook for your account so your application can react to Ocrolus events.\n\n---\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> \ud83d\udcd8 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\n> \ud83d\udea7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "4b5beef5-052f-458f-bf3d-667465076ef2",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.",
+                                      "key": "webhook_endpoint",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n",
+                                      "key": "event",
+                                      "value": "plaid.upload_succeeded,document.detect.signal_found",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/settings/update/webhook_endpoint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "settings",
+                                    "update",
+                                    "webhook_endpoint"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"webhook_endpoint\": \"<string>\",\n    \"events\": [\n      \"document.classification_succeeded\",\n      \"network.book.funded (BETA)\"\n    ]\n  },\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:25:22.000Z",
+                              "updatedAt": "2026-07-28T02:25:22.000Z",
+                              "uid": "35240-4b5beef5-052f-458f-bf3d-667465076ef2"
+                            },
+                            {
+                              "id": "da45936e-7fba-4f57-8f08-a01e8b5d7fd4",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "multipart/form-data"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "formdata",
+                                  "formdata": [
+                                    {
+                                      "description": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.",
+                                      "key": "webhook_endpoint",
+                                      "value": "<string>",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "description": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n",
+                                      "key": "event",
+                                      "value": "plaid.upload_succeeded,document.detect.signal_found",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/settings/update/webhook_endpoint",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "settings",
+                                    "update",
+                                    "webhook_endpoint"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"webhook_endpoint\": \"<string>\",\n    \"events\": [\n      \"document.classification_succeeded\",\n      \"network.book.funded (BETA)\"\n    ]\n  },\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:25:22.000Z",
+                              "updatedAt": "2026-07-28T02:25:22.000Z",
+                              "uid": "35240-da45936e-7fba-4f57-8f08-a01e8b5d7fd4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:22.000Z",
+                          "updatedAt": "2026-07-28T02:25:22.000Z",
+                          "uid": "35240-c8324b4d-89c9-4700-bec3-3338b53f8519"
+                        }
+                      ],
+                      "id": "a9240429-c790-4009-8fed-2e88ee70f08e",
+                      "createdAt": "2026-07-28T02:25:22.000Z",
+                      "updatedAt": "2026-07-28T02:25:22.000Z",
+                      "uid": "35240-a9240429-c790-4009-8fed-2e88ee70f08e"
+                    }
+                  ],
+                  "id": "2fc0f472-eb88-4a0a-89cf-958eb878da3d",
+                  "createdAt": "2026-07-28T02:25:22.000Z",
+                  "updatedAt": "2026-07-28T02:25:22.000Z",
+                  "uid": "35240-2fc0f472-eb88-4a0a-89cf-958eb878da3d"
+                },
+                {
+                  "name": "webhook_details",
+                  "item": [
+                    {
+                      "name": "Get webhook configuration",
+                      "id": "848734df-2621-4f31-8a6f-22804d5465ad",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/account/settings/webhook_details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "account",
+                            "settings",
+                            "webhook_details"
+                          ]
+                        },
+                        "description": "Retrieve your most recent webhook configuration.\n\n---\n\nReturns the same object as that of the most recent [webhook registration](ref:configure-webhook).\n\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> \ud83d\udea7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration."
+                      },
+                      "response": [
+                        {
+                          "id": "6c31bc1c-1c69-4a7f-b160-b50eccd5dafd",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/settings/webhook_details",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "settings",
+                                "webhook_details"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"webhook_endpoint\": \"<string>\",\n    \"events\": [\n      \"document.classification_succeeded\",\n      \"network.book.funded (BETA)\"\n    ]\n  },\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:25:22.000Z",
+                          "updatedAt": "2026-07-28T02:25:22.000Z",
+                          "uid": "35240-6c31bc1c-1c69-4a7f-b160-b50eccd5dafd"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:22.000Z",
+                      "updatedAt": "2026-07-28T02:25:22.000Z",
+                      "uid": "35240-848734df-2621-4f31-8a6f-22804d5465ad"
+                    }
+                  ],
+                  "id": "2f83b158-cc9d-4fb4-8c07-ece21a78c1a6",
+                  "createdAt": "2026-07-28T02:25:22.000Z",
+                  "updatedAt": "2026-07-28T02:25:22.000Z",
+                  "uid": "35240-2f83b158-cc9d-4fb4-8c07-ece21a78c1a6"
+                },
+                {
+                  "name": "test_webhook_endpoint",
+                  "item": [
+                    {
+                      "name": "Test webhook",
+                      "id": "cfdcfc89-6216-4d9b-929f-e3e67b4b66ce",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/account/settings/test_webhook_endpoint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "account",
+                            "settings",
+                            "test_webhook_endpoint"
+                          ]
+                        },
+                        "description": "Send a test payload to your configured webhook endpoint. \n\n---\nRequests to this endpoint will send a `POST` request with a test payload of the following JSON in the request body:\n\n```json\n{\n  \"status\": \"VERIFICATION_COMPLETE\",\n  \"uploaded_doc_pk\": 0,\n  \"book_pk\": 0\n}\n```\n\n> \ud83d\udcd8 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\nIf the webhook fails for any reason, the corresponding HTTP status code and message will be provided in the response's `message` and `code` attributes.\n\n> \ud83d\udea7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "af4993db-d8ad-4ad0-a8c5-6b8427ecde6a",
+                          "name": "The configured webhook returned successfully.\n",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/settings/test_webhook_endpoint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "settings",
+                                "test_webhook_endpoint"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"message\": \"<string>\",\n    \"resp_code\": \"<integer>\"\n  },\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:25:22.000Z",
+                          "updatedAt": "2026-07-28T02:25:22.000Z",
+                          "uid": "35240-af4993db-d8ad-4ad0-a8c5-6b8427ecde6a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:22.000Z",
+                      "updatedAt": "2026-07-28T02:25:22.000Z",
+                      "uid": "35240-cfdcfc89-6216-4d9b-929f-e3e67b4b66ce"
+                    }
+                  ],
+                  "id": "9de5bf5c-257e-49e5-8fc9-d9abc8547e3f",
+                  "createdAt": "2026-07-28T02:25:22.000Z",
+                  "updatedAt": "2026-07-28T02:25:22.000Z",
+                  "uid": "35240-9de5bf5c-257e-49e5-8fc9-d9abc8547e3f"
+                },
+                {
+                  "name": "webhook",
+                  "item": [
+                    {
+                      "name": "rotate-secret",
+                      "item": [
+                        {
+                          "name": "Configure webhook secret",
+                          "id": "e4edee44-5661-4af3-8bf1-4bf6a0c6f66d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/settings/webhook/rotate-secret",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "settings",
+                                "webhook",
+                                "rotate-secret"
+                              ]
+                            },
+                            "description": "This API configures the secret key for account-level webhook signature verification. Use this API to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.\n> \ud83d\udea7 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "38291c00-9442-43f3-a790-a1d3b99a3d6c",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/settings/webhook/rotate-secret",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "settings",
+                                    "webhook",
+                                    "rotate-secret"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"response\": {\n    \"status\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:22.000Z",
+                              "updatedAt": "2026-07-28T02:25:22.000Z",
+                              "uid": "35240-38291c00-9442-43f3-a790-a1d3b99a3d6c"
+                            },
+                            {
+                              "id": "318a01b9-586b-4395-985c-f89e6b6fa168",
+                              "name": "Webhook Not Found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/settings/webhook/rotate-secret",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "settings",
+                                    "webhook",
+                                    "rotate-secret"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:22.000Z",
+                              "updatedAt": "2026-07-28T02:25:22.000Z",
+                              "uid": "35240-318a01b9-586b-4395-985c-f89e6b6fa168"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:22.000Z",
+                          "updatedAt": "2026-07-28T02:25:22.000Z",
+                          "uid": "35240-e4edee44-5661-4af3-8bf1-4bf6a0c6f66d"
+                        }
+                      ],
+                      "id": "befeb93e-f3df-4b7b-9283-846e6a03279e",
+                      "createdAt": "2026-07-28T02:25:22.000Z",
+                      "updatedAt": "2026-07-28T02:25:22.000Z",
+                      "uid": "35240-befeb93e-f3df-4b7b-9283-846e6a03279e"
+                    }
+                  ],
+                  "id": "2076224d-12b0-4164-9ae9-470fab5f435a",
+                  "createdAt": "2026-07-28T02:25:22.000Z",
+                  "updatedAt": "2026-07-28T02:25:22.000Z",
+                  "uid": "35240-2076224d-12b0-4164-9ae9-470fab5f435a"
+                }
+              ],
+              "id": "7e2e9b9c-9468-43f0-bfd6-31fdaa54212e",
+              "createdAt": "2026-07-28T02:25:22.000Z",
+              "updatedAt": "2026-07-28T02:25:22.000Z",
+              "uid": "35240-7e2e9b9c-9468-43f0-bfd6-31fdaa54212e"
+            }
+          ],
+          "id": "338e3d99-7704-45e3-8f8a-e72856718e98",
+          "createdAt": "2026-07-28T02:25:22.000Z",
+          "updatedAt": "2026-07-28T02:25:22.000Z",
+          "uid": "35240-338e3d99-7704-45e3-8f8a-e72856718e98"
+        }
+      ],
+      "id": "c06f0931-bbb0-447b-ab14-bca2ce652cc0",
+      "createdAt": "2026-07-28T02:25:22.000Z",
+      "updatedAt": "2026-07-28T02:25:22.000Z",
+      "uid": "35240-c06f0931-bbb0-447b-ab14-bca2ce652cc0"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

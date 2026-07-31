@@ -1,0 +1,73 @@
+generated: '2026-07-20'
+method: derived
+source: derived from openapi/ path parameters and $ref graph
+id_fields:
+- book_uuid
+- doc_uuid
+- paystub_uuid
+- business_id
+- tag_uuid
+- webhook_uuid
+- visualization_uuid
+- job_id
+entities:
+- name: Book
+- name: Document
+- name: Form
+- name: Transaction
+- name: Paystub
+- name: BankAccount
+- name: ImageGroup
+- name: Business
+- name: Tag
+- name: Webhook
+- name: CopyJob
+- name: User
+- name: Invitation
+- name: FraudSignal
+- name: IncomeCalculation
+relationships:
+- from: Book
+  to: Document
+  type: has_many
+  via: book_uuid
+- from: Document
+  to: Form
+  type: has_many
+  via: doc_uuid
+- from: Book
+  to: Transaction
+  type: has_many
+  via: book_uuid
+- from: Document
+  to: Paystub
+  type: has_one
+  via: paystub_uuid
+- from: Book
+  to: BankAccount
+  type: has_many
+  via: book_uuid
+- from: Book
+  to: ImageGroup
+  type: has_many
+  via: book_uuid
+- from: Book
+  to: Business
+  type: has_one
+  via: business_id
+- from: Book
+  to: FraudSignal
+  type: has_many
+  via: book_uuid
+- from: Book
+  to: IncomeCalculation
+  type: has_many
+  via: book_uuid
+- from: Transaction
+  to: Tag
+  type: has_many
+  via: tag_uuid
+- from: Book
+  to: CopyJob
+  type: has_many
+  via: job_id

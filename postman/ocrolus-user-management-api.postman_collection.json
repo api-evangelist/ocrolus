@@ -1,0 +1,1302 @@
+{
+  "info": {
+    "_postman_id": "57c3004c-f134-4e4b-9b0d-addf68c12583",
+    "name": "Account Level Webhooks Book Commands User management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:20.000Z",
+    "updatedAt": "2026-07-28T02:25:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57c3004c-f134-4e4b-9b0d-addf68c12583"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "invitations",
+          "item": [
+            {
+              "name": "Create invitation",
+              "id": "b05e2e21-76ff-44d5-acfb-c51553d08d1c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/invitations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "invitations"
+                  ]
+                },
+                "description": "This API invites a new user to your organization by email. If the email has been invited before, the existing invitation is refreshed with a new expiration date.\n\n> \ud83d\udc4d Tip: \n  > The invitation is valid for 7 days. If the user does not accept the invitation within that time frame, they will need to be re-invited.\n"
+              },
+              "response": [
+                {
+                  "id": "883ab8c7-18ae-4c48-9a4b-f59d1227fca8",
+                  "name": "Invitation created (or refreshed) successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\",\n  \"invited_by_account_pk\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-883ab8c7-18ae-4c48-9a4b-f59d1227fca8"
+                },
+                {
+                  "id": "8d171912-510c-43ec-b344-e44e25d8c44b",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-8d171912-510c-43ec-b344-e44e25d8c44b"
+                },
+                {
+                  "id": "86370f7d-3aa6-4466-b45f-f736b5e34c68",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-86370f7d-3aa6-4466-b45f-f736b5e34c68"
+                },
+                {
+                  "id": "13f1707e-e503-40ff-8d91-253dd52db198",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-13f1707e-e503-40ff-8d91-253dd52db198"
+                },
+                {
+                  "id": "baa86d75-1a1d-478e-846d-9e5a674569ba",
+                  "name": "Precondition failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Precondition Failed",
+                  "code": 412,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-baa86d75-1a1d-478e-846d-9e5a674569ba"
+                },
+                {
+                  "id": "63a1eeb3-bd42-4b50-a48e-b2b2bd93c026",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"is_manager\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-63a1eeb3-bd42-4b50-a48e-b2b2bd93c026"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:21.000Z",
+              "updatedAt": "2026-07-28T02:25:21.000Z",
+              "uid": "35240-b05e2e21-76ff-44d5-acfb-c51553d08d1c"
+            },
+            {
+              "name": "List invitations",
+              "id": "cc256d67-b613-4a45-b190-ff10c6aa30d3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "invitations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                },
+                "description": "This API returns a paginated list of pending invitations for your organization. Use this endpoint to review outstanding invitations before sending reminders or re-inviting users whose invitations have expired."
+              },
+              "response": [
+                {
+                  "id": "7b3e3bb8-30b7-4108-ad48-66f094eeb10e",
+                  "name": "Invitations retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"invitations\": [\n    {\n      \"email\": \"<email>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"is_manager\": \"<boolean>\",\n      \"invited_by_account_pk\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"is_manager\": \"<boolean>\",\n      \"invited_by_account_pk\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-7b3e3bb8-30b7-4108-ad48-66f094eeb10e"
+                },
+                {
+                  "id": "d7416026-87e9-4474-bace-b801df2d7e61",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-d7416026-87e9-4474-bace-b801df2d7e61"
+                },
+                {
+                  "id": "5ed140f5-dcfc-475a-9555-78a045a59061",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-5ed140f5-dcfc-475a-9555-78a045a59061"
+                },
+                {
+                  "id": "6bb8f4db-d679-4021-bd0c-04070723cf2b",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-6bb8f4db-d679-4021-bd0c-04070723cf2b"
+                },
+                {
+                  "id": "b2fb8adb-83e3-42af-8ad2-45cda971368d",
+                  "name": "Precondition failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Precondition Failed",
+                  "code": 412,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-b2fb8adb-83e3-42af-8ad2-45cda971368d"
+                },
+                {
+                  "id": "649e0d38-2f20-436b-87a0-449be0a5b3cc",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/invitations?offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Maximum number of records to return per page, starting from the specified `offset` value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-649e0d38-2f20-436b-87a0-449be0a5b3cc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:21.000Z",
+              "updatedAt": "2026-07-28T02:25:21.000Z",
+              "uid": "35240-cc256d67-b613-4a45-b190-ff10c6aa30d3"
+            }
+          ],
+          "id": "a1da153f-8fb4-4b1d-a054-d8aa2252676b",
+          "createdAt": "2026-07-28T02:25:21.000Z",
+          "updatedAt": "2026-07-28T02:25:21.000Z",
+          "uid": "35240-a1da153f-8fb4-4b1d-a054-d8aa2252676b"
+        },
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "List users",
+              "id": "06420dfe-5896-4288-a0fa-73efffccb449",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                      "key": "is_manager",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                      "key": "sort",
+                      "value": "id"
+                    },
+                    {
+                      "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                      "key": "order",
+                      "value": "asc"
+                    }
+                  ]
+                },
+                "description": "This API returns a paginated list of Dashboard members in your organization. Use this endpoint to review existing users, filter by manager status, or sort results by ID or email."
+              },
+              "response": [
+                {
+                  "id": "395f5f8a-dc47-4d94-b2cf-8b87c02c7c6e",
+                  "name": "Users retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"users\": [\n    {\n      \"id\": \"<integer>\",\n      \"email\": \"<email>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"is_manager\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"email\": \"<email>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"is_manager\": \"<boolean>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-395f5f8a-dc47-4d94-b2cf-8b87c02c7c6e"
+                },
+                {
+                  "id": "eb2f00c1-e15c-4356-8a8c-1a65dbb82916",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-eb2f00c1-e15c-4356-8a8c-1a65dbb82916"
+                },
+                {
+                  "id": "61c8a921-d097-4bfd-83a3-c19fd9626e40",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-61c8a921-d097-4bfd-83a3-c19fd9626e40"
+                },
+                {
+                  "id": "084ff09f-01f7-452f-9f1f-6e3c20f62251",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-084ff09f-01f7-452f-9f1f-6e3c20f62251"
+                },
+                {
+                  "id": "a65863bb-4f65-450a-9889-e12fc99b2616",
+                  "name": "Precondition failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Precondition Failed",
+                  "code": 412,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-a65863bb-4f65-450a-9889-e12fc99b2616"
+                },
+                {
+                  "id": "412302e5-f3c1-4783-b7f5-584e9a63dbe0",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users?offset=0&limit=50&is_manager=<boolean>&sort=id&order=asc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status.",
+                          "key": "is_manager",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified.",
+                          "key": "sort",
+                          "value": "id"
+                        },
+                        {
+                          "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified.",
+                          "key": "order",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:21.000Z",
+                  "updatedAt": "2026-07-28T02:25:21.000Z",
+                  "uid": "35240-412302e5-f3c1-4783-b7f5-584e9a63dbe0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:21.000Z",
+              "updatedAt": "2026-07-28T02:25:21.000Z",
+              "uid": "35240-06420dfe-5896-4288-a0fa-73efffccb449"
+            }
+          ],
+          "id": "54e659f0-3023-4219-a98e-63f0bf98d744",
+          "createdAt": "2026-07-28T02:25:21.000Z",
+          "updatedAt": "2026-07-28T02:25:21.000Z",
+          "uid": "35240-54e659f0-3023-4219-a98e-63f0bf98d744"
+        }
+      ],
+      "id": "202081be-eb92-480f-be82-6b887685bcf4",
+      "createdAt": "2026-07-28T02:25:21.000Z",
+      "updatedAt": "2026-07-28T02:25:21.000Z",
+      "uid": "35240-202081be-eb92-480f-be82-6b887685bcf4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

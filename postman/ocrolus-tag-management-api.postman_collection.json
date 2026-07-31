@@ -1,0 +1,2028 @@
+{
+  "info": {
+    "_postman_id": "cb364095-bacc-4162-8b0c-db260502e00c",
+    "name": "Account Level Webhooks Book Commands Tag Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:19.000Z",
+    "updatedAt": "2026-07-28T02:25:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cb364095-bacc-4162-8b0c-db260502e00c"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "analytics",
+          "item": [
+            {
+              "name": "tags",
+              "item": [
+                {
+                  "name": "{tag_uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve a tag",
+                      "id": "003cbdab-346d-40f4-8ebb-6e410bb8134e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags",
+                            ":tag_uuid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "76901acd-a04e-4f9c-8368-5e90fa0bd9b4",
+                              "key": "tag_uuid",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the tag whose details are to be retrieved."
+                            }
+                          ]
+                        },
+                        "description": "This API is used to retrieve details of a specific tag based on the specified `tag_uuid`. The response includes the tag's name, description, color, type (system or custom), include and exclude terms, and other configuration details.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "16454446-aeec-42df-a074-d805229e0568",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"is_system_tag\": \"<boolean>\",\n  \"created_ts\": \"<dateTime>\",\n  \"updated_ts\": \"<dateTime>\",\n  \"customization\": {\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"amount\": {\n      \"gt\": \"<number>\",\n      \"lt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"recurrence\": {\n      \"max_days\": \"<integer>\",\n      \"min_days\": \"<integer>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-16454446-aeec-42df-a074-d805229e0568"
+                        },
+                        {
+                          "id": "e6f0e803-1434-4775-a5db-4f1e94738ad5",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-e6f0e803-1434-4775-a5db-4f1e94738ad5"
+                        },
+                        {
+                          "id": "26a2feed-ca0b-4bdf-b0c1-b276bb7d8003",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-26a2feed-ca0b-4bdf-b0c1-b276bb7d8003"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-003cbdab-346d-40f4-8ebb-6e410bb8134e"
+                    },
+                    {
+                      "name": "Modify tag",
+                      "id": "7c0d2398-c557-4098-9e24-a402904282c1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags",
+                            ":tag_uuid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4ace2679-6d36-45fb-95dd-c233de82ac9d",
+                              "key": "tag_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the tag that you want to modify."
+                            }
+                          ]
+                        },
+                        "description": "This API allows you to modify an existing custom tag. You can update the tag's name, description, color, and customization logic."
+                      },
+                      "response": [
+                        {
+                          "id": "f0812664-0867-4acb-b53d-416abc8688a0",
+                          "name": "Tag Modified Successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"Tag Modified Successfully\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-f0812664-0867-4acb-b53d-416abc8688a0"
+                        },
+                        {
+                          "id": "31ae6d8f-1da4-48a8-82d6-defc758f2ae5",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-31ae6d8f-1da4-48a8-82d6-defc758f2ae5"
+                        },
+                        {
+                          "id": "1239f014-7ecb-441c-a70c-724c1439653e",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-1239f014-7ecb-441c-a70c-724c1439653e"
+                        },
+                        {
+                          "id": "f973dd6a-1736-44c0-9955-08c737b00652",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unsupported Media Type",
+                          "code": 415,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-f973dd6a-1736-44c0-9955-08c737b00652"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-7c0d2398-c557-4098-9e24-a402904282c1"
+                    },
+                    {
+                      "name": "Delete tag",
+                      "id": "222a8c60-668e-48e4-9fe1-8462b858394a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags",
+                            ":tag_uuid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "67438520-246c-4ebb-9efb-a05fc0479934",
+                              "key": "tag_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the tag that you want to delete."
+                            }
+                          ]
+                        },
+                        "description": "This API allows you to delete a custom tag. System-defined tags cannot be deleted using this endpoint.\n\n\n  ---\n\n  > \ud83d\udea7 **No turning back!**\n    > This action is not reversible, meaning that you can't recover deleted tags. Make sure you're ready!\n"
+                      },
+                      "response": [
+                        {
+                          "id": "7ed2d99b-29ab-4fa7-8791-057bd47334a1",
+                          "name": "Tag Deleted Successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"Tag Deleted Successfully\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-7ed2d99b-29ab-4fa7-8791-057bd47334a1"
+                        },
+                        {
+                          "id": "d6e407f3-a018-46df-855c-0953e0e1050d",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-d6e407f3-a018-46df-855c-0953e0e1050d"
+                        },
+                        {
+                          "id": "c317e9f9-4e56-42c3-ab79-bc6a49bc92f2",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/tags/:tag_uuid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "tags",
+                                ":tag_uuid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tag_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-c317e9f9-4e56-42c3-ab79-bc6a49bc92f2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-222a8c60-668e-48e4-9fe1-8462b858394a"
+                    }
+                  ],
+                  "id": "98cf1b08-2901-4a20-a0d2-3a5c0dc32d1b",
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-98cf1b08-2901-4a20-a0d2-3a5c0dc32d1b"
+                },
+                {
+                  "name": "Create tag",
+                  "id": "e577d771-ecc5-42a8-8a62-a3f65ca7c73e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/analytics/tags",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "analytics",
+                        "tags"
+                      ]
+                    },
+                    "description": "This API enables the creation of custom tags to classify transactions using user-defined criteria, including include/exclude terms, amount thresholds, and recurrence patterns."
+                  },
+                  "response": [
+                    {
+                      "id": "f8188ccd-722b-4393-bbc6-12a197b4e9a0",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"response\": {\n    \"uuid\": \"<uuid>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-f8188ccd-722b-4393-bbc6-12a197b4e9a0"
+                    },
+                    {
+                      "id": "83ed6036-07c6-4511-a70e-f054e37b0812",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-83ed6036-07c6-4511-a70e-f054e37b0812"
+                    },
+                    {
+                      "id": "b9e7321d-d578-4739-bc13-d90985e6c370",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"customization\": {\n    \"amount\": {\n      \"lt\": \"<number>\",\n      \"gt\": \"<number>\",\n      \"eq\": \"<number>\"\n    },\n    \"include_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"exclude_terms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"recurrence\": {\n      \"min_days\": \"<integer>\",\n      \"max_days\": \"<integer>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ]
+                        }
+                      },
+                      "status": "Unsupported Media Type",
+                      "code": 415,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-b9e7321d-d578-4739-bc13-d90985e6c370"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-e577d771-ecc5-42a8-8a62-a3f65ca7c73e"
+                },
+                {
+                  "name": "Retrieve all tags (custom and system tags)",
+                  "id": "1b83a86c-2546-47d5-b7a6-f37c9cb956bc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/analytics/tags?tag_type=system",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "analytics",
+                        "tags"
+                      ],
+                      "query": [
+                        {
+                          "description": "This parameter is used to set the filter the to retrieve either system tags or custom tags at a time.",
+                          "key": "tag_type",
+                          "value": "system"
+                        }
+                      ]
+                    },
+                    "description": "This API is used to retrieves all available tags in the system, including both system-defined and custom-created tags. You can use the optional query parameter `is_system_tag` to filter the results:\n\nExamples:\n  - To retrieve all system-defined tags:\n    GET /v2/analytics/tags?is_system_tag=true\n\n  - To retrieve all custom-created tags:\n    GET /v2/analytics/tags?is_system_tag=false\n"
+                  },
+                  "response": [
+                    {
+                      "id": "4d2efa89-39e2-4378-be61-5fd90a61c963",
+                      "name": "Tags Retrieved Successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags?tag_type=system",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "This parameter is used to set the filter the to retrieve either system tags or custom tags at a time.",
+                              "key": "tag_type",
+                              "value": "system"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tags\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"<string>\",\n      \"is_system_tag\": \"<boolean>\",\n      \"created_ts\": \"<dateTime>\",\n      \"updated_ts\": \"<dateTime>\"\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"<string>\",\n      \"is_system_tag\": \"<boolean>\",\n      \"created_ts\": \"<dateTime>\",\n      \"updated_ts\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-4d2efa89-39e2-4378-be61-5fd90a61c963"
+                    },
+                    {
+                      "id": "e175a1c6-b1ef-4bc5-8583-fef461335291",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags?tag_type=system",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "This parameter is used to set the filter the to retrieve either system tags or custom tags at a time.",
+                              "key": "tag_type",
+                              "value": "system"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-e175a1c6-b1ef-4bc5-8583-fef461335291"
+                    },
+                    {
+                      "id": "7aef18d5-3dbf-44ff-87eb-310b894a5970",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/tags?tag_type=system",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "This parameter is used to set the filter the to retrieve either system tags or custom tags at a time.",
+                              "key": "tag_type",
+                              "value": "system"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-7aef18d5-3dbf-44ff-87eb-310b894a5970"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-1b83a86c-2546-47d5-b7a6-f37c9cb956bc"
+                }
+              ],
+              "id": "52994269-12ab-41d9-b14c-aa5c3a9b2216",
+              "createdAt": "2026-07-28T02:25:19.000Z",
+              "updatedAt": "2026-07-28T02:25:19.000Z",
+              "uid": "35240-52994269-12ab-41d9-b14c-aa5c3a9b2216"
+            },
+            {
+              "name": "revenue-deduction-tags",
+              "item": [
+                {
+                  "name": "Retrieve revenue deduction tags",
+                  "id": "be39ab72-39c3-49ab-9f41-351bfca11b6f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "analytics",
+                        "revenue-deduction-tags"
+                      ]
+                    },
+                    "description": "Retrieves a list of all current revenue deduction tags. These tags represent transaction categories that are excluded from **Total Credits** when calculating **Net Revenue**.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "64437282-fc26-421f-add1-5ed972ab9701",
+                      "name": "Tags Retrieved Successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"revenue_deduction_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-64437282-fc26-421f-add1-5ed972ab9701"
+                    },
+                    {
+                      "id": "ad7d3d78-e4d0-4662-86f2-077678e8161f",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-ad7d3d78-e4d0-4662-86f2-077678e8161f"
+                    },
+                    {
+                      "id": "a256f1e0-6a78-4dfa-a9ac-b064925a9ec0",
+                      "name": "Authentication Failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-a256f1e0-6a78-4dfa-a9ac-b064925a9ec0"
+                    },
+                    {
+                      "id": "60da9c6c-8fb1-46b1-990b-bee81af387cc",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-60da9c6c-8fb1-46b1-990b-bee81af387cc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-be39ab72-39c3-49ab-9f41-351bfca11b6f"
+                },
+                {
+                  "name": "Update revenue deduction tag",
+                  "id": "e1c60058-88ba-4d88-b6a3-a8b48b938c49",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"revenue_deduction_tags\": [\n    \"internal_transfer\",\n    \"gambling\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "analytics",
+                        "revenue-deduction-tags"
+                      ]
+                    },
+                    "description": "This API allows you to update the list of tags that should be deducted from all credits to calculate net revenue. Only the tag names provided in the request body will be used as revenue deduction tags after the update, and existing values will be replaced.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "d2dbc691-67b3-43f3-b5b6-9636d31b78d5",
+                      "name": "Tags Updated Successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"revenue_deduction_tags\": [\n    \"internal_transfer\",\n    \"gambling\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"title\": \"Tags Updated Successfully\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-d2dbc691-67b3-43f3-b5b6-9636d31b78d5"
+                    },
+                    {
+                      "id": "6b7ee8bd-0486-480f-aa15-266eac0d4f7e",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"revenue_deduction_tags\": [\n    \"internal_transfer\",\n    \"gambling\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-6b7ee8bd-0486-480f-aa15-266eac0d4f7e"
+                    },
+                    {
+                      "id": "004c4cc7-c1c3-4ba3-bb82-a13babbb9b3f",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"revenue_deduction_tags\": [\n    \"internal_transfer\",\n    \"gambling\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/analytics/revenue-deduction-tags",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "analytics",
+                            "revenue-deduction-tags"
+                          ]
+                        }
+                      },
+                      "status": "Unsupported Media Type",
+                      "code": 415,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-004c4cc7-c1c3-4ba3-bb82-a13babbb9b3f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-e1c60058-88ba-4d88-b6a3-a8b48b938c49"
+                }
+              ],
+              "id": "5ebe9cac-2997-432b-9a95-cb7813d4e08a",
+              "createdAt": "2026-07-28T02:25:19.000Z",
+              "updatedAt": "2026-07-28T02:25:19.000Z",
+              "uid": "35240-5ebe9cac-2997-432b-9a95-cb7813d4e08a"
+            },
+            {
+              "name": "book",
+              "item": [
+                {
+                  "name": "{book_uuid}",
+                  "item": [
+                    {
+                      "name": "transactions",
+                      "item": [
+                        {
+                          "name": "Override transaction tag",
+                          "id": "a0507c32-fdd5-4c2c-9aae-4a64d19a56c2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "analytics",
+                                "book",
+                                ":book_uuid",
+                                "transactions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "93eaacf5-452a-4921-8ab0-5a49b3f9a1b6",
+                                  "key": "book_uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the Book in which the transaction has to be overridden."
+                                }
+                              ]
+                            },
+                            "description": "This API allows you to manually override the tags applied to a transaction within a specific Book. You can assign one or more tag UUIDs to a transaction using its primary key (`txn_pk`).\n"
+                          },
+                          "response": [
+                            {
+                              "id": "23cc75f7-ece2-4cab-9476-159387b2b2b3",
+                              "name": "Tag Override Successful",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "analytics",
+                                    "book",
+                                    ":book_uuid",
+                                    "transactions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"title\": \"Tag Override Successful\"\n}",
+                              "createdAt": "2026-07-28T02:25:19.000Z",
+                              "updatedAt": "2026-07-28T02:25:19.000Z",
+                              "uid": "35240-23cc75f7-ece2-4cab-9476-159387b2b2b3"
+                            },
+                            {
+                              "id": "13e64c29-649b-414d-8a07-130f8a437050",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "analytics",
+                                    "book",
+                                    ":book_uuid",
+                                    "transactions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:19.000Z",
+                              "updatedAt": "2026-07-28T02:25:19.000Z",
+                              "uid": "35240-13e64c29-649b-414d-8a07-130f8a437050"
+                            },
+                            {
+                              "id": "79cb6cba-2442-4efa-8a1d-25151e5390f4",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "analytics",
+                                    "book",
+                                    ":book_uuid",
+                                    "transactions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:19.000Z",
+                              "updatedAt": "2026-07-28T02:25:19.000Z",
+                              "uid": "35240-79cb6cba-2442-4efa-8a1d-25151e5390f4"
+                            },
+                            {
+                              "id": "905f9a64-c0cf-4642-8fc1-9dac68729407",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "analytics",
+                                    "book",
+                                    ":book_uuid",
+                                    "transactions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:19.000Z",
+                              "updatedAt": "2026-07-28T02:25:19.000Z",
+                              "uid": "35240-905f9a64-c0cf-4642-8fc1-9dac68729407"
+                            },
+                            {
+                              "id": "2d6038e3-30e9-4b62-b017-4e96b96cfa9b",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"txns\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"tags\": [\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        },\n        {\n          \"tag_uuid\": \"<uuid>\",\n          \"apply_to_txn\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/analytics/book/:book_uuid/transactions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "analytics",
+                                    "book",
+                                    ":book_uuid",
+                                    "transactions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unsupported Media Type",
+                              "code": 415,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:19.000Z",
+                              "updatedAt": "2026-07-28T02:25:19.000Z",
+                              "uid": "35240-2d6038e3-30e9-4b62-b017-4e96b96cfa9b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:19.000Z",
+                          "updatedAt": "2026-07-28T02:25:19.000Z",
+                          "uid": "35240-a0507c32-fdd5-4c2c-9aae-4a64d19a56c2"
+                        }
+                      ],
+                      "id": "9d5cff4b-a51c-4111-b032-d67057f8e28a",
+                      "createdAt": "2026-07-28T02:25:19.000Z",
+                      "updatedAt": "2026-07-28T02:25:19.000Z",
+                      "uid": "35240-9d5cff4b-a51c-4111-b032-d67057f8e28a"
+                    }
+                  ],
+                  "id": "15cdf78c-f430-4eec-99aa-c8bef6c84a88",
+                  "createdAt": "2026-07-28T02:25:19.000Z",
+                  "updatedAt": "2026-07-28T02:25:19.000Z",
+                  "uid": "35240-15cdf78c-f430-4eec-99aa-c8bef6c84a88"
+                }
+              ],
+              "id": "b5c97136-ee69-4b51-a3b1-d69189dd2c92",
+              "createdAt": "2026-07-28T02:25:19.000Z",
+              "updatedAt": "2026-07-28T02:25:19.000Z",
+              "uid": "35240-b5c97136-ee69-4b51-a3b1-d69189dd2c92"
+            }
+          ],
+          "id": "f0bd6e42-bf94-4b73-9ea3-fe12ec102f72",
+          "createdAt": "2026-07-28T02:25:19.000Z",
+          "updatedAt": "2026-07-28T02:25:19.000Z",
+          "uid": "35240-f0bd6e42-bf94-4b73-9ea3-fe12ec102f72"
+        }
+      ],
+      "id": "59d10544-5220-48e9-a916-f262f7df872d",
+      "createdAt": "2026-07-28T02:25:19.000Z",
+      "updatedAt": "2026-07-28T02:25:19.000Z",
+      "uid": "35240-59d10544-5220-48e9-a916-f262f7df872d"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

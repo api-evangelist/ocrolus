@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/docs/breaking-change-policy
+versioning:
+  scheme: uri-path
+  versions:
+  - v1
+  - v2
+  note: Endpoints are versioned in the URL path (/v1, /v2).
+deprecation:
+  policy_url: https://docs.ocrolus.com/docs/breaking-change-policy
+  advance_notice: true
+  note: Advance notice for breaking changes; non-breaking changes ship without notice.
+status_page: https://status.ocrolus.com
+support:
+  email: support@ocrolus.com
+deprecated_operations:
+- openapi/ocrolus-analyze-openapi.json#analytics
+- openapi/ocrolus-analyze-openapi.json#legacy-analytics-excel
+- openapi/ocrolus-analyze-openapi.json#async-analytics-request
+- openapi/ocrolus-analyze-openapi.json#async-analytics-result
+- openapi/ocrolus-detect-openapi.json#create-business
+- openapi/ocrolus-detect-openapi.json#retrieve-business
+- openapi/ocrolus-detect-openapi.json#vendor-auth

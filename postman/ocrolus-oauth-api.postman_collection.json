@@ -1,0 +1,212 @@
+{
+  "info": {
+    "_postman_id": "ef11e7d6-1bd4-4937-b2c5-02cab4d47bcf",
+    "name": "Account Level Webhooks Book Commands Oauth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:16.000Z",
+    "updatedAt": "2026-07-28T02:25:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef11e7d6-1bd4-4937-b2c5-02cab4d47bcf"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Grant authentication token",
+              "id": "2bebf2a0-8936-47a0-84b8-2e33ff008511",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"https://api.ocrolus.com/\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                },
+                "description": "Retrieve a JWT-compliant access token for use with all other endpoints.\n\n---\n\n\n\n> \ud83d\udcd8\n> All tokens currently expire after 24 hours (86,400 seconds), but we suggest refreshing tokens every 12 hours (43,200 seconds).\n\nHere's an example of using the returned token in an API call:\n```cURL\ncurl \\\n  --url \"https://api.ocrolus.com/v1/books\" \\\n  --oauth2-bearer \"eyJhbGciOiJ...2hUye_4CpIvQ\"\n\n```\nSee our guide on [using API credentials](doc:using-api-credentials) for more details.\n\nThis endpoint is OAuth 2.0-compliant. A successful response from this endpoint adheres to the structure given in [RFC 6749, section 5.1](https://datatracker.ietf.org/doc/html/rfc6749#section-5.1), while a failed response adheres to the structure given in [section 5.2](https://datatracker.ietf.org/doc/html/rfc6749#section-5.2). As a consequence, you can use this endpoint in OAuth 2.0 clients and libraries without needing to explicitly call it in your own code.\n"
+              },
+              "response": [
+                {
+                  "id": "872c5868-908c-4e97-8638-5f597ed8a1a5",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"https://api.ocrolus.com/\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:25:17.000Z",
+                  "updatedAt": "2026-07-28T02:25:17.000Z",
+                  "uid": "35240-872c5868-908c-4e97-8638-5f597ed8a1a5"
+                },
+                {
+                  "id": "6a0c6456-7efb-46b4-8f20-2c235e53b0e5",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"https://api.ocrolus.com/\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:25:17.000Z",
+                  "updatedAt": "2026-07-28T02:25:17.000Z",
+                  "uid": "35240-6a0c6456-7efb-46b4-8f20-2c235e53b0e5"
+                }
+              ],
+              "createdAt": "2026-07-28T02:25:17.000Z",
+              "updatedAt": "2026-07-28T02:25:17.000Z",
+              "uid": "35240-2bebf2a0-8936-47a0-84b8-2e33ff008511"
+            }
+          ],
+          "id": "9f22780e-ef27-4d36-a6cf-7edd60890574",
+          "createdAt": "2026-07-28T02:25:17.000Z",
+          "updatedAt": "2026-07-28T02:25:17.000Z",
+          "uid": "35240-9f22780e-ef27-4d36-a6cf-7edd60890574"
+        }
+      ],
+      "id": "a5815849-4fd1-4a1b-aca4-ce1bdb6609f8",
+      "createdAt": "2026-07-28T02:25:17.000Z",
+      "updatedAt": "2026-07-28T02:25:17.000Z",
+      "uid": "35240-a5815849-4fd1-4a1b-aca4-ce1bdb6609f8"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+source: https://security.ocrolus.com/
+url: https://security.ocrolus.com/
+certifications:
+- SOC 2
+- ISO 27001
+- PCI DSS
+- GDPR
+- CSA STAR
+evidence:
+- source: https://security.ocrolus.com/
+  keywords:
+  - soc 2
+  - iso/iec 27001
+  - pci dss
+  - gdpr
+  - csa star

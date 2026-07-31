@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/docs/guide
+authentication:
+  style: OAuth 2.0 Bearer (client credentials, JWT access token)
+  header: 'Authorization: Bearer <access_token>'
+  token_url: https://auth.ocrolus.com/oauth/token
+  token_ttl_seconds: 86400
+  ref: authentication/ocrolus-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism documented; docs recommend retry-with-backoff plus polling or webhooks.
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  note: List endpoints accept limit/offset query params.
+async_processing:
+  note: Processing is asynchronous; poll book-status or use webhooks. HTTP 425 signals results not ready.
+rate_limiting:
+  ref: rate-limits/ocrolus-rate-limits.yml
+  signal: HTTP 429 on breach
+error_envelope:
+  ref: errors/ocrolus-error-codes.yml
+  note: JSON body with status, message, code.
+versioning:
+  ref: lifecycle/ocrolus-lifecycle.yml
+  scheme: uri-path
+webhooks:
+  ref: asyncapi/ocrolus-webhooks.yml
+  timeout_seconds: 5

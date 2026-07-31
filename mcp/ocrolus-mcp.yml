@@ -1,0 +1,235 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: derived from openapi/ operations
+note: No official hosted Ocrolus MCP server was found as of this pass. This is a candidate tool surface
+  derived from the published OpenAPI operations.
+server:
+  name: ocrolus
+  transport: http
+tools:
+- name: configure_webhook
+  description: Configure webhook
+  source_operation: openapi/ocrolus-account-level-webhooks-openapi.json#configure-webhook
+- name: webhook_configuration
+  description: Get webhook configuration
+  source_operation: openapi/ocrolus-account-level-webhooks-openapi.json#webhook-configuration
+- name: test_webhook
+  description: Test webhook
+  source_operation: openapi/ocrolus-account-level-webhooks-openapi.json#test-webhook
+- name: configure_webhook_secret_account_level
+  description: Configure webhook secret
+  source_operation: openapi/ocrolus-account-level-webhooks-openapi.json#configure-webhook-secret-account-level
+- name: bsic
+  description: Bank statement income calculator
+  source_operation: openapi/ocrolus-analyze-openapi.json#bsic
+- name: bsic_excel
+  description: Bank statement income calculator (Excel)
+  source_operation: openapi/ocrolus-analyze-openapi.json#bsic-excel
+- name: book_summary
+  description: Book summary
+  source_operation: openapi/ocrolus-analyze-openapi.json#Book-summary
+- name: cash_flow_features
+  description: Cash flow features
+  source_operation: openapi/ocrolus-analyze-openapi.json#cash-flow-features
+- name: enriched_transactions
+  description: Enriched transactions
+  source_operation: openapi/ocrolus-analyze-openapi.json#enriched-transactions
+- name: analytics_excel
+  description: SMB analytics (Excel)
+  source_operation: openapi/ocrolus-analyze-openapi.json#analytics-excel
+- name: risk_score
+  description: Risk score
+  source_operation: openapi/ocrolus-analyze-openapi.json#risk-score
+- name: benchmarking_cfb
+  description: Cash flow benchmarking (CFB)
+  source_operation: openapi/ocrolus-analyze-openapi.json#benchmarking-CFB
+- name: credit_shopping_events
+  description: Credit shopping events
+  source_operation: openapi/ocrolus-analyze-openapi.json#credit-shopping-events
+- name: async_job_status
+  description: Async job status
+  source_operation: openapi/ocrolus-analyze-openapi.json#async-job-status
+- name: grant_authentication_token
+  description: Grant authentication token
+  source_operation: openapi/ocrolus-authentication-openapi.json#grant-authentication-token
+- name: create_a_book
+  description: Create Book
+  source_operation: openapi/ocrolus-book-commands-openapi.json#create-a-book
+- name: delete_a_book
+  description: Delete Book
+  source_operation: openapi/ocrolus-book-commands-openapi.json#delete-a-book
+- name: update_book
+  description: Update Book
+  source_operation: openapi/ocrolus-book-commands-openapi.json#update-book
+- name: book_from_loan
+  description: Book from loan
+  source_operation: openapi/ocrolus-book-queries-openapi.json#book-from-loan
+- name: loan_from_book
+  description: Loan details from Book
+  source_operation: openapi/ocrolus-book-queries-openapi.json#loan-from-book
+- name: book_info
+  description: Book information
+  source_operation: openapi/ocrolus-book-queries-openapi.json#book-info
+- name: book_list
+  description: Book list
+  source_operation: openapi/ocrolus-book-queries-openapi.json#book-list
+- name: book_status
+  description: Book status
+  source_operation: openapi/ocrolus-book-queries-openapi.json#book-status
+- name: business_identifier
+  description: Business identifier
+  source_operation: openapi/ocrolus-business-history-openapi.json#business-identifier
+- name: business_overview
+  description: Business overview
+  source_operation: openapi/ocrolus-business-history-openapi.json#business-overview
+- name: business_transactions
+  description: Business transactions
+  source_operation: openapi/ocrolus-business-history-openapi.json#business-transactions
+- name: business_summary
+  description: Business summary
+  source_operation: openapi/ocrolus-business-history-openapi.json#business-summary
+- name: book_form_data
+  description: Book form data
+  source_operation: openapi/ocrolus-capture-openapi.json#book-form-data
+- name: book_paystub_data
+  description: Book pay stub data
+  source_operation: openapi/ocrolus-capture-openapi.json#book-paystub-data
+- name: doc_form_data
+  description: Doc form data
+  source_operation: openapi/ocrolus-capture-openapi.json#doc-form-data
+- name: doc_paystub_data
+  description: Doc pay stub data
+  source_operation: openapi/ocrolus-capture-openapi.json#doc-paystub-data
+- name: form_field_data
+  description: Form data
+  source_operation: openapi/ocrolus-capture-openapi.json#form-field-data
+- name: paystub_data
+  description: Pay stub data
+  source_operation: openapi/ocrolus-capture-openapi.json#paystub-data
+- name: transactions
+  description: Transactions
+  source_operation: openapi/ocrolus-capture-openapi.json#transactions
+- name: book_fraud_signals
+  description: Book-level Fraud Signals
+  source_operation: openapi/ocrolus-detect-openapi.json#book-fraud-signals
+- name: doc_fraud_signals
+  description: Document-Level Fraud Signals
+  source_operation: openapi/ocrolus-detect-openapi.json#doc-fraud-signals
+- name: signal_visualization
+  description: Signal visualization
+  source_operation: openapi/ocrolus-detect-openapi.json#signal-visualization
+- name: suspicious_activity_flags
+  description: Suspicious Activity Flags (Legacy)
+  source_operation: openapi/ocrolus-detect-openapi.json#suspicious-activity-flags
+- name: create_book_copy_jobs
+  description: Create Book copy jobs
+  source_operation: openapi/ocrolus-encore-openapi.json#create-book-copy-jobs
+- name: list_book_copy_jobs
+  description: List Book copy jobs
+  source_operation: openapi/ocrolus-encore-openapi.json#list-book-copy-jobs
+- name: copy_jobs_accept
+  description: Accept Book copy jobs
+  source_operation: openapi/ocrolus-encore-openapi.json#copy-jobs-accept
+- name: copy_jobs_reject
+  description: Reject Book copy jobs
+  source_operation: openapi/ocrolus-encore-openapi.json#copy-jobs-reject
+- name: run_kick_outs
+  description: Run automated cash flow kick-outs
+  source_operation: openapi/ocrolus-encore-openapi.json#run-kick-outs
+- name: get_book_copy_settings_allow_list
+  description: Retrieve Book copy settings (recipient address Book)
+  source_operation: openapi/ocrolus-encore-openapi.json#get-book-copy-settings-allow-list
+- name: upload_pdf_to_book
+  description: Upload PDF to Book
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#upload-pdf-to-book
+- name: upload_mixed_document
+  description: Upload Mixed Document PDF to Book
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#upload-mixed-document
+- name: upload_paystub
+  description: Upload Pay stub PDF to Book
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#upload-paystub
+- name: upload_image
+  description: Upload Image to Book
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#upload-image
+- name: mark_image_group_complete
+  description: Finalize Image Group
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#mark-image-group-complete
+- name: upload_json
+  description: Upload aggregator JSON to Book
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#upload-json
+- name: import_plaid_asset_report
+  description: Import Plaid Asset Report
+  source_operation: openapi/ocrolus-file-uploads-openapi.json#import-plaid-asset-report
+- name: income_summary
+  description: Income summary
+  source_operation: openapi/ocrolus-income-openapi.json#income-summary
+- name: income_calculations
+  description: Income calculations
+  source_operation: openapi/ocrolus-income-openapi.json#income-calculations
+- name: income_entity_config
+  description: Configure income entity
+  source_operation: openapi/ocrolus-income-openapi.json#income-entity-config
+- name: save_income_guideline
+  description: Save income guideline
+  source_operation: openapi/ocrolus-income-openapi.json#save-income-guideline
+- name: self_employed_income_calculation_fm
+  description: Calculate Fannie Mae self-employed income
+  source_operation: openapi/ocrolus-income-openapi.json#self-employed-income-calculation-fm
+- name: add_webhook
+  description: Add webhook
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#add-webhook
+- name: configure_webhook_secret_org_level
+  description: Configure webhook secret
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#configure-webhook-secret-org-level
+- name: delete_webhook
+  description: Delete webhook
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#delete-webhook
+- name: list_webhooks
+  description: List webhooks
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#list-webhooks
+- name: list_events
+  description: List webhook events
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#list-events
+- name: get_webhook
+  description: Retrieve webhook
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#get-webhook
+- name: test_org_webhook
+  description: Test webhook
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#test-org-webhook
+- name: update_webhook
+  description: Update webhook
+  source_operation: openapi/ocrolus-org-level-webhooks-openapi.json#update-webhook
+- name: create_tag
+  description: Create tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#create-tag
+- name: get_all_tags
+  description: Retrieve all tags (custom and system tags)
+  source_operation: openapi/ocrolus-tag-management-openapi.json#get-all-tags
+- name: get_tag
+  description: Retrieve a tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#get-tag
+- name: modify_tag
+  description: Modify tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#modify-tag
+- name: delete_tag
+  description: Delete tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#delete-tag
+- name: get_revenue_deduction_tags
+  description: Retrieve revenue deduction tags
+  source_operation: openapi/ocrolus-tag-management-openapi.json#get-revenue-deduction-tags
+- name: update_revenue_deduction_tag
+  description: Update revenue deduction tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#update-revenue-deduction-tag
+- name: override_transaction_tag
+  description: Override transaction tag
+  source_operation: openapi/ocrolus-tag-management-openapi.json#override-transaction-tag
+- name: create_invitation
+  description: Create invitation
+  source_operation: openapi/ocrolus-user-management-openapi.json#create-invitation
+- name: list_invitations
+  description: List invitations
+  source_operation: openapi/ocrolus-user-management-openapi.json#list-invitations
+- name: list_users
+  description: List users
+  source_operation: openapi/ocrolus-user-management-openapi.json#list-users

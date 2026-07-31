@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/reference/api-rate-limit-policy
+scope: organization
+limits:
+- name: general
+  limit_count: 20
+  window: second
+  applies_to: all endpoints combined, organization-wide
+on_exceed:
+  http_status: 429
+  note: HTTP 429 Too Many Requests
+resource_limits:
+- name: request_size
+  value: 200 MB
+  note: max file upload request size
+- name: document_count
+  value: 2000
+  note: max documents per book
+- name: document_pages
+  value: 3000
+  note: max pages per document
+- name: book_pages
+  value: 40000
+  note: max pages per book
+- name: image_dimensions
+  value: 75,000,000 pixels
+  note: max image dimensions in a PDF

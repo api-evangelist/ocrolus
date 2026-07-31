@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ocrolus-account-level-webhooks-openapi.json, openapi/ocrolus-analyze-openapi.json,
+  openapi/ocrolus-book-commands-openapi.json, openapi/ocrolus-book-queries-openapi.json, openapi/ocrolus-business-history-openapi.json,
+  openapi/ocrolus-capture-openapi.json, openapi/ocrolus-detect-openapi.json, openapi/ocrolus-encore-openapi.json,
+  openapi/ocrolus-file-uploads-openapi.json, openapi/ocrolus-income-openapi.json, openapi/ocrolus-org-level-webhooks-openapi.json,
+  openapi/ocrolus-tag-management-openapi.json ...
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.ocrolus.com/oauth/token
+    scopes: 0
+  description: OAuth 2.0 support via client credentials flow. See [here](doc:using-api-credentials)
+    for usage information.
+  sources:
+  - openapi/ocrolus-account-level-webhooks-openapi.json
+  - openapi/ocrolus-analyze-openapi.json
+  - openapi/ocrolus-book-commands-openapi.json
+  - openapi/ocrolus-book-queries-openapi.json
+  - openapi/ocrolus-business-history-openapi.json
+  - openapi/ocrolus-capture-openapi.json
+  - openapi/ocrolus-detect-openapi.json
+  - openapi/ocrolus-encore-openapi.json
+  - openapi/ocrolus-file-uploads-openapi.json
+  - openapi/ocrolus-income-openapi.json
+  - openapi/ocrolus-org-level-webhooks-openapi.json
+  - openapi/ocrolus-tag-management-openapi.json
+  - openapi/ocrolus-user-management-openapi.json

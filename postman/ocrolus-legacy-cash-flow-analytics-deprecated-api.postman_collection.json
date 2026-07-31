@@ -1,0 +1,761 @@
+{
+  "info": {
+    "_postman_id": "a63b6e61-4cd0-4c66-8a5f-3e3f4b6c71b9",
+    "name": "Account Level Webhooks Book Commands Legacy Cash Flow Analytics (Deprecated) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:15.000Z",
+    "updatedAt": "2026-07-28T02:25:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a63b6e61-4cd0-4c66-8a5f-3e3f4b6c71b9"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "summary",
+              "item": [
+                {
+                  "name": "Analytics (JSON) (Deprecated)",
+                  "id": "4f6d5378-4bc7-4602-b6f8-550bedcd2f25",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/book/summary?book_uuid=<uuid>&pk=<integer>&extra_fields=paypal_num,lottery_withdrawals_num",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "book",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed. Mutually exclusive with the `pk` parameter (i.e. don't provide both).\n",
+                          "key": "book_uuid",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                          "key": "pk",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.\n\nFuture revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.\n",
+                          "key": "extra_fields",
+                          "value": "paypal_num,lottery_withdrawals_num"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves analytics for a <<glossary:Book>> in JSON format, for use within your own application workflows.\n\n---\n> \ud83d\udea7 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n> \ud83d\udcd8 Multiple endpoints, one object\n> This endpoint and [the asynchronous version](ref:async-analytics-result) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don't apply to XLSX files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).\n"
+                  },
+                  "response": [
+                    {
+                      "id": "dc1a1fbb-794b-4b08-8605-376c42777122",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/summary?book_uuid=<uuid>&pk=<integer>&extra_fields=paypal_num,lottery_withdrawals_num",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed. Mutually exclusive with the `pk` parameter (i.e. don't provide both).\n",
+                              "key": "book_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                              "key": "pk",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.\n\nFuture revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.\n",
+                              "key": "extra_fields",
+                              "value": "paypal_num,lottery_withdrawals_num"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"alt_lender_payments_by_month\": {\n      \"voluptate4\": \"+1437\",\n      \"sunt68\": \"2488528347\"\n    },\n    \"average_by_month\": {\n      \"consecteturf81\": \"6.2\",\n      \"in_61\": \"99200\"\n    },\n    \"average_daily_balance\": \"250\",\n    \"average_daily_balance_by_month\": {\n      \"officia_e19\": \"50490318189\",\n      \"dolore_fa\": \"+375871.60\",\n      \"elit_005\": \"-904458413.15\"\n    },\n    \"average_daily_balance_weekday\": \"+3\",\n    \"average_daily_balance_weekday_by_month\": {\n      \"officia60\": \"+89190975170.48\",\n      \"veniam_a\": \"9.5\",\n      \"Duis1d4\": \"898.4\"\n    },\n    \"average_deposit_by_month\": {\n      \"occaecat0_\": \"-19.2\"\n    },\n    \"bank_accounts\": [\n      {\n        \"account_category\": \"BUSINESS ACCOUNT\",\n        \"account_holder\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"account_type\": \"CREDITCARD\",\n        \"activity_info\": {\n          \"active\": [\n            {\n              \"start\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              \"end\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          ],\n          \"missing\": [\n            {\n              \"start\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              \"end\": {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            }\n          ]\n        },\n        \"alt_lender_payments_by_month\": {\n          \"cupidatat_896\": \"0455761\"\n        },\n        \"average_alt_lender_payments\": \"2422079.8\",\n        \"average_by_month\": {\n          \"cupidatat_1\": \"+158190\",\n          \"culpad\": \"-29.6\"\n        },\n        \"average_daily_balance\": \"-66\",\n        \"average_daily_balance_by_month\": {\n          \"ea_a3\": \"-399271.6\",\n          \"ipsum_c\": \"+6.63\"\n        },\n        \"average_daily_balance_weekday\": \"3744399861.2\",\n        \"average_daily_balance_weekday_by_month\": {\n          \"dolore_43\": \"1536\",\n          \"do_7f\": \"+96\"\n        },\n        \"average_daily_cash_flow\": \"+576.40\",\n        \"average_daily_cash_flow_weekday\": \"-7392\",\n        \"average_deposit_by_month\": {\n          \"aliquipee\": \"-5920.09\",\n          \"Excepteur_0\": \"0\"\n        },\n        \"average_mca_payments\": \"+9295414750\",\n        \"bank_name\": \"<string>\",\n        \"book_pk\": \"<integer>\",\n        \"cash_balance_trend_30d\": \"+286064.7\",\n        \"cash_balance_trend_60d\": \"+077492\",\n        \"cash_balance_trend_90d\": \"1676303034.12\",\n        \"cash_expense_days_by_month\": {\n          \"exercitation_6f\": \"41.8\"\n        },\n        \"cash_flow_trend_30d\": \"8.16\",\n        \"cash_flow_trend_60d\": \"-87044\",\n        \"cash_flow_trend_90d\": \"-8.97\",\n        \"daily_balances\": {\n          \"ute\": \"33238963107.47\",\n          \"minim_09\": \"+919.8\"\n        },\n        \"daily_cash_flows\": {\n          \"magnaa99\": \"17\"\n        },\n        \"debt_consolidator_txns\": [\n          {\n            \"amount\": \"37044419074\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"70/61/5880\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"deposit_count\": \"<integer>\",\n        \"deposit_max_by_month\": {\n          \"magna_2\": [\n            {\n              \"amount\": \"-67407526\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"35/54/1002\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ],\n          \"nulla3d\": [\n            {\n              \"amount\": \"+7205809919.45\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"86/47/1614\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ]\n        },\n        \"deposit_min_by_month\": {\n          \"tempor6ae\": [\n            {\n              \"amount\": \"6586\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"26/05/0148\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ],\n          \"proidente7a\": [\n            {\n              \"amount\": \"+9912358.3\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"70/10/6272\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ]\n        },\n        \"deposit_sum\": \"2750624.6\",\n        \"deposits_count_by_month\": {\n          \"enim_\": \"<integer>\",\n          \"ea_c\": \"<integer>\",\n          \"eu27a\": \"<integer>\",\n          \"esse_829\": \"<integer>\"\n        },\n        \"deposits_sum_by_month\": {\n          \"laborum_a7c\": \"35650279281\",\n          \"consectetur8_\": \"-8967.90\",\n          \"laborum_d\": \"657.0\",\n          \"reprehenderit_bd\": \"-429\"\n        },\n        \"estimated_daily_expense_by_month\": {\n          \"magna_25\": \"+47032.62\",\n          \"enimac\": \"89273\"\n        },\n        \"estimated_daily_revenue_by_month\": {\n          \"ut_2\": \"-45366736.2\"\n        },\n        \"estimated_expense_by_month\": {\n          \"incididunt__a\": \"90976.1\",\n          \"non_e82\": \"-686.39\"\n        },\n        \"estimated_expense_txns_list\": [\n          {\n            \"amount\": \"5204\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"74/43/0942\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"estimated_revenue_by_month\": {\n          \"reprehenderit95\": \"+502.3\",\n          \"nisi9f\": \"396\"\n        },\n        \"estimated_revenue_by_month_calc_txns\": {\n          \"added_factoring_txns\": {\n            \"enimc9f\": [\n              {\n                \"amount\": \"-0585670475.0\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"59/93/1696\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          },\n          \"added_specific_terms_txns\": {\n            \"Ut5\": [\n              {\n                \"amount\": \"08079082122.4\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"74/01/8922\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"exercitation7e\": [\n              {\n                \"amount\": \"839249.5\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"19/74/8774\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          },\n          \"deposits\": {\n            \"elit_c\": [\n              {\n                \"amount\": \"736\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"07/50/2377\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"dolor_6\": [\n              {\n                \"amount\": \"397.65\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"93/76/5079\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          },\n          \"deducted_alternative_lender_txns\": {\n            \"consectetur_09e\": [\n              {\n                \"amount\": \"-44\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"00/26/8393\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"etc3e\": [\n              {\n                \"amount\": \"-74463558.0\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"86/71/2551\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          },\n          \"deducted_specific_terms_txns\": {\n            \"et2c_\": [\n              {\n                \"amount\": \"058943290\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"33/43/9939\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          },\n          \"deducted_transfer_deposit_txns\": {\n            \"nulla_5\": [\n              {\n                \"amount\": \"-1762661.38\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"76/07/9015\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ]\n          }\n        },\n        \"estimated_revenue_txns_list\": [\n          {\n            \"amount\": \"32540249.2\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"61/35/1491\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"factor_txns\": [\n          {\n            \"amount\": \"+15848\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"70/49/0836\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"holder_address_1\": \"<string>\",\n        \"holder_address_2\": \"<string>\",\n        \"holder_city\": \"<string>\",\n        \"holder_country\": \"<string>\",\n        \"holder_state\": \"<string>\",\n        \"holder_zip\": \"<string>\",\n        \"insurance_credits\": [\n          {\n            \"amount\": \"49500171\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"75/82/0443\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"insurance_debits\": [\n          {\n            \"amount\": \"53291642\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"12/15/2062\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"insurance_terms\": [\n          {\n            \"amount\": \"+69098635.97\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"96/42/8136\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"interbank_transactions\": [\n          {\n            \"amount\": \"60606594270\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"66/18/8988\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"mca_payments_by_month\": {\n          \"ex_da0\": \"-4316276125.5\",\n          \"aliqua_d59\": \"7559069.6\"\n        },\n        \"merchant_cash_advance_lender_txns\": [\n          {\n            \"amount\": \"+5113.9\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"33/85/0013\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"minimum_balance_by_month\": {\n          \"tempor_1_f\": \"+031050017\",\n          \"Ut359\": \"+70055092\",\n          \"adipisicinga8b\": \"-994.57\",\n          \"do_e\": \"+5.7\"\n        },\n        \"name\": \"<string>\",\n        \"negative_balances_by_month\": {\n          \"dolore_0a\": [\n            \"91/12/5244\"\n          ]\n        },\n        \"negative_balances_by_month_weekday\": {\n          \"enim_015\": [\n            \"87/49/8277\"\n          ]\n        },\n        \"negative_balances_weekday\": [\n          \"69/64/0782\"\n        ],\n        \"negative_cash_flows\": [\n          \"70/98/3455\"\n        ],\n        \"negative_cash_flows_weekday\": [\n          \"86/79/0463\"\n        ],\n        \"net_cash_flows_by_month\": {\n          \"enim09c\": \"9.2\"\n        },\n        \"non_estimated_revenue_txns_list\": [\n          {\n            \"amount\": \"265.08\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"16/98/7869\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"nsf_count\": \"<integer>\",\n        \"nsf_count_by_month\": {\n          \"elit_029\": \"-303791968.38\",\n          \"deseruntb0\": \"+63\",\n          \"ut_4ea\": \"2850719.1\"\n        },\n        \"nsf_transactions\": [\n          {\n            \"amount\": \"-052173.30\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"27/18/1711\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"nsf_transactions_paid_or_negative_balance\": [\n          {\n            \"amount\": \"+5\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"37/76/4780\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"nsf_transactions_paid_or_negative_balance_count_by_month\": {\n          \"est_a09\": \"<integer>\",\n          \"esse_d\": \"<integer>\"\n        },\n        \"nsf_transactions_returned_or_not_paid\": [\n          {\n            \"amount\": \"-04269\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"36/64/2773\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"nsf_transactions_returned_or_not_paid_count_by_month\": {\n          \"quis_f\": \"<integer>\"\n        },\n        \"outside_source_deposits\": [\n          {\n            \"amount\": \"51979.96\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"59/42/0062\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"payroll\": [\n          {\n            \"amount\": \"-99459424732.75\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"49/98/4356\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"period_balance_mismatches\": [\n          {\n            \"begin_date\": \"53/24/7131\",\n            \"begin_balance\": \"-88711.6\",\n            \"end_date\": \"99/91/8750\",\n            \"end_balance\": \"05769180546\"\n          }\n        ],\n        \"periods\": [\n          {\n            \"average_amount\": \"3.28\",\n            \"average_daily_balance\": \"+55408\",\n            \"average_daily_balance_weekday\": \"+70607633205.0\",\n            \"average_daily_cash_flow\": \"22354.26\",\n            \"average_daily_cash_flow_weekday\": \"-49966493229\",\n            \"average_deposit\": \"+772715033.29\",\n            \"bank_account_pk\": \"<integer>\",\n            \"begin_balance\": \"9363494\",\n            \"begin_date\": \"18/78/1295\",\n            \"deposit_count\": \"<integer>\",\n            \"deposit_max\": [\n              {\n                \"amount\": \"+36338512.12\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"16/51/1754\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"deposit_min\": [\n              {\n                \"amount\": \"1489780.36\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"25/04/8221\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"deposit_sum\": \"403810939.9\",\n            \"end_balance\": \"-4505.5\",\n            \"end_date\": \"94/25/1352\",\n            \"estimated_revenue\": \"5663393370\",\n            \"estimated_revenue_calc_txns\": {\n              \"added_factoring_txns\": [\n                {\n                  \"amount\": \"56.82\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"78/65/6605\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"added_specific_terms_txns\": [\n                {\n                  \"amount\": \"+003200\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"51/06/0065\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"deposits\": [\n                {\n                  \"amount\": \"-1097.58\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"23/89/6472\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"deducted_alternative_lender_txns\": [\n                {\n                  \"amount\": \"6977.2\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"88/31/7668\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"deducted_specific_terms_txns\": [\n                {\n                  \"amount\": \"-24519.21\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"97/21/4872\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"deducted_transfer_deposit_txns\": [\n                {\n                  \"amount\": \"+53.4\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"92/29/2047\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ]\n            },\n            \"negative_balances\": [\n              \"46/42/9844\"\n            ],\n            \"negative_balances_weekday\": [\n              \"66/36/7057\"\n            ],\n            \"negative_cash_flows\": [\n              \"73/91/0516\"\n            ],\n            \"negative_cash_flows_weekday\": [\n              \"93/30/2217\"\n            ],\n            \"nsf_count\": \"<integer>\",\n            \"nsf_transactions_paid_or_negative_balance_count\": \"<integer>\",\n            \"payroll\": \"-77610\",\n            \"period_month_days\": {\n              \"aliqua_d4f\": \"<integer>\",\n              \"eta\": \"<integer>\"\n            },\n            \"period_month_txns\": {\n              \"ut_b4b\": \"<integer>\",\n              \"laborisd7\": \"<integer>\"\n            },\n            \"pk\": \"<integer>\",\n            \"primary_recon_error_reason\": \"None\",\n            \"secondary_recon_error_reason\": \"<string>\",\n            \"txn_count\": \"<integer>\",\n            \"uploaded_doc_pk\": \"<integer>\",\n            \"withdrawal_count\": \"<integer>\",\n            \"withdrawal_sum\": \"+76\",\n            \"withdrawals_max\": [\n              {\n                \"amount\": \"96684840.29\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"61/66/7183\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"nsf_transactions_returned_or_not_paid_count\": \"<integer>\"\n          }\n        ],\n        \"pk\": \"<integer>\",\n        \"ppp_loan_txns\": [\n          {\n            \"amount\": \"-92\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"57/00/7414\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"probable_recurring_txns\": [\n          {\n            \"amount\": \"26816388157.85\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"38/59/9584\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"recurring_vs_episodic_inflows_by_month\": {\n          \"fugiat668\": \"+0684542484.41\",\n          \"amet57\": \"-78680409.25\"\n        },\n        \"recurring_vs_episodic_outflows_by_month\": {\n          \"aute_7\": \"36945483\",\n          \"enim3\": \"53536864155\"\n        },\n        \"round_number_txns\": [\n          {\n            \"amount\": \"-4121\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"95/44/4325\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"suspicious_activities\": {\n          \"has_weekend_transactions\": \"<boolean>\",\n          \"high_amount_average_daily_balance\": \"<boolean>\",\n          \"balance_ending_with_zero\": \"<boolean>\",\n          \"no_txn_in_weekdays_within_period\": \"<boolean>\",\n          \"high_txns_amount_atm_over_cash\": \"<boolean>\",\n          \"high_txns_count_atm_over_cash\": \"<boolean>\"\n        },\n        \"total_days\": \"<integer>\",\n        \"transfer\": {\n          \"debit_transfer\": [\n            {\n              \"amount\": \"-9\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"20/49/3087\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ],\n          \"credit_transfer\": [\n            {\n              \"amount\": \"5.72\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"20/86/0895\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ]\n        },\n        \"txn_count\": \"<integer>\",\n        \"withdrawal_count\": \"<integer>\",\n        \"withdrawal_sum\": \"2.0\",\n        \"withdrawals\": [\n          {\n            \"amount\": \"+0\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"01/99/7498\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"withdrawals_max_by_month\": {\n          \"sed496\": [\n            {\n              \"amount\": \"121194509\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"84/22/6566\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ],\n          \"exercitation_513\": [\n            {\n              \"amount\": \"02450536.5\",\n              \"bank_account_pk\": \"<integer>\",\n              \"bbox\": [\n                \"<number>\",\n                \"<number>\",\n                \"<number>\",\n                \"<number>\"\n              ],\n              \"description\": \"<string>\",\n              \"page_doc_pk\": \"<integer>\",\n              \"page_idx\": \"<integer>\",\n              \"pk\": \"<integer>\",\n              \"txn_date\": \"97/55/2374\",\n              \"uploaded_doc_pk\": \"<integer>\"\n            }\n          ]\n        },\n        \"withdrawals_sum_by_month\": {\n          \"non4a\": \"67615.5\",\n          \"voluptate_3fb\": \"98\",\n          \"eu0\": \"19091157346.60\"\n        },\n        \"account_holders\": [\n          \"<string>\"\n        ],\n        \"atm_withdrawals_num\": \"<integer>\",\n        \"atm_withdrawals_sum\": \"95388670553\",\n        \"branch_withdrawals_num\": \"<integer>\",\n        \"branch_withdrawals_sum\": \"-9.26\",\n        \"casino_lottery_num\": \"<integer>\",\n        \"casino_lottery_sum\": \"363.4\",\n        \"checks_highest_incidence\": [\n          \"0921197470.51\",\n          \"8.52\"\n        ],\n        \"checks_num\": \"<integer>\",\n        \"credit_card_payments_num\": \"<integer>\",\n        \"credit_card_payments_sum\": \"0201680736\",\n        \"daily_cash_flows_weekday\": {\n          \"veniam_338\": \"415293711.70\",\n          \"consectetur_8f\": \"7683.52\"\n        },\n        \"equipment_lease_payments_num\": \"<integer>\",\n        \"equipment_lease_payments_sum\": \"92.61\",\n        \"id\": \"<integer>\",\n        \"insurance_payments_num\": \"<integer>\",\n        \"insurance_payments_sum\": \"+2409.16\",\n        \"lottery_withdrawals_num\": \"<integer>\",\n        \"lottery_withdrawals_sum\": \"8548\",\n        \"merchant_service_deposits_num\": \"<integer>\",\n        \"merchant_service_deposits_sum\": \"03217018.03\",\n        \"paypal_num\": \"<integer>\",\n        \"paypal_sum\": \"+981.70\",\n        \"payroll_num\": \"<integer>\",\n        \"payroll_sum\": \"578113699\",\n        \"remote_deposits_num\": \"<integer>\",\n        \"remote_deposits_sum\": \"2\",\n        \"returned_items\": [\n          {\n            \"amount\": \"9200697\",\n            \"bank_account_pk\": \"<integer>\",\n            \"bbox\": [\n              \"<number>\",\n              \"<number>\",\n              \"<number>\",\n              \"<number>\"\n            ],\n            \"description\": \"<string>\",\n            \"page_doc_pk\": \"<integer>\",\n            \"page_idx\": \"<integer>\",\n            \"pk\": \"<integer>\",\n            \"txn_date\": \"24/79/6488\",\n            \"uploaded_doc_pk\": \"<integer>\"\n          }\n        ],\n        \"state_tax_payments_num\": \"<integer>\",\n        \"state_tax_payments_sum\": \"89214\",\n        \"tolls_num\": \"<integer>\",\n        \"tolls_sum\": \"-83175244.38\",\n        \"transfer_num\": \"<integer>\",\n        \"transfer_sum\": \"-390\",\n        \"txn_four_zeros\": \"<integer>\",\n        \"usa_tax_payments_num\": \"<integer>\",\n        \"usa_tax_payments_sum\": \"1168537761.8\",\n        \"venmo_zelle_cashapp_num\": \"<integer>\",\n        \"venmo_zelle_cashapp_sum\": \"-102860.7\"\n      }\n    ],\n    \"cash_expense_days_by_month\": {\n      \"fugiat_bf7\": \"<number>\"\n    },\n    \"daily_balances\": {\n      \"ea_e\": \"-41576331867.06\"\n    },\n    \"daily_balances_by_month\": {\n      \"Duis_107\": {\n        \"eiusmod8f\": \"+849.93\",\n        \"nostrud_882\": \"6548808\"\n      }\n    },\n    \"daily_balances_weekday\": {\n      \"commodo8\": \"5356\",\n      \"anim_7\": \"+629\",\n      \"dolor1\": \"09370378555\",\n      \"aute_48\": \"06.5\"\n    },\n    \"daily_balances_weekday_by_month\": {\n      \"nostrud_f4c\": {\n        \"laborisdf6\": \"8\",\n        \"quis2c\": \"-566\"\n      },\n      \"Ut_5a\": {\n        \"quis_d39\": \"-0827594\"\n      }\n    },\n    \"deposit_count\": \"<integer>\",\n    \"deposit_sum\": \"+8353506872\",\n    \"estimated_daily_expense_by_month\": {\n      \"consecteturc\": \"+55628.8\"\n    },\n    \"estimated_expense_by_month\": {\n      \"voluptated8\": \"+0449.93\",\n      \"cupidatat9\": \"-87.3\",\n      \"nostrud8\": \"3836\",\n      \"dolor6\": \"+38195810\"\n    },\n    \"estimated_revenue_by_month\": {\n      \"reprehenderit2f\": \"62429.14\"\n    },\n    \"mca_payments_by_month\": {\n      \"ut9f\": \"+935969.49\"\n    },\n    \"name\": \"<string>\",\n    \"negative_balances_by_month\": {\n      \"dolore_e\": [\n        \"48/18/1421\"\n      ]\n    },\n    \"negative_balances_by_month_weekday\": {\n      \"anim__\": [\n        \"14/85/7027\"\n      ],\n      \"voluptatece6\": [\n        \"34/65/7664\"\n      ]\n    },\n    \"pk\": \"<integer>\"\n  },\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:25:16.000Z",
+                      "updatedAt": "2026-07-28T02:25:16.000Z",
+                      "uid": "35240-dc1a1fbb-794b-4b08-8605-376c42777122"
+                    },
+                    {
+                      "id": "8b732278-9279-410f-bb5e-499c014012f7",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/summary?book_uuid=<uuid>&pk=<integer>&extra_fields=paypal_num,lottery_withdrawals_num",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed. Mutually exclusive with the `pk` parameter (i.e. don't provide both).\n",
+                              "key": "book_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                              "key": "pk",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.\n\nFuture revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.\n",
+                              "key": "extra_fields",
+                              "value": "paypal_num,lottery_withdrawals_num"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"OK\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:16.000Z",
+                      "updatedAt": "2026-07-28T02:25:16.000Z",
+                      "uid": "35240-8b732278-9279-410f-bb5e-499c014012f7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:16.000Z",
+                  "updatedAt": "2026-07-28T02:25:16.000Z",
+                  "uid": "35240-4f6d5378-4bc7-4602-b6f8-550bedcd2f25"
+                }
+              ],
+              "id": "ed35a0d4-31d4-4f55-b612-81286d682e9d",
+              "createdAt": "2026-07-28T02:25:16.000Z",
+              "updatedAt": "2026-07-28T02:25:16.000Z",
+              "uid": "35240-ed35a0d4-31d4-4f55-b612-81286d682e9d"
+            },
+            {
+              "name": "export",
+              "item": [
+                {
+                  "name": "xlsx",
+                  "item": [
+                    {
+                      "name": "analytics",
+                      "item": [
+                        {
+                          "name": "Analytics (Excel) (Deprecated)",
+                          "id": "15959ab6-d148-44df-9489-6200e1d3bba2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/export/xlsx/analytics?pk=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "export",
+                                "xlsx",
+                                "analytics"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                                  "key": "pk",
+                                  "value": "<integer>"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves analytics for a <<glossary:Book>> in Excel-compatible XLSX format (not to be confused with the legacy XLS format).\n\n---\n> \ud83d\udea7 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n\nThe output of this endpoint is intended for manual review, as opposed to automated consumption by your application.\n\nSome fields provided in the [JSON output](doc:analytics) are not listed in the XLSX output. This behavior may change in future revisions of this endpoint.\n\n> \ud83d\udcd8 Multiple endpoints, one object\n> This endpoint returns the same information as the [JSON versions](ref:analytics), but in a different format. You can find a detailed reference of the JSON analytics object [here](doc:analytics-type), although it doesn't strictly apply to the file returned by this endpoint.\n\n> \ud83d\udea7\n> The response will have a MIME type of `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, hence there is no JSON response schema. See [here](https://docs.google.com/spreadsheets/d/1tCjC3ZmmGWyZnF18YMfhOVFBnt_MZ_58) for an example output.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "08bdbcde-0114-4b79-bee2-cbc8c5c7871e",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/export/xlsx/analytics?pk=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "export",
+                                    "xlsx",
+                                    "analytics"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                                      "key": "pk",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"examples\": {\n    \"ExampleSpreadsheet\": {\n      \"summary\": \"Success\",\n      \"externalValue\": \"https://docs.google.com/spreadsheets/d/1tCjC3ZmmGWyZnF18YMfhOVFBnt_MZ_58\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-08bdbcde-0114-4b79-bee2-cbc8c5c7871e"
+                            },
+                            {
+                              "id": "2771d6fd-fb21-41b9-b38c-1d2a8947d91f",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/export/xlsx/analytics?pk=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "export",
+                                    "xlsx",
+                                    "analytics"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n",
+                                      "key": "pk",
+                                      "value": "<integer>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"OK\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-2771d6fd-fb21-41b9-b38c-1d2a8947d91f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:16.000Z",
+                          "updatedAt": "2026-07-28T02:25:16.000Z",
+                          "uid": "35240-15959ab6-d148-44df-9489-6200e1d3bba2"
+                        }
+                      ],
+                      "id": "4cc6c1ab-3ccb-4193-9a2a-743d11d90cbc",
+                      "createdAt": "2026-07-28T02:25:16.000Z",
+                      "updatedAt": "2026-07-28T02:25:16.000Z",
+                      "uid": "35240-4cc6c1ab-3ccb-4193-9a2a-743d11d90cbc"
+                    }
+                  ],
+                  "id": "1b95606e-0f11-43d9-8d6e-5751796b063f",
+                  "createdAt": "2026-07-28T02:25:16.000Z",
+                  "updatedAt": "2026-07-28T02:25:16.000Z",
+                  "uid": "35240-1b95606e-0f11-43d9-8d6e-5751796b063f"
+                }
+              ],
+              "id": "4d985ef8-e443-45b4-bb68-de86755b0e19",
+              "createdAt": "2026-07-28T02:25:16.000Z",
+              "updatedAt": "2026-07-28T02:25:16.000Z",
+              "uid": "35240-4d985ef8-e443-45b4-bb68-de86755b0e19"
+            },
+            {
+              "name": "analytics",
+              "item": [
+                {
+                  "name": "async",
+                  "item": [
+                    {
+                      "name": "request",
+                      "item": [
+                        {
+                          "name": "Async Analytics Request (Deprecated)",
+                          "id": "1eed1ca6-1869-4e52-9f0b-605da7032e78",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pk\": \"<integer>\",\n  \"extra_fields\": [\n    \"payroll_num\",\n    \"remote_deposits_sum\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/analytics/async/request",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "analytics",
+                                "async",
+                                "request"
+                              ]
+                            },
+                            "description": "Request analytics for a <<glossary:Book>> to be computed behind the scenes. You'll be notified when they're ready.\n\n---\n> \ud83d\udea7 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\nYou can retrieve the results when they're ready by [registering a webhook](doc:registering-webhook-endpoint) that listens for the `ANALYTICS_COMPLETED` event. You can also poll the [Async Analytics Result endpoint](ref:async-analytics-result) regularly if you don't mind exchanging precision for simplicity.\n\n> \ud83d\udcd8 Multiple endpoints, one object\n> The [asynchronous results endpoint](ref:async-analytics-result) and [the synchronous version](ref:analytics) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don't apply to Excel files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).\n"
+                          },
+                          "response": [
+                            {
+                              "id": "fc0ce9fb-6ad9-4ac3-bdba-4138deccf1ff",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pk\": \"<integer>\",\n  \"extra_fields\": [\n    \"payroll_num\",\n    \"remote_deposits_sum\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/analytics/async/request",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "analytics",
+                                    "async",
+                                    "request"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": {\n    \"analytics_request_id\": \"<uuid>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-fc0ce9fb-6ad9-4ac3-bdba-4138deccf1ff"
+                            },
+                            {
+                              "id": "04792b12-4661-4add-bba1-fbdc57df7776",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pk\": \"<integer>\",\n  \"extra_fields\": [\n    \"payroll_num\",\n    \"remote_deposits_sum\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/analytics/async/request",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "analytics",
+                                    "async",
+                                    "request"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"OK\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-04792b12-4661-4add-bba1-fbdc57df7776"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:16.000Z",
+                          "updatedAt": "2026-07-28T02:25:16.000Z",
+                          "uid": "35240-1eed1ca6-1869-4e52-9f0b-605da7032e78"
+                        }
+                      ],
+                      "id": "c5b41669-eb23-4d6b-95f6-550dca819ef5",
+                      "createdAt": "2026-07-28T02:25:16.000Z",
+                      "updatedAt": "2026-07-28T02:25:16.000Z",
+                      "uid": "35240-c5b41669-eb23-4d6b-95f6-550dca819ef5"
+                    },
+                    {
+                      "name": "result",
+                      "item": [
+                        {
+                          "name": "Async Analytics Result (Deprecated)",
+                          "id": "72a961d7-ec71-4965-910f-35f969c2e272",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/analytics/async/result?analytics_request_id=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "analytics",
+                                "async",
+                                "result"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The ID of the request that was returned by [the request endpoint](ref:async-analytics-request).",
+                                  "key": "analytics_request_id",
+                                  "value": "<uuid>"
+                                }
+                              ]
+                            },
+                            "description": "Checks the status of an asynchronous analytics request, retrieving the results if they're ready.\n\n---\n> \ud83d\udea7 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n> \ud83d\udcd8 Multiple endpoints, one object\n> This endpoint and [the synchronous version](ref:analytics) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don't apply to Excel files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).\n"
+                          },
+                          "response": [
+                            {
+                              "id": "1248afda-06a2-4c64-ba34-922a1ca8e5c1",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/analytics/async/result?analytics_request_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "analytics",
+                                    "async",
+                                    "result"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The ID of the request that was returned by [the request endpoint](ref:async-analytics-request).",
+                                      "key": "analytics_request_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": {\n    \"request_id\": {\n      \"analytics_status\": \"PROCESSING\",\n      \"analytics\": {\n        \"alt_lender_payments_by_month\": {\n          \"estdc\": \"+57069826610\"\n        },\n        \"average_by_month\": {\n          \"elit2f\": \"-509186.85\"\n        },\n        \"average_daily_balance\": \"-06368875640.5\",\n        \"average_daily_balance_by_month\": {\n          \"ipsum1e\": \"8.7\",\n          \"sunt_21\": \"+1474.77\",\n          \"nostrud_23d\": \"-9525.20\"\n        },\n        \"average_daily_balance_weekday\": \"0470162.6\",\n        \"average_daily_balance_weekday_by_month\": {\n          \"irure8f\": \"38063803.52\"\n        },\n        \"average_deposit_by_month\": {\n          \"sint_1e\": \"74.44\",\n          \"ida6\": \"35477091173\"\n        },\n        \"bank_accounts\": [\n          {\n            \"account_category\": \"UNKNOWN\",\n            \"account_holder\": \"<string>\",\n            \"account_number\": \"<string>\",\n            \"account_type\": \"CHECK CASHING HISTORY\",\n            \"activity_info\": {\n              \"active\": [\n                {\n                  \"start\": {\n                    \"year\": \"<integer>\",\n                    \"month\": \"<integer>\",\n                    \"day\": \"<integer>\"\n                  },\n                  \"end\": {\n                    \"year\": \"<integer>\",\n                    \"month\": \"<integer>\",\n                    \"day\": \"<integer>\"\n                  }\n                }\n              ],\n              \"missing\": [\n                {\n                  \"start\": {\n                    \"year\": \"<integer>\",\n                    \"month\": \"<integer>\",\n                    \"day\": \"<integer>\"\n                  },\n                  \"end\": {\n                    \"year\": \"<integer>\",\n                    \"month\": \"<integer>\",\n                    \"day\": \"<integer>\"\n                  }\n                }\n              ]\n            },\n            \"alt_lender_payments_by_month\": {\n              \"in041\": \"-3763.9\"\n            },\n            \"average_alt_lender_payments\": \"76939079101\",\n            \"average_by_month\": {\n              \"sunt__\": \"09.8\",\n              \"eu_3b\": \"+8698\"\n            },\n            \"average_daily_balance\": \"501.5\",\n            \"average_daily_balance_by_month\": {\n              \"cillum_8\": \"-267\",\n              \"Excepteur_b4\": \"-8255261.3\",\n              \"laborum_6\": \"+3109975\",\n              \"aliquad\": \"26.8\"\n            },\n            \"average_daily_balance_weekday\": \"54\",\n            \"average_daily_balance_weekday_by_month\": {\n              \"minim_35e\": \"99.32\",\n              \"consequatb7\": \"89247434.3\",\n              \"exercitation_8\": \"+2631.71\",\n              \"dolor_81a\": \"-164.2\"\n            },\n            \"average_daily_cash_flow\": \"14888150\",\n            \"average_daily_cash_flow_weekday\": \"+6.0\",\n            \"average_deposit_by_month\": {\n              \"cupidatat28d\": \"75913978\",\n              \"sunt_b1\": \"+09172454\",\n              \"dolorc\": \"8512749\"\n            },\n            \"average_mca_payments\": \"-310\",\n            \"bank_name\": \"<string>\",\n            \"book_pk\": \"<integer>\",\n            \"cash_balance_trend_30d\": \"+47687\",\n            \"cash_balance_trend_60d\": \"-524\",\n            \"cash_balance_trend_90d\": \"397307\",\n            \"cash_expense_days_by_month\": {\n              \"ex604\": \"+86089465422\"\n            },\n            \"cash_flow_trend_30d\": \"9620\",\n            \"cash_flow_trend_60d\": \"-25397409.6\",\n            \"cash_flow_trend_90d\": \"+956.2\",\n            \"daily_balances\": {\n              \"temporbb\": \"-3038670845\",\n              \"nulla_b\": \"81945903108.74\",\n              \"pariatur_b_8\": \"-063673\"\n            },\n            \"daily_cash_flows\": {\n              \"cillumc\": \"-25704209657\",\n              \"dolore_51\": \"-94.27\",\n              \"commodoa_\": \"+4202.01\",\n              \"exercitation3c5\": \"5230.27\"\n            },\n            \"debt_consolidator_txns\": [\n              {\n                \"amount\": \"-80471\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"51/05/7559\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"deposit_count\": \"<integer>\",\n            \"deposit_max_by_month\": {\n              \"voluptate_a23\": [\n                {\n                  \"amount\": \"-05009488\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"35/77/5143\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"reprehenderit_fd\": [\n                {\n                  \"amount\": \"+80\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"87/83/8556\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ]\n            },\n            \"deposit_min_by_month\": {\n              \"in_cf\": [\n                {\n                  \"amount\": \"36246892.1\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"18/13/9315\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"culpa_e7\": [\n                {\n                  \"amount\": \"-8129301\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"72/80/2383\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"aliquip6\": [\n                {\n                  \"amount\": \"-91348.27\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"83/27/8502\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ]\n            },\n            \"deposit_sum\": \"317858.32\",\n            \"deposits_count_by_month\": {\n              \"ex_ad6\": \"<integer>\",\n              \"ex_d5_\": \"<integer>\",\n              \"elit_9\": \"<integer>\"\n            },\n            \"deposits_sum_by_month\": {\n              \"exercitation_c\": \"123\"\n            },\n            \"estimated_daily_expense_by_month\": {\n              \"veniam_9f\": \"7372354.05\",\n              \"sunt99\": \"-82094.09\"\n            },\n            \"estimated_daily_revenue_by_month\": {\n              \"dolore_32\": \"+964\"\n            },\n            \"estimated_expense_by_month\": {\n              \"ut__\": \"574\",\n              \"enim6a7\": \"+9777\"\n            },\n            \"estimated_expense_txns_list\": [\n              {\n                \"amount\": \"+7600\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"77/22/4110\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"estimated_revenue_by_month\": {\n              \"sint02\": \"-784\",\n              \"et_19\": \"195370.74\",\n              \"qui__d\": \"6900311\"\n            },\n            \"estimated_revenue_by_month_calc_txns\": {\n              \"added_factoring_txns\": {\n                \"ut_4bc\": [\n                  {\n                    \"amount\": \"-192101\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"19/60/9307\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              },\n              \"added_specific_terms_txns\": {\n                \"ex_b1\": [\n                  {\n                    \"amount\": \"-79.8\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"97/62/4795\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"magnaa83\": [\n                  {\n                    \"amount\": \"-13863\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"74/39/0364\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"commodo8\": [\n                  {\n                    \"amount\": \"+2.65\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"08/79/1832\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              },\n              \"deposits\": {\n                \"idc2\": [\n                  {\n                    \"amount\": \"2.96\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"85/36/9991\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              },\n              \"deducted_alternative_lender_txns\": {\n                \"dolore464\": [\n                  {\n                    \"amount\": \"9.5\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"42/31/7090\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"eu_8\": [\n                  {\n                    \"amount\": \"-5309723.17\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"51/20/8298\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"Loremd9\": [\n                  {\n                    \"amount\": \"2597\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"82/24/8073\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              },\n              \"deducted_specific_terms_txns\": {\n                \"esse_4aa\": [\n                  {\n                    \"amount\": \"-63027347.07\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"80/74/0035\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              },\n              \"deducted_transfer_deposit_txns\": {\n                \"velit155\": [\n                  {\n                    \"amount\": \"-893116084\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"87/19/0071\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"ad_d7\": [\n                  {\n                    \"amount\": \"535\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"40/19/1812\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"qui2\": [\n                  {\n                    \"amount\": \"+0918014.7\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"30/25/2781\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"reprehenderit_0\": [\n                  {\n                    \"amount\": \"9982840\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"46/28/3939\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"culpa_1\": [\n                  {\n                    \"amount\": \"+1683\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"04/20/0391\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ]\n              }\n            },\n            \"estimated_revenue_txns_list\": [\n              {\n                \"amount\": \"-60275\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"55/11/5110\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"factor_txns\": [\n              {\n                \"amount\": \"-7755410305\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"01/81/9536\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"holder_address_1\": \"<string>\",\n            \"holder_address_2\": \"<string>\",\n            \"holder_city\": \"<string>\",\n            \"holder_country\": \"<string>\",\n            \"holder_state\": \"<string>\",\n            \"holder_zip\": \"<string>\",\n            \"insurance_credits\": [\n              {\n                \"amount\": \"6344\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"95/19/8341\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"insurance_debits\": [\n              {\n                \"amount\": \"+908619091\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"39/45/7663\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"insurance_terms\": [\n              {\n                \"amount\": \"58\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"54/11/2880\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"interbank_transactions\": [\n              {\n                \"amount\": \"+181953.8\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"92/20/2664\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"mca_payments_by_month\": {\n              \"eu_c\": \"42839.30\",\n              \"magnac\": \"8\"\n            },\n            \"merchant_cash_advance_lender_txns\": [\n              {\n                \"amount\": \"-098.1\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"68/28/5504\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"minimum_balance_by_month\": {\n              \"dolor_1\": \"-4005817593.71\",\n              \"mollit_ca0\": \"52\"\n            },\n            \"name\": \"<string>\",\n            \"negative_balances_by_month\": {\n              \"et_698\": [\n                \"57/78/5778\"\n              ],\n              \"in9b2\": [\n                \"07/72/7360\"\n              ],\n              \"enim8d\": [\n                \"57/12/3421\"\n              ]\n            },\n            \"negative_balances_by_month_weekday\": {\n              \"labore_bc0\": [\n                \"81/87/1403\"\n              ],\n              \"mollit_ad6\": [\n                \"93/60/5837\"\n              ]\n            },\n            \"negative_balances_weekday\": [\n              \"46/81/6121\"\n            ],\n            \"negative_cash_flows\": [\n              \"19/47/9220\"\n            ],\n            \"negative_cash_flows_weekday\": [\n              \"82/57/3010\"\n            ],\n            \"net_cash_flows_by_month\": {\n              \"fugiat_03\": \"23238905.7\",\n              \"dolore__52\": \"+29255670860.6\"\n            },\n            \"non_estimated_revenue_txns_list\": [\n              {\n                \"amount\": \"-5\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"33/78/7537\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"nsf_count\": \"<integer>\",\n            \"nsf_count_by_month\": {\n              \"dolor_91\": \"-72.15\",\n              \"inb1\": \"2843198\",\n              \"non_b\": \"-2388\",\n              \"exercitation_f14\": \"-46.83\"\n            },\n            \"nsf_transactions\": [\n              {\n                \"amount\": \"+263709.51\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"66/07/4325\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"nsf_transactions_paid_or_negative_balance\": [\n              {\n                \"amount\": \"8170.02\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"54/38/9385\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"nsf_transactions_paid_or_negative_balance_count_by_month\": {\n              \"ipsum90a\": \"<integer>\",\n              \"dolorf\": \"<integer>\"\n            },\n            \"nsf_transactions_returned_or_not_paid\": [\n              {\n                \"amount\": \"535989689\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"97/91/9228\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"nsf_transactions_returned_or_not_paid_count_by_month\": {\n              \"minimf0\": \"<integer>\",\n              \"exercitation_76\": \"<integer>\",\n              \"officia_b8\": \"<integer>\",\n              \"ut18\": \"<integer>\"\n            },\n            \"outside_source_deposits\": [\n              {\n                \"amount\": \"-1636232.66\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"24/77/1794\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"payroll\": [\n              {\n                \"amount\": \"+6\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"84/96/4242\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"period_balance_mismatches\": [\n              {\n                \"begin_date\": \"70/86/3237\",\n                \"begin_balance\": \"62587126\",\n                \"end_date\": \"86/34/3971\",\n                \"end_balance\": \"3189296916.58\"\n              }\n            ],\n            \"periods\": [\n              {\n                \"average_amount\": \"9\",\n                \"average_daily_balance\": \"36.6\",\n                \"average_daily_balance_weekday\": \"+77.55\",\n                \"average_daily_cash_flow\": \"-6.0\",\n                \"average_daily_cash_flow_weekday\": \"959472.4\",\n                \"average_deposit\": \"35972011.42\",\n                \"bank_account_pk\": \"<integer>\",\n                \"begin_balance\": \"-184964.55\",\n                \"begin_date\": \"94/71/1955\",\n                \"deposit_count\": \"<integer>\",\n                \"deposit_max\": [\n                  {\n                    \"amount\": \"086204\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"06/95/3635\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"deposit_min\": [\n                  {\n                    \"amount\": \"-522.8\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"03/69/3254\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"deposit_sum\": \"124\",\n                \"end_balance\": \"790\",\n                \"end_date\": \"92/53/8977\",\n                \"estimated_revenue\": \"+416\",\n                \"estimated_revenue_calc_txns\": {\n                  \"added_factoring_txns\": [\n                    {\n                      \"amount\": \"5.50\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"19/45/8133\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ],\n                  \"added_specific_terms_txns\": [\n                    {\n                      \"amount\": \"-462766\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"10/20/9521\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ],\n                  \"deposits\": [\n                    {\n                      \"amount\": \"-041598996.7\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"39/81/8647\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ],\n                  \"deducted_alternative_lender_txns\": [\n                    {\n                      \"amount\": \"008\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"91/96/6906\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ],\n                  \"deducted_specific_terms_txns\": [\n                    {\n                      \"amount\": \"1112817458.25\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"24/61/5765\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ],\n                  \"deducted_transfer_deposit_txns\": [\n                    {\n                      \"amount\": \"-983851\",\n                      \"bank_account_pk\": \"<integer>\",\n                      \"bbox\": [\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\",\n                        \"<number>\"\n                      ],\n                      \"description\": \"<string>\",\n                      \"page_doc_pk\": \"<integer>\",\n                      \"page_idx\": \"<integer>\",\n                      \"pk\": \"<integer>\",\n                      \"txn_date\": \"67/24/5578\",\n                      \"uploaded_doc_pk\": \"<integer>\"\n                    }\n                  ]\n                },\n                \"negative_balances\": [\n                  \"82/91/5677\"\n                ],\n                \"negative_balances_weekday\": [\n                  \"04/79/5191\"\n                ],\n                \"negative_cash_flows\": [\n                  \"49/58/1466\"\n                ],\n                \"negative_cash_flows_weekday\": [\n                  \"68/11/2907\"\n                ],\n                \"nsf_count\": \"<integer>\",\n                \"nsf_transactions_paid_or_negative_balance_count\": \"<integer>\",\n                \"payroll\": \"128663.35\",\n                \"period_month_days\": {\n                  \"reprehenderit_e08\": \"<integer>\",\n                  \"consectetur_10\": \"<integer>\"\n                },\n                \"period_month_txns\": {\n                  \"voluptate_5e5\": \"<integer>\"\n                },\n                \"pk\": \"<integer>\",\n                \"primary_recon_error_reason\": \"None\",\n                \"secondary_recon_error_reason\": \"<string>\",\n                \"txn_count\": \"<integer>\",\n                \"uploaded_doc_pk\": \"<integer>\",\n                \"withdrawal_count\": \"<integer>\",\n                \"withdrawal_sum\": \"1488863.3\",\n                \"withdrawals_max\": [\n                  {\n                    \"amount\": \"+8238\",\n                    \"bank_account_pk\": \"<integer>\",\n                    \"bbox\": [\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\",\n                      \"<number>\"\n                    ],\n                    \"description\": \"<string>\",\n                    \"page_doc_pk\": \"<integer>\",\n                    \"page_idx\": \"<integer>\",\n                    \"pk\": \"<integer>\",\n                    \"txn_date\": \"92/50/8742\",\n                    \"uploaded_doc_pk\": \"<integer>\"\n                  }\n                ],\n                \"nsf_transactions_returned_or_not_paid_count\": \"<integer>\"\n              }\n            ],\n            \"pk\": \"<integer>\",\n            \"ppp_loan_txns\": [\n              {\n                \"amount\": \"93.48\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"25/29/8338\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"probable_recurring_txns\": [\n              {\n                \"amount\": \"277618.06\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"18/01/4742\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"recurring_vs_episodic_inflows_by_month\": {\n              \"aliquipf82\": \"-7894\"\n            },\n            \"recurring_vs_episodic_outflows_by_month\": {\n              \"irure_3b\": \"085180350\"\n            },\n            \"round_number_txns\": [\n              {\n                \"amount\": \"41\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"94/84/1611\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"suspicious_activities\": {\n              \"has_weekend_transactions\": \"<boolean>\",\n              \"high_amount_average_daily_balance\": \"<boolean>\",\n              \"balance_ending_with_zero\": \"<boolean>\",\n              \"no_txn_in_weekdays_within_period\": \"<boolean>\",\n              \"high_txns_amount_atm_over_cash\": \"<boolean>\",\n              \"high_txns_count_atm_over_cash\": \"<boolean>\"\n            },\n            \"total_days\": \"<integer>\",\n            \"transfer\": {\n              \"debit_transfer\": [\n                {\n                  \"amount\": \"+480\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"01/58/4294\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"credit_transfer\": [\n                {\n                  \"amount\": \"836503.40\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"34/41/6777\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ]\n            },\n            \"txn_count\": \"<integer>\",\n            \"withdrawal_count\": \"<integer>\",\n            \"withdrawal_sum\": \"-5723176305.53\",\n            \"withdrawals\": [\n              {\n                \"amount\": \"37503.4\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"26/41/1755\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"withdrawals_max_by_month\": {\n              \"aliqua6f\": [\n                {\n                  \"amount\": \"-8\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"78/12/7771\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ],\n              \"aliquac\": [\n                {\n                  \"amount\": \"+65133425240\",\n                  \"bank_account_pk\": \"<integer>\",\n                  \"bbox\": [\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\",\n                    \"<number>\"\n                  ],\n                  \"description\": \"<string>\",\n                  \"page_doc_pk\": \"<integer>\",\n                  \"page_idx\": \"<integer>\",\n                  \"pk\": \"<integer>\",\n                  \"txn_date\": \"15/93/8080\",\n                  \"uploaded_doc_pk\": \"<integer>\"\n                }\n              ]\n            },\n            \"withdrawals_sum_by_month\": {\n              \"Duis_5\": \"9468245232\",\n              \"exercitation_d\": \"8\"\n            },\n            \"account_holders\": [\n              \"<string>\"\n            ],\n            \"atm_withdrawals_num\": \"<integer>\",\n            \"atm_withdrawals_sum\": \"05660451\",\n            \"branch_withdrawals_num\": \"<integer>\",\n            \"branch_withdrawals_sum\": \"+5.57\",\n            \"casino_lottery_num\": \"<integer>\",\n            \"casino_lottery_sum\": \"0659.9\",\n            \"checks_highest_incidence\": [\n              \"-54753224133.4\",\n              \"+45314\"\n            ],\n            \"checks_num\": \"<integer>\",\n            \"credit_card_payments_num\": \"<integer>\",\n            \"credit_card_payments_sum\": \"+7.22\",\n            \"daily_cash_flows_weekday\": {\n              \"irure_56\": \"554\"\n            },\n            \"equipment_lease_payments_num\": \"<integer>\",\n            \"equipment_lease_payments_sum\": \"-49.3\",\n            \"id\": \"<integer>\",\n            \"insurance_payments_num\": \"<integer>\",\n            \"insurance_payments_sum\": \"3722\",\n            \"lottery_withdrawals_num\": \"<integer>\",\n            \"lottery_withdrawals_sum\": \"-057.39\",\n            \"merchant_service_deposits_num\": \"<integer>\",\n            \"merchant_service_deposits_sum\": \"+0.02\",\n            \"paypal_num\": \"<integer>\",\n            \"paypal_sum\": \"4844.73\",\n            \"payroll_num\": \"<integer>\",\n            \"payroll_sum\": \"28975.09\",\n            \"remote_deposits_num\": \"<integer>\",\n            \"remote_deposits_sum\": \"-8251522.91\",\n            \"returned_items\": [\n              {\n                \"amount\": \"+502393877.32\",\n                \"bank_account_pk\": \"<integer>\",\n                \"bbox\": [\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\",\n                  \"<number>\"\n                ],\n                \"description\": \"<string>\",\n                \"page_doc_pk\": \"<integer>\",\n                \"page_idx\": \"<integer>\",\n                \"pk\": \"<integer>\",\n                \"txn_date\": \"89/85/7866\",\n                \"uploaded_doc_pk\": \"<integer>\"\n              }\n            ],\n            \"state_tax_payments_num\": \"<integer>\",\n            \"state_tax_payments_sum\": \"+2461\",\n            \"tolls_num\": \"<integer>\",\n            \"tolls_sum\": \"318\",\n            \"transfer_num\": \"<integer>\",\n            \"transfer_sum\": \"+59\",\n            \"txn_four_zeros\": \"<integer>\",\n            \"usa_tax_payments_num\": \"<integer>\",\n            \"usa_tax_payments_sum\": \"-149976090.89\",\n            \"venmo_zelle_cashapp_num\": \"<integer>\",\n            \"venmo_zelle_cashapp_sum\": \"-91.38\"\n          }\n        ],\n        \"cash_expense_days_by_month\": {\n          \"cupidatat_1a\": \"<number>\",\n          \"in_8b\": \"<number>\"\n        },\n        \"daily_balances\": {\n          \"aliqua_\": \"204795.0\"\n        },\n        \"daily_balances_by_month\": {\n          \"doe9\": {\n            \"in_e4\": \"69235584\",\n            \"occaecatf\": \"566481.7\",\n            \"ad1\": \"+973532101.7\",\n            \"quisf9_\": \"-3727.08\"\n          },\n          \"nulla7\": {\n            \"veniam88a\": \"91.9\"\n          }\n        },\n        \"daily_balances_weekday\": {\n          \"in341\": \"-06\",\n          \"irure_5\": \"6240.6\",\n          \"aute_050\": \"-78511.1\"\n        },\n        \"daily_balances_weekday_by_month\": {\n          \"enim_a\": {\n            \"irure_1c\": \"+95024\",\n            \"eiusmod7b7\": \"175450617.1\"\n          }\n        },\n        \"deposit_count\": \"<integer>\",\n        \"deposit_sum\": \"-62585287233\",\n        \"estimated_daily_expense_by_month\": {\n          \"amet_5\": \"7800\",\n          \"pariatur_c\": \"+25484782\"\n        },\n        \"estimated_expense_by_month\": {\n          \"eu_de6\": \"714\",\n          \"incididunt_65_\": \"+336\"\n        },\n        \"estimated_revenue_by_month\": {\n          \"adipisicing_0\": \"-129655\",\n          \"aute6_e\": \"2798251811\"\n        },\n        \"mca_payments_by_month\": {\n          \"laboris_4f\": \"818184\",\n          \"inf\": \"21865408060\"\n        },\n        \"name\": \"<string>\",\n        \"negative_balances_by_month\": {\n          \"ad_a\": [\n            \"43/18/7898\"\n          ],\n          \"deseruntb\": [\n            \"68/03/0145\"\n          ]\n        },\n        \"negative_balances_by_month_weekday\": {\n          \"veniam_e6\": [\n            \"17/27/3612\"\n          ],\n          \"minim16\": [\n            \"56/54/0375\"\n          ],\n          \"nulla_9\": [\n            \"99/95/7793\"\n          ]\n        },\n        \"pk\": \"<integer>\"\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-1248afda-06a2-4c64-ba34-922a1ca8e5c1"
+                            },
+                            {
+                              "id": "2a757795-5b77-4f2c-af2c-aa99177de431",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/analytics/async/result?analytics_request_id=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "analytics",
+                                    "async",
+                                    "result"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The ID of the request that was returned by [the request endpoint](ref:async-analytics-request).",
+                                      "key": "analytics_request_id",
+                                      "value": "<uuid>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": 0,\n  \"code\": 0,\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": 0,\n    \"msg\": \"<string>\",\n    \"code\": 0\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:16.000Z",
+                              "updatedAt": "2026-07-28T02:25:16.000Z",
+                              "uid": "35240-2a757795-5b77-4f2c-af2c-aa99177de431"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:16.000Z",
+                          "updatedAt": "2026-07-28T02:25:16.000Z",
+                          "uid": "35240-72a961d7-ec71-4965-910f-35f969c2e272"
+                        }
+                      ],
+                      "id": "378a8524-03c2-465d-b33a-1ab3cdca2408",
+                      "createdAt": "2026-07-28T02:25:16.000Z",
+                      "updatedAt": "2026-07-28T02:25:16.000Z",
+                      "uid": "35240-378a8524-03c2-465d-b33a-1ab3cdca2408"
+                    }
+                  ],
+                  "id": "12ae42d9-8a48-4d2d-b46b-60b3cdee7305",
+                  "createdAt": "2026-07-28T02:25:16.000Z",
+                  "updatedAt": "2026-07-28T02:25:16.000Z",
+                  "uid": "35240-12ae42d9-8a48-4d2d-b46b-60b3cdee7305"
+                }
+              ],
+              "id": "88a33581-8233-46d5-9b99-ec1575f00efa",
+              "createdAt": "2026-07-28T02:25:16.000Z",
+              "updatedAt": "2026-07-28T02:25:16.000Z",
+              "uid": "35240-88a33581-8233-46d5-9b99-ec1575f00efa"
+            }
+          ],
+          "id": "d0f5fe41-283a-42e8-a116-001da0116827",
+          "createdAt": "2026-07-28T02:25:16.000Z",
+          "updatedAt": "2026-07-28T02:25:16.000Z",
+          "uid": "35240-d0f5fe41-283a-42e8-a116-001da0116827"
+        }
+      ],
+      "id": "14462b83-1a64-49d5-a081-75c93932f7dc",
+      "createdAt": "2026-07-28T02:25:16.000Z",
+      "updatedAt": "2026-07-28T02:25:16.000Z",
+      "uid": "35240-14462b83-1a64-49d5-a081-75c93932f7dc"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

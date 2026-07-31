@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ocrolus book-queries
+  version: 1.0.0
+extends: openapi/ocrolus-book-queries-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-provider: ocrolus
+    x-apievangelist-category: book-queries

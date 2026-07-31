@@ -1,28 +1,439 @@
 aid: ocrolus
 name: Ocrolus
-description: 'Ocrolus is a company surfaced as a portfolio company of bullpen-capital, qed-investors and
-  added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: 'Ocrolus is a fintech document-automation and analytics platform that helps lenders analyze
+  financial documents - bank statements, pay stubs, tax forms and more - with high accuracy. Its API covers
+  Classify, Capture, Detect and Analyze: document classification and data extraction, fraud and authenticity
+  detection, cash-flow analytics, income calculation for mortgage and SMB/consumer lending, business verification,
+  tag management and webhooks. Authentication is OAuth 2.0 client credentials issuing JWT access tokens,
+  over a REST API at api.ocrolus.com.'
 url: https://raw.githubusercontent.com/api-evangelist/ocrolus/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.ocrolus.com/wp-content/uploads/2025/10/social-home-page.jpg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bullpen-capital
 - qed-investors
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Fintech
-apis: []
+- Document Automation
+- Lending
+- Underwriting
+- OCR
+- Fraud Detection
+- Income Verification
+- Bank Statement Analysis
+- Mortgage
+- Machine Learning
+- Cash Flow Analytics
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: ocrolus:ocrolus-book-commands-api
+  name: Ocrolus Book Commands API
+  description: The Book Commands API from Ocrolus — 3 operation(s) for book commands.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Book Commands
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-book-commands-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-book-queries-api
+  name: Ocrolus Book Queries API
+  description: The Book Queries API from Ocrolus — 5 operation(s) for book queries.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Book Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-book-queries-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-business-history-api
+  name: Ocrolus Business history API
+  description: The Business history API from Ocrolus — 4 operation(s) for business history.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Business history
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-business-history-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-business-verification-deprecated-api
+  name: Ocrolus Business Verification (Deprecated) API
+  description: >-
+    The Business Verification (Deprecated) API from Ocrolus — 3 operation(s) for business verification
+    (deprecated).
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Business Verification (Deprecated)
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-business-verification-deprecated-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-capture-api
+  name: Ocrolus Capture API
+  description: The Capture API from Ocrolus — 7 operation(s) for capture.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Capture
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-capture-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-cash-flow-analytics-api
+  name: Ocrolus Cash Flow Analytics API
+  description: The Cash Flow Analytics API from Ocrolus — 10 operation(s) for cash flow analytics.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Cash Flow Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-cash-flow-analytics-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-detect-api
+  name: Ocrolus Detect API
+  description: The Detect API from Ocrolus — 4 operation(s) for detect.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Detect
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-detect-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-encore-api
+  name: Ocrolus Encore API
+  description: The Encore API from Ocrolus — 5 operation(s) for encore.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Encore
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-encore-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-file-uploads-api
+  name: Ocrolus File Uploads API
+  description: The File Uploads API from Ocrolus — 7 operation(s) for file uploads.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - File Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-file-uploads-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-income-api
+  name: Ocrolus Income API
+  description: The Income API from Ocrolus — 5 operation(s) for income.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Income
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-income-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-legacy-cash-flow-analytics-deprecated-api
+  name: Ocrolus Legacy Cash Flow Analytics (Deprecated) API
+  description: >-
+    The Legacy Cash Flow Analytics (Deprecated) API from Ocrolus — 4 operation(s) for legacy cash flow
+    analytics (deprecated).
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Legacy Cash Flow Analytics (Deprecated)
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-legacy-cash-flow-analytics-deprecated-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-oauth-api
+  name: Ocrolus Oauth API
+  description: The Oauth API from Ocrolus — 1 operation(s) for oauth.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-oauth-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-org-level-webhooks-api
+  name: Ocrolus Org Level Webhooks API
+  description: The Org Level Webhooks API from Ocrolus — 8 operation(s) for org level webhooks.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Org Level Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-org-level-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-tag-management-api
+  name: Ocrolus Tag Management API
+  description: The Tag Management API from Ocrolus — 4 operation(s) for tag management.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Tag Management
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-tag-management-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-user-management-api
+  name: Ocrolus User management API
+  description: The User management API from Ocrolus — 2 operation(s) for user management.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - User management
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-user-management-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-webhooks-api
+  name: Ocrolus Webhooks API
+  description: The Webhooks API from Ocrolus — 4 operation(s) for webhooks.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ocrolus/overview
 - type: Website
   url: https://ocrolus.com
+- type: DeveloperPortal
+  url: https://docs.ocrolus.com
+- type: Documentation
+  url: https://docs.ocrolus.com/docs/guide
+- type: APIReference
+  url: https://docs.ocrolus.com/reference
+- type: GettingStarted
+  url: https://docs.ocrolus.com/docs/getting-started
+- type: Authentication
+  url: authentication/ocrolus-authentication.yml
+- type: Support
+  url: https://www.ocrolus.com/contact-us/
+- type: Blog
+  url: https://www.ocrolus.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/ocrolus
+- type: SignUp
+  url: https://app.ocrolus.com/signup
+- type: Login
+  url: https://app.ocrolus.com/login
+- type: TermsOfService
+  url: https://legal.ocrolus.com/legal/terms-of-use-88ee7151
+- type: PrivacyPolicy
+  url: https://legal.ocrolus.com/legal/privacy-policy-958a2463
+- type: Postman
+  url: https://docs.ocrolus.com/docs/using-ocrolus-with-postman
+- type: StatusPage
+  url: https://status.ocrolus.com
+- type: ChangeLog
+  url: https://docs.ocrolus.com/changelog
+- type: Deprecation
+  url: https://docs.ocrolus.com/docs/breaking-change-policy
+- type: Lifecycle
+  url: lifecycle/ocrolus-lifecycle.yml
+- type: Compliance
+  url: https://security.ocrolus.com/
+- type: TrustCenter
+  url: security/ocrolus-trust-center.yml
+- type: Security
+  url: https://security.ocrolus.com/
+- type: VulnerabilityDisclosure
+  url: security/ocrolus-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/ocrolus-domain-security.yml
+- type: Conformance
+  url: conformance/ocrolus-conformance.yml
+- type: Conventions
+  url: conventions/ocrolus-conventions.yml
+- type: DataModel
+  url: data-model/ocrolus-data-model.yml
+- type: AgenticAccess
+  url: agentic-access/ocrolus-agentic-access.yml
+- type: MCPServer
+  url: mcp/ocrolus-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/ocrolus-llms.txt
+- type: Overlay
+  url: overlays/ocrolus-account-level-webhooks-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-analyze-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-authentication-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-book-commands-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-book-queries-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-business-history-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-capture-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-detect-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-encore-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-file-uploads-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-income-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-org-level-webhooks-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-tag-management-overlay.yaml
+- type: Overlay
+  url: overlays/ocrolus-user-management-overlay.yaml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 48
+  pass: local-v1

@@ -1,0 +1,1541 @@
+{
+  "info": {
+    "_postman_id": "fac0d369-9e24-48e5-90c1-6fd6824f8f22",
+    "name": "Account Level Webhooks Book Commands Business history API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:24:50.000Z",
+    "updatedAt": "2026-07-28T02:24:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fac0d369-9e24-48e5-90c1-6fd6824f8f22"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "{book_uuid}",
+              "item": [
+                {
+                  "name": "business",
+                  "item": [
+                    {
+                      "name": "Business identifier",
+                      "id": "1c94103f-5b7c-48d8-8f86-81653cf6f6ec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "book",
+                            ":book_uuid",
+                            "business"
+                          ],
+                          "variable": [
+                            {
+                              "id": "22cb16d3-e80f-46c7-bc72-40208b6327ea",
+                              "key": "book_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) A universally unique identifier (UUID) of the Book used to retrieve its associated business."
+                            }
+                          ]
+                        },
+                        "description": "This API retrieves the business associated with a given `book_uuid`. It returns the business ID and display name, which can be used with business-level endpoints to access aggregated data across multiple <<glossary:Book>>s. \nA single business can have multiple Books. All books associated with the same business within your organization return the same business ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "a26fc03a-d3a0-4613-b6d5-a00a703499c7",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-a26fc03a-d3a0-4613-b6d5-a00a703499c7"
+                        },
+                        {
+                          "id": "a8f62886-786d-48f0-be71-fad0cd07739b",
+                          "name": "Invalid Auth/Book UUID format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-a8f62886-786d-48f0-be71-fad0cd07739b"
+                        },
+                        {
+                          "id": "7744692e-eb26-4047-a5c3-b040725ab60a",
+                          "name": "Book not associated with requesting organization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-7744692e-eb26-4047-a5c3-b040725ab60a"
+                        },
+                        {
+                          "id": "eb41815a-eb71-4dd9-b151-9f5ae9de5790",
+                          "name": "Business Identity Not Associated With Book",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-eb41815a-eb71-4dd9-b151-9f5ae9de5790"
+                        },
+                        {
+                          "id": "18cf0841-39df-485c-a116-c1e27398f6fa",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/business",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "business"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-18cf0841-39df-485c-a116-c1e27398f6fa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-1c94103f-5b7c-48d8-8f86-81653cf6f6ec"
+                    }
+                  ],
+                  "id": "d98cf821-0549-4f59-8d0f-3c17eedbd7df",
+                  "createdAt": "2026-07-28T02:24:50.000Z",
+                  "updatedAt": "2026-07-28T02:24:50.000Z",
+                  "uid": "35240-d98cf821-0549-4f59-8d0f-3c17eedbd7df"
+                }
+              ],
+              "id": "8aae3579-5844-4c21-b0e9-d9ecc0cd3170",
+              "createdAt": "2026-07-28T02:24:50.000Z",
+              "updatedAt": "2026-07-28T02:24:50.000Z",
+              "uid": "35240-8aae3579-5844-4c21-b0e9-d9ecc0cd3170"
+            }
+          ],
+          "id": "9a6d13fe-f4ac-46c7-bfe5-d1e41c47eb4a",
+          "createdAt": "2026-07-28T02:24:50.000Z",
+          "updatedAt": "2026-07-28T02:24:50.000Z",
+          "uid": "35240-9a6d13fe-f4ac-46c7-bfe5-d1e41c47eb4a"
+        }
+      ],
+      "id": "8abd57f9-bb47-4d24-afb4-ddaed8349d50",
+      "createdAt": "2026-07-28T02:24:50.000Z",
+      "updatedAt": "2026-07-28T02:24:50.000Z",
+      "uid": "35240-8abd57f9-bb47-4d24-afb4-ddaed8349d50"
+    },
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "businesses",
+          "item": [
+            {
+              "name": "{business_id}",
+              "item": [
+                {
+                  "name": "transactions",
+                  "item": [
+                    {
+                      "name": "Business transactions",
+                      "id": "84dde655-066b-41b4-96ce-a17692e321e1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of transactions to skip for pagination.",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                              "key": "updated_since",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "c6225d0f-637d-4d3e-aefc-5ab26e4cc025",
+                              "key": "business_id",
+                              "value": "<uuid>",
+                              "description": "(Required) A universally unique identifier (UUID) of the business entity for which you want to retrieve transction details."
+                            }
+                          ]
+                        },
+                        "description": "This API retrieves the paginated, deduplicated enriched transactions across all of the requesting org's <<glossary:Book>>s for a given business. Transactions are structurally compatible with the existing book-level enriched transactions API.\n\n  > \ud83d\udc4d Tips\n  > `start_date` and `end_date` filter transactions based on when they occurred at the bank, while `updated_since` filters based on when transactions were ingested into the system. Use `updated_since` to retrieve newly added data, even if the transaction dates are earlier.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "2b56ffb2-0e2f-43eb-92c4-b16e21d27158",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of transactions to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                                  "key": "updated_since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"total\": \"<integer>\",\n  \"filtered_total\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"transactions\": [\n    {\n      \"txn_pk\": \"<integer>\",\n      \"txn_date\": \"<number>\",\n      \"description\": \"<string>\",\n      \"bank_account_pk\": \"<integer>\",\n      \"uploaded_doc_uuid\": \"<string>\",\n      \"uploaded_doc_name\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"counterparty\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"is_noteworthy\": \"<boolean>\",\n      \"page_idx\": \"<number>\",\n      \"book_uuid\": \"<uuid>\",\n      \"deposits\": \"<boolean>\",\n      \"withdrawals\": \"<boolean>\",\n      \"revenue\": \"<boolean>\",\n      \"nsf\": \"<boolean>\",\n      \"expense\": \"<boolean>\",\n      \"overdraft\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"bank\": \"<boolean>\",\n      \"bank_branch\": \"<boolean>\",\n      \"bank_cash_advance\": \"<boolean>\",\n      \"bank_loan\": \"<boolean>\",\n      \"benefits\": \"<boolean>\",\n      \"card_rewards\": \"<boolean>\",\n      \"checks\": \"<boolean>\",\n      \"credit_builder\": \"<boolean>\",\n      \"credit_card\": \"<boolean>\",\n      \"crypto\": \"<boolean>\",\n      \"debit_card\": \"<boolean>\",\n      \"debt_consolidator\": \"<boolean>\",\n      \"equipment_lease\": \"<boolean>\",\n      \"factoring\": \"<boolean>\",\n      \"federal_tax\": \"<boolean>\",\n      \"fintech_loan\": \"<boolean>\",\n      \"fintech_loan_source\": \"<string>\",\n      \"fintech_mca\": \"<string>\",\n      \"fintech_mca_source\": \"<boolean>\",\n      \"fintech\": \"<boolean>\",\n      \"gambling\": \"<boolean>\",\n      \"insurance\": \"<boolean>\",\n      \"internal_transfer\": \"<boolean>\",\n      \"investment\": \"<boolean>\",\n      \"large_deposits\": \"<boolean>\",\n      \"merchant_service_transfer\": \"<boolean>\",\n      \"merchant_service\": \"<boolean>\",\n      \"nsf_paid_or_negative_balance\": \"<boolean>\",\n      \"nsf_returned_or_not_paid\": \"<boolean>\",\n      \"other_loan\": \"<boolean>\",\n      \"other_transfer\": \"<boolean>\",\n      \"outside_source_deposits\": \"<boolean>\",\n      \"paypal\": \"<boolean>\",\n      \"payroll_tax\": \"<boolean>\",\n      \"payroll\": \"<boolean>\",\n      \"probable_recurring_txns\": \"<boolean>\",\n      \"remote\": \"<boolean>\",\n      \"returned_item\": \"<boolean>\",\n      \"revenue_deduction_other\": \"<boolean>\",\n      \"revenue_deduction\": \"<boolean>\",\n      \"reversed\": \"<boolean>\",\n      \"sba\": \"<boolean>\",\n      \"state_tax\": \"<boolean>\",\n      \"tolls\": \"<boolean>\",\n      \"truck_stop\": \"<boolean>\",\n      \"txn_five_zeros\": \"<boolean>\",\n      \"txn_four_zeros\": \"<boolean>\",\n      \"venmo_zelle_cashapp\": \"<boolean>\",\n      \"wire_transfer\": \"<boolean>\",\n      \"custom_tag\": \"<boolean>\"\n    },\n    {\n      \"txn_pk\": \"<integer>\",\n      \"txn_date\": \"<number>\",\n      \"description\": \"<string>\",\n      \"bank_account_pk\": \"<integer>\",\n      \"uploaded_doc_uuid\": \"<string>\",\n      \"uploaded_doc_name\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"counterparty\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"is_noteworthy\": \"<boolean>\",\n      \"page_idx\": \"<number>\",\n      \"book_uuid\": \"<uuid>\",\n      \"deposits\": \"<boolean>\",\n      \"withdrawals\": \"<boolean>\",\n      \"revenue\": \"<boolean>\",\n      \"nsf\": \"<boolean>\",\n      \"expense\": \"<boolean>\",\n      \"overdraft\": \"<boolean>\",\n      \"atm\": \"<boolean>\",\n      \"bank\": \"<boolean>\",\n      \"bank_branch\": \"<boolean>\",\n      \"bank_cash_advance\": \"<boolean>\",\n      \"bank_loan\": \"<boolean>\",\n      \"benefits\": \"<boolean>\",\n      \"card_rewards\": \"<boolean>\",\n      \"checks\": \"<boolean>\",\n      \"credit_builder\": \"<boolean>\",\n      \"credit_card\": \"<boolean>\",\n      \"crypto\": \"<boolean>\",\n      \"debit_card\": \"<boolean>\",\n      \"debt_consolidator\": \"<boolean>\",\n      \"equipment_lease\": \"<boolean>\",\n      \"factoring\": \"<boolean>\",\n      \"federal_tax\": \"<boolean>\",\n      \"fintech_loan\": \"<boolean>\",\n      \"fintech_loan_source\": \"<string>\",\n      \"fintech_mca\": \"<string>\",\n      \"fintech_mca_source\": \"<boolean>\",\n      \"fintech\": \"<boolean>\",\n      \"gambling\": \"<boolean>\",\n      \"insurance\": \"<boolean>\",\n      \"internal_transfer\": \"<boolean>\",\n      \"investment\": \"<boolean>\",\n      \"large_deposits\": \"<boolean>\",\n      \"merchant_service_transfer\": \"<boolean>\",\n      \"merchant_service\": \"<boolean>\",\n      \"nsf_paid_or_negative_balance\": \"<boolean>\",\n      \"nsf_returned_or_not_paid\": \"<boolean>\",\n      \"other_loan\": \"<boolean>\",\n      \"other_transfer\": \"<boolean>\",\n      \"outside_source_deposits\": \"<boolean>\",\n      \"paypal\": \"<boolean>\",\n      \"payroll_tax\": \"<boolean>\",\n      \"payroll\": \"<boolean>\",\n      \"probable_recurring_txns\": \"<boolean>\",\n      \"remote\": \"<boolean>\",\n      \"returned_item\": \"<boolean>\",\n      \"revenue_deduction_other\": \"<boolean>\",\n      \"revenue_deduction\": \"<boolean>\",\n      \"reversed\": \"<boolean>\",\n      \"sba\": \"<boolean>\",\n      \"state_tax\": \"<boolean>\",\n      \"tolls\": \"<boolean>\",\n      \"truck_stop\": \"<boolean>\",\n      \"txn_five_zeros\": \"<boolean>\",\n      \"txn_four_zeros\": \"<boolean>\",\n      \"venmo_zelle_cashapp\": \"<boolean>\",\n      \"wire_transfer\": \"<boolean>\",\n      \"custom_tag\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-2b56ffb2-0e2f-43eb-92c4-b16e21d27158"
+                        },
+                        {
+                          "id": "d5a02d4b-f0f9-44ef-8ed9-2112f0edd342",
+                          "name": "Invalid Auth/Business ID format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of transactions to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                                  "key": "updated_since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-d5a02d4b-f0f9-44ef-8ed9-2112f0edd342"
+                        },
+                        {
+                          "id": "a357a6c1-a31b-4688-9fc6-d435909bb326",
+                          "name": "Business not associated with requesting organization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of transactions to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                                  "key": "updated_since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-a357a6c1-a31b-4688-9fc6-d435909bb326"
+                        },
+                        {
+                          "id": "17fe4538-e202-4d73-9ac5-35b2860404e5",
+                          "name": "Business Identity Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of transactions to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                                  "key": "updated_since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-17fe4538-e202-4d73-9ac5-35b2860404e5"
+                        },
+                        {
+                          "id": "483c4dd0-c924-4b51-8a0b-946f50d45688",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/transactions?offset=<integer>&limit=<integer>&start_date=<date>&end_date=<date>&updated_since=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of transactions to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per page, starting from the specified **offset**.",
+                                  "key": "limit",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date.",
+                                  "key": "start_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request.",
+                                  "key": "updated_since",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-483c4dd0-c924-4b51-8a0b-946f50d45688"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-84dde655-066b-41b4-96ce-a17692e321e1"
+                    }
+                  ],
+                  "id": "0fb59568-e395-4994-94a0-4d7c8d66a3ef",
+                  "createdAt": "2026-07-28T02:24:50.000Z",
+                  "updatedAt": "2026-07-28T02:24:50.000Z",
+                  "uid": "35240-0fb59568-e395-4994-94a0-4d7c8d66a3ef"
+                },
+                {
+                  "name": "summary",
+                  "item": [
+                    {
+                      "name": "Business summary",
+                      "id": "b63f5fb7-bf04-436c-84fa-78187f08c236",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id",
+                            "summary"
+                          ],
+                          "query": [
+                            {
+                              "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                              "key": "begin_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "The date from which to retrieve updated business summaries.",
+                              "key": "updated_since",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "9763ca7a-9b86-427a-8903-b9aa6d155601",
+                              "key": "business_id",
+                              "value": "<uuid>",
+                              "description": "(Required) A universally unique identifier (UUID) of the business entity for which you want to retrieve summary."
+                            }
+                          ]
+                        },
+                        "description": "This API retrieves the chronological financial summary for a business entity, calculated from deduplicated and organization-enriched transactions across all <<glossary:Book>> belonging to the requesting organization.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "94c2036e-28bc-4181-b61a-72e9b8fec15b",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "begin_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The date from which to retrieve updated business summaries.",
+                                  "key": "updated_since",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"naics4_code\": \"<string>\",\n  \"naics_description\": \"<string>\",\n  \"naics6_code\": \"<string>\",\n  \"books\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"created_ts\": \"<dateTime>\",\n      \"uploaded_docs\": [\n        {\n          \"uuid\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"status\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"book_count\": \"<integer>\",\n  \"txn_count\": \"<integer>\",\n  \"bank_accounts\": [\n    {\n      \"bank_account_pks\": [\n        \"<string>\"\n      ],\n      \"txn_count\": \"<integer>\",\n      \"bank_name\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"account_holder_name\": \"<string>\",\n      \"account_category\": \"<string>\",\n      \"holder_address_1\": \"<string>\",\n      \"holder_address_2\": \"<string>\",\n      \"holder_city\": \"<string>\",\n      \"holder_state\": \"<string>\",\n      \"holder_zip\": \"<string>\",\n      \"daily_balances\": {\n        \"irure8d\": \"<string>\"\n      },\n      \"daily_cash_flows\": {\n        \"mollit_d6d\": \"<string>\"\n      },\n      \"average_daily_balance\": \"<string>\",\n      \"average_daily_cash_flow\": \"<string>\",\n      \"average_daily_balance_weekday\": \"<string>\",\n      \"total_days\": \"<integer>\",\n      \"net_cash_flows_by_month\": {\n        \"mollit_4\": \"<string>\"\n      },\n      \"minimum_balance_by_month\": {\n        \"euc3\": \"<string>\"\n      },\n      \"maximum_balance_by_month\": {\n        \"non_4\": \"<string>\",\n        \"et_7\": \"<string>\"\n      },\n      \"average_daily_balance_by_month\": {\n        \"ut9\": \"<string>\",\n        \"sinta3\": \"<string>\",\n        \"minim_003\": \"<string>\"\n      },\n      \"average_daily_balance_weekday_by_month\": {\n        \"laborisd8c\": \"<string>\",\n        \"velit_e_e\": \"<string>\",\n        \"consequat_9\": \"<string>\",\n        \"suntc2_\": \"<string>\"\n      },\n      \"negative_balances_by_month\": {\n        \"exercitation07\": [\n          \"<string>\"\n        ]\n      },\n      \"negative_balances_count_by_month\": {\n        \"officia2a\": \"<string>\",\n        \"veniam_9f\": \"<string>\"\n      },\n      \"negative_balances_weekday_by_month\": {\n        \"Duis2\": [\n          \"<string>\"\n        ],\n        \"in6\": [\n          \"<string>\"\n        ],\n        \"ut_2\": [\n          \"<string>\"\n        ]\n      },\n      \"negative_balances_weekday_count_by_month\": {\n        \"voluptate_42e\": \"<string>\",\n        \"quis936\": \"<string>\",\n        \"quis_\": \"<string>\"\n      },\n      \"nsf_fee_count_by_month\": {\n        \"quiab7\": \"<integer>\",\n        \"in_21\": \"<integer>\"\n      },\n      \"nsf_raw_fee_count_by_month\": {\n        \"reprehenderit_e\": \"<integer>\"\n      },\n      \"overdraft_fee_count_by_month\": {\n        \"aliqua2\": \"<integer>\",\n        \"culpa0e\": \"<integer>\",\n        \"doc\": \"<integer>\"\n      },\n      \"overdraft_raw_fee_count_by_month\": {\n        \"qui67_\": \"<integer>\"\n      },\n      \"periods\": [\n        {\n          \"begin_date\": \"<date>\",\n          \"end_date\": \"<date>\",\n          \"begin_balance\": \"<integer>\",\n          \"end_balance\": \"<integer>\",\n          \"txn_count\": \"<integer>\",\n          \"uploaded_doc_uuid\": \"<uuid>\",\n          \"missing_period_data\": \"<boolean>\",\n          \"average_amount\": \"<string>\",\n          \"average_daily_balance\": \"<string>\",\n          \"average_daily_balance_weekday\": \"<string>\",\n          \"average_daily_cash_flow\": \"<string>\",\n          \"average_deposit\": \"<string>\",\n          \"deposit_sum\": \"<string>\",\n          \"deposit_count\": \"<string>\",\n          \"max_deposit\": \"<string>\",\n          \"average_withdrawal\": \"<string>\",\n          \"withdrawal_sum\": \"<string>\",\n          \"withdrawal_count\": \"<string>\",\n          \"max_withdrawal\": \"<string>\",\n          \"revenue\": \"<string>\",\n          \"revenue_count\": \"<string>\",\n          \"revenue_deduction\": \"<string>\",\n          \"expense\": \"<string>\",\n          \"expense_count\": \"<string>\",\n          \"large_deposits\": \"<string>\",\n          \"negative_balances\": [\n            \"<string>\"\n          ],\n          \"negative_balances_weekday\": [\n            \"<string>\"\n          ],\n          \"nsf_days_count\": \"<string>\",\n          \"nsf_fee_sum\": \"<string>\",\n          \"nsf_fee_count\": \"<string>\",\n          \"nsf_raw_fee_count\": \"<string>\",\n          \"nsf_divisor\": \"<string>\",\n          \"overdraft_days_count\": \"<string>\",\n          \"overdraft_fee_sum\": \"<string>\",\n          \"overdraft_fee_count\": \"<string>\",\n          \"overdraft_raw_fee_count\": \"<string>\",\n          \"overdraft_divisor\": \"<string>\",\n          \"nsf_or_overdraft_days_count\": \"<string>\",\n          \"returned_item_deposit_count\": \"<string>\",\n          \"returned_item_withdrawal_count\": \"<string>\",\n          \"has_weekend_txn\": \"<boolean>\",\n          \"calculated_end_balance\": \"<string>\",\n          \"calculated_diff\": \"<string>\",\n          \"primary_recon_error_reason\": \"<string>\",\n          \"secondary_recon_error_reason\": \"<string>\"\n        }\n      ],\n      \"expense_by_month\": {\n        \"cupidatat_db6\": \"<string>\",\n        \"minim33f\": \"<string>\"\n      },\n      \"withdrawals_by_month\": {\n        \"esse_0\": \"<string>\",\n        \"nisi85e\": \"<string>\"\n      },\n      \"revenue_by_month\": {\n        \"fugiat430\": \"<string>\",\n        \"ade\": \"<string>\"\n      },\n      \"revenue_deduction_by_month\": {\n        \"ut_5c\": \"<string>\",\n        \"est8\": \"<string>\",\n        \"do_7\": \"<string>\"\n      },\n      \"deposits_by_month\": {\n        \"officiab\": \"<string>\",\n        \"occaecat_0f\": \"<string>\",\n        \"ea68\": \"<string>\"\n      },\n      \"outside_source_deposits_by_month\": {\n        \"consequat_\": \"<string>\",\n        \"consequate48\": \"<string>\"\n      },\n      \"large_deposits_by_month\": {\n        \"id_\": \"<string>\"\n      },\n      \"debt_consolidator_inflows_by_month\": {\n        \"enim_d\": \"<string>\",\n        \"dolor_be\": \"<string>\"\n      },\n      \"debt_consolidator_outflows_by_month\": {\n        \"sed_8e\": \"<string>\"\n      },\n      \"factoring_inflows_by_month\": {\n        \"do23\": \"<string>\",\n        \"pariatur844\": \"<string>\"\n      },\n      \"factoring_outflows_by_month\": {\n        \"in5f2\": \"<string>\",\n        \"exercitation_7e3\": \"<string>\"\n      },\n      \"payroll_inflows_by_month\": {\n        \"consecteturc\": \"<string>\"\n      },\n      \"payroll_outflows_by_month\": {\n        \"elit83\": \"<string>\",\n        \"esse_f0\": \"<string>\"\n      },\n      \"insurance_inflows_by_month\": {\n        \"ipsum_9\": \"<string>\",\n        \"sint_d09\": \"<string>\"\n      },\n      \"insurance_outflows_by_month\": {\n        \"estf\": \"<string>\"\n      },\n      \"venmo_zelle_cashapp_inflows_by_month\": {\n        \"consectetur_c8d\": \"<string>\",\n        \"ad_ff\": \"<string>\"\n      },\n      \"venmo_zelle_cashapp_outflows_by_month\": {\n        \"consecteturf55\": \"<string>\"\n      },\n      \"atm_inflows_by_month\": {\n        \"dolore_8d6\": \"<string>\",\n        \"exercitation_c2b\": \"<string>\",\n        \"cillum_76f\": \"<string>\",\n        \"Duis4b\": \"<string>\"\n      },\n      \"atm_outflows_by_month\": {\n        \"in_\": \"<string>\",\n        \"culpa3c9\": \"<string>\",\n        \"tempor23\": \"<string>\",\n        \"dolorab0\": \"<string>\"\n      },\n      \"tolls_inflows_by_month\": {\n        \"incididunt__29\": \"<string>\",\n        \"labore_e\": \"<string>\",\n        \"ina\": \"<string>\",\n        \"ut_0\": \"<string>\"\n      },\n      \"tolls_outflows_by_month\": {\n        \"sunta1\": \"<string>\",\n        \"esse_b_\": \"<string>\"\n      },\n      \"paypal_inflows_by_month\": {\n        \"in_c\": \"<string>\",\n        \"labore46a\": \"<string>\"\n      },\n      \"paypal_outflows_by_month\": {\n        \"mollit_08\": \"<string>\"\n      },\n      \"equipment_lease_inflows_by_month\": {\n        \"irured\": \"<string>\",\n        \"culpaa\": \"<string>\"\n      },\n      \"equipment_lease_outflows_by_month\": {\n        \"do1\": \"<string>\",\n        \"aliquipc\": \"<string>\",\n        \"deserunt4\": \"<string>\",\n        \"laborum1_\": \"<string>\"\n      },\n      \"checks_inflows_by_month\": {\n        \"quis__da\": \"<string>\",\n        \"ullamco_d\": \"<string>\",\n        \"deserunt1a\": \"<string>\",\n        \"sunt_7_0\": \"<string>\",\n        \"minim1b\": \"<string>\"\n      },\n      \"checks_outflows_by_month\": {\n        \"sunt_8\": \"<string>\",\n        \"officia0\": \"<string>\",\n        \"ipsum_92c\": \"<string>\"\n      },\n      \"txn_four_zeros_inflows_by_month\": {\n        \"dolor1_\": \"<string>\",\n        \"aliqua_cb\": \"<string>\"\n      },\n      \"txn_four_zeros_outflows_by_month\": {\n        \"irure_1\": \"<string>\",\n        \"nisie\": \"<string>\",\n        \"magna_910\": \"<string>\"\n      },\n      \"txn_five_zeros_inflows_by_month\": {\n        \"enimdb\": \"<string>\",\n        \"laborum9de\": \"<string>\"\n      },\n      \"txn_five_zeros_outflows_by_month\": {\n        \"officia_1_\": \"<string>\"\n      },\n      \"probable_recurring_txns_inflows_by_month\": {\n        \"minimffb\": \"<string>\"\n      },\n      \"probable_recurring_txns_outflows_by_month\": {\n        \"sunt3a\": \"<string>\",\n        \"anim01\": \"<string>\"\n      },\n      \"fintech_loan_inflows_by_month\": {\n        \"do27e\": \"<string>\",\n        \"Ut_e\": \"<string>\",\n        \"cupidatat_921\": \"<string>\"\n      },\n      \"fintech_loan_outflows_by_month\": {\n        \"Lorem_b\": \"<string>\",\n        \"amete8\": \"<string>\"\n      },\n      \"bank_loan_inflows_by_month\": {\n        \"ullamco_3\": \"<string>\",\n        \"deseruntb18\": \"<string>\"\n      },\n      \"bank_loan_outflows_by_month\": {\n        \"magna_5c\": \"<string>\"\n      },\n      \"other_loan_inflows_by_month\": {\n        \"aliquip9_9\": \"<string>\",\n        \"exf\": \"<string>\"\n      },\n      \"other_loan_outflows_by_month\": {\n        \"labore_377\": \"<string>\"\n      },\n      \"fintech_mca_inflows_by_month\": {\n        \"adipisicingb10\": \"<string>\",\n        \"Duis_7\": \"<string>\"\n      },\n      \"fintech_mca_outflows_by_month\": {\n        \"dolor_33\": \"<string>\"\n      },\n      \"bank_cash_advance_inflows_by_month\": {\n        \"irure_46c\": \"<string>\",\n        \"amet_a\": \"<string>\",\n        \"consequat152\": \"<string>\"\n      },\n      \"bank_cash_advance_outflows_by_month\": {\n        \"in5\": \"<string>\",\n        \"proident3\": \"<string>\"\n      },\n      \"debit_card_inflows_by_month\": {\n        \"mollitdd\": \"<string>\",\n        \"consectetur_0\": \"<string>\"\n      },\n      \"debit_card_outflows_by_month\": {\n        \"velit_7\": \"<string>\",\n        \"aute8d4\": \"<string>\"\n      },\n      \"credit_card_inflows_by_month\": {\n        \"commodo_41\": \"<string>\",\n        \"non_a85\": \"<string>\"\n      },\n      \"credit_card_outflows_by_month\": {\n        \"dolore_82\": \"<string>\",\n        \"in_4c3\": \"<string>\"\n      },\n      \"merchant_service_inflows_by_month\": {\n        \"proident_b_\": \"<string>\",\n        \"dolore_034\": \"<string>\",\n        \"dolor39\": \"<string>\"\n      },\n      \"merchant_service_outflows_by_month\": {\n        \"qui__9\": \"<string>\",\n        \"exercitation_23\": \"<string>\"\n      },\n      \"sba_inflows_by_month\": {\n        \"consectetur_1\": \"<string>\",\n        \"irure5\": \"<string>\"\n      },\n      \"sba_outflows_by_month\": {\n        \"dolor4\": \"<string>\",\n        \"ex_ddc\": \"<string>\",\n        \"ullamco_b\": \"<string>\",\n        \"et_dce\": \"<string>\",\n        \"laborumf\": \"<string>\"\n      },\n      \"remote_inflows_by_month\": {\n        \"id8d\": \"<string>\",\n        \"officia_77\": \"<string>\"\n      },\n      \"remote_outflows_by_month\": {\n        \"quis_a0e\": \"<string>\"\n      },\n      \"benefits_inflows_by_month\": {\n        \"magna_fd_\": \"<string>\",\n        \"sed7a2\": \"<string>\"\n      },\n      \"benefits_outflows_by_month\": {\n        \"doloref4\": \"<string>\",\n        \"ex6\": \"<string>\",\n        \"nisia\": \"<string>\",\n        \"officia_c\": \"<string>\"\n      },\n      \"card_rewards_inflows_by_month\": {\n        \"reprehenderita\": \"<string>\"\n      },\n      \"card_rewards_outflows_by_month\": {\n        \"sed_0\": \"<string>\",\n        \"laborum9cd\": \"<string>\",\n        \"esse0\": \"<string>\"\n      },\n      \"crypto_inflows_by_month\": {\n        \"magna_3\": \"<string>\",\n        \"ut_11\": \"<string>\"\n      },\n      \"crypto_outflows_by_month\": {\n        \"dolorb\": \"<string>\",\n        \"laborum_f\": \"<string>\"\n      },\n      \"gambling_inflows_by_month\": {\n        \"sit_23b\": \"<string>\"\n      },\n      \"gambling_outflows_by_month\": {\n        \"reprehenderit_e\": \"<string>\",\n        \"aute_3\": \"<string>\"\n      },\n      \"investment_inflows_by_month\": {\n        \"mollit284\": \"<string>\",\n        \"cupidatat_50\": \"<string>\",\n        \"consecteturb17\": \"<string>\"\n      },\n      \"investment_outflows_by_month\": {\n        \"aliquae1_\": \"<string>\",\n        \"nostrud__f\": \"<string>\"\n      },\n      \"reversed_inflows_by_month\": {\n        \"aliqua_83e\": \"<string>\"\n      },\n      \"reversed_outflows_by_month\": {\n        \"nona4d\": \"<string>\",\n        \"laborum866\": \"<string>\",\n        \"adipisicing_b\": \"<string>\",\n        \"tempor_b57\": \"<string>\"\n      },\n      \"state_tax_inflows_by_month\": {\n        \"deserunt_e1\": \"<string>\",\n        \"laborum03\": \"<string>\"\n      },\n      \"state_tax_outflows_by_month\": {\n        \"labore93\": \"<string>\",\n        \"mollit_9_\": \"<string>\",\n        \"sed_93_\": \"<string>\"\n      },\n      \"payroll_tax_inflows_by_month\": {\n        \"aliqua27\": \"<string>\"\n      },\n      \"payroll_tax_outflows_by_month\": {\n        \"officia_f\": \"<string>\",\n        \"sint1c6\": \"<string>\"\n      },\n      \"internal_transfer_inflows_by_month\": {\n        \"tempor95\": \"<string>\"\n      },\n      \"internal_transfer_outflows_by_month\": {\n        \"laborum_dbf\": \"<string>\",\n        \"ullamcobda\": \"<string>\",\n        \"deserunt_f2\": \"<string>\",\n        \"laborum_a\": \"<string>\"\n      },\n      \"merchant_service_transfer_inflows_by_month\": {\n        \"veniam_94d\": \"<string>\"\n      },\n      \"merchant_service_transfer_outflows_by_month\": {\n        \"Excepteur_01\": \"<string>\",\n        \"elit_61a\": \"<string>\",\n        \"nostrud_92_\": \"<string>\",\n        \"enim2a8\": \"<string>\",\n        \"sint9_2\": \"<string>\"\n      },\n      \"wire_transfer_inflows_by_month\": {\n        \"in4e\": \"<string>\",\n        \"dolord\": \"<string>\"\n      },\n      \"wire_transfer_outflows_by_month\": {\n        \"labore8\": \"<string>\",\n        \"tempor_4ad\": \"<string>\"\n      },\n      \"other_transfer_inflows_by_month\": {\n        \"occaecat__\": \"<string>\"\n      },\n      \"other_transfer_outflows_by_month\": {\n        \"cupidatat00f\": \"<string>\"\n      },\n      \"truck_stop_inflows_by_month\": {\n        \"ullamco_e2\": \"<string>\",\n        \"suntd\": \"<string>\",\n        \"eiusmode\": \"<string>\"\n      },\n      \"truck_stop_outflows_by_month\": {\n        \"magna_fd3\": \"<string>\"\n      },\n      \"federal_tax_inflows_by_month\": {\n        \"consequat_1\": \"<string>\"\n      },\n      \"federal_tax_outflows_by_month\": {\n        \"in_2\": \"<string>\"\n      },\n      \"bank_branch_inflows_by_month\": {\n        \"ullamco_a6_\": \"<string>\",\n        \"in72\": \"<string>\"\n      },\n      \"bank_branch_outflows_by_month\": {\n        \"ea_f16\": \"<string>\",\n        \"aute_524\": \"<string>\"\n      },\n      \"credit_builder_inflows_by_month\": {\n        \"laboris_3\": \"<string>\",\n        \"ea_cf0\": \"<string>\",\n        \"utc4c\": \"<string>\"\n      },\n      \"credit_builder_outflows_by_month\": {\n        \"iruref9\": \"<string>\",\n        \"Duis5\": \"<string>\"\n      },\n      \"custom_test_tag_by_month\": {\n        \"cillum_bb\": \"<string>\",\n        \"proident_df\": \"<string>\"\n      },\n      \"expense_count_by_month\": {\n        \"non_c3\": \"<integer>\",\n        \"Lorem19\": \"<integer>\"\n      },\n      \"withdrawals_count_by_month\": {\n        \"adca1\": \"<integer>\",\n        \"in16\": \"<integer>\"\n      },\n      \"revenue_count_by_month\": {\n        \"pariatur42\": \"<integer>\",\n        \"laboris_248\": \"<integer>\"\n      },\n      \"deposits_count_by_month\": {\n        \"do73\": \"<integer>\",\n        \"veniam_4\": \"<integer>\",\n        \"ut907\": \"<integer>\",\n        \"deserunt2\": \"<integer>\"\n      }\n    }\n  ],\n  \"daily_balances\": {\n    \"ex_4\": \"<float>\",\n    \"tempor_00\": \"<float>\",\n    \"consequat568\": \"<float>\"\n  },\n  \"daily_cash_flows\": {\n    \"consequat9\": \"<string>\"\n  },\n  \"average_daily_balance\": \"<string>\",\n  \"average_daily_cash_flow\": \"<string>\",\n  \"average_daily_balance_weekday\": \"<string>\",\n  \"total_days\": \"<integer>\",\n  \"net_cash_flows_by_month\": {\n    \"pariatura\": \"<string>\",\n    \"dolore_2a\": \"<string>\"\n  },\n  \"minimum_balance_by_month\": {\n    \"laboris_76\": \"<string>\",\n    \"in5_\": \"<string>\",\n    \"minim_4\": \"<string>\"\n  },\n  \"maximum_balance_by_month\": {\n    \"in_53\": \"<string>\",\n    \"nostrud_7ca\": \"<string>\"\n  },\n  \"average_daily_balance_by_month\": {\n    \"sit_e1\": \"<string>\",\n    \"sint9ac\": \"<string>\"\n  },\n  \"average_daily_balance_weekday_by_month\": {\n    \"ex__\": \"<string>\"\n  },\n  \"negative_balances_by_month\": {\n    \"quis_e\": [\n      \"<date>\"\n    ],\n    \"Lorem0e\": [\n      \"<date>\"\n    ],\n    \"culpac0\": [\n      \"<date>\"\n    ],\n    \"nulla6\": [\n      \"<date>\"\n    ]\n  },\n  \"negative_balances_count_by_month\": {\n    \"aute_491\": \"<string>\"\n  },\n  \"negative_balances_weekday_by_month\": {\n    \"ad__bd\": [\n      \"<date>\"\n    ]\n  },\n  \"negative_balances_weekday_count_by_month\": {\n    \"deserunt1\": \"<integer>\",\n    \"Excepteur_23\": \"<integer>\",\n    \"pariatur_335\": \"<integer>\"\n  },\n  \"nsf_fee_count_by_month\": {\n    \"exercitation_a\": \"<integer>\"\n  },\n  \"nsf_raw_fee_count_by_month\": {\n    \"officia_e_b\": \"<integer>\",\n    \"sunt9\": \"<integer>\"\n  },\n  \"overdraft_fee_count_by_month\": {\n    \"in5e\": \"<integer>\",\n    \"laboris_115\": \"<integer>\"\n  },\n  \"overdraft_raw_fee_count_by_month\": {\n    \"laborum967\": \"<integer>\",\n    \"in_5e2\": \"<integer>\"\n  },\n  \"returned_item_deposit_count_by_month\": {\n    \"reprehenderite4_\": \"<integer>\",\n    \"sit_1\": \"<integer>\",\n    \"temporf15\": \"<integer>\",\n    \"consectetur749\": \"<integer>\"\n  },\n  \"returned_item_withdrawal_count_by_month\": {\n    \"esse_c\": \"<integer>\",\n    \"ex_4f\": \"<integer>\"\n  },\n  \"average_txn_size_by_month\": {\n    \"laborum_0\": \"<string>\",\n    \"Excepteur38\": \"<string>\",\n    \"fugiat41_\": \"<string>\"\n  },\n  \"average_deposits_by_month\": {\n    \"velit_1d\": \"<string>\"\n  },\n  \"fintech_loan_sources\": [\n    {\n      \"source\": \"<string>\",\n      \"deposit_sum\": \"<string>\",\n      \"deposit_count\": \"<integer>\",\n      \"deposits\": {\n        \"esse_6\": \"<string>\"\n      },\n      \"pmt_sum\": \"<string>\",\n      \"pmt_count\": \"<integer>\",\n      \"pmt_frequency_days\": \"<integer>\",\n      \"pmts\": {\n        \"ex8\": \"<string>\",\n        \"animf\": \"<string>\"\n      }\n    }\n  ],\n  \"num_fintech_loan_sources\": \"<integer>\",\n  \"num_fintech_mca_sources\": \"<integer>\",\n  \"counterparties\": [\n    {\n      \"category\": \"<string>\",\n      \"distribution\": [\n        {\n          \"counterparty\": \"<string>\",\n          \"rank\": \"<integer>\",\n          \"proportion\": \"<string>\",\n          \"amount\": \"<string>\"\n        }\n      ],\n      \"average_per_counterparty\": \"<string>\",\n      \"num_counterparties\": \"<integer>\"\n    }\n  ],\n  \"cash_flow_at_a_glance\": {\n    \"average_deposit_count\": \"<integer>\",\n    \"total_revenue\": \"<string>\",\n    \"average_monthly_revenue\": \"<string>\",\n    \"total_expense\": \"<string>\",\n    \"average_monthly_expense\": \"<float>\",\n    \"total_loan_proceeds\": \"<float>\",\n    \"total_loan_payments\": \"<string>\",\n    \"debt_coverage_ratio\": \"<string>\",\n    \"total_nsf_fee_count\": \"<integer>\"\n  },\n  \"naics6_description\": \"<string>\",\n  \"mcc_code\": \"<string>\",\n  \"mcc_description\": \"<string>\",\n  \"sic_code\": \"<string>\",\n  \"sic_description\": \"<string>\",\n  \"active_override\": \"<boolean>\",\n  \"expense_by_month\": {\n    \"minim_15\": \"<string>\",\n    \"elit5b_\": \"<string>\"\n  },\n  \"withdrawals_by_month\": {\n    \"elit_d9\": \"<string>\",\n    \"non_e\": \"<string>\",\n    \"exercitation_970\": \"<string>\"\n  },\n  \"revenue_by_month\": {\n    \"eu3b\": \"<string>\"\n  },\n  \"revenue_deduction_by_month\": {\n    \"cilluma2d\": \"<string>\",\n    \"mollit_17\": \"<string>\",\n    \"officia__c\": \"<string>\"\n  },\n  \"deposits_by_month\": {\n    \"dolore_c74\": \"<string>\",\n    \"sit_727\": \"<string>\",\n    \"ut_57\": \"<string>\"\n  },\n  \"outside_source_deposits_by_month\": {\n    \"commodoac\": \"<string>\"\n  },\n  \"large_deposits_by_month\": {\n    \"ea53\": \"<string>\",\n    \"dolorec\": \"<string>\"\n  },\n  \"debt_consolidator_inflows_by_month\": {\n    \"in29\": \"<string>\"\n  },\n  \"debt_consolidator_outflows_by_month\": {\n    \"ea_707\": \"<string>\",\n    \"etf3\": \"<string>\"\n  },\n  \"factoring_inflows_by_month\": {\n    \"sint_d\": \"<string>\",\n    \"labore_d7\": \"<string>\"\n  },\n  \"factoring_outflows_by_month\": {\n    \"magna_ad0\": \"<string>\"\n  },\n  \"payroll_inflows_by_month\": {\n    \"consequatdc\": \"<string>\",\n    \"adipisicing_2_0\": \"<string>\"\n  },\n  \"payroll_outflows_by_month\": {\n    \"voluptateac\": \"<string>\",\n    \"deserunt256\": \"<string>\",\n    \"ex7a\": \"<string>\"\n  },\n  \"insurance_inflows_by_month\": {\n    \"adipisicing_5\": \"<string>\"\n  },\n  \"insurance_outflows_by_month\": {\n    \"reprehenderitb4\": \"<string>\",\n    \"non555\": \"<string>\"\n  },\n  \"venmo_zelle_cashapp_inflows_by_month\": {\n    \"enim8\": \"<string>\"\n  },\n  \"venmo_zelle_cashapp_outflows_by_month\": {\n    \"voluptate_6\": \"<string>\",\n    \"dolore_1a\": \"<string>\",\n    \"ut396\": \"<string>\",\n    \"nisi2e\": \"<string>\"\n  },\n  \"atm_inflows_by_month\": {\n    \"mollit40e\": \"<string>\"\n  },\n  \"atm_outflows_by_month\": {\n    \"ex_9\": \"<string>\"\n  },\n  \"tolls_inflows_by_month\": {\n    \"pariaturea\": \"<string>\"\n  },\n  \"tolls_outflows_by_month\": {\n    \"in_1\": \"<string>\",\n    \"eu_c2\": \"<string>\"\n  },\n  \"paypal_inflows_by_month\": {\n    \"doc83\": \"<string>\",\n    \"amet_316\": \"<string>\",\n    \"animafe\": \"<string>\",\n    \"in_17\": \"<string>\"\n  },\n  \"paypal_outflows_by_month\": {\n    \"mollit_d\": \"<string>\",\n    \"in_18c\": \"<string>\",\n    \"in_57\": \"<string>\",\n    \"cupidatat_69\": \"<string>\"\n  },\n  \"equipment_lease_inflows_by_month\": {\n    \"cupidatatb7\": \"<string>\",\n    \"labore_24\": \"<string>\"\n  },\n  \"equipment_lease_outflows_by_month\": {\n    \"ea_27\": \"<string>\",\n    \"eiusmode4\": \"<string>\"\n  },\n  \"checks_inflows_by_month\": {\n    \"et_d\": \"<string>\",\n    \"laborisf_9\": \"<string>\"\n  },\n  \"checks_outflows_by_month\": {\n    \"fugiat_f\": \"<string>\"\n  },\n  \"txn_four_zeros_inflows_by_month\": {\n    \"dolor_091\": \"<string>\",\n    \"suntd\": \"<string>\",\n    \"nisi_4_1\": \"<string>\"\n  },\n  \"txn_four_zeros_outflows_by_month\": {\n    \"quis_21\": \"<string>\"\n  },\n  \"txn_five_zeros_inflows_by_month\": {\n    \"ea8d\": \"<string>\"\n  },\n  \"txn_five_zeros_outflows_by_month\": {\n    \"dolor_78\": \"<string>\",\n    \"temporbff\": \"<string>\",\n    \"ipsum2\": \"<string>\"\n  },\n  \"probable_recurring_txns_inflows_by_month\": {\n    \"culpaa90\": \"<string>\",\n    \"tempor_7\": \"<string>\"\n  },\n  \"probable_recurring_txns_outflows_by_month\": {\n    \"occaecatb92\": \"<string>\"\n  },\n  \"fintech_loan_inflows_by_month\": {\n    \"ipsum_4f\": \"<string>\"\n  },\n  \"fintech_loan_outflows_by_month\": {\n    \"Lorem99\": \"<string>\",\n    \"laboref\": \"<string>\"\n  },\n  \"bank_loan_inflows_by_month\": {\n    \"Lorem2f0\": \"<string>\",\n    \"ametf\": \"<string>\"\n  },\n  \"bank_loan_outflows_by_month\": {\n    \"reprehenderit_516\": \"<string>\"\n  },\n  \"other_loan_inflows_by_month\": {\n    \"adipisicing_41d\": \"<string>\",\n    \"exercitation945\": \"<string>\"\n  },\n  \"other_loan_outflows_by_month\": {\n    \"occaecat_6\": \"<string>\",\n    \"sit426\": \"<string>\",\n    \"magna_2ec\": \"<string>\"\n  },\n  \"fintech_mca_inflows_by_month\": {\n    \"reprehenderit_b27\": \"<string>\"\n  },\n  \"fintech_mca_outflows_by_month\": {\n    \"Excepteur0\": \"<string>\"\n  },\n  \"bank_cash_advance_inflows_by_month\": {\n    \"officiaa\": \"<string>\"\n  },\n  \"bank_cash_advance_outflows_by_month\": {\n    \"officia870\": \"<string>\",\n    \"consequat_7\": \"<string>\"\n  },\n  \"debit_card_inflows_by_month\": {\n    \"nulla_d5\": \"<string>\"\n  },\n  \"debit_card_outflows_by_month\": {\n    \"aliqua9\": \"<string>\",\n    \"fugiate\": \"<string>\",\n    \"culpa_303\": \"<string>\",\n    \"Excepteurf\": \"<string>\"\n  },\n  \"credit_card_inflows_by_month\": {\n    \"deserunt0d\": \"<string>\"\n  },\n  \"credit_card_outflows_by_month\": {\n    \"eu06b\": \"<string>\"\n  },\n  \"merchant_service_inflows_by_month\": {\n    \"aliqua_1de\": \"<string>\",\n    \"esse_f\": \"<string>\"\n  },\n  \"merchant_service_outflows_by_month\": {\n    \"deserunt_b96\": \"<string>\"\n  },\n  \"sba_inflows_by_month\": {\n    \"non_64\": \"<string>\",\n    \"sint_f6\": \"<string>\"\n  },\n  \"sba_outflows_by_month\": {\n    \"consectetur911\": \"<string>\"\n  },\n  \"remote_inflows_by_month\": {\n    \"eu_c73\": \"<string>\",\n    \"anim_843\": \"<string>\"\n  },\n  \"remote_outflows_by_month\": {\n    \"anim_1fb\": \"<string>\",\n    \"cupidatatc9f\": \"<string>\"\n  },\n  \"benefits_inflows_by_month\": {\n    \"cupidatat_32\": \"<string>\",\n    \"labore8\": \"<string>\",\n    \"quis_3\": \"<string>\",\n    \"fugiat918\": \"<string>\"\n  },\n  \"benefits_outflows_by_month\": {\n    \"dolor_750\": \"<string>\"\n  },\n  \"card_rewards_inflows_by_month\": {\n    \"do_3b\": \"<string>\"\n  },\n  \"card_rewards_outflows_by_month\": {\n    \"sit_efb\": \"<string>\"\n  },\n  \"crypto_inflows_by_month\": {\n    \"do2a\": \"<string>\",\n    \"deserunt23\": \"<string>\",\n    \"et_3b\": \"<string>\"\n  },\n  \"crypto_outflows_by_month\": {\n    \"elitecd\": \"<string>\",\n    \"ide2\": \"<string>\"\n  },\n  \"gambling_inflows_by_month\": {\n    \"incididunt_e2\": \"<string>\",\n    \"consectetur__8\": \"<string>\"\n  },\n  \"gambling_outflows_by_month\": {\n    \"doc27\": \"<string>\",\n    \"in_697\": \"<string>\"\n  },\n  \"investment_inflows_by_month\": {\n    \"exercitation_71b\": \"<string>\",\n    \"voluptate7c\": \"<string>\"\n  },\n  \"investment_outflows_by_month\": {\n    \"ullamcoce7\": \"<string>\",\n    \"site6d\": \"<string>\",\n    \"ipsum_c\": \"<string>\",\n    \"Lorem59a\": \"<string>\",\n    \"deseruntc\": \"<string>\"\n  },\n  \"reversed_inflows_by_month\": {\n    \"culpa218\": \"<string>\",\n    \"elit6df\": \"<string>\",\n    \"labore_6\": \"<string>\",\n    \"commodo1\": \"<string>\"\n  },\n  \"reversed_outflows_by_month\": {\n    \"consequated6\": \"<string>\",\n    \"enim_d\": \"<string>\",\n    \"proident_83\": \"<string>\"\n  },\n  \"state_tax_inflows_by_month\": {\n    \"incididunt16d\": \"<string>\",\n    \"ex_5d\": \"<string>\",\n    \"non_b19\": \"<string>\"\n  },\n  \"state_tax_outflows_by_month\": {\n    \"dolore8\": \"<string>\",\n    \"eiusmod_d\": \"<string>\"\n  },\n  \"payroll_tax_inflows_by_month\": {\n    \"sint_3fd\": \"<string>\",\n    \"ad_0_\": \"<string>\"\n  },\n  \"payroll_tax_outflows_by_month\": {\n    \"ea2a8\": \"<string>\"\n  },\n  \"internal_transfer_inflows_by_month\": {\n    \"officia_34\": \"<string>\",\n    \"magnaed\": \"<string>\"\n  },\n  \"internal_transfer_outflows_by_month\": {\n    \"officia_8\": \"<string>\",\n    \"temporf\": \"<string>\"\n  },\n  \"merchant_service_transfer_inflows_by_month\": {\n    \"pariaturd0\": \"<string>\",\n    \"velit86f\": \"<string>\"\n  },\n  \"merchant_service_transfer_outflows_by_month\": {\n    \"anim_07d\": \"<string>\",\n    \"consecteturd\": \"<string>\"\n  },\n  \"wire_transfer_inflows_by_month\": {\n    \"officiac6\": \"<string>\",\n    \"ea_cae\": \"<string>\"\n  },\n  \"wire_transfer_outflows_by_month\": {\n    \"culpa77c\": \"<string>\"\n  },\n  \"other_transfer_inflows_by_month\": {\n    \"velit_7\": \"<string>\",\n    \"quif\": \"<string>\",\n    \"quis0\": \"<string>\"\n  },\n  \"other_transfer_outflows_by_month\": {\n    \"occaecat19\": \"<string>\",\n    \"adipisicing_2\": \"<string>\"\n  },\n  \"truck_stop_inflows_by_month\": {\n    \"Excepteure9a\": \"<string>\",\n    \"consecteture\": \"<string>\",\n    \"occaecat_3\": \"<string>\"\n  },\n  \"truck_stop_outflows_by_month\": {\n    \"sint_cdf\": \"<string>\",\n    \"officia0\": \"<string>\"\n  },\n  \"federal_tax_inflows_by_month\": {\n    \"officia710\": \"<string>\",\n    \"ipsum_e2\": \"<string>\"\n  },\n  \"federal_tax_outflows_by_month\": {\n    \"eu188\": \"<string>\",\n    \"magna0\": \"<string>\"\n  },\n  \"bank_branch_inflows_by_month\": {\n    \"eu__bd\": \"<string>\",\n    \"deserunt9\": \"<string>\"\n  },\n  \"bank_branch_outflows_by_month\": {\n    \"Utd\": \"<string>\",\n    \"labore_c\": \"<string>\"\n  },\n  \"credit_builder_inflows_by_month\": {\n    \"dolor_e4e\": \"<string>\"\n  },\n  \"credit_builder_outflows_by_month\": {\n    \"aute04\": \"<string>\",\n    \"officia7c\": \"<string>\"\n  },\n  \"custom_tag_by_month\": {\n    \"consequat__97\": \"<string>\",\n    \"dolorf\": \"<string>\"\n  },\n  \"expense_count_by_month\": {\n    \"nostrud_1b\": \"<string>\",\n    \"do_963\": \"<string>\"\n  },\n  \"withdrawals_count_by_month\": {\n    \"laborumdf8\": \"<string>\",\n    \"nisi_76\": \"<string>\"\n  },\n  \"revenue_count_by_month\": {\n    \"do__2\": \"<string>\"\n  },\n  \"deposits_count_by_month\": {\n    \"proident_5\": \"<string>\",\n    \"ut_e\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-94c2036e-28bc-4181-b61a-72e9b8fec15b"
+                        },
+                        {
+                          "id": "645a54a6-20f9-4942-ba71-960723049cae",
+                          "name": "Invalid Auth/Business ID format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "begin_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The date from which to retrieve updated business summaries.",
+                                  "key": "updated_since",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-645a54a6-20f9-4942-ba71-960723049cae"
+                        },
+                        {
+                          "id": "5a16d7f9-8714-4ebe-ab6d-ba19e51cb9b3",
+                          "name": "Business not associated with requesting organization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "begin_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The date from which to retrieve updated business summaries.",
+                                  "key": "updated_since",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-5a16d7f9-8714-4ebe-ab6d-ba19e51cb9b3"
+                        },
+                        {
+                          "id": "1d1fd7cc-71ee-488e-b75d-373dd8fd9835",
+                          "name": "Business Identity Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "begin_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The date from which to retrieve updated business summaries.",
+                                  "key": "updated_since",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-1d1fd7cc-71ee-488e-b75d-373dd8fd9835"
+                        },
+                        {
+                          "id": "81276c69-c39f-4901-bb25-71aea91cfde6",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/businesses/:business_id/summary?begin_date=<date>&end_date=<date>&updated_since=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "businesses",
+                                ":business_id",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The start date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "begin_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The end date in `YYYY-MM-DD` format for the financial summary period.",
+                                  "key": "end_date",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "The date from which to retrieve updated business summaries.",
+                                  "key": "updated_since",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "business_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:50.000Z",
+                          "updatedAt": "2026-07-28T02:24:50.000Z",
+                          "uid": "35240-81276c69-c39f-4901-bb25-71aea91cfde6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-b63f5fb7-bf04-436c-84fa-78187f08c236"
+                    }
+                  ],
+                  "id": "6780cbca-cb96-4599-9bb9-cf8323e4ad31",
+                  "createdAt": "2026-07-28T02:24:50.000Z",
+                  "updatedAt": "2026-07-28T02:24:50.000Z",
+                  "uid": "35240-6780cbca-cb96-4599-9bb9-cf8323e4ad31"
+                },
+                {
+                  "name": "Business overview",
+                  "id": "37cbf798-53e7-4acc-a5c5-4e528631cdac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "businesses",
+                        ":business_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cd597955-f4e3-4532-a99e-08ef860d940e",
+                          "key": "business_id",
+                          "value": "<uuid>",
+                          "description": "(Required) A universally unique identifier (UUID) of the business entity for which you want to retrieve overview information."
+                        }
+                      ]
+                    },
+                    "description": "This API retrieves the full metadata profile for a business entity, including industry classification, loan inquiry history, and addresses derived from bank account holder information.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "9621b1aa-dfac-4ea4-8a2c-45351988dca3",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"state\": \"ACTIVE\",\n  \"industry\": {\n    \"naics4_code\": \"<integer>\",\n    \"naics_description\": \"<string>\",\n    \"naics6_code\": \"<integer>\",\n    \"naics6_description\": \"<string>\",\n    \"naics_override\": \"<boolean>\",\n    \"mcc_code\": \"<integer>\",\n    \"mcc_description_\": \"<string>\",\n    \"sic_code\": \"<integer>\",\n    \"sic_description_\": \"<string>\",\n    \"active_override\": \"<boolean>\"\n  },\n  \"loan_inquiries\": {\n    \"total_applications\": \"<integer>\",\n    \"application_history\": [\n      \"<dateTime>\",\n      \"<dateTime>\"\n    ],\n    \"velocity\": {\n      \"day_count_30\": \"<integer>\",\n      \"day_count_60\": \"<integer>\",\n      \"day_count_90\": \"<integer>\",\n      \"day_count_180\": \"<integer>\",\n      \"day_count_270\": \"<integer>\",\n      \"day_count_365\": \"<integer>\"\n    }\n  },\n  \"addresses\": [\n    {\n      \"holder_address_1\": \"<string>\",\n      \"holder_address_2\": \"<string>\",\n      \"holder_city\": \"<string>\",\n      \"holder_state\": \"<string>\",\n      \"holder_zip\": \"<string>\",\n      \"holder_country\": \"<string>\",\n      \"frequency\": \"<integer>\"\n    },\n    {\n      \"holder_address_1\": \"<string>\",\n      \"holder_address_2\": \"<string>\",\n      \"holder_city\": \"<string>\",\n      \"holder_state\": \"<string>\",\n      \"holder_zip\": \"<string>\",\n      \"holder_country\": \"<string>\",\n      \"frequency\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-9621b1aa-dfac-4ea4-8a2c-45351988dca3"
+                    },
+                    {
+                      "id": "a21fae20-9387-4998-b97c-44a9fb0e1697",
+                      "name": "Invalid Auth/Business ID format",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-a21fae20-9387-4998-b97c-44a9fb0e1697"
+                    },
+                    {
+                      "id": "55119ca1-58e3-4bd2-8291-324635696d41",
+                      "name": "Business not associated with requesting organization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-55119ca1-58e3-4bd2-8291-324635696d41"
+                    },
+                    {
+                      "id": "6f6bf6a7-b102-4b4c-940e-502b7ae4f3b3",
+                      "name": "Business Identity Not Associated With Book",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-6f6bf6a7-b102-4b4c-940e-502b7ae4f3b3"
+                    },
+                    {
+                      "id": "68a2553a-6ab7-438e-95f7-ce7c96a96ce9",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/businesses/:business_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "businesses",
+                            ":business_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "business_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:24:50.000Z",
+                      "updatedAt": "2026-07-28T02:24:50.000Z",
+                      "uid": "35240-68a2553a-6ab7-438e-95f7-ce7c96a96ce9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:24:50.000Z",
+                  "updatedAt": "2026-07-28T02:24:50.000Z",
+                  "uid": "35240-37cbf798-53e7-4acc-a5c5-4e528631cdac"
+                }
+              ],
+              "id": "bd065920-287c-4a78-b0e6-37f05c26ae1f",
+              "createdAt": "2026-07-28T02:24:50.000Z",
+              "updatedAt": "2026-07-28T02:24:50.000Z",
+              "uid": "35240-bd065920-287c-4a78-b0e6-37f05c26ae1f"
+            }
+          ],
+          "id": "c1711c47-d9c0-4b1c-8f19-049d5a5c81b1",
+          "createdAt": "2026-07-28T02:24:50.000Z",
+          "updatedAt": "2026-07-28T02:24:50.000Z",
+          "uid": "35240-c1711c47-d9c0-4b1c-8f19-049d5a5c81b1"
+        }
+      ],
+      "id": "0a513cbe-4d02-4dae-908b-fb732a2acf58",
+      "createdAt": "2026-07-28T02:24:50.000Z",
+      "updatedAt": "2026-07-28T02:24:50.000Z",
+      "uid": "35240-0a513cbe-4d02-4dae-908b-fb732a2acf58"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

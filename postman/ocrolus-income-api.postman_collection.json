@@ -1,0 +1,1689 @@
+{
+  "info": {
+    "_postman_id": "2e175c5c-9f07-4997-b5ac-3d65a42c370d",
+    "name": "Account Level Webhooks Book Commands Income API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:09.000Z",
+    "updatedAt": "2026-07-28T02:25:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2e175c5c-9f07-4997-b5ac-3d65a42c370d"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "{book_uuid}",
+              "item": [
+                {
+                  "name": "income",
+                  "item": [
+                    {
+                      "name": "summary",
+                      "item": [
+                        {
+                          "name": "Income summary",
+                          "id": "e6071080-d4bf-4103-a153-ccec20905387",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income/summary?guideline=FANNIE_MAE",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income",
+                                "summary"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                  "key": "guideline",
+                                  "value": "FANNIE_MAE"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ebbdb352-9c1e-4d83-b607-96311d6e935f",
+                                  "key": "book_uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a summarized view of income data for a specific <<glossary:Book>> in Ocrolus."
+                          },
+                          "response": [
+                            {
+                              "id": "491aea86-50b2-48c9-b0c1-26a4d2290ccc",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/income/summary?guideline=FANNIE_MAE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "income",
+                                    "summary"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                      "key": "guideline",
+                                      "value": "FANNIE_MAE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"response\": {\n    \"book_uuid\": \"<uuid>\",\n    \"income_summary_data\": [\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"borrower_name\": \"<string>\",\n        \"wage_earner_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"self_employed_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"rental_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"other_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"total_income\": \"<float>\"\n      },\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"borrower_name\": \"<string>\",\n        \"wage_earner_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"self_employed_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"rental_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"other_income\": {\n          \"is_income_calculated\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"total_income\": \"<float>\",\n          \"alerts\": [\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            },\n            {\n              \"message\": \"<string>\",\n              \"severity\": \"<string>\"\n            }\n          ]\n        },\n        \"total_income\": \"<float>\"\n      }\n    ],\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"total\": \"<float>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-491aea86-50b2-48c9-b0c1-26a4d2290ccc"
+                            },
+                            {
+                              "id": "0c586b43-d97e-49f1-916b-ea4e4297c798",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/income/summary?guideline=FANNIE_MAE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "income",
+                                    "summary"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                      "key": "guideline",
+                                      "value": "FANNIE_MAE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-0c586b43-d97e-49f1-916b-ea4e4297c798"
+                            },
+                            {
+                              "id": "72ed88a2-75d0-4050-a6b5-549bb9125772",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/income/summary?guideline=FANNIE_MAE",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "income",
+                                    "summary"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                      "key": "guideline",
+                                      "value": "FANNIE_MAE"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "book_uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-72ed88a2-75d0-4050-a6b5-549bb9125772"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-e6071080-d4bf-4103-a153-ccec20905387"
+                        }
+                      ],
+                      "id": "62d0e8cf-1ade-4343-8404-e3178dc21cb5",
+                      "createdAt": "2026-07-28T02:25:10.000Z",
+                      "updatedAt": "2026-07-28T02:25:10.000Z",
+                      "uid": "35240-62d0e8cf-1ade-4343-8404-e3178dc21cb5"
+                    },
+                    {
+                      "name": "self-employed",
+                      "item": [
+                        {
+                          "name": "calculate",
+                          "item": [
+                            {
+                              "name": "Calculate Fannie Mae self-employed income",
+                              "id": "5d1fc22b-9368-4744-b1f5-9a3af39d3cc0",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:book_uuid/income/self-employed/calculate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":book_uuid",
+                                    "income",
+                                    "self-employed",
+                                    "calculate"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "26ac2cf5-945b-424b-bb3b-568c28c198ea",
+                                      "key": "book_uuid",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                                    }
+                                  ]
+                                },
+                                "description": "This API calculates Fannie Mae self-employed income for a borrower\u2013business pair in a Book. Send only the fields you want to update. The API merges these fields with the existing income record and recalculates the income.\nIf a field is missing or empty, the system may apply [organization-level default values](#organization-level-defaults) based on the income type and guideline. These defaults act as fallback values and never override fields explicitly provided in the request.\n\n> \ud83d\udc4d Tips\n> After calling this API, call the [Income calculations](https://docs.ocrolus.com/reference/income-calculations) API to retrieve the updated income data.\n\n## Merge behavior\nThe API performs a deep merge of the provided `meta_info` into the existing income record (common or tax-return specific).\n\n| Category | Merge behavior |\n|---|---|\n| Top-level meta fields such as `employment_start_date` | Provided values overwrite existing values. Fields not included in the request are preserved. |\n| Common `yearwise_details` | Merged by `year`. Only the fields provided for a given year are updated. |\n| Per-type `yearwise_details` such as `s_corporation_earnings.yearwise_details` | Merged by `year`. Existing fields are preserved unless explicitly overridden. |\n\n## Organization-level defaults\n\nOrganizations can configure default values for self-employed income fields by `org_uuid`, `income_type`, and `income_guideline`.\n\nDefaults act as fallback values during income updates. They are applied only when a supported field is missing or empty in the request. Explicit values, including `false`, `0`, and `None`, are never overridden.\n\n### Default application rules\n\n| Category | Field location | Fallback condition |\n|---|---|---|\n| Common scalar | `meta_info.field` | Applied when the value is `null` or an empty list `[]` |\n| Common yearwise | `meta_info.yearwise_details[].field` | Applied per year when the field value is `null` or `\"\"` |\n| Per-type yearwise | `meta_info.<type>.yearwise_details[].field` | Applied to each active tax year when the field value is `null` or `\"\"` |\n\n### Supported default fields\n| Category                      | Supported Fields                                                                                                                                                                                                                                                                                                                                       |\n| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Common defaults**           | `employment_start_date`, `employment_history_consistent_indicator`, `du_case_file_id`, `extraordinary_one_time_expense`, `non_deductible_meal`                                                                                                                                                                                                         |\n| **Per-type defaults**         | Supported under `s_corporation_earnings`, `partnership_income`, `regular_corporation`, and `individual_tax_return`.                                                                                                                                                                                                                                    |\n| **Per-type supported fields** | `adequate_business_liquidity`, `amortization`, `amortization_selection_type`, `is_final_return_override`, `is_borrower_trust_guaranter`, `compensation_of_officers_included_as_income`, `mortgages_notes_and_bonds_payable_less_than1_year`, `mortgages_notes_and_bonds_payable_less_than1_year_amount`, `guaranteed_payments_to_partners_alternative` |\n\nPer-type defaults are stored as flat key-value pairs in org config and are replicated into each active tax year's `yearwise_details` during update.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "f02671c1-807c-4a92-88bf-be45d4fea877",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/book/:book_uuid/income/self-employed/calculate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "book",
+                                        ":book_uuid",
+                                        "income",
+                                        "self-employed",
+                                        "calculate"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "book_uuid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"response\": {\n    \"book_uuid\": \"<uuid>\",\n    \"borrower_uuid\": \"<uuid>\",\n    \"business_uuid\": \"<uuid>\",\n    \"income_guideline\": \"<string>\",\n    \"status\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:25:10.000Z",
+                                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                                  "uid": "35240-f02671c1-807c-4a92-88bf-be45d4fea877"
+                                },
+                                {
+                                  "id": "fe8eee80-a0d5-4a36-8efe-c9184544e3e1",
+                                  "name": "Missing request body, identifiers, meta_info or invalid Auth and income guideline",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/book/:book_uuid/income/self-employed/calculate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "book",
+                                        ":book_uuid",
+                                        "income",
+                                        "self-employed",
+                                        "calculate"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "book_uuid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:25:10.000Z",
+                                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                                  "uid": "35240-fe8eee80-a0d5-4a36-8efe-c9184544e3e1"
+                                },
+                                {
+                                  "id": "e638b46f-999b-4dbf-a5f1-35099ed59650",
+                                  "name": "No existing income",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/book/:book_uuid/income/self-employed/calculate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "book",
+                                        ":book_uuid",
+                                        "income",
+                                        "self-employed",
+                                        "calculate"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "book_uuid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:25:10.000Z",
+                                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                                  "uid": "35240-e638b46f-999b-4dbf-a5f1-35099ed59650"
+                                },
+                                {
+                                  "id": "aaf9af9c-c0e6-4243-b154-9cad109abd55",
+                                  "name": "Internal server error",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/book/:book_uuid/income/self-employed/calculate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "book",
+                                        ":book_uuid",
+                                        "income",
+                                        "self-employed",
+                                        "calculate"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "book_uuid"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:25:10.000Z",
+                                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                                  "uid": "35240-aaf9af9c-c0e6-4243-b154-9cad109abd55"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-5d1fc22b-9368-4744-b1f5-9a3af39d3cc0"
+                            }
+                          ],
+                          "id": "2244fdad-ed7d-425d-bede-bdf3254fdbd4",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-2244fdad-ed7d-425d-bede-bdf3254fdbd4"
+                        }
+                      ],
+                      "id": "d2ca0074-d4fd-4249-8b6c-e5fded6ae4f4",
+                      "createdAt": "2026-07-28T02:25:10.000Z",
+                      "updatedAt": "2026-07-28T02:25:10.000Z",
+                      "uid": "35240-d2ca0074-d4fd-4249-8b6c-e5fded6ae4f4"
+                    }
+                  ],
+                  "id": "cf68ca34-e251-42af-bcd1-04be2bc27c5e",
+                  "createdAt": "2026-07-28T02:25:10.000Z",
+                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                  "uid": "35240-cf68ca34-e251-42af-bcd1-04be2bc27c5e"
+                },
+                {
+                  "name": "income-calculations",
+                  "item": [
+                    {
+                      "name": "Income calculations",
+                      "id": "67f28ce0-7bd5-43f4-8e93-6b694e08ab99",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/book/:book_uuid/income-calculations?guideline=FANNIE_MAE",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "book",
+                            ":book_uuid",
+                            "income-calculations"
+                          ],
+                          "query": [
+                            {
+                              "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                              "key": "guideline",
+                              "value": "FANNIE_MAE"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "b3f1cc83-8ef3-4144-bf47-953e9af054e8",
+                              "key": "book_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+                            }
+                          ]
+                        },
+                        "description": "This API provides income values based on the specified guidelines for a <<glossary:Book>> type. The supported income types include `wage-earner`, `self-employed`, `rental`, and `other income`. A detailed description of income-related fields found in the `calculated_fields` objects within the totals array can be found in the [income calculation](https://docs.ocrolus.com/docs/income-calculations-api) definition. These fields include attributes like field name, default value, and title/header to identify and interpret each data point.\n  \n> \ud83d\udc4d Tips\n> To retrieve Fannie Mae income calculation data, first call the [Fannie Mae self-employed income calculation](https://docs.ocrolus.com/reference/self-employed-income-calculation-fm) API, and then call the this income calculation API.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "99e108c2-d54d-438c-b063-825c48d103c3",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-calculations?guideline=FANNIE_MAE",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-calculations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                  "key": "guideline",
+                                  "value": "FANNIE_MAE"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"response\": {\n    \"book_uuid\": \"<uuid>\",\n    \"incomes\": [\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"business_uuid\": \"<uuid>\",\n        \"income_type\": \"OTHER\",\n        \"year\": \"<string>\",\n        \"forms\": [\n          {\n            \"form_type\": \"<string>\",\n            \"form_uuid\": \"<uuid>\",\n            \"mixed_uploaded_doc_pk\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\",\n            \"page_doc_pks\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"form_type\": \"<string>\",\n            \"form_uuid\": \"<uuid>\",\n            \"mixed_uploaded_doc_pk\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\",\n            \"page_doc_pks\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\",\n            \"page_doc_pk\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\",\n            \"page_doc_pk\": \"<string>\"\n          }\n        ],\n        \"calculated_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"currency\": \"<string>\",\n        \"income_by_tax_returns\": \"IRS Form 1120S - S Corporation Earnings\",\n        \"xid\": \"<string>\",\n        \"pay_type\": \"Shift Differential Income\",\n        \"other_income_collection\": \"Foster care\",\n        \"hourly_rate\": \"<string>\",\n        \"hours_worked_per_week\": \"<string>\",\n        \"monthly_income\": \"<string>\",\n        \"period_earnings\": \"<string>\",\n        \"pay_frequency\": \"<string>\",\n        \"is_active\": \"<boolean>\",\n        \"is_selected\": \"<boolean>\"\n      },\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"business_uuid\": \"<uuid>\",\n        \"income_type\": \"SELF_EMPLOYED\",\n        \"year\": \"<string>\",\n        \"forms\": [\n          {\n            \"form_type\": \"<string>\",\n            \"form_uuid\": \"<uuid>\",\n            \"mixed_uploaded_doc_pk\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\",\n            \"page_doc_pks\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"form_type\": \"<string>\",\n            \"form_uuid\": \"<uuid>\",\n            \"mixed_uploaded_doc_pk\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\",\n            \"page_doc_pks\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ],\n        \"fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\",\n            \"page_doc_pk\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\",\n            \"page_doc_pk\": \"<string>\"\n          }\n        ],\n        \"calculated_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ],\n        \"currency\": \"<string>\",\n        \"income_by_tax_returns\": \"IRS Form 1120 - Regular Corporation\",\n        \"xid\": \"<string>\",\n        \"pay_type\": \"Hourly Income\",\n        \"other_income_collection\": \"Accessory unit income\",\n        \"hourly_rate\": \"<string>\",\n        \"hours_worked_per_week\": \"<string>\",\n        \"monthly_income\": \"<string>\",\n        \"period_earnings\": \"<string>\",\n        \"pay_frequency\": \"<string>\",\n        \"is_active\": \"<boolean>\",\n        \"is_selected\": \"<boolean>\"\n      }\n    ],\n    \"borrowers\": [\n      {\n        \"uuid\": \"<uuid>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"uuid\": \"<uuid>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"employers\": [\n      {\n        \"uuid\": \"<uuid>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"uuid\": \"<uuid>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"properties\": [\n      {\n        \"uuid\": \"<uuid>\",\n        \"address\": \"<string>\",\n        \"address_line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      },\n      {\n        \"uuid\": \"<uuid>\",\n        \"address\": \"<string>\",\n        \"address_line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      }\n    ],\n    \"alerts\": [\n      {\n        \"message\": \"<string>\",\n        \"severity\": \"<string>\",\n        \"income_type\": \"<string>\"\n      },\n      {\n        \"message\": \"<string>\",\n        \"severity\": \"<string>\",\n        \"income_type\": \"<string>\"\n      }\n    ],\n    \"totals\": [\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"income_type\": \"<string>\",\n        \"business_uuid\": \"<uuid>\",\n        \"calculated_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"borrower_uuid\": \"<uuid>\",\n        \"income_type\": \"<string>\",\n        \"business_uuid\": \"<uuid>\",\n        \"calculated_fields\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"title\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-99e108c2-d54d-438c-b063-825c48d103c3"
+                        },
+                        {
+                          "id": "f7ab774a-d346-4890-b7a1-966021aef2a7",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-calculations?guideline=FANNIE_MAE",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-calculations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                  "key": "guideline",
+                                  "value": "FANNIE_MAE"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-f7ab774a-d346-4890-b7a1-966021aef2a7"
+                        },
+                        {
+                          "id": "2fb806a5-1215-4041-9f6e-c29a71f291d4",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-calculations?guideline=FANNIE_MAE",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-calculations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n",
+                                  "key": "guideline",
+                                  "value": "FANNIE_MAE"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-2fb806a5-1215-4041-9f6e-c29a71f291d4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:10.000Z",
+                      "updatedAt": "2026-07-28T02:25:10.000Z",
+                      "uid": "35240-67f28ce0-7bd5-43f4-8e93-6b694e08ab99"
+                    }
+                  ],
+                  "id": "9d617d81-e56c-4d11-aa12-f5219ef7922b",
+                  "createdAt": "2026-07-28T02:25:10.000Z",
+                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                  "uid": "35240-9d617d81-e56c-4d11-aa12-f5219ef7922b"
+                },
+                {
+                  "name": "income-guideline",
+                  "item": [
+                    {
+                      "name": "Save income guideline",
+                      "id": "b2c7653c-5cdd-49ed-ac32-9bf7f746ef62",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "book",
+                            ":book_uuid",
+                            "income-guideline"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                              "key": "guideline",
+                              "value": "FREDDIE_MAC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "0d4ed617-e369-41d1-be69-574c3e9f5a94",
+                              "key": "book_uuid",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                            }
+                          ]
+                        },
+                        "description": "This API lets you set or update the loan program or Government-Sponsored Enterprise (GSE) guideline for an Ocrolus <<glossary:Book>>. It ensures income calculations use the correct guideline (for example, Fannie Mae, Freddie Mac, FHA, VA, or USDA) and that the results are accurately reflected in the Ocrolus Dashboard for underwriting review. The most recent guideline is always used for income calculations by default.\n\nYou can use this API to:\n- Set the income guideline immediately after the Book is created.\n- Update the income guideline with a different guideline value later if the loan program changes. \n\n> \ud83d\udcd8 Notes\n> - A valid `book_uuid` is required.\n> - Updated income calculations are reflected after processing is complete.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "4c69d608-0e53-4904-a18a-d7e36779904c",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-guideline"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                                  "key": "guideline",
+                                  "value": "FREDDIE_MAC"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"response\": {\n    \"book_uuid\": \"<uuid>\",\n    \"income_guideline\": \"CONVENTIONAL\",\n    \"staus\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-4c69d608-0e53-4904-a18a-d7e36779904c"
+                        },
+                        {
+                          "id": "a8c37aab-8d85-4150-860e-7b368e545863",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-guideline"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                                  "key": "guideline",
+                                  "value": "FREDDIE_MAC"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-a8c37aab-8d85-4150-860e-7b368e545863"
+                        },
+                        {
+                          "id": "814e2aeb-31e1-4762-918a-8f5bebaad767",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-guideline"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                                  "key": "guideline",
+                                  "value": "FREDDIE_MAC"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-814e2aeb-31e1-4762-918a-8f5bebaad767"
+                        },
+                        {
+                          "id": "dc41acba-0cfc-4c8f-aee1-7c5fb4880df0",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-guideline"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                                  "key": "guideline",
+                                  "value": "FREDDIE_MAC"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-dc41acba-0cfc-4c8f-aee1-7c5fb4880df0"
+                        },
+                        {
+                          "id": "387a9a60-bb56-48f2-adaf-60a533a6781e",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/income-guideline?guideline=FREDDIE_MAC",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "income-guideline"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > \ud83d\udcd8 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n",
+                                  "key": "guideline",
+                                  "value": "FREDDIE_MAC"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-387a9a60-bb56-48f2-adaf-60a533a6781e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:10.000Z",
+                      "updatedAt": "2026-07-28T02:25:10.000Z",
+                      "uid": "35240-b2c7653c-5cdd-49ed-ac32-9bf7f746ef62"
+                    }
+                  ],
+                  "id": "bb1fcf9e-c48b-4992-ae51-5b4f9aa5dd31",
+                  "createdAt": "2026-07-28T02:25:10.000Z",
+                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                  "uid": "35240-bb1fcf9e-c48b-4992-ae51-5b4f9aa5dd31"
+                }
+              ],
+              "id": "fe16503e-e0b9-48c4-9c06-b2e463d2441f",
+              "createdAt": "2026-07-28T02:25:10.000Z",
+              "updatedAt": "2026-07-28T02:25:10.000Z",
+              "uid": "35240-fe16503e-e0b9-48c4-9c06-b2e463d2441f"
+            },
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "income",
+                  "item": [
+                    {
+                      "name": "entity_config",
+                      "item": [
+                        {
+                          "name": "Configure income entity",
+                          "id": "ccae95bb-422b-4961-98ea-70f0a6c08967",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":uuid",
+                                "income",
+                                "entity_config"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "afe1ac6b-9a99-4fc2-a965-364073ac436c",
+                                  "key": "uuid",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower\u2013employer data should be configured."
+                                }
+                              ]
+                            },
+                            "description": "This API allows you to **update the employment start date** for a borrower\u2013employer pair linked to a specific Ocrolus <<glossary:Book>>. You can optionally include identifiers such as the employer\u2019s **EIN** (Employer Identification Number) and the borrower\u2019s **last four SSN digits (Social Security Number)** for more accurate matching. If the borrower\u2013employer pair exists, the record is updated; otherwise, a new one is created. When provided, the **employment start date** is also used in income calculation to ensure the precise and consistent results across the platform.\n> \ud83d\udcd8 Note\n> - If the borrower\u2013employer pair already exists, the system updates the existing record with the new start date.\n> - If the pair does not exist, a new configuration entry is created automatically.\n> - Optional identifiers (**`ein, last_four_ssn_digits`**, and **`income_type`**) help ensure accurate borrower\u2013employer matching.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "d60dcf52-7925-4442-a19e-686bd5659eb6",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"response\": {\n    \"data\": {\n      \"uuid\": \"<uuid>\",\n      \"book_uuid\": \"<uuid>\",\n      \"borrower_details\": {\n        \"name\": \"<string>\",\n        \"last_four_ssn_digits\": \"<string>\"\n      },\n      \"entity_details\": {\n        \"name\": \"<string>\",\n        \"ein\": \"<string>\"\n      },\n      \"income_type\": \"WAGE_EARNER\",\n      \"employment_start_date\": \"<date>\",\n      \"created_ts\": \"<dateTime>\",\n      \"updated_ts\": \"<dateTime>\",\n      \"xid\": \"<string>\"\n    },\n    \"success\": \"<boolean>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-d60dcf52-7925-4442-a19e-686bd5659eb6"
+                            },
+                            {
+                              "id": "f41bbc90-e12f-4f79-9315-71f6ebd50a54",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-f41bbc90-e12f-4f79-9315-71f6ebd50a54"
+                            },
+                            {
+                              "id": "10510ef8-3ba6-4fd1-9521-5a9533fa14b0",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-10510ef8-3ba6-4fd1-9521-5a9533fa14b0"
+                            },
+                            {
+                              "id": "86d79351-6d97-42b5-863b-879ddb55f12c",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-86d79351-6d97-42b5-863b-879ddb55f12c"
+                            },
+                            {
+                              "id": "69d45112-6f46-4a4d-ab6c-6dda6264a86d",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-69d45112-6f46-4a4d-ab6c-6dda6264a86d"
+                            },
+                            {
+                              "id": "963c6893-64e3-4eca-a82b-d24020e4badd",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"SELF_EMPLOYED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/book/:uuid/income/entity_config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "book",
+                                    ":uuid",
+                                    "income",
+                                    "entity_config"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:10.000Z",
+                              "updatedAt": "2026-07-28T02:25:10.000Z",
+                              "uid": "35240-963c6893-64e3-4eca-a82b-d24020e4badd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:10.000Z",
+                          "updatedAt": "2026-07-28T02:25:10.000Z",
+                          "uid": "35240-ccae95bb-422b-4961-98ea-70f0a6c08967"
+                        }
+                      ],
+                      "id": "a35f6ac6-021b-4c35-9240-cf0a6f663564",
+                      "createdAt": "2026-07-28T02:25:10.000Z",
+                      "updatedAt": "2026-07-28T02:25:10.000Z",
+                      "uid": "35240-a35f6ac6-021b-4c35-9240-cf0a6f663564"
+                    }
+                  ],
+                  "id": "560d13fe-a8ed-4167-bfb9-974a65e5bc38",
+                  "createdAt": "2026-07-28T02:25:10.000Z",
+                  "updatedAt": "2026-07-28T02:25:10.000Z",
+                  "uid": "35240-560d13fe-a8ed-4167-bfb9-974a65e5bc38"
+                }
+              ],
+              "id": "4823eab5-23fb-46a6-9ea6-183d55e336d0",
+              "createdAt": "2026-07-28T02:25:10.000Z",
+              "updatedAt": "2026-07-28T02:25:10.000Z",
+              "uid": "35240-4823eab5-23fb-46a6-9ea6-183d55e336d0"
+            }
+          ],
+          "id": "0ff74e08-c580-4bcb-854d-7b56b00366be",
+          "createdAt": "2026-07-28T02:25:10.000Z",
+          "updatedAt": "2026-07-28T02:25:10.000Z",
+          "uid": "35240-0ff74e08-c580-4bcb-854d-7b56b00366be"
+        }
+      ],
+      "id": "154dd587-4197-4f75-8709-d00fe72cba47",
+      "createdAt": "2026-07-28T02:25:10.000Z",
+      "updatedAt": "2026-07-28T02:25:10.000Z",
+      "uid": "35240-154dd587-4197-4f75-8709-d00fe72cba47"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

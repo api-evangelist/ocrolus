@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.ocrolus.com/docs/webhook-overview
+spec_type: Webhooks
+note: Account-level and organization-level webhooks; no AsyncAPI published. 5s delivery timeout; HMAC
+  secret signing.
+levels:
+- account-level
+- organization-level
+delivery:
+  timeout_seconds: 5
+  signing: HMAC secret (rotatable via rotate-secret endpoints)
+management_operations:
+- openapi/ocrolus-account-level-webhooks-openapi.json#configure-webhook
+- openapi/ocrolus-org-level-webhooks-openapi.json#add-webhook
+- openapi/ocrolus-org-level-webhooks-openapi.json#list-webhooks
+events:
+- type: book.classified
+- type: book.completed
+- type: book.verified
+- type: book.detect.signal_found
+- type: book.detect.signal_not_found
+- type: book.income.generated
+- type: book.income.updated
+- type: document.classification_failed
+- type: document.classification_succeeded
+- type: document.detect.signal_found
+- type: document.detect.signal_not_found
+- type: document.detect.unable_to_process
+- type: document.upload_failed
+- type: document.upload_succeeded
+- type: image_group.upload_failed
+- type: image_group.upload_succeeded
+- type: mixed_document.rejected
+- type: plaid.upload_failed
+- type: plaid.upload_succeeded

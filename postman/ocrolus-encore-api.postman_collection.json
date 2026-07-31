@@ -1,0 +1,1874 @@
+{
+  "info": {
+    "_postman_id": "aff2596e-0442-4872-8fc5-f586dddd37bf",
+    "name": "Account Level Webhooks Book Commands Encore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:25:06.000Z",
+    "updatedAt": "2026-07-28T02:25:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aff2596e-0442-4872-8fc5-f586dddd37bf"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "copy-jobs",
+              "item": [
+                {
+                  "name": "{job_id}",
+                  "item": [
+                    {
+                      "name": "accept",
+                      "item": [
+                        {
+                          "name": "Accept Book copy jobs",
+                          "id": "6436856e-d38f-4eb6-89b4-b533880bcc55",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                ":job_id",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "549962d5-8d00-46f3-8593-589f5933f709",
+                                  "key": "job_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) UUID of the Book copy job to accept."
+                                }
+                              ]
+                            },
+                            "description": "This API enables a recipient organization to accept an incoming <<glossary:Book>> copy request. Once accepted, Ocrolus begins copying the Book and its associated documents to the recipient organization. The recipient may optionally change the Book name when accepting a Book copy request. Alternatively, the recipient can rename the Book after it has been accepted.\nA `book.copy.request_accepted` webhook event is then triggered and sent to the sender organization.\n\n> \ud83d\udcd8 Note\n> - This API is intended for small and medium business (SMB) funders using the Book copy feature. \n> - A Book copy job can be accepted only when its status is `AWAITING_RECIPIENT` or `REJECTED`.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "86b740c3-1cba-4f28-9da9-f13457ee128e",
+                              "name": "The Book copy job was successfully accepted.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "accept"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-86b740c3-1cba-4f28-9da9-f13457ee128e"
+                            },
+                            {
+                              "id": "96e33226-4ccf-4089-ae4c-3396a3ea01cd",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "accept"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-96e33226-4ccf-4089-ae4c-3396a3ea01cd"
+                            },
+                            {
+                              "id": "258c2e2e-826d-4428-9c6e-c3c99bc3bf15",
+                              "name": "Job ID not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "accept"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-258c2e2e-826d-4428-9c6e-c3c99bc3bf15"
+                            },
+                            {
+                              "id": "8894b94d-c8dd-46aa-bb46-ef11197c6d82",
+                              "name": "Trying to accept in invalid state",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "accept"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Precondition Failed",
+                              "code": 412,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-8894b94d-c8dd-46aa-bb46-ef11197c6d82"
+                            },
+                            {
+                              "id": "4ad138eb-995c-48a4-9a33-f93e34e984ab",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"book_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/accept",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "accept"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-4ad138eb-995c-48a4-9a33-f93e34e984ab"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-6436856e-d38f-4eb6-89b4-b533880bcc55"
+                        }
+                      ],
+                      "id": "fe5e5816-6b5c-4a38-92e6-6b5c0374e621",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-fe5e5816-6b5c-4a38-92e6-6b5c0374e621"
+                    },
+                    {
+                      "name": "reject",
+                      "item": [
+                        {
+                          "name": "Reject Book copy jobs",
+                          "id": "4f78a559-2d5f-42d4-99e8-89d1a621f1e4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                ":job_id",
+                                "reject"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cc63dcde-21c9-4461-bf7d-45dc943ff972",
+                                  "key": "job_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) UUID of the Book copy job to reject."
+                                }
+                              ]
+                            },
+                            "description": "This API allows the recipient organization to reject an incoming <<glossary:Book>> copy request. A `book.copy.request_rejected` webhook event is then triggered and sent to the sender organization.\n\n\n> \ud83d\udcd8 Note\n> - This API is intended for small and medium business (SMB) funders using the Book copy feature.\n> - A Book copy job can be rejected only when its status is `AWAITING_RECIPIENT`.\n> - A Book cannot be rejected after it has been accepted. Additionally, a previously rejected Book cannot be rejected again.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "ca783090-212f-41ab-8d2d-5dc5482fbe2e",
+                              "name": "The Book copy job was successfully rejected.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": {}\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-ca783090-212f-41ab-8d2d-5dc5482fbe2e"
+                            },
+                            {
+                              "id": "485d5d3e-a89a-443e-ae88-4bff9767cadf",
+                              "name": "Client Errors",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-485d5d3e-a89a-443e-ae88-4bff9767cadf"
+                            },
+                            {
+                              "id": "2b7a3b54-6366-4283-b2aa-1cfd347a1126",
+                              "name": "Job ID not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-2b7a3b54-6366-4283-b2aa-1cfd347a1126"
+                            },
+                            {
+                              "id": "dfc63655-07c0-415d-a4ab-17ba01bdcf91",
+                              "name": "Trying to reject in invalid state",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Precondition Failed",
+                              "code": 412,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-dfc63655-07c0-415d-a4ab-17ba01bdcf91"
+                            },
+                            {
+                              "id": "31646667-af76-4cdf-be02-5e6efcb37ba4",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/book/copy-jobs/:job_id/reject",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "book",
+                                    "copy-jobs",
+                                    ":job_id",
+                                    "reject"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "job_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:25:06.000Z",
+                              "updatedAt": "2026-07-28T02:25:06.000Z",
+                              "uid": "35240-31646667-af76-4cdf-be02-5e6efcb37ba4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-4f78a559-2d5f-42d4-99e8-89d1a621f1e4"
+                        }
+                      ],
+                      "id": "3692947f-2245-437f-bb90-8eba809e4b67",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-3692947f-2245-437f-bb90-8eba809e4b67"
+                    }
+                  ],
+                  "id": "f4359e29-8d5b-4f94-8262-183ee30354d5",
+                  "createdAt": "2026-07-28T02:25:06.000Z",
+                  "updatedAt": "2026-07-28T02:25:06.000Z",
+                  "uid": "35240-f4359e29-8d5b-4f94-8262-183ee30354d5"
+                },
+                {
+                  "name": "run-kickouts",
+                  "item": [
+                    {
+                      "name": "Run automated cash flow kick-outs",
+                      "id": "21ed2a55-b170-4b4e-8912-234824e7519c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs/run-kickouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs",
+                            "run-kickouts"
+                          ]
+                        },
+                        "description": "This API signals Ocrolus to run automated cash flow kick-outs using the recipient organization\u2019s preconfigured Encore kick-out criteria. When triggered, Ocrolus evaluates all incoming <<glossary:Book>> copy jobs currently in the `AWAITING_RECIPIENT` state and applies the configured rules to automatically accept or reject them. After the evaluation completes, Ocrolus sends the resulting status updates to the sender organization using `book.copy.kickout_evaluated` webhook events.\n> \ud83d\udcd8 Note\n> This API is intended for small and medium business (SMB) funders using the Book copy feature."
+                      },
+                      "response": [
+                        {
+                          "id": "83db6907-0a8a-4d7a-9c6b-96c868c7d31d",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/run-kickouts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                "run-kickouts"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"response\": {\n    \"job_count\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-83db6907-0a8a-4d7a-9c6b-96c868c7d31d"
+                        },
+                        {
+                          "id": "795575ec-c5b5-42c4-a41d-3103d651a0e3",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/run-kickouts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                "run-kickouts"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-795575ec-c5b5-42c4-a41d-3103d651a0e3"
+                        },
+                        {
+                          "id": "c62c00ac-ecca-4055-953b-387c23c009c0",
+                          "name": "FAILED_PRECONDITION",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/run-kickouts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                "run-kickouts"
+                              ]
+                            }
+                          },
+                          "status": "Precondition Failed",
+                          "code": 412,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-c62c00ac-ecca-4055-953b-387c23c009c0"
+                        },
+                        {
+                          "id": "c254a7f0-e5f1-42a2-ba4d-01459c067f5d",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/book/copy-jobs/run-kickouts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "book",
+                                "copy-jobs",
+                                "run-kickouts"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:25:06.000Z",
+                          "updatedAt": "2026-07-28T02:25:06.000Z",
+                          "uid": "35240-c254a7f0-e5f1-42a2-ba4d-01459c067f5d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-21ed2a55-b170-4b4e-8912-234824e7519c"
+                    }
+                  ],
+                  "id": "31dd223b-e224-4e0c-816f-5fe7f944eaff",
+                  "createdAt": "2026-07-28T02:25:06.000Z",
+                  "updatedAt": "2026-07-28T02:25:06.000Z",
+                  "uid": "35240-31dd223b-e224-4e0c-816f-5fe7f944eaff"
+                },
+                {
+                  "name": "Create Book copy jobs",
+                  "id": "b34c7565-269d-49d5-a0ee-c1c56c0036ee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "book",
+                        "copy-jobs"
+                      ]
+                    },
+                    "description": "This API submits asynchronous copy requests that duplicate a <<glossary:Book>> and all uploaded documents to a specified recipient organization. Each request creates a job. You can monitor job status using the [List Book Copy Jobs](https://docs.ocrolus.com/reference/list-book-copy-jobs) endpoint.\n### Supported workflows\n1. **Updating existing applications**: Use a prior share label on the Book you are sharing so the new docs are appended to existing Book. Prevents duplicate Books when an applicant submits additional or missing documents.\n2. **Renewal/re-engagement**: This workflows support two approaches. You can create a new Book by using either a new shared Book label to initiate a new application with receivers, or a previously used shared Book label to associate the new application with an existing one. Alternatively, you can reuse an existing Book, similar to the application update workflow.\n\nTo learn more, see the [Sender's guide](https://docs.ocrolus.com/docs/senders#supported-workflows).\n\n> \ud83d\udc4d Suggestion\n> We recommend using new share labels for re-engagement and renewal applications to avoid creating confusion on the receiver's side.\n\n> \ud83d\udcd8 Note\n> - This API is intended for small and medium business (SMB) funders.\n> - This API supports a maximum of 50 requests per call meaning you can include up to 50 Book copy requests in a single API call. If you need to process more, split them into multiple calls.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "f679d974-6ff8-4417-b618-52d090424b39",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"copy_jobs\": [\n    {\n      \"job_id\": \"<string>\",\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_ts\": \"<dateTime>\",\n      \"shared_book_label\": \"<string>\"\n    },\n    {\n      \"job_id\": \"<string>\",\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_ts\": \"<dateTime>\",\n      \"shared_book_label\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-f679d974-6ff8-4417-b618-52d090424b39"
+                    },
+                    {
+                      "id": "449779ba-c93c-42cd-a917-aac63d48a558",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-449779ba-c93c-42cd-a917-aac63d48a558"
+                    },
+                    {
+                      "id": "0bcd4fc6-8d33-43ba-8292-282b689c43c9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-0bcd4fc6-8d33-43ba-8292-282b689c43c9"
+                    },
+                    {
+                      "id": "aa724f04-2d57-4f4b-84dc-234b0ce8d8b8",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-aa724f04-2d57-4f4b-84dc-234b0ce8d8b8"
+                    },
+                    {
+                      "id": "641720ff-9c04-4ad1-81ba-aa28e2c297b7",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Copy Requests\": [\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    },\n    {\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"shared_book_label\": \"<string>\",\n      \"doc_uuids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-641720ff-9c04-4ad1-81ba-aa28e2c297b7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:06.000Z",
+                  "updatedAt": "2026-07-28T02:25:06.000Z",
+                  "uid": "35240-b34c7565-269d-49d5-a0ee-c1c56c0036ee"
+                },
+                {
+                  "name": "List Book copy jobs",
+                  "id": "1eec8c6a-7930-47e2-a1ea-666e153f479a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/book/copy-jobs?job_type=OUTBOUND&org_uuid=<uuid>&offset=0&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "book",
+                        "copy-jobs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n",
+                          "key": "job_type",
+                          "value": "OUTBOUND"
+                        },
+                        {
+                          "description": "A unique identifier (UUID) of the organization.",
+                          "key": "org_uuid",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The starting point (number of records to skip) from the latest record to fetch results.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of records to be fetched starting from the specified **`offset`** value.",
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    },
+                    "description": "This API retrieves a list of <<glossary:Book>> copy jobs and their details. By default, it returns outbound jobs\u2014requests your organization sent. You can also fetch inbound jobs\u2014requests sent to your organization.\n\n> \ud83d\udcd8 Note\n> This API is intended for small and medium business (SMB) funders.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "85ed7bc1-09e7-4cf5-bf75-310ea4cbb13b",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs?job_type=OUTBOUND&org_uuid=<uuid>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n",
+                              "key": "job_type",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "A unique identifier (UUID) of the organization.",
+                              "key": "org_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The starting point (number of records to skip) from the latest record to fetch results.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of records to be fetched starting from the specified **`offset`** value.",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"copy_jobs\": [\n    {\n      \"job_id\": \"<string>\",\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_ts\": \"<dateTime>\",\n      \"shared_book_label\": \"<string>\"\n    },\n    {\n      \"job_id\": \"<string>\",\n      \"book_uuid\": \"<string>\",\n      \"org_uuid\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_ts\": \"<dateTime>\",\n      \"shared_book_label\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-85ed7bc1-09e7-4cf5-bf75-310ea4cbb13b"
+                    },
+                    {
+                      "id": "4be3005f-a1c2-4ecd-8561-33811e69b6e0",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs?job_type=OUTBOUND&org_uuid=<uuid>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n",
+                              "key": "job_type",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "A unique identifier (UUID) of the organization.",
+                              "key": "org_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The starting point (number of records to skip) from the latest record to fetch results.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of records to be fetched starting from the specified **`offset`** value.",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-4be3005f-a1c2-4ecd-8561-33811e69b6e0"
+                    },
+                    {
+                      "id": "64ac3fdf-2a5d-42d2-8747-ac253de8231a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs?job_type=OUTBOUND&org_uuid=<uuid>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n",
+                              "key": "job_type",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "A unique identifier (UUID) of the organization.",
+                              "key": "org_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The starting point (number of records to skip) from the latest record to fetch results.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of records to be fetched starting from the specified **`offset`** value.",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-64ac3fdf-2a5d-42d2-8747-ac253de8231a"
+                    },
+                    {
+                      "id": "444fabe6-3e78-45d0-aca1-b3b4342e95c6",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/copy-jobs?job_type=OUTBOUND&org_uuid=<uuid>&offset=0&limit=50",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "copy-jobs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n",
+                              "key": "job_type",
+                              "value": "OUTBOUND"
+                            },
+                            {
+                              "description": "A unique identifier (UUID) of the organization.",
+                              "key": "org_uuid",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "The starting point (number of records to skip) from the latest record to fetch results.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of records to be fetched starting from the specified **`offset`** value.",
+                              "key": "limit",
+                              "value": "50"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-444fabe6-3e78-45d0-aca1-b3b4342e95c6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:06.000Z",
+                  "updatedAt": "2026-07-28T02:25:06.000Z",
+                  "uid": "35240-1eec8c6a-7930-47e2-a1ea-666e153f479a"
+                }
+              ],
+              "id": "4a2442f9-1ee7-4577-952b-2a89c9b0e95a",
+              "createdAt": "2026-07-28T02:25:06.000Z",
+              "updatedAt": "2026-07-28T02:25:06.000Z",
+              "uid": "35240-4a2442f9-1ee7-4577-952b-2a89c9b0e95a"
+            }
+          ],
+          "id": "c6c826c1-cabc-4e59-9447-8a644d689dc7",
+          "createdAt": "2026-07-28T02:25:06.000Z",
+          "updatedAt": "2026-07-28T02:25:06.000Z",
+          "uid": "35240-c6c826c1-cabc-4e59-9447-8a644d689dc7"
+        },
+        {
+          "name": "settings",
+          "item": [
+            {
+              "name": "book-copy",
+              "item": [
+                {
+                  "name": "Retrieve Book copy settings (recipient address Book)",
+                  "id": "69b4c946-59c1-4881-94eb-fb501dad57f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/settings/book-copy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "settings",
+                        "book-copy"
+                      ]
+                    },
+                    "description": "This API retrieves a list of allowed recipient and sender organizations for <<glossary:Book>> copying.\n\n> \ud83d\udcd8 Note\n> This API is intended for small and medium business (SMB) funders.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "b140d57d-6a2f-439e-b46d-051227df08d1",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/book-copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "book-copy"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"recipients\": [\n    {\n      \"org_uuid\": \"<string>\",\n      \"org_name\": \"<string>\"\n    },\n    {\n      \"org_uuid\": \"<string>\",\n      \"org_name\": \"<string>\"\n    }\n  ],\n  \"senders\": [\n    {\n      \"org_uuid\": \"<string>\",\n      \"org_name\": \"<string>\"\n    },\n    {\n      \"org_uuid\": \"<string>\",\n      \"org_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-b140d57d-6a2f-439e-b46d-051227df08d1"
+                    },
+                    {
+                      "id": "f18b55e1-66cb-49bb-bfc4-ee57200ae7e2",
+                      "name": "Invalid Auth",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/book-copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "book-copy"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-f18b55e1-66cb-49bb-bfc4-ee57200ae7e2"
+                    },
+                    {
+                      "id": "30ab66fd-3332-45a7-9a29-142785e7ac4e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/book-copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "book-copy"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-30ab66fd-3332-45a7-9a29-142785e7ac4e"
+                    },
+                    {
+                      "id": "9e224e00-5268-454d-8cbb-3bbe621b819e",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/settings/book-copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "settings",
+                            "book-copy"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:25:06.000Z",
+                      "updatedAt": "2026-07-28T02:25:06.000Z",
+                      "uid": "35240-9e224e00-5268-454d-8cbb-3bbe621b819e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:25:06.000Z",
+                  "updatedAt": "2026-07-28T02:25:06.000Z",
+                  "uid": "35240-69b4c946-59c1-4881-94eb-fb501dad57f9"
+                }
+              ],
+              "id": "fdded617-3e2b-450e-8eb0-298fe9c3e7cc",
+              "createdAt": "2026-07-28T02:25:06.000Z",
+              "updatedAt": "2026-07-28T02:25:06.000Z",
+              "uid": "35240-fdded617-3e2b-450e-8eb0-298fe9c3e7cc"
+            }
+          ],
+          "id": "8dd945cd-4103-4169-91e4-38c338c3e424",
+          "createdAt": "2026-07-28T02:25:06.000Z",
+          "updatedAt": "2026-07-28T02:25:06.000Z",
+          "uid": "35240-8dd945cd-4103-4169-91e4-38c338c3e424"
+        }
+      ],
+      "id": "ecd17031-e76d-4c70-8109-e73bdcab907e",
+      "createdAt": "2026-07-28T02:25:06.000Z",
+      "updatedAt": "2026-07-28T02:25:06.000Z",
+      "uid": "35240-ecd17031-e76d-4c70-8109-e73bdcab907e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

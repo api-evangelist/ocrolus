@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: ocrolus-analyze-bank-statement.md
+  name: Analyze a bank statement with Ocrolus
+  api: openapi/ocrolus-file-uploads-openapi.json
+  operations:
+  - grant-authentication-token
+  - create-a-book
+  - upload-pdf-to-book
+  - book-status
+  - bsic
+  - cash-flow-features
+- file: ocrolus-detect-fraud.md
+  name: Detect document fraud signals with Ocrolus
+  api: openapi/ocrolus-detect-openapi.json
+  operations:
+  - grant-authentication-token
+  - create-a-book
+  - upload-pdf-to-book
+  - book-status
+  - book-fraud-signals
+  - suspicious-activity-flags
+- file: ocrolus-mortgage-income.md
+  name: Calculate income for mortgage underwriting with Ocrolus
+  api: openapi/ocrolus-income-openapi.json
+  operations:
+  - grant-authentication-token
+  - create-a-book
+  - upload-pdf-to-book
+  - book-status
+  - income-summary
+  - income-calculations
+- file: ocrolus-configure-webhooks.md
+  name: Configure Ocrolus webhooks for async completion
+  api: openapi/ocrolus-account-level-webhooks-openapi.json
+  operations:
+  - grant-authentication-token
+  - configure-webhook
+  - webhook-configuration
+  - test-webhook
+  - add-webhook
+  - list-events

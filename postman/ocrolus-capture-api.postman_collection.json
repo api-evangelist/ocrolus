@@ -1,0 +1,1265 @@
+{
+  "info": {
+    "_postman_id": "ad6f710a-e2d1-4dcf-b4f3-566c404ff7a1",
+    "name": "Account Level Webhooks Book Commands Capture API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:24:54.000Z",
+    "updatedAt": "2026-07-28T02:24:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ad6f710a-e2d1-4dcf-b4f3-566c404ff7a1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "forms",
+              "item": [
+                {
+                  "name": "Book form data",
+                  "id": "9a67483c-96af-4ba1-8ab8-a00b50ed15fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/book/forms?book_uuid=<string>&pk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "book",
+                        "forms"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of the <<glossary:Book>> that contains the form data. Mutually exclusive with `pk`.",
+                          "key": "book_uuid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the form data. Mutually exclusive with `book_uuid`.",
+                          "key": "pk",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve data for all forms uploaded to a <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition."
+                  },
+                  "response": [
+                    {
+                      "id": "8c104ef0-cf48-4a77-aeb3-82cd71fc5c0a",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/forms?book_uuid=<string>&pk=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "forms"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique identifier of the <<glossary:Book>> that contains the form data. Mutually exclusive with `pk`.",
+                              "key": "book_uuid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the form data. Mutually exclusive with `book_uuid`.",
+                              "key": "pk",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"response\": {\n    \"pk\": \"<integer>\",\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"created\": \"<string>\",\n    \"created_ts\": \"<string>\",\n    \"verified_pages_count\": \"<integer>\",\n    \"book_status\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"forms\": [\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"uploaded_doc_pk\": \"<integer>\",\n        \"form_type\": \"<string>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"subfields\": {\n              \"value\": \"<string>\",\n              \"is_empty\": \"<boolean>\",\n              \"alias_used\": \"<string>\",\n              \"source_filename\": \"<string>\",\n              \"confidence\": \"<number>\"\n            }\n          }\n        },\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"attribute_data\": {\n          \"period_pk\": \"<integer>\"\n        }\n      },\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"uploaded_doc_pk\": \"<integer>\",\n        \"form_type\": \"<string>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"subfields\": {\n              \"value\": \"<string>\",\n              \"is_empty\": \"<boolean>\",\n              \"alias_used\": \"<string>\",\n              \"source_filename\": \"<string>\",\n              \"confidence\": \"<number>\"\n            }\n          }\n        },\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"attribute_data\": {\n          \"period_pk\": \"<integer>\"\n        }\n      }\n    ],\n    \"book_is_complete\": \"<boolean>\"\n  },\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-8c104ef0-cf48-4a77-aeb3-82cd71fc5c0a"
+                    },
+                    {
+                      "id": "7ff10fb9-07eb-48b1-8802-7f26e76ac49b",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/book/forms?book_uuid=<string>&pk=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "book",
+                            "forms"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique identifier of the <<glossary:Book>> that contains the form data. Mutually exclusive with `pk`.",
+                              "key": "book_uuid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the form data. Mutually exclusive with `book_uuid`.",
+                              "key": "pk",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-7ff10fb9-07eb-48b1-8802-7f26e76ac49b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-9a67483c-96af-4ba1-8ab8-a00b50ed15fa"
+                }
+              ],
+              "id": "bae296b5-c25e-4af8-9e82-92cda8f9cd8c",
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-bae296b5-c25e-4af8-9e82-92cda8f9cd8c"
+            }
+          ],
+          "id": "4140fdd7-ed83-4c13-a2ff-298603d15d0e",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-4140fdd7-ed83-4c13-a2ff-298603d15d0e"
+        },
+        {
+          "name": "document",
+          "item": [
+            {
+              "name": "forms",
+              "item": [
+                {
+                  "name": "fields",
+                  "item": [
+                    {
+                      "name": "Doc form data",
+                      "id": "0819c2f5-5ac9-454b-a1b7-0227ff654e91",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/document/forms/fields?doc_uuid=<string>&pk=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "document",
+                            "forms",
+                            "fields"
+                          ],
+                          "query": [
+                            {
+                              "description": "The unique identifier of the <<glossary:Document>> that contains the form data. Mutually exclusive with `pk`.",
+                              "key": "doc_uuid",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The <<glossary:PK>> of the <<glossary:Document>> that contains the form data. Mutually exclusive with `doc_uuid`.",
+                              "key": "pk",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Get field data for all <<glossary:Form>>s captured in a <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition. "
+                      },
+                      "response": [
+                        {
+                          "id": "b6f7a69d-99f8-4d82-9711-bbb3c76a424f",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/document/forms/fields?doc_uuid=<string>&pk=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "document",
+                                "forms",
+                                "fields"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique identifier of the <<glossary:Document>> that contains the form data. Mutually exclusive with `pk`.",
+                                  "key": "doc_uuid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The <<glossary:PK>> of the <<glossary:Document>> that contains the form data. Mutually exclusive with `doc_uuid`.",
+                                  "key": "pk",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"response\": {\n    \"pk\": \"<integer>\",\n    \"uuid\": \"<string>\",\n    \"forms\": [\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"form_type\": \"<string>\",\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"confidence\": \"<number>\"\n          }\n        }\n      },\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"form_type\": \"<string>\",\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"confidence\": \"<number>\"\n          }\n        }\n      }\n    ]\n  },\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-b6f7a69d-99f8-4d82-9711-bbb3c76a424f"
+                        },
+                        {
+                          "id": "15a0ed43-e3b9-4be5-b299-03014836f137",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/document/forms/fields?doc_uuid=<string>&pk=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "document",
+                                "forms",
+                                "fields"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The unique identifier of the <<glossary:Document>> that contains the form data. Mutually exclusive with `pk`.",
+                                  "key": "doc_uuid",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The <<glossary:PK>> of the <<glossary:Document>> that contains the form data. Mutually exclusive with `doc_uuid`.",
+                                  "key": "pk",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-15a0ed43-e3b9-4be5-b299-03014836f137"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-0819c2f5-5ac9-454b-a1b7-0227ff654e91"
+                    }
+                  ],
+                  "id": "720613f1-1eb4-4192-9ae2-864f60526bec",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-720613f1-1eb4-4192-9ae2-864f60526bec"
+                }
+              ],
+              "id": "4c4fb141-e0f8-4d60-86be-d367f76b5cb8",
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-4c4fb141-e0f8-4d60-86be-d367f76b5cb8"
+            }
+          ],
+          "id": "cf4b48cf-34fe-4bd0-920e-0470134a109c",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-cf4b48cf-34fe-4bd0-920e-0470134a109c"
+        },
+        {
+          "name": "form",
+          "item": [
+            {
+              "name": "Form data",
+              "id": "5704edb4-34ce-480a-b74a-15bac8ae85e3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/form?uuid=<string>&pk=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "form"
+                  ],
+                  "query": [
+                    {
+                      "description": "The unique identifier of a <<glossary:Form>>.",
+                      "key": "uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The unique primary key of a <<glossary:Form>>.",
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieve field data for a <<glossary:Form>>.\n\n---\n\nA detailed description of the response can be found on the [Form data](https://docs.ocrolus.com/docs/form-data) data type definition."
+              },
+              "response": [
+                {
+                  "id": "2a14a0e6-92c6-411c-b8e9-adec40248f01",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/form?uuid=<string>&pk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "form"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of a <<glossary:Form>>.",
+                          "key": "uuid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Form>>.",
+                          "key": "pk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"response\": {\n    \"pk\": \"<integer>\",\n    \"uuid\": \"<string>\",\n    \"forms\": [\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"form_type\": \"<string>\",\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"confidence\": \"<number>\"\n          }\n        }\n      },\n      {\n        \"pk\": \"<integer>\",\n        \"uuid\": \"<string>\",\n        \"form_type\": \"<string>\",\n        \"form_config_pk\": \"<integer>\",\n        \"tables\": \"<array>\",\n        \"raw_fields\": {\n          \"examplefield:field_name\": {\n            \"value\": \"<string>\",\n            \"is_empty\": \"<boolean>\",\n            \"alias_used\": \"<string>\",\n            \"source_filename\": \"<string>\",\n            \"confidence\": \"<number>\"\n          }\n        }\n      }\n    ]\n  },\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-2a14a0e6-92c6-411c-b8e9-adec40248f01"
+                },
+                {
+                  "id": "7488c217-dd12-456a-9e6f-59afeb731255",
+                  "name": "Client Errors",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/form?uuid=<string>&pk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "form"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of a <<glossary:Form>>.",
+                          "key": "uuid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Form>>.",
+                          "key": "pk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-7488c217-dd12-456a-9e6f-59afeb731255"
+                }
+              ],
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-5704edb4-34ce-480a-b74a-15bac8ae85e3"
+            }
+          ],
+          "id": "b95e8f34-6f8e-4b37-8790-365b1e4f0a2c",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-b95e8f34-6f8e-4b37-8790-365b1e4f0a2c"
+        },
+        {
+          "name": "transaction",
+          "item": [
+            {
+              "name": "Transactions",
+              "id": "61b9147b-0373-45b8-b05c-212c3aadfd68",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transaction?book_uuid=<uuid>&book_pk=<uuid>&uploaded_doc_uuid=<string>&uploaded_doc_pk=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "The unique identifier of a <<glossary:Book>>. Mutually exclusive with `book_pk`.",
+                      "key": "book_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "The unique primary key of a <<glossary:Book>>. Mutually exclusive with `book_uuid`.",
+                      "key": "book_pk",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "The unique identifier of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_pk`.",
+                      "key": "uploaded_doc_uuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The unique primary key of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_uuid`.",
+                      "key": "uploaded_doc_pk",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieve transactions from all Documents uploaded to a <<glossary:Book>>.\n\n---\n> \ud83d\udea7 \n> The Transactions endpoint provides raw transactions output. If you are looking for enriched transactions complete with a list of categories, transaction tagging, and improved revenue, expense, and transfer logic, please visit the [Enriched transactions page](ref:enriched-transactions)\n\n> \ud83d\udcd8\n> If `uploaded_doc_pk` or `uploaded_doc_uuid` are not provided in the request, transactions from all Documents in the Book will be provided."
+              },
+              "response": [
+                {
+                  "id": "5e4fda3f-286b-4d0b-81de-300b95130c99",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transaction?book_uuid=<uuid>&book_pk=<uuid>&uploaded_doc_uuid=<string>&uploaded_doc_pk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transaction"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of a <<glossary:Book>>. Mutually exclusive with `book_pk`.",
+                          "key": "book_uuid",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Book>>. Mutually exclusive with `book_uuid`.",
+                          "key": "book_pk",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The unique identifier of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_pk`.",
+                          "key": "uploaded_doc_uuid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_uuid`.",
+                          "key": "uploaded_doc_pk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"response\": {\n    \"txns\": [\n      {\n        \"page_idx\": \"<integer>\",\n        \"bank_account_pk\": \"<integer>\",\n        \"amount\": \"<string>\",\n        \"bbox\": \"<array>\",\n        \"txn_date\": \"<string>\",\n        \"page_doc_pk\": \"<string>\",\n        \"pk\": \"<string>\",\n        \"uploaded_doc_pk\": \"<string>\",\n        \"description\": \"<string>\",\n        \"txn_pk_duplicate_of\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"explanation\": \"<string>\",\n        \"has_probable_transfers\": \"<boolean>\",\n        \"tags\": \"<array>\",\n        \"period_pk\": \"<string>\"\n      },\n      {\n        \"page_idx\": \"<integer>\",\n        \"bank_account_pk\": \"<integer>\",\n        \"amount\": \"<string>\",\n        \"bbox\": \"<array>\",\n        \"txn_date\": \"<string>\",\n        \"page_doc_pk\": \"<string>\",\n        \"pk\": \"<string>\",\n        \"uploaded_doc_pk\": \"<string>\",\n        \"description\": \"<string>\",\n        \"txn_pk_duplicate_of\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"explanation\": \"<string>\",\n        \"has_probable_transfers\": \"<boolean>\",\n        \"tags\": \"<array>\",\n        \"period_pk\": \"<string>\"\n      }\n    ],\n    \"uploaded_docs\": {\n      \"uploaded_doc_pk\": {\n        \"name\": \"<string>\",\n        \"status\": \"<string>\",\n        \"pages\": \"<integer>\",\n        \"pk\": \"<string>\",\n        \"uuid\": \"<string>\",\n        \"rejection_reason\": \"<string>\",\n        \"uploaded_doc_type\": \"<string>\",\n        \"sub_doc_type\": \"<string>\",\n        \"sub_doc_type_details\": \"<string>\",\n        \"mixed_uploaded_doc_pk\": \"<string>\",\n        \"mixed_uploaded_doc_uuid\": \"<string>\"\n      }\n    },\n    \"bank_accounts\": {\n      \"bank_account_pk\": {\n        \"pk\": \"<string>\",\n        \"book_pk\": \"<string>\",\n        \"name\": \"<integer>\",\n        \"bank_name\": \"<string>\",\n        \"activity_info\": [\n          {\n            \"start\": [\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            ],\n            \"end\": [\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            ],\n            \"missing\": \"<array>\"\n          },\n          {\n            \"start\": [\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            ],\n            \"end\": [\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              },\n              {\n                \"year\": \"<integer>\",\n                \"month\": \"<integer>\",\n                \"day\": \"<integer>\"\n              }\n            ],\n            \"missing\": \"<array>\"\n          }\n        ],\n        \"account_type\": \"<string>\",\n        \"account_holder\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"holder_zip\": \"<string>\",\n        \"holder_country\": \"<string>\",\n        \"holder_state\": \"<string>\",\n        \"holder_city\": \"<string>\",\n        \"holder_address_1\": \"<string>\",\n        \"holder_address_2\": \"<string>\",\n        \"account_category\": \"<string>\",\n        \"member_id\": \"<string>\",\n        \"account_source\": null,\n        \"id\": \"<string>\",\n        \"book_uuid\": \"<string>\",\n        \"periods\": [\n          {\n            \"pk\": \"<string>\",\n            \"uuid\": \"<string>\",\n            \"bank_account_pk\": \"<integer>\",\n            \"begin_date\": \"<string>\",\n            \"end_date\": \"<string>\",\n            \"begin_balance\": \"<string>\",\n            \"end_balance\": \"<string>\",\n            \"primary_recon_error_reason\": \"<string>\",\n            \"secondary_recon_error_reason\": \"<string>\",\n            \"absolute_recon_error\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\"\n          },\n          {\n            \"pk\": \"<string>\",\n            \"uuid\": \"<string>\",\n            \"bank_account_pk\": \"<integer>\",\n            \"begin_date\": \"<string>\",\n            \"end_date\": \"<string>\",\n            \"begin_balance\": \"<string>\",\n            \"end_balance\": \"<string>\",\n            \"primary_recon_error_reason\": \"<string>\",\n            \"secondary_recon_error_reason\": \"<string>\",\n            \"absolute_recon_error\": \"<string>\",\n            \"uploaded_doc_pk\": \"<string>\"\n          }\n        ],\n        \"account_holders\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"bank_checks\": [\n      {\n        \"uuid\": \"<string>\",\n        \"bank_account_pk\": \"<integer>\",\n        \"amount\": \"<number>\",\n        \"pay_to\": \"<string>\",\n        \"txn_date\": \"<string>\",\n        \"check_number\": \"<string>\",\n        \"memo_number\": \"<string>\"\n      },\n      {\n        \"uuid\": \"<string>\",\n        \"bank_account_pk\": \"<integer>\",\n        \"amount\": \"<number>\",\n        \"pay_to\": \"<string>\",\n        \"txn_date\": \"<string>\",\n        \"check_number\": \"<string>\",\n        \"memo_number\": \"<string>\"\n      }\n    ],\n    \"tags\": \"<string>\"\n  },\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-5e4fda3f-286b-4d0b-81de-300b95130c99"
+                },
+                {
+                  "id": "920dd9f4-ba83-448b-be2b-e67f825f3bee",
+                  "name": "Client Errors",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transaction?book_uuid=<uuid>&book_pk=<uuid>&uploaded_doc_uuid=<string>&uploaded_doc_pk=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transaction"
+                      ],
+                      "query": [
+                        {
+                          "description": "The unique identifier of a <<glossary:Book>>. Mutually exclusive with `book_pk`.",
+                          "key": "book_uuid",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Book>>. Mutually exclusive with `book_uuid`.",
+                          "key": "book_pk",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The unique identifier of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_pk`.",
+                          "key": "uploaded_doc_uuid",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The unique primary key of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_uuid`.",
+                          "key": "uploaded_doc_pk",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-920dd9f4-ba83-448b-be2b-e67f825f3bee"
+                }
+              ],
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-61b9147b-0373-45b8-b05c-212c3aadfd68"
+            }
+          ],
+          "id": "8b1cd300-78eb-4f47-bbd3-34f8370ab4ad",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-8b1cd300-78eb-4f47-bbd3-34f8370ab4ad"
+        }
+      ],
+      "id": "b262ef4f-eafa-4630-9901-944cb743582e",
+      "createdAt": "2026-07-28T02:24:54.000Z",
+      "updatedAt": "2026-07-28T02:24:54.000Z",
+      "uid": "35240-b262ef4f-eafa-4630-9901-944cb743582e"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "book",
+          "item": [
+            {
+              "name": "{book_uuid}",
+              "item": [
+                {
+                  "name": "paystub",
+                  "item": [
+                    {
+                      "name": "Book pay stub data",
+                      "id": "d0e93bb0-4add-490e-ad04-fd818b14194c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/book/:book_uuid/paystub",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "book",
+                            ":book_uuid",
+                            "paystub"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b25296fb-3142-43e4-af3b-ea4d44dd6235",
+                              "key": "book_uuid",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of a <<glossary:Book>> that contains the pay stub data."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve pay stub data for a given <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition."
+                      },
+                      "response": [
+                        {
+                          "id": "d6a3fb72-a149-46de-8db6-bf03c4e6b6c0",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/paystub",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "paystub"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": {\n    \"uuid\": \"<string>\",\n    \"book_uuid\": \"<string>\",\n    \"doc_uuid\": \"<string>\",\n    \"status\": \"<string>\",\n    \"doc_page_numbers\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"rejection_reason\": \"<string>\",\n    \"uploaded_image_bucket_uuid\": \"<string>\",\n    \"net_pay\": {\n      \"distribution_details\": [\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": {\n        \"description\": \"<string>\",\n        \"canonical_description\": \"<string>\",\n        \"current_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"ytd_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      }\n    },\n    \"earnings\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        }\n      ]\n    },\n    \"deductions\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"employer\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      }\n    },\n    \"employee\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      },\n      \"marital_status\": \"<string>\",\n      \"taxpayer_id\": {\n        \"id_type\": \"<string>\",\n        \"last_4_digits\": \"<string>\"\n      }\n    },\n    \"paystub_details\": {\n      \"pay_period_start_date\": \"<string>\",\n      \"pay_period_end_date\": \"<string>\",\n      \"pay_date\": \"<string>\",\n      \"paystub_provider\": \"<string>\",\n      \"pay_frequency\": \"<string>\",\n      \"pay_frequency_captured\": \"<string>\"\n    },\n    \"employment_details\": {\n      \"hire_date\": \"<string>\",\n      \"annual_salary\": {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    \"confidence_scores\": [\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      },\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-d6a3fb72-a149-46de-8db6-bf03c4e6b6c0"
+                        },
+                        {
+                          "id": "72f244d3-d09e-4fd9-9638-05fe7fbcd16e",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/book/:book_uuid/paystub",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "book",
+                                ":book_uuid",
+                                "paystub"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "book_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-72f244d3-d09e-4fd9-9638-05fe7fbcd16e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-d0e93bb0-4add-490e-ad04-fd818b14194c"
+                    }
+                  ],
+                  "id": "bad519ba-35ef-4076-b7d6-cfedc8c9336c",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-bad519ba-35ef-4076-b7d6-cfedc8c9336c"
+                }
+              ],
+              "id": "da527270-151b-4f21-9deb-f0483b98c76c",
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-da527270-151b-4f21-9deb-f0483b98c76c"
+            }
+          ],
+          "id": "7ca04e5f-2862-42cd-b2d1-5ce667000c3c",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-7ca04e5f-2862-42cd-b2d1-5ce667000c3c"
+        },
+        {
+          "name": "document",
+          "item": [
+            {
+              "name": "{doc_uuid}",
+              "item": [
+                {
+                  "name": "paystub",
+                  "item": [
+                    {
+                      "name": "Doc pay stub data",
+                      "id": "ab3d2971-abc5-4f40-8f63-51009a0e7155",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/document/:doc_uuid/paystub",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "document",
+                            ":doc_uuid",
+                            "paystub"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c3e74d8e-c7d2-4356-988d-392961a65cd2",
+                              "key": "doc_uuid",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the <<glossary:Document>> that contains the pay stub data."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve pay stub data for a given <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [Pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition"
+                      },
+                      "response": [
+                        {
+                          "id": "32ab1fcb-b894-408d-9e00-3fa19afccbb4",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/document/:doc_uuid/paystub",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "document",
+                                ":doc_uuid",
+                                "paystub"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "doc_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": {\n    \"uuid\": \"<string>\",\n    \"book_uuid\": \"<string>\",\n    \"doc_uuid\": \"<string>\",\n    \"status\": \"<string>\",\n    \"doc_page_numbers\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"rejection_reason\": \"<string>\",\n    \"uploaded_image_bucket_uuid\": \"<string>\",\n    \"net_pay\": {\n      \"distribution_details\": [\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": {\n        \"description\": \"<string>\",\n        \"canonical_description\": \"<string>\",\n        \"current_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"ytd_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      }\n    },\n    \"earnings\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        }\n      ]\n    },\n    \"deductions\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"employer\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      }\n    },\n    \"employee\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      },\n      \"marital_status\": \"<string>\",\n      \"taxpayer_id\": {\n        \"id_type\": \"<string>\",\n        \"last_4_digits\": \"<string>\"\n      }\n    },\n    \"paystub_details\": {\n      \"pay_period_start_date\": \"<string>\",\n      \"pay_period_end_date\": \"<string>\",\n      \"pay_date\": \"<string>\",\n      \"paystub_provider\": \"<string>\",\n      \"pay_frequency\": \"<string>\",\n      \"pay_frequency_captured\": \"<string>\"\n    },\n    \"employment_details\": {\n      \"hire_date\": \"<string>\",\n      \"annual_salary\": {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    \"confidence_scores\": [\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      },\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-32ab1fcb-b894-408d-9e00-3fa19afccbb4"
+                        },
+                        {
+                          "id": "551a73ca-f64d-45ae-8f3d-2b35c0127ec4",
+                          "name": "Client Errors",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/document/:doc_uuid/paystub",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "document",
+                                ":doc_uuid",
+                                "paystub"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "doc_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:24:54.000Z",
+                          "updatedAt": "2026-07-28T02:24:54.000Z",
+                          "uid": "35240-551a73ca-f64d-45ae-8f3d-2b35c0127ec4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-ab3d2971-abc5-4f40-8f63-51009a0e7155"
+                    }
+                  ],
+                  "id": "942ab38c-c8d5-4d46-9e38-994ad5e35f8a",
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-942ab38c-c8d5-4d46-9e38-994ad5e35f8a"
+                }
+              ],
+              "id": "542fe509-2799-4bd9-b837-d6b0e610d3ce",
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-542fe509-2799-4bd9-b837-d6b0e610d3ce"
+            }
+          ],
+          "id": "2f0a586c-daed-4119-8783-678cddf50bfd",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-2f0a586c-daed-4119-8783-678cddf50bfd"
+        },
+        {
+          "name": "paystub",
+          "item": [
+            {
+              "name": "{paystub_uuid}",
+              "item": [
+                {
+                  "name": "Pay stub data",
+                  "id": "ad4421fd-b3d4-42f1-86bc-a10e03b54379",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/paystub/:paystub_uuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "paystub",
+                        ":paystub_uuid"
+                      ],
+                      "variable": [
+                        {
+                          "id": "23467567-84f3-4579-8a1b-3fd9291d7b09",
+                          "key": "paystub_uuid",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of a pay stub."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve pay stub data for a given <<glossary:Pay stub>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition."
+                  },
+                  "response": [
+                    {
+                      "id": "535c1c20-f5f3-4f0c-8ac0-679221b9e6cd",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/paystub/:paystub_uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "paystub",
+                            ":paystub_uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paystub_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"response\": {\n    \"uuid\": \"<string>\",\n    \"book_uuid\": \"<string>\",\n    \"doc_uuid\": \"<string>\",\n    \"status\": \"<string>\",\n    \"doc_page_numbers\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"rejection_reason\": \"<string>\",\n    \"uploaded_image_bucket_uuid\": \"<string>\",\n    \"net_pay\": {\n      \"distribution_details\": [\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"bank_name\": \"<string>\",\n          \"account_number\": \"<string>\",\n          \"bank_account_type\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": {\n        \"description\": \"<string>\",\n        \"canonical_description\": \"<string>\",\n        \"current_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        \"ytd_pay\": {\n          \"amount\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      }\n    },\n    \"earnings\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\",\n          \"current_rate\": \"<string>\"\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"current_hours\": \"<string>\"\n        }\n      ]\n    },\n    \"deductions\": {\n      \"subtotals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ],\n      \"totals\": [\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        },\n        {\n          \"description\": \"<string>\",\n          \"canonical_description\": \"<string>\",\n          \"current_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"<string>\",\n            \"currency\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"employer\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      }\n    },\n    \"employee\": {\n      \"name\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state_code\": \"<string>\",\n        \"postal_code\": \"<string>\"\n      },\n      \"marital_status\": \"<string>\",\n      \"taxpayer_id\": {\n        \"id_type\": \"<string>\",\n        \"last_4_digits\": \"<string>\"\n      }\n    },\n    \"paystub_details\": {\n      \"pay_period_start_date\": \"<string>\",\n      \"pay_period_end_date\": \"<string>\",\n      \"pay_date\": \"<string>\",\n      \"paystub_provider\": \"<string>\",\n      \"pay_frequency\": \"<string>\",\n      \"pay_frequency_captured\": \"<string>\"\n    },\n    \"employment_details\": {\n      \"hire_date\": \"<string>\",\n      \"annual_salary\": {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    \"confidence_scores\": [\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      },\n      {\n        \"confidence\": \"<integer>\",\n        \"key\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-535c1c20-f5f3-4f0c-8ac0-679221b9e6cd"
+                    },
+                    {
+                      "id": "5dccf674-376d-46ab-be36-930404ca82e1",
+                      "name": "Client Errors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/paystub/:paystub_uuid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "paystub",
+                            ":paystub_uuid"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paystub_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"code\": \"<integer>\",\n  \"response\": {},\n  \"message\": \"<string>\",\n  \"meta\": {\n    \"status\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"code\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:24:54.000Z",
+                      "updatedAt": "2026-07-28T02:24:54.000Z",
+                      "uid": "35240-5dccf674-376d-46ab-be36-930404ca82e1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:24:54.000Z",
+                  "updatedAt": "2026-07-28T02:24:54.000Z",
+                  "uid": "35240-ad4421fd-b3d4-42f1-86bc-a10e03b54379"
+                }
+              ],
+              "id": "b0bd1624-1e30-45aa-9360-83a8b917e6dd",
+              "createdAt": "2026-07-28T02:24:54.000Z",
+              "updatedAt": "2026-07-28T02:24:54.000Z",
+              "uid": "35240-b0bd1624-1e30-45aa-9360-83a8b917e6dd"
+            }
+          ],
+          "id": "f698bcc4-0f35-429a-a199-8e8ce575f1c1",
+          "createdAt": "2026-07-28T02:24:54.000Z",
+          "updatedAt": "2026-07-28T02:24:54.000Z",
+          "uid": "35240-f698bcc4-0f35-429a-a199-8e8ce575f1c1"
+        }
+      ],
+      "id": "2a11e74d-636b-4227-ae20-3573ca801969",
+      "createdAt": "2026-07-28T02:24:54.000Z",
+      "updatedAt": "2026-07-28T02:24:54.000Z",
+      "uid": "35240-2a11e74d-636b-4227-ae20-3573ca801969"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ocrolus.com"
+    }
+  ]
+}

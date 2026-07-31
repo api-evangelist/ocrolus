@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- https://api.ocrolus.com
+- https://ocrolus.com
+- https://www.ocrolus.com
+note: api.ocrolus.com returns a catch-all authentication error for all /.well-known/ paths; none are genuine.
+  ocrolus.com security.txt redirects to www (404). No valid well-known documents found.
+documents:
+- host: https://api.ocrolus.com
+  path: /.well-known/openid-configuration
+  status: 200
+  valid: false
+  reason: catch-all auth error body
+- host: https://api.ocrolus.com
+  path: /.well-known/oauth-authorization-server
+  status: 200
+  valid: false
+  reason: catch-all auth error body
+- host: https://api.ocrolus.com
+  path: /.well-known/security.txt
+  status: 200
+  valid: false
+  reason: catch-all auth error body
+- host: https://ocrolus.com
+  path: /.well-known/security.txt
+  status: 301
+  valid: false
+  reason: redirect to www (404)
+- host: https://www.ocrolus.com
+  path: /.well-known/security.txt
+  status: 404
+  valid: false
