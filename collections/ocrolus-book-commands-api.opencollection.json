@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Book Commands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a <<glossary:Book>> that you can use to group related <<glossary:Document>>s. Each document must be uploaded to a <<glossary:Book>>, so you'll need to create one with this endpoint before you can upload files. <<glossary:Book>>s are generally used to store related <<glossary:Document>>s, such as for a loan application or a case file."
+        },
+        {
+          "info": {
+            "name": "Delete Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/remove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a <<glossary:Book>> that you no longer need.\n\n---\n> 🚧 No turning back!\n> Deleting a <<glossary:Book>> also deletes the <<glossary:Document>>s contained within. This action is not reversible, meaning that you can't recover deleted <<glossary:Document>>s and <<glossary:Book>>s. Make sure you're ready!"
+        },
+        {
+          "info": {
+            "name": "Update Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure various properties of a <<glossary:Book>>."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

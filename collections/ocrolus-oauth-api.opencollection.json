@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Oauth API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Oauth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Grant authentication token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a JWT-compliant access token for use with all other endpoints.\n\n---\n\n\n\n> 📘\n> All tokens currently expire after 24 hours (86,400 seconds), but we suggest refreshing tokens every 12 hours (43,200 seconds).\n\nHere's an example of using the returned token in an API call:\n```cURL\ncurl \\\n  --url \"https://api.ocrolus.com/v1/books\" \\\n  --oauth2-bearer \"eyJhbGciOiJ...2hUye_4CpIvQ\"\n\n```\nSee our guide on [using API credentials](doc:using-api-credentials) for more details.\n\nThis endpoint is OAuth 2"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

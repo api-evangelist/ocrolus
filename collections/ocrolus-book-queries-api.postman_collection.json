@@ -1,0 +1,1161 @@
+{
+  "item": [
+    {
+      "id": "dda6b6fa-a571-47b5-ac60-b73642c83860",
+      "name": "Book Queries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18188a0d-abc9-4cbb-b732-05bc50b66b9f",
+          "name": "Book from loan",
+          "request": {
+            "name": "Book from loan",
+            "description": {
+              "content": "This API endpoint lets you retrieve the Ocrolus <<glossary:Book>> associated with a specific Encompass loan. You can query it using either the `Encompass loan_id` (GUID) or the `loan_number`, depending on which identifier you have available. \n\n> 📘 Note:\n> The system accepts either `loan_id` or `loan_number` to identify the loan. If both parameters are provided, or if neither is included in the request payload, the API returns a 400 error.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "los-connect",
+                "encompass",
+                "book"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "loan_id",
+                  "value": "<string>",
+                  "description": "The unique Encompass loan identifier expressed in Globally Unique Identifier (GUID) format."
+                },
+                {
+                  "disabled": false,
+                  "key": "loan_number",
+                  "value": "<string>",
+                  "description": "The numeric identifier assigned to an Encompass loan."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9116987b-73f3-4ea1-b41c-02fc8687a93a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "encompass",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loan_id",
+                      "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9"
+                    },
+                    {
+                      "key": "loan_number",
+                      "value": "LN250918342"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"loan_number\": \"TEST250918342\",\n    \"loan_guid\": \"c3f7e84d-8a91-4b1c-9460-192a746ad3c9\",\n    \"client_instance_id\": \"DEMO99887766\",\n    \"client_name\": \"Encompass QA Sandbox\",\n    \"book_details\": {\n      \"book_pk\": 472391,\n      \"name\": \"Encompass QA Sandbox-c3f7e84d-8a91-4b1c-9460-192a746ad3c9-521\",\n      \"book_status\": \"ACTIVE\",\n      \"created_ts\": \"2025-02-12T15:23:47.382194\",\n      \"book_uuid\": \"7a82f03c-4d7d-4a2e-baf4-63bbccff7b92\"\n    }\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd863098-38f1-4705-8b32-ecc6951e9ec2",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "encompass",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loan_id",
+                      "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9"
+                    },
+                    {
+                      "key": "loan_number",
+                      "value": "LN250918342"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1200,\n  \"message\": \"Authentication failed\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Authentication failed\",\n    \"code\": 1200\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85a7f074-3631-4e1c-8d5c-899599cb56e9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "encompass",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loan_id",
+                      "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9"
+                    },
+                    {
+                      "key": "loan_number",
+                      "value": "LN250918342"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"message\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3c9e0a3-b981-4661-9973-336d2e6beba8",
+              "name": "NOT FOUND",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "encompass",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loan_id",
+                      "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9"
+                    },
+                    {
+                      "key": "loan_number",
+                      "value": "LN250918342"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd3b16da-ccf2-4b3f-ad10-ff30fb90675f",
+              "name": "INTERNAL SERVER ERROR",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "encompass",
+                    "book"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loan_id",
+                      "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9"
+                    },
+                    {
+                      "key": "loan_number",
+                      "value": "LN250918342"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 500,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1eae94b1-2825-4b3d-952a-8ad4ec75b334",
+          "name": "Loan details from Book",
+          "request": {
+            "name": "Loan details from Book",
+            "description": {
+              "content": "This API retrieves the Encompass Loan GUID and related loan metadata using the Ocrolus <<glossary:Book>> UUID. It enables seamless mapping between an Ocrolus Book and its corresponding Encompass Loan, supporting accurate LOS integration, tracking, and synchronization between Ocrolus and Encompass systems.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "los-connect",
+                "book",
+                ":book_uuid",
+                "loans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "987651f6-e156-4729-a334-3d42581e51f3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "book",
+                    ":book_uuid",
+                    "loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"loan_details\": {\n    \"loan_id\": \"c45d08b2-f123-4dff-82b0-11aa3f5c34d9\",\n    \"loan_number\": \"TEST202512345\",\n    \"client_instance_id\": \"TEBE98765432\",\n    \"created_ts\": \"2025-10-27T17:47:18.955864+00:00\"\n  },\n  \"book_details\": {\n    \"book_pk\": 764839,\n    \"name\": \"Encompass TE Integration Testing-c45d08b2-f123-4dff-82b0-11aa3f5c34d9-001\",\n    \"book_status\": \"ACTIVE\",\n    \"created_ts\": \"2025-10-27T17:47:21.129183\",\n    \"book_uuid\": \"abf37196-12e5-47ca-b33c-e12aa3c9de11\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "859bf4ee-27cf-4fcf-8369-98499a1d0ac8",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "book",
+                    ":book_uuid",
+                    "loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1200,\n  \"message\": \"Authentication failed\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Authentication failed\",\n    \"code\": 1200\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4755464c-2d8c-4c07-9d19-534cfef37aa9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "book",
+                    ":book_uuid",
+                    "loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"message\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb6bbe88-789c-4b80-90f8-0de33dcb3ee2",
+              "name": "NOT FOUND",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "book",
+                    ":book_uuid",
+                    "loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e312a085-08c3-406f-8b3a-c85d20df64db",
+              "name": "INTERNAL SERVER ERROR",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "los-connect",
+                    "book",
+                    ":book_uuid",
+                    "loans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 500,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ee539ed-a260-4935-a949-f51764b1d8f7",
+          "name": "Book information",
+          "request": {
+            "name": "Book information",
+            "description": {
+              "content": "Retrieve details of a <<glossary:Book>>, including uploaded <<glossary:Document>>s, bank account information, and transaction periods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "book_uuid",
+                  "value": "<uuid>",
+                  "description": "The unique identifier of the <<glossary:Book>> whose information you want to retrieve. Mutually exclusive with `book_pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pk",
+                  "value": "<string>",
+                  "description": "Unique primary key (pk) of the <<glossary:Book>> whose information you want to retrieve. Mutually exclusive with `book_uuid`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb7f270e-39ee-47a3-83b0-d31e576de088",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"name\": \"Example Book\",\n    \"created\": \"2023-06-07T14:17:49Z\",\n    \"created_ts\": \"2023-06-07T14:17:49Z\",\n    \"pk\": 34653848,\n    \"owner_email\": \"support@ocrolus.com\",\n    \"is_public\": true,\n    \"book_uuid\": \"ff6f7e9e-c65d-48e1-abb9-60119b3c5852\",\n    \"id\": 34653848,\n    \"xid\": null,\n    \"book_type\": \"DEFAULT\",\n    \"is_shared_or_public_book\": true,\n    \"docs\": [\n      {\n        \"pk\": 56253658,\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"name\": \"bankstatementexample.pdf\",\n        \"pages\": 1,\n        \"md5\": \"e78045a805517d962fc78289d98b2573\",\n        \"image_group_pk\": null,\n        \"mixed_uploaded_doc_pk\": null,\n        \"document_class\": \"COMPLETE\"\n      },\n      {\n        \"pk\": 56193560,\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"name\": \"Alexander-April01-April-15-Account-A.pdf(0)\",\n        \"pages\": 1,\n        \"md5\": \"418c9f8854e3c391765a65b973a057ba\",\n        \"image_group_pk\": null,\n        \"mixed_uploaded_doc_pk\": 11602174,\n        \"document_class\": \"COMPLETE\"\n      }\n    ],\n    \"mixed_docs\": [\n      {\n        \"pk\": 11602174,\n        \"status\": \"COMPLETED\",\n        \"name\": \"Alexander-April01-April-15-Account-A.pdf\",\n        \"pages\": 1,\n        \"md5\": \"418c9f8854e3c391765a65b973a057ba\",\n        \"image_group_pk\": null,\n        \"rejection_reason\": null,\n        \"document_class\": \"COMPLETE\"\n      }\n    ],\n    \"bank_accounts\": {\n      \"14359008\": {\n        \"pk\": 14359008,\n        \"book_pk\": 34653848,\n        \"name\": \"111234567890 FIRST CITIZENS BANK CHECKING\",\n        \"bank_name\": \"FIRST CITIZENS BANK\",\n        \"activity_info\": {\n          \"active\": [\n            {\n              \"start\": {\n                \"year\": 2021,\n                \"month\": 4,\n                \"day\": 1\n              },\n              \"end\": {\n                \"year\": 2021,\n                \"month\": 4,\n                \"day\": 30\n              }\n            }\n          ],\n          \"missing\": []\n        },\n        \"account_type\": \"CHECKING\",\n        \"account_holder\": \"ALEXANDER HAMILTON\",\n        \"account_number\": \"111234567890\",\n        \"holder_zip\": \"78521\",\n        \"holder_country\": \"US\",\n        \"holder_state\": \"TX\",\n        \"holder_city\": \"Brownsville\",\n        \"holder_address_1\": \"2450 COURAGE ST\",\n        \"holder_address_2\": \"STE 108\",\n        \"account_category\": \"PERSONAL ACCOUNT\",\n        \"id\": 14359008,\n        \"periods\": [\n          {\n            \"pk\": 41907910,\n            \"uuid\": \"cbb0d2c1-99b4-49d8-b276-d050990d160e\",\n            \"bank_account_pk\": 14359008,\n            \"begin_date\": \"04/01/2021\",\n            \"end_date\": \"04/15/2021\",\n            \"begin_balance\": \"10000\",\n            \"end_balance\": \"10000\",\n            \"primary_recon_error_reason\": null,\n            \"secondary_recon_error_reason\": null,\n            \"uploaded_doc_pk\": 56193560\n          },\n          {\n            \"pk\": 41959742,\n            \"uuid\": \"ad2d6597-ca9b-4230-9ab8-0e59520101f4\",\n            \"bank_account_pk\": 14359008,\n            \"begin_date\": \"04/16/2021\",\n            \"end_date\": \"04/30/2021\",\n            \"begin_balance\": \"10000\",\n            \"end_balance\": \"10000\",\n            \"primary_recon_error_reason\": null,\n            \"secondary_recon_error_reason\": null,\n            \"uploaded_doc_pk\": 56253658\n          }\n        ],\n        \"account_holders\": [\n          \"ALEXANDER HAMILTON\"\n        ]\n      }\n    },\n    \"custom_filters\": {},\n    \"status_tags\": {\n      \"2386333\": {\n        \"pk\": 2386333,\n        \"created_ts\": \"2022-06-27T13:41:34Z\",\n        \"tag_name\": \"rev_exclude\",\n        \"color\": \"navy\",\n        \"text_color\": null,\n        \"is_status_tag\": true,\n        \"is_hidden\": false,\n        \"org_info_pk\": 4005,\n        \"config_name\": null,\n        \"id\": 2386333\n      },\n      \"2386480\": {\n        \"pk\": 2386480,\n        \"created_ts\": \"2022-06-28T14:15:18Z\",\n        \"tag_name\": \"rev_include\",\n        \"color\": \"navy\",\n        \"text_color\": null,\n        \"is_status_tag\": true,\n        \"is_hidden\": false,\n        \"org_info_pk\": 4005,\n        \"config_name\": null,\n        \"id\": 2386480\n      }\n    },\n    \"book_class\": \"COMPLETE\"\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f397bfdd-20f7-470d-8d53-b616c2b5c771",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c00e2058-c3c5-49dc-9468-2f97fb7227f3",
+          "name": "Book list",
+          "request": {
+            "name": "Book list",
+            "description": {
+              "content": "Retrieve a list of all <<glossary:Book>>s available to the current user.\n\n---\n\n> 📘\n> - By default results are ordered by <<glossary:Book>> PK in descending order but you can alter how and what books are returned by providing different parameters with your request.\n> - Use the `name` query parameter to find a <<glossary:Book>> by an exact name. This will be faster than `search` which uses approximate string matching algorithm.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "books"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Sets the number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Sets the starting point of the results list. The list is index-based and starts at integer 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "By default, results are returned in descending order, which is newest to oldest."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "Determines what field to order the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter books by name (exact match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Filter books by keyword search on book_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "xid",
+                  "value": "<string>",
+                  "description": "Filter books by xid (exact match)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33eea2a5-8873-4910-b64a-536067a64821",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "books"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "created"
+                    },
+                    {
+                      "key": "name",
+                      "value": "My_Book"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "xid",
+                      "value": "sample-xid"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"name\": \"Example Book 1\",\n      \"created\": \"2022-11-28T18:24:02Z\",\n      \"created_ts\": \"2022-11-28T18:24:02Z\",\n      \"pk\": 26087155,\n      \"owner_email\": \"email@address.com\",\n      \"is_public\": true,\n      \"book_uuid\": \"b6e6b2f5-7d14-4580-9beb-5ec9b0d56e32\",\n      \"id\": 26087155,\n      \"xid\": null,\n      \"book_type\": \"DEFAULT\"\n    },\n    {\n      \"name\": \"Example Book 2\",\n      \"created\": \"2022-11-10T19:00:45Z\",\n      \"created_ts\": \"2022-11-10T19:00:45Z\",\n      \"pk\": 25304702,\n      \"owner_email\": \"email@address.com\",\n      \"is_public\": true,\n      \"book_uuid\": \"9b465c7f-45fd-4112-ae7c-972039e778e2\",\n      \"id\": 25304702,\n      \"xid\": null,\n      \"book_type\": \"DEFAULT\"\n    }\n  ],\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69fdb876-d25e-47d6-9481-d0e4a9f4ace7",
+          "name": "Book status",
+          "request": {
+            "name": "Book status",
+            "description": {
+              "content": "Retrieve the status of a <<glossary:Book>>.\n\n---\nThis endpoint can also be used to keep track of the status of the Documents within the <<glossary:Book>>.\n\nFor more information about the various processing statuses of a <<glossary:Book>> during its life cycle, visit our guide on [Book Statuses](doc:book-status-code).\n\nSimilarly, if you are interested in knowing more about the different stages of Document processing, visit our guide on [Document Statuses](doc:document-status).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "book_uuid",
+                  "value": "<uuid>",
+                  "description": "The unique identifier of the <<glossary:Book>> whose status you want to retrieve. Mutually exclusive with `book_pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pk",
+                  "value": "<string>",
+                  "description": "Unique primary key (pk) of the <<glossary:Book>> whose status you want to retrieve. Mutually exclusive with `book_uuid`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7692bd0-6ea4-427a-abe1-6a2e029dd6ad",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"name\": \"Example Book\",\n    \"created\": \"2023-05-30T16:15:14Z\",\n    \"created_ts\": \"2023-05-30T16:15:13Z\",\n    \"pk\": 34251191,\n    \"owner_email\": \"email@address.com\",\n    \"is_public\": true,\n    \"uuid\": \"9ef345ab-33fe-4f0d-ad63-27c47f6419b3\",\n    \"id\": 34251191,\n    \"is_shared_or_public_book\": true,\n    \"docs\": [\n      {\n        \"pk\": 55877634,\n        \"name\": \"paystubexample.pdf(0)\",\n        \"uuid\": \"de548ffc-5df5-4bb4-b14a-42eb27c34364\",\n        \"pages\": 1,\n        \"md5\": \"88e004f15a4ca3dc057a0baf8dcd8774\",\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"image_group_pk\": null,\n        \"mixed_uploaded_doc_pk\": 11565050\n      },\n      {\n        \"pk\": 55877318,\n        \"name\": \"bankstatementexample.pdf(0)\",\n        \"uuid\": \"d0e386de-45f6-434a-a954-c66f6e30a5d4\",\n        \"pages\": 1,\n        \"md5\": \"e78045a805517d962fc78289d98b2573\",\n        \"status\": \"REJECTED\",\n        \"image_group_pk\": null,\n        \"mixed_uploaded_doc_pk\": 11564993,\n        \"rejection_reason\": \"INVALID DOCUMENT\"\n      }\n    ],\n    \"mixed_docs\": [\n      {\n        \"pk\": 11565050,\n        \"name\": \"paystubexample.pdf\",\n        \"uuid\": \"a27ffbf5-7137-4a71-b1a9-65e256838cfb\",\n        \"id\": 11565050,\n        \"pages\": 1,\n        \"md5\": \"88e004f15a4ca3dc057a0baf8dcd8774\",\n        \"status\": \"COMPLETED\",\n        \"image_group_pk\": null,\n        \"rejection_reason\": null\n      },\n      {\n        \"pk\": 11564993,\n        \"name\": \"bankstatementexample.pdf\",\n        \"uuid\": \"e2deaa15-ad6a-4d09-83af-9395bc77fb96\",\n        \"id\": 11564993,\n        \"pages\": 1,\n        \"md5\": \"e78045a805517d962fc78289d98b2573\",\n        \"status\": \"COMPLETED\",\n        \"image_group_pk\": null,\n        \"rejection_reason\": null\n      }\n    ],\n    \"book_status\": \"VERIFIED\",\n    \"book_class\": \"COMPLETE\"\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b03288d-11c0-4a37-962d-097d9b1cdb44",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9a24a4ba-b9eb-4c1a-989c-0c6f474af12c",
+    "name": "Account Level Webhooks Book Commands Book Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

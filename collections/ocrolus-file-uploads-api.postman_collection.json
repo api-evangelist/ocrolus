@@ -1,0 +1,1684 @@
+{
+  "item": [
+    {
+      "id": "1ab75069-91a6-4ff5-805d-f1d0f07d3415",
+      "name": "File Uploads",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b58538f8-3c32-490c-bcdf-1f0f18b1e9fe",
+          "name": "Upload PDF to Book",
+          "request": {
+            "name": "Upload PDF to Book",
+            "description": {
+              "content": "Upload a PDF file to a <<glossary:Book>> for processing.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.   \n> 📘 \n>  - The maximum file size for upload is 200 MB.\n\n\nFor all Documents *except* bank statements, the optional `form_type` parameter can be used to specify the type of <<glossary:Document>>.   \n\nYou can see form types we support in our [forms directory](https://docs.ocrolus.com/docs/all-supported-documents). For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) The PDF file to upload."
+                },
+                {
+                  "key": "book_uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `pk`."
+                },
+                {
+                  "key": "pk",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `book_uuid`."
+                },
+                {
+                  "key": "form_type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The code identifying the type of <<glossary:Document>> that you're uploading."
+                },
+                {
+                  "key": "doc_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name of the <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b2fd0093-e0ce-4ed9-bd76-a39610601ec5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The code identifying the type of <<glossary:Document>> that you're uploading.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"uploaded_docs\": [\n      {\n        \"pk\": 51542103,\n        \"uuid\": \"05afcf59-cd34-44a6-a8e3-efaa6de24512\",\n        \"name\": \"bank-statement.pdf\",\n        \"page_count\": 4,\n        \"checksum\": \"716a9e2119b197fc8fed9e2ca3e56cae\",\n        \"created_ts\": \"2023-02-09T10:47:40Z\",\n        \"id\": 51542103\n      }\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fbe4ded-f8d0-4aa2-9a89-a19d85e455bb",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>> will be saved to. Mutually exclusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The code identifying the type of <<glossary:Document>> that you're uploading.",
+                        "type": "text/plain"
+                      },
+                      "key": "form_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"message\": \"Form Type Not Found\",\n  \"code\": 6001,\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Form Type Not Found\",\n    \"code\": 6001\n  },\n  \"response\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "654805fe-c1b9-4583-9031-9805d62444b6",
+          "name": "Upload Mixed Document PDF to Book",
+          "request": {
+            "name": "Upload Mixed Document PDF to Book",
+            "description": {
+              "content": "Upload a PDF file containing more than one <<glossary:Document>> to a <<glossary:Book>>.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\n> 📘\n>  - The maximum file size for upload is 200 MB.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "upload",
+                "mixed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) The PDF file to upload."
+                },
+                {
+                  "key": "book_uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `pk`."
+                },
+                {
+                  "key": "pk",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `book_uuid`."
+                },
+                {
+                  "key": "doc_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name of the Mixed <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "40f8ec16-1b9f-4ce0-bfc9-77c8da8a89e8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "mixed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the Mixed <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"mixed_uploaded_docs\": [\n      {\n        \"pk\": 11585733,\n        \"uuid\": \"e3f2f66a-2792-439e-905f-240c33a84bd1\",\n        \"name\": \"documents.pdf\",\n        \"page_count\": 1,\n        \"checksum\": \"e78045a805517d962fc78289d98b2573\",\n        \"created_ts\": \"2023-06-03T00:40:13Z\",\n        \"id\": 11585733\n      }\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f9362dd-1788-4450-abcc-0d2a37a68f36",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "mixed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The unique identifier of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The <<glossary:PK>> of the <<glossary:Book>> that the uploaded <<glossary:Document>>s will be saved to. Mutually exclusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the Mixed <<glossary:Document>> that will be created from the imported file. Defaults to the name of the file if not given.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0f96bb8-f654-4885-a643-291625b2fb67",
+          "name": "Upload Pay stub PDF to Book",
+          "request": {
+            "name": "Upload Pay stub PDF to Book",
+            "description": {
+              "content": "Upload a known <<glossary:Pay stub>> file directly to a specific <<glossary:Book>>.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\nIf successful, the response will return the specific doc_uuid for the uploaded <<glossary:Document>>.\n> 📘\n>  - This endpoint is limited to PDF's where the form type is expected to be a PAYSTUB.\n>  - The maximum file size allowed for upload is 200 MB.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "document",
+                "paystub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Book>> where the uploaded file will be saved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) The PDF file to upload."
+                },
+                {
+                  "key": "book_uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The unique identifier of the Book where the uploaded file will be saved."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "705afd2e-11d7-429b-9019-220c46e87b56",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "document",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> where the uploaded file will be saved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "example-pay-stub.pdf",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"doc_uuid\": \"03807902-9605-4862-99de-2742f16a76dd\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6659bef-fcde-4f26-9242-e0402454d6f6",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "document",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> where the uploaded file will be saved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The PDF file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "example-pay-stub.pdf",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5c4c13a-0922-422b-ac65-711a6c1f2faf",
+          "name": "Upload Image to Book",
+          "request": {
+            "name": "Upload Image to Book",
+            "description": {
+              "content": "Upload image files to a <<glossary:Book>>.\n\n--- \n\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\nWith the capability to classify images, you can upload a single image using this endpoint. To upload multiple images to the same <<glossary:Book>>, call this endpoint once for each image, and then call the [Finalize image group](ref:mark-image-group-complete) endpoint to complete the image group. \n\nWe support uploads of the images in the **JPEG**, **PNG**, **BMP**, and **TIFF** (Single-image files only) formats.   \n\n> 📘 \n> The term **image group** refers to a collection of images that may consist of one or more images.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "upload",
+                "image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) The image file that you want to upload. The maximum file size is 200 MB."
+                },
+                {
+                  "key": "book_uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Universally unique identifier (uuid) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `pk`."
+                },
+                {
+                  "key": "pk",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Unique primary key (<<glossary:PK>>) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `book_uuid`."
+                },
+                {
+                  "key": "return_image_pk",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": "Indicates if the response will include the PK of the uploaded image."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9f0f74f7-3eba-4610-bfdc-d7cb461993db",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The image file that you want to upload. The maximum file size is 200 MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Universally unique identifier (uuid) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Unique primary key (<<glossary:PK>>) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Indicates if the response will include the PK of the uploaded image.",
+                        "type": "text/plain"
+                      },
+                      "key": "return_image_pk",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"image_group_pk\": 87479\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82e406a5-3dda-40a2-95b0-afb26bdb4b6a",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The image file that you want to upload. The maximum file size is 200 MB.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Universally unique identifier (uuid) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `pk`.",
+                        "type": "text/plain"
+                      },
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Unique primary key (<<glossary:PK>>) of the <<glossary:Book>> to which the uploaded images will be saved to. Mutually exlusive with `book_uuid`.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Indicates if the response will include the PK of the uploaded image.",
+                        "type": "text/plain"
+                      },
+                      "key": "return_image_pk",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9887c10-f455-4e69-899b-86cd3030b412",
+          "name": "Finalize Image Group",
+          "request": {
+            "name": "Finalize Image Group",
+            "description": {
+              "content": "Finalize an image group and construct a <<glossary:Document>> from its images.\n\n---\n\nAfter you have [uploaded images](ref:upload-image), call this endpoint to finalize an image group and construct a <<glossary:Document>> from its content.\n\n> 📘\n> The term **image group** refers to a collection of images that may consist of one or more images.\n\n\nHere is the list of all the [Additional Supported Form Types](https://docs.ocrolus.com/docs/forms-directory) we support. For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "upload",
+                "image",
+                "done"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_uuid\": \"<string>\",\n  \"pk\": \"<string>\",\n  \"form_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b834209-7c5c-46b9-9295-21a4e5e3ca82",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "image",
+                    "done"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"<string>\",\n  \"pk\": \"<string>\",\n  \"form_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85307146-314b-4efd-8837-4ce1c1900ba7",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "image",
+                    "done"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"<string>\",\n  \"pk\": \"<string>\",\n  \"form_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"message\": \"Form Type Not Found\",\n  \"code\": 6001,\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Form Type Not Found\",\n    \"code\": 6001\n  },\n  \"response\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd80a607-2f64-4e9d-90e4-ee198f717a1e",
+          "name": "Upload aggregator JSON to Book",
+          "request": {
+            "name": "Upload aggregator JSON to Book",
+            "description": {
+              "content": "This API uploads aggregator-provided JSON data (Plaid or Finicity) to an Ocrolus <<glossary:Book>>. This endpoint supports uploading:\n\n- Plaid Asset Report JSON\n- Plaid Transactions JSON\n- Finicity JSON bundles, including accounts, transactions, customers, and institutions\n\nFor Plaid, this endpoint takes the JSON output from Plaid's [**`/transactions/get`**](https://plaid.com/docs/api/products/#transactionsget) or [**`/asset_report/get`**](https://plaid.com/docs/api/products/#asset_reportget) endpoints. To learn more, see the [Plaid integration](https://docs.ocrolus.com/docs/plaid) guide.\n\nFor Finicity, this endpoint requires a complete and internally consistent JSON bundle. Ocrolus validates references across files (accounts, customers, institutions, transactions) before generating accounts and periods. Partial Finicity uploads are not supported. To learn more, see the [Account aggregator](https://docs.ocrolus.com/docs/aggregator-finicity) guide.\n\n> 👍 Tips \n  > - You can upload multiple JSON files at a time using this endpoint.\n  > - For best results, create a separate Book for each Plaid Asset Report. Do not upload JSON files alongside PDF statements, as the data may not reconcile.   \n  > - When multiple Finicity JSON files are uploaded, they are combined into a single document within the Book.\n  > - This is a shared endpoint for all both Plaid and Finicity JSON uploads. Aggregator-specific behavior is controlled using the **`aggregate_source`** parameter.\n  > - Ensure that all the Finicity JSON files originate from the same Finicity data pull and belong to the same account set.\n  > - Verify that all cross-file identifiers of Finicity (accountId, customerId, institutionId) resolve correctly.\n\n##Plaid and Finicity statement period construction\nPlaid Asset Reports do not provide explicit statement periods. Ocrolus constructs periods based on transaction dates. For example, if transactions span Jan 15 to Apr 4, statement periods are created as:\n- Jan 15 - Jan 31\n- Feb 1 - Feb 28\n- Mar 1 - Mar 31\n- Apr 1 - Apr 4\n\n> ❗️ Having unusual problems?\n  > Do not use older versions of Plaid’s Python or Ruby client libraries to access these endpoints. Users have reported access issues with outdated versions. Upgrade to the latest available client libraries before proceeding. If you believe this behavior is a bug, open a support ticket with Plaid. As a temporary workaround, use a general-purpose HTTP request library.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "upload",
+                "json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "upload_intent",
+                  "value": "<string>",
+                  "description": "Specifies the intent to process the Plaid JSON files uploaded to a Book. This parameter determines whether the uploaded transactions are simply added to the Book for analytics or actively compared against existing bank statement data to detect mismatches. \n\nThe available options to set intent are:\n- **`add_analytics`**: Adds transactions from the Plaid JSON to the Book without performing mismatch detection. Use this option for ongoing monitoring or when you only need to enrich the dataset with additional Plaid transactions. (Default if no value is specified.)\n- **`docs_to_digital`**: Runs the Docs-to-Digital algorithm. If used, the Plaid transactions are matched against bank statement data available in the Book, and any mismatches are flagged for review. Use this option when you want to perform reconciliation between digital (Plaid) and analog (PDF) sources.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "aggregate_source",
+                  "value": "PLAID",
+                  "description": "Specifies the data aggregator source used to generate the uploaded JSON. This field is case-sensitive. If no value is provided, the system defaults to `PLAID`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "pk",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) A unique primary key of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`uuid`**. You must provide either **`pk`** or **`uuid`**."
+                },
+                {
+                  "key": "uuid",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) A universally unique identifier of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`pk`**. You must provide either **`uuid`** or **`pk`**."
+                },
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) The JSON file containing Plaid Asset Report or Transaction data. This should be the direct output from Plaid's API."
+                },
+                {
+                  "key": "accounts",
+                  "type": "file",
+                  "description": "JSON files containing Finicity account data. This file is used to create bank account information associated with the Book. Must be valid JSON. \n\nTo learn more about uploading Finicity JSON file containing account details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n"
+                },
+                {
+                  "key": "transactions",
+                  "type": "file",
+                  "description": "JSON file containing Finicity transaction data. This file is used to create period and transaction data for the associated bank accounts identified in the accounts JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing transaction details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n"
+                },
+                {
+                  "key": "customers",
+                  "type": "file",
+                  "description": "JSON file containing Finicity customer data. It is used to associate customer information with the uploaded bank accounts and transactions. The account holder name is extracted from this JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing customer details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n"
+                },
+                {
+                  "key": "institutions",
+                  "type": "file",
+                  "description": "JSON files containing Finicity institution data. It is used to map accounts to their respective financial institutions (banks). Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing institution details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The name of the <<glossary:Document>> created from the uploaded data. If omitted, defaults to **`audit_copy_token`**."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "68ffd82c-d174-42b7-ae15-15d17a994cbd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upload_intent",
+                      "value": "add_analytics"
+                    },
+                    {
+                      "key": "aggregate_source",
+                      "value": "PLAID"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) A unique primary key of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`uuid`**. You must provide either **`pk`** or **`uuid`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) A universally unique identifier of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`pk`**. You must provide either **`uuid`** or **`pk`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a385be19-2d1a-4846-918c-0d3125a885c8",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The JSON file containing Plaid Asset Report or Transaction data. This should be the direct output from Plaid's API.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON files containing Finicity account data. This file is used to create bank account information associated with the Book. Must be valid JSON. \n\nTo learn more about uploading Finicity JSON file containing account details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON file containing Finicity transaction data. This file is used to create period and transaction data for the associated bank accounts identified in the accounts JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing transaction details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "transactions",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON file containing Finicity customer data. It is used to associate customer information with the uploaded bank accounts and transactions. The account holder name is extracted from this JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing customer details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "customers",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON files containing Finicity institution data. It is used to map accounts to their respective financial institutions (banks). Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing institution details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "institutions",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the <<glossary:Document>> created from the uploaded data. If omitted, defaults to **`audit_copy_token`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "test doc",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"uploaded_docs\": [\n      {\n        \"pk\": 2203941,\n        \"id\": 2203941,\n        \"uuid\": \"a385be19-2d1a-4846-918c-0d3125a885c8\",\n        \"name\": \"745608db-9f24-4c3f-990d-b358f2c4f161\",\n        \"checksum\": \"4fb16336a824c9cf82fdc0cafa749c2e\",\n        \"created_ts\": \"2026-01-21T12:47:34.947097\"\n      }\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5cae45c-f114-42e5-a1d7-bbded0bb66a6",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "upload",
+                    "json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upload_intent",
+                      "value": "add_analytics"
+                    },
+                    {
+                      "key": "aggregate_source",
+                      "value": "PLAID"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) A unique primary key of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`uuid`**. You must provide either **`pk`** or **`uuid`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "pk",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) A universally unique identifier of the <<glossary:Book>> to which the uploaded JSON files will be added. This value is used interchangeably with a **`pk`**. You must provide either **`uuid`** or **`pk`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "uuid",
+                      "value": "a385be19-2d1a-4846-918c-0d3125a885c8",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The JSON file containing Plaid Asset Report or Transaction data. This should be the direct output from Plaid's API.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON files containing Finicity account data. This file is used to create bank account information associated with the Book. Must be valid JSON. \n\nTo learn more about uploading Finicity JSON file containing account details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "accounts",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON file containing Finicity transaction data. This file is used to create period and transaction data for the associated bank accounts identified in the accounts JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing transaction details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "transactions",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON file containing Finicity customer data. It is used to associate customer information with the uploaded bank accounts and transactions. The account holder name is extracted from this JSON. Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing customer details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "customers",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "JSON files containing Finicity institution data. It is used to map accounts to their respective financial institutions (banks). Must be valid JSON.\n\nTo learn more about uploading Finicity JSON file containing institution details, see the [Uploading Finicity JSON to Ocrolus](https://docs.ocrolus.com/docs/aggregator-finicity#uploading-finicity-json-to-ocrolus) guide.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "institutions",
+                      "value": "<JSON binary data>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The name of the <<glossary:Document>> created from the uploaded data. If omitted, defaults to **`audit_copy_token`**.",
+                        "type": "text/plain"
+                      },
+                      "key": "doc_name",
+                      "value": "test doc",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"msg\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f9ecaba-3d6a-4b98-b441-067c19ab1a15",
+          "name": "Import Plaid Asset Report",
+          "request": {
+            "name": "Import Plaid Asset Report",
+            "description": {
+              "content": "Import an Asset Report directly from Plaid and construct a <<glossary:Document>> from it.\n\n---\n\n\nWith fully automated workflows in mind, Ocrolus and [Plaid](https://plaid.com) offer the ability to directly import the Asset Report of any customer who has provided Bank Account details via Plaid - without you having to explicitly download and handle the JSON report.\n\nTo achieve this, Plaid will ask you to [share an Audit Copy](https://plaid.com/docs/#4-share-an-audit-copy) of the Asset Report directly with Ocrolus.\n\nNext, Ocrolus will use the provided `audit_copy_token` to extract the associated Audit Report from Plaid. This _must_ be a production token, as Ocrolus does not support sandbox tokens.\n\nThen, Ocrolus will import the Audit Report into the specified <<glossary:Book>>. \n> 📘 \n> Creating an Audit Copy Token\n> - You can create an **Audit Copy Token** with Plaid using our auditor_id of `ocrolus`. Use this value when invoking the `createAuditCopy` function on the Plaid client object.\n\n> 🚧 \n> Due to masking of account numbers in Plaid data, we are unable to reconcile bank accounts across Plaid data and PDF bank statements. Mixing such uploads within the same book may result in duplicate bank accounts, periods and transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "import",
+                "plaid",
+                "asset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pk\": \"<integer>\",\n  \"audit_copy_token\": \"<string>\",\n  \"form_type\": \"<string>\",\n  \"doc_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32250efc-8e42-429e-a661-c5f45a0d7f2e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "import",
+                    "plaid",
+                    "asset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pk\": 30219565,\n  \"audit_copy_token\": \"<string>\",\n  \"form_type\": \"PAYSTUB\",\n  \"doc_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {\n    \"uploaded_docs\": [\n      {\n        \"created_ts\": \"2023-05-25T17:23:45Z\",\n        \"name\": \"78467b0b5f0bb818a30a6d7c361385\",\n        \"checksum\": \"50a62f72f4b5b80b18f75fbed690dc47\",\n        \"pk\": 12345,\n        \"uuid\": \"8dc88eed-2b6f-414a-82f2-a99bd181cf6e\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b18d72a0-d251-4ee4-ab8c-23b6a9839eb1",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "import",
+                    "plaid",
+                    "asset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pk\": 30219565,\n  \"audit_copy_token\": \"<string>\",\n  \"form_type\": \"PAYSTUB\",\n  \"doc_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9d2c824d-b9f6-483a-9a6a-b2ae57fc8e2b",
+    "name": "Account Level Webhooks Book Commands File Uploads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Legacy Cash Flow Analytics (Deprecated) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Legacy Cash Flow Analytics (Deprecated)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analytics (JSON) (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/summary",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed. Mutually exclusive with the `pk` parameter (i.e. don't provide both).\n"
+              },
+              {
+                "name": "pk",
+                "value": "",
+                "type": "query",
+                "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              },
+              {
+                "name": "extra_fields",
+                "value": "",
+                "type": "query",
+                "description": "A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.\n\nFuture revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves analytics for a <<glossary:Book>> in JSON format, for use within your own application workflows.\n\n---\n> 🚧 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n> 📘 Multiple endpoints, one object\n> This endpoint and [the asynchronous version](ref:async-analytics-result) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-exc"
+        },
+        {
+          "info": {
+            "name": "Analytics (Excel) (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/export/xlsx/analytics",
+            "params": [
+              {
+                "name": "pk",
+                "value": "",
+                "type": "query",
+                "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves analytics for a <<glossary:Book>> in Excel-compatible XLSX format (not to be confused with the legacy XLS format).\n\n---\n> 🚧 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n\nThe output of this endpoint is intended for manual review, as opposed to automated consumption by your application.\n\nSome fields provided in the [JSON output](doc:analytics) "
+        },
+        {
+          "info": {
+            "name": "Async Analytics Request (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/analytics/async/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request analytics for a <<glossary:Book>> to be computed behind the scenes. You'll be notified when they're ready.\n\n---\n> 🚧 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\nYou can retrieve the results when they're ready by [registering a webhook](doc:registering-webhook-endpoint) that listens for the `ANALYTICS_COMPLETED` event. You can also poll the [Asy"
+        },
+        {
+          "info": {
+            "name": "Async Analytics Result (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/analytics/async/result",
+            "params": [
+              {
+                "name": "analytics_request_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the request that was returned by [the request endpoint](ref:async-analytics-request)."
+              }
+            ]
+          },
+          "docs": "Checks the status of an asynchronous analytics request, retrieving the results if they're ready.\n\n---\n> 🚧 We have a better version!\n> This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.\n\n> 📘 Multiple endpoints, one object\n> This endpoint and [the synchronous version](ref:analytics) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns mo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,198 @@
+{
+  "item": [
+    {
+      "id": "605a25c5-b92f-4cac-ad09-1ed966ff7fa5",
+      "name": "Oauth",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c431c92-f408-495e-a742-0bacd8553d3d",
+          "name": "Grant authentication token",
+          "request": {
+            "name": "Grant authentication token",
+            "description": {
+              "content": "Retrieve a JWT-compliant access token for use with all other endpoints.\n\n---\n\n\n\n> 📘\n> All tokens currently expire after 24 hours (86,400 seconds), but we suggest refreshing tokens every 12 hours (43,200 seconds).\n\nHere's an example of using the returned token in an API call:\n```cURL\ncurl \\\n  --url \"https://api.ocrolus.com/v1/books\" \\\n  --oauth2-bearer \"eyJhbGciOiJ...2hUye_4CpIvQ\"\n\n```\nSee our guide on [using API credentials](doc:using-api-credentials) for more details.\n\nThis endpoint is OAuth 2.0-compliant. A successful response from this endpoint adheres to the structure given in [RFC 6749, section 5.1](https://datatracker.ietf.org/doc/html/rfc6749#section-5.1), while a failed response adheres to the structure given in [section 5.2](https://datatracker.ietf.org/doc/html/rfc6749#section-5.2). As a consequence, you can use this endpoint in OAuth 2.0 clients and libraries without needing to explicitly call it in your own code.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"audience\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36e923cc-48be-4aa1-8164-0c2e2469dc34",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"audience\": \"https://api.ocrolus.com/\",\n  \"client_id\": \"CLIENT_ID_EXAMPLE\",\n  \"client_secret\": \"CLIENT_SECRET_EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"eyJz93a...k4laUWw\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 86400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abd1fcd8-ab2e-410c-927b-7d954b6b49d6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"client_credentials\",\n  \"audience\": \"https://api.ocrolus.com/\",\n  \"client_id\": \"CLIENT_ID_EXAMPLE\",\n  \"client_secret\": \"CLIENT_SECRET_EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"access_denied\",\n  \"error_description\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9719db23-ec6a-452b-8da0-71353d2e22d0",
+    "name": "Account Level Webhooks Book Commands Oauth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

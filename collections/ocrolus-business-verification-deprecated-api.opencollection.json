@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Business Verification (Deprecated) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Business Verification (Deprecated)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create business verification (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/business",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the <<glossary:Document>>s associated with the newly-created business."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The legal name of the business."
+              },
+              {
+                "name": "addresses",
+                "value": "",
+                "type": "query",
+                "description": "One or more addresses from which the business operates."
+              },
+              {
+                "name": "website",
+                "value": "",
+                "type": "query",
+                "description": "The URL of the business' public-facing website."
+              }
+            ]
+          },
+          "docs": "Create a new business for verification and due diligence. \n\n---\n\nOnce created, we will automatically begin verifying the legitimacy of the business.\n\n\nWe have partnered with Middesk to bring you this data. To use this endpoint, please follow the following steps:\n1. Sign up for an account with [Middesk](https://middesk.com/).\n2. Get your Middesk production API key (we don't support sandbox accounts at the moment).\n3. Call our [Vendor Auth](ref:vendor-auth) with `middesk` as the vendor name and pu"
+        },
+        {
+          "info": {
+            "name": "Retrieve business verification (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/business/:business_uuid",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains Documents associated with this business."
+              },
+              {
+                "name": "business_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the business itself."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing business and its associated firmographic data."
+        },
+        {
+          "info": {
+            "name": "Vendor authentication (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ocrolus.com/v1/developer/auth/vendor/:vendor_name",
+            "params": [
+              {
+                "name": "vendor_name",
+                "value": "",
+                "type": "path",
+                "description": "The vendor that you're granting Ocrolus access to. Currently, we only support the value of `middesk`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Store a vendor-generated API key to enable third-party integrations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,573 @@
+{
+  "item": [
+    {
+      "id": "5ffc9826-51ba-4571-aa57-f92ce9f1f562",
+      "name": "Webhooks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14063ad6-c931-4d2b-896e-0bc3d0e23f06",
+          "name": "Configure webhook",
+          "request": {
+            "name": "Configure webhook",
+            "description": {
+              "content": "Set up a webhook for your account so your application can react to Ocrolus events.\n\n---\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> 📘 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "settings",
+                "update",
+                "webhook_endpoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "webhook_endpoint",
+                  "value": "<url>",
+                  "type": "text",
+                  "description": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it."
+                },
+                {
+                  "key": "event",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f23ee33d-1a6b-4643-83ba-db98f8fa56b2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "update",
+                    "webhook_endpoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.",
+                        "type": "text/plain"
+                      },
+                      "key": "webhook_endpoint",
+                      "value": "<url>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "event",
+                      "value": "[\"<string>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"webhook_endpoint\": \"https://webhook_endpoint_url.com/example\",\n    \"events\": [\n      \"DOC_VERIFIED\",\n      \"BOOK_VERIFIED\"\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fdd2a31-2bfc-46d2-a86f-d2732b1a7220",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "update",
+                    "webhook_endpoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.\n\nThe domain will be checked for validity, although the webhook itself won't be called. We suggest [testing the endpoint](ref:test-webhook) after configuring it.",
+                        "type": "text/plain"
+                      },
+                      "key": "webhook_endpoint",
+                      "value": "<url>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A comma-separated list of events that will trigger a call to your webhook. To deregister the webhook, provide an empty array.\nThe event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "event",
+                      "value": "[\"<string>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1806,\n  \"response\": null,\n  \"message\": \"One of the input is invalid\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"One of the input is invalid\",\n    \"code\": 1806\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b799feaa-f581-4cae-a3ce-131547b1efb1",
+          "name": "Get webhook configuration",
+          "request": {
+            "name": "Get webhook configuration",
+            "description": {
+              "content": "Retrieve your most recent webhook configuration.\n\n---\n\nReturns the same object as that of the most recent [webhook registration](ref:configure-webhook).\n\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "settings",
+                "webhook_details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "724d8042-5e91-4b6c-901a-042ca4ea6dd6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "webhook_details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"webhook_endpoint\": \"https://webhook_endpoint_url.com/example\",\n    \"events\": [\n      \"DOC_VERIFIED\",\n      \"BOOK_VERIFIED\"\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18416deb-60f0-40f2-9781-84cc8edcf158",
+          "name": "Test webhook",
+          "request": {
+            "name": "Test webhook",
+            "description": {
+              "content": "Send a test payload to your configured webhook endpoint. \n\n---\nRequests to this endpoint will send a `POST` request with a test payload of the following JSON in the request body:\n\n```json\n{\n  \"status\": \"VERIFICATION_COMPLETE\",\n  \"uploaded_doc_pk\": 0,\n  \"book_pk\": 0\n}\n```\n\n> 📘 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\nIf the webhook fails for any reason, the corresponding HTTP status code and message will be provided in the response's `message` and `code` attributes.\n\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "settings",
+                "test_webhook_endpoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "144fbded-91fb-4a19-bce0-989339f5e877",
+              "name": "The configured webhook returned successfully.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "test_webhook_endpoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"resp_code\": 200,\n    \"message\": \"Success calling webhook endpoint\"\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ef1f79a-41e2-4263-8df0-25d32f1ad047",
+          "name": "Configure webhook secret",
+          "request": {
+            "name": "Configure webhook secret",
+            "description": {
+              "content": "This API configures the secret key for account-level webhook signature verification. Use this API to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "settings",
+                "webhook",
+                "rotate-secret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"secret_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d80f5a61-db8f-4b6b-9e43-49acb310f0f3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "webhook",
+                    "rotate-secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secret_key\": \"sample_secret_1230ab\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"message\": \"Webhook secret rotated successfully\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4a23fe6-345b-4ae0-a4de-8f0f095611c2",
+              "name": "Webhook Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "settings",
+                    "webhook",
+                    "rotate-secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"secret_key\": \"sample_secret_1230ab\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Webhook not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "66fb3dc6-d35d-4dd8-a7ca-e3c9dc0f6cf4",
+    "name": "Account Level Book Commands Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

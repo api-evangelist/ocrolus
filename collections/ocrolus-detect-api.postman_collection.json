@@ -1,0 +1,1103 @@
+{
+  "item": [
+    {
+      "id": "2cbef8b2-962d-4b15-ba1d-93462d7b48e2",
+      "name": "Detect",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e51b2033-db68-4c43-8bb1-39a8b505c3bb",
+          "name": "Book-level Fraud Signals",
+          "request": {
+            "name": "Book-level Fraud Signals",
+            "description": {
+              "content": "Scan every <<glossary:Document>> in an uploaded <<glossary:Book>> for signs of potentially fraudulent tampering.\n\n---\n\n> 📘 This is the better version!\n> This endpoint supersedes our existing [Suspicious Activity Flags endpoint](ref:suspicious-activity), as well as the `primary_recon_error_reason` and `secondary_recon_error_reason` attributes returned by the [Analytics endpoints](ref:analytics). A deprecation plan will be announced in the future.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "detect",
+                "book",
+                ":book_uuid",
+                "signals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude_dashboard_url",
+                  "value": "false",
+                  "description": "determines whether Ocrolus will return the unique Ocrolus Dashboard URL that links directly to the Dashboard for the given book."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of a <<glossary:Book>>."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a612365-6bb9-4328-88e9-82a74932498d",
+              "name": "The <<glossary:Book>> was scanned for potential fraud, and the results are enclosed.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "book",
+                    ":book_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"739184f1-8bff-4c46-8b65-af0616902a11\",\n  \"doc_analysis\": [\n    {\n      \"uploaded_doc_uuid\": \"cbc5507d-b5e4-4ae0-bae3-4cda69c66476\",\n      \"uploaded_doc_type\": \"BANK_STATEMENT\",\n      \"detect_status\": \"COMPLETED\",\n      \"form_analysis\": [\n        {\n          \"form_type\": \"BANK_STATEMENT\",\n          \"form_uuid\": \"cbc5507d-b5e4-4ae0-bae3-4cda69c66476\",\n          \"signals\": [\n            {\n              \"identifier\": \"dollar_amount_edits\",\n              \"display_name\": \"Dollar Amount Edits\",\n              \"signal_count\": 1,\n              \"page_number\": 1,\n              \"supporting_data\": [\n                {\n                  \"values\": [\n                    {\n                      \"key\": \"field_name\",\n                      \"value\": \"amount\",\n                      \"data_type\": \"str\"\n                    },\n                    {\n                      \"key\": \"tampered_text\",\n                      \"value\": \"10,000.00\",\n                      \"data_type\": \"str\"\n                    }\n                  ]\n                }\n              ]\n            }\n          ],\n          \"visualizations\": [\n            {\n              \"page_number\": 1,\n              \"page_visualizations\": [\n                {\n                  \"visual_type\": \"tamper_overview\",\n                  \"display_name\": \"Tamper Overview\",\n                  \"description\": \"Tampered fields are highlighted in red.\",\n                  \"image_url\": \"https://api.ocrolus.com/v2/detect/visualization/ec75a8e8-07eb-4098-9c28-fad9d268d982\"\n                },\n                {\n                  \"visual_type\": \"misaligned_text\",\n                  \"display_name\": \"Misaligned Text\",\n                  \"description\": \"Fields are not aligned as expected. Gray lines indicate expected alignments. Misaligned fields are highlighted in red, with misaligned characters emphasized.\",\n                  \"image_url\": \"https://api.ocrolus.com/v2/detect/visualization/2dfaab38-4420-4232-9b16-e4308a652112\"\n                }\n              ]\n            }\n          ],\n          \"form_dashboard_url\": \"https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11?selectedUploadPks=56735083&selectedDocType=bankStatements&detectPaneOpen=True&detectTab=1\",\n          \"form_authenticity\": {\n            \"version\": \"1.0\",\n            \"score\": 70,\n            \"reason_codes\": [\n              {\n                \"code\": \"006-L\",\n                \"confidence\": \"LOW\",\n                \"description\": \"fields misaligned\"\n              }\n            ],\n            \"authenticity_status\": \"LOW\"\n          }\n        }\n      ],\n      \"is_image_based_pdf\": false\n    }\n  ],\n  \"book_dashboard_url\": \"https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68ede166-ae72-4e09-86c3-829e29828487",
+              "name": "The provided value of `book_uuid` wasn't a valid UUID. Ensure that it's correctly-formatted and that it comes from the right source.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "book",
+                    ":book_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid book uuid: '88fca8c7-aa20-4bc0-a4f3-2dfcf96c3c2'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d380ada-96b8-4cf0-8596-91faa1ef5fb5",
+              "name": "The provided access token can't be used to grant you access to this resource. Make sure the token hasn't expired.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "book",
+                    ":book_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463a8580-1ff3-4423-bf98-924ad3c83562",
+              "name": "No <<glossary:Book>> with the UUID given in `book_uuid` could be found.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "book",
+                    ":book_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "075360bc-3245-490d-8f3d-78a60eb6b9d9",
+          "name": "Document-Level Fraud Signals",
+          "request": {
+            "name": "Document-Level Fraud Signals",
+            "description": {
+              "content": "Scan a <<glossary:Document>> for signs of potentially fraudulent tampering.\n\n---\n\n> 📘 This is the better version!\n> This endpoint supersedes our existing [Suspicious Activity Flags endpoint](ref:suspicious-activity), as well as the `primary_recon_error_reason` and `secondary_recon_error_reason` attributes returned by the [Analytics endpoints](ref:analytics). A deprecation plan will be announced in the future.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "detect",
+                "uploaded_doc",
+                ":uploaded_doc_uuid",
+                "signals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude_dashboard_url",
+                  "value": "false",
+                  "description": "determines whether Ocrolus will return the unique Ocrolus Dashboard URL that links directly to the Dashboard for the given book."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uploaded_doc_uuid",
+                  "description": "(Required) The unique identifier of a <<glossary:Document>>."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bea9f09b-c254-49ec-883b-4b59139d491a",
+              "name": "The Document was successfully scanned for potential fraud, and the results are enclosed. The `doc_analysis` attribute in the returned object will have exactly one element representing the requested document.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "uploaded_doc",
+                    ":uploaded_doc_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uploaded_doc_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Document>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"739184f1-8bff-4c46-8b65-af0616902a11\",\n  \"doc_analysis\": [\n    {\n      \"uploaded_doc_uuid\": \"cbc5507d-b5e4-4ae0-bae3-4cda69c66476\",\n      \"uploaded_doc_type\": \"BANK_STATEMENT\",\n      \"detect_status\": \"COMPLETED\",\n      \"form_analysis\": [\n        {\n          \"form_type\": \"BANK_STATEMENT\",\n          \"form_uuid\": \"cbc5507d-b5e4-4ae0-bae3-4cda69c66476\",\n          \"signals\": [\n            {\n              \"identifier\": \"dollar_amount_edits\",\n              \"display_name\": \"Dollar Amount Edits\",\n              \"signal_count\": 1,\n              \"page_number\": 1,\n              \"supporting_data\": [\n                {\n                  \"values\": [\n                    {\n                      \"key\": \"field_name\",\n                      \"value\": \"amount\",\n                      \"data_type\": \"str\"\n                    },\n                    {\n                      \"key\": \"tampered_text\",\n                      \"value\": \"10,000.00\",\n                      \"data_type\": \"str\"\n                    }\n                  ]\n                }\n              ]\n            }\n          ],\n          \"visualizations\": [\n            {\n              \"page_number\": 1,\n              \"page_visualizations\": [\n                {\n                  \"visual_type\": \"tamper_overview\",\n                  \"display_name\": \"Tamper Overview\",\n                  \"description\": \"Tampered fields are highlighted in red.\",\n                  \"image_url\": \"https://api.ocrolus.com/v2/detect/visualization/ec75a8e8-07eb-4098-9c28-fad9d268d982\"\n                },\n                {\n                  \"visual_type\": \"misaligned_text\",\n                  \"display_name\": \"Misaligned Text\",\n                  \"description\": \"Fields are not aligned as expected. Gray lines indicate expected alignments. Misaligned fields are highlighted in red, with misaligned characters emphasized.\",\n                  \"image_url\": \"https://api.ocrolus.com/v2/detect/visualization/2dfaab38-4420-4232-9b16-e4308a652112\"\n                }\n              ]\n            }\n          ],\n          \"form_dashboard_url\": \"https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11?selectedUploadPks=56735083&selectedDocType=bankStatements&detectPaneOpen=True&detectTab=1\",\n          \"form_authenticity\": {\n            \"version\": \"1.0\",\n            \"score\": 70,\n            \"reason_codes\": [\n              {\n                \"code\": \"006-L\",\n                \"confidence\": \"LOW\",\n                \"description\": \"fields misaligned\"\n              }\n            ]\n          }\n        }\n      ],\n      \"is_image_based_pdf\": false\n    }\n  ],\n  \"book_dashboard_url\": \"https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9962b94d-035e-4917-b58f-a8f5cfeeb776",
+              "name": "The provided value of `uploaded_doc_uuid` wasn't a valid UUID. Ensure that it's correctly-formatted and that it comes from the right source.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "uploaded_doc",
+                    ":uploaded_doc_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uploaded_doc_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Document>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid uploaded_doc uuid: '5e6c12fb-d624-4d83-9353-618480113f1'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09f1be1e-dc58-4c9f-adcf-a0db601ea4b8",
+              "name": "The provided access token can't be used to grant you access to this resource. Make sure the token hasn't expired.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "uploaded_doc",
+                    ":uploaded_doc_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uploaded_doc_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Document>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af256524-6576-465f-9b4c-9f6dba586375",
+              "name": "No <<glossary:Document>> with the UUID given in `uploaded_doc_uuid` could be found.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "uploaded_doc",
+                    ":uploaded_doc_uuid",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_dashboard_url",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uploaded_doc_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Document>>."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Uploaded doc not found: '6f7e292c-57c8-0651-8f1b-8d409065661a'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9acb36a0-82e5-46c6-a39a-be41b673ae37",
+          "name": "Signal visualization",
+          "request": {
+            "name": "Signal visualization",
+            "description": {
+              "content": "Retrieve an image file that contains a Detect Signal visualization.\n\n---\nSee our guide on [Interpreting Detect Signal Visualizations](doc:detect-signals#interpreting-visualizations) for more information about what the image means.\n\nYou'll generally use this endpoint through the URLs returned by the [Document-Level Fraud Signals](ref:doc-fraud-signals) or [Book-Level Fraud Signals](ref:book-fraud-signals) endpoints.\n> 📘 Don't forget your keys!\n> This endpoint requires authentication, just as the others do. This means that you can't hotlink images from this endpoint with `<img>` tags; to display them in your own applications, you'll need to retrieve and serve them yourself, although this can be done in-browser with JavaScript.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "detect",
+                "visualization",
+                ":visualization_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "visualization_uuid",
+                  "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4360f1d-cbfe-4cfe-a816-0078a0d1b37f",
+              "name": "The visualization was retrieved and is enclosed.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "visualization",
+                    ":visualization_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "visualization_uuid",
+                      "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55be588b-2e7c-45e5-87f6-03c57eca1b0d",
+              "name": "The UUID given in `visualization_uuid` wasn't valid.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "visualization",
+                    ":visualization_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "visualization_uuid",
+                      "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid visualization uuid: '1d8fdf29-77b5-4614-8ed1-45ba8e1945c1w'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74cfd03d-e9ee-4d87-862d-5f9a1724f62b",
+              "name": "The provided access token can't be used to grant you access to this resource. Make sure the token hasn't expired.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "visualization",
+                    ":visualization_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "visualization_uuid",
+                      "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "310b7302-5120-418d-b041-47d4ac6fc9dc",
+              "name": "You don't have permission to access the requested <<glossary:Book>>, or this endpoint hasn't been enabled for your organization.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "visualization",
+                    ":visualization_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "visualization_uuid",
+                      "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddc367e6-d476-4faa-a893-c9da80be22ce",
+              "name": "No visualization with the UUID given in `visualization_uuid` could be found.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "detect",
+                    "visualization",
+                    ":visualization_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "visualization_uuid",
+                      "description": "(Required) The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Visualization uuid not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5731c75-ca33-4e82-b6ac-c16d3f9b3856",
+          "name": "Suspicious Activity Flags (Legacy)",
+          "request": {
+            "name": "Suspicious Activity Flags (Legacy)",
+            "description": {
+              "content": "Retrieve a report on possible instances of file tampering on any of the given <<glossary:Book>>'s bank statements, W-2s, and pay stubs.\n\n---\n\n> 🚧 We have a better version!\n> This product is superseded by our new Detect offering, which we recommend for all new work. A deprecation plan will be announced in the future.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                ":book_uuid",
+                "suspicious-activity-flags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Book>> that you want to receive Suspicious Activity information on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aecec64a-0cf0-4414-95ee-192b51a26232",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    ":book_uuid",
+                    "suspicious-activity-flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> that you want to receive Suspicious Activity information on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"book_uuid\": \"9da3dd68e5624bf79796c791a8c81651\",\n    \"suspicious_activity_results\": [\n      {\n        \"form_uuid\": \"d0bff378-9718-4271-b337-4530e1a0fbac\",\n        \"form_type\": {\n          \"name\": \"BANK_ACCOUNT\"\n        },\n        \"account_type\": \"CHECKING\",\n        \"flags\": [\n          {\n            \"suspicious_activity_detected\": false,\n            \"reason\": \"FILE_TAMPERING\",\n            \"suspicious_activity_location\": {\n              \"upload_origin\": \"PRE_IDENTIFIED\",\n              \"doc_uuid\": \"310066c4-485c-42f0-9f5f-5cf1de67472b\",\n              \"suspicious_activity_page_indexes\": []\n            }\n          }\n        ]\n      },\n      {\n        \"form_uuid\": \"0313fd74-8e16-4377-b88a-903dc90c9b97\",\n        \"form_type\": {\n          \"name\": \"BANK_ACCOUNT\"\n        },\n        \"account_type\": \"CHECKING\",\n        \"flags\": [\n          {\n            \"suspicious_activity_detected\": false,\n            \"reason\": \"FILE_TAMPERING\",\n            \"suspicious_activity_location\": {\n              \"upload_origin\": \"PRE_IDENTIFIED\",\n              \"doc_uuid\": \"f284ecf7-f1c9-42b2-bdb0-ade2b51398c5\",\n              \"suspicious_activity_page_indexes\": []\n            }\n          }\n        ]\n      },\n      {\n        \"form_uuid\": \"4e190b23-55b9-4646-860b-3d08d99d9065\",\n        \"form_type\": {\n          \"name\": \"BANK_ACCOUNT\"\n        },\n        \"account_type\": \"CHECKING\",\n        \"flags\": [\n          {\n            \"suspicious_activity_detected\": false,\n            \"reason\": \"FILE_TAMPERING\",\n            \"suspicious_activity_location\": {\n              \"upload_origin\": \"PRE_IDENTIFIED\",\n              \"doc_uuid\": \"877e7496-8d12-4fb5-92eb-7cdc86db26da\",\n              \"suspicious_activity_page_indexes\": []\n            }\n          }\n        ]\n      },\n      {\n        \"form_uuid\": \"1829553f-51fa-4ae9-a942-63c82c2225a1\",\n        \"form_type\": {\n          \"name\": \"BANK_ACCOUNT\"\n        },\n        \"account_type\": \"CHECKING\",\n        \"flags\": [\n          {\n            \"suspicious_activity_detected\": false,\n            \"reason\": \"FILE_TAMPERING\",\n            \"suspicious_activity_location\": {\n              \"upload_origin\": \"PRE_IDENTIFIED\",\n              \"doc_uuid\": \"f9ffbf6c-f5e1-486a-9736-5cad8a4a90f8\",\n              \"suspicious_activity_page_indexes\": []\n            }\n          }\n        ]\n      },\n      {\n        \"form_uuid\": \"d71ccd30-a8eb-40d1-80cc-73086edadb23\",\n        \"form_type\": {\n          \"name\": \"BANK_ACCOUNT\"\n        },\n        \"account_type\": \"CHECKING\",\n        \"flags\": [\n          {\n            \"suspicious_activity_detected\": false,\n            \"reason\": \"FILE_TAMPERING\",\n            \"suspicious_activity_location\": {\n              \"upload_origin\": \"PRE_IDENTIFIED\",\n              \"doc_uuid\": \"8657dab0-4fa1-4da0-9428-9874100dd191\",\n              \"suspicious_activity_page_indexes\": []\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d811502-3cf9-4634-b14b-9f54544e4e74",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    ":book_uuid",
+                    "suspicious-activity-flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> that you want to receive Suspicious Activity information on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9502bd54-3789-423b-b61c-5ee75b82d418",
+    "name": "Account Level Webhooks Book Commands Detect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

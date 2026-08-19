@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Detect API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Detect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Book-level Fraud Signals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/detect/book/:book_uuid/signals",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a <<glossary:Book>>."
+              },
+              {
+                "name": "exclude_dashboard_url",
+                "value": "",
+                "type": "query",
+                "description": "determines whether Ocrolus will return the unique Ocrolus Dashboard URL that links directly to the Dashboard for the given book."
+              }
+            ]
+          },
+          "docs": "Scan every <<glossary:Document>> in an uploaded <<glossary:Book>> for signs of potentially fraudulent tampering.\n\n---\n\n> 📘 This is the better version!\n> This endpoint supersedes our existing [Suspicious Activity Flags endpoint](ref:suspicious-activity), as well as the `primary_recon_error_reason` and `secondary_recon_error_reason` attributes returned by the [Analytics endpoints](ref:analytics). A deprecation plan will be announced in the future."
+        },
+        {
+          "info": {
+            "name": "Document-Level Fraud Signals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/detect/uploaded_doc/:uploaded_doc_uuid/signals",
+            "params": [
+              {
+                "name": "uploaded_doc_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a <<glossary:Document>>."
+              },
+              {
+                "name": "exclude_dashboard_url",
+                "value": "",
+                "type": "query",
+                "description": "determines whether Ocrolus will return the unique Ocrolus Dashboard URL that links directly to the Dashboard for the given book."
+              }
+            ]
+          },
+          "docs": "Scan a <<glossary:Document>> for signs of potentially fraudulent tampering.\n\n---\n\n> 📘 This is the better version!\n> This endpoint supersedes our existing [Suspicious Activity Flags endpoint](ref:suspicious-activity), as well as the `primary_recon_error_reason` and `secondary_recon_error_reason` attributes returned by the [Analytics endpoints](ref:analytics). A deprecation plan will be announced in the future."
+        },
+        {
+          "info": {
+            "name": "Signal visualization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/detect/visualization/:visualization_uuid",
+            "params": [
+              {
+                "name": "visualization_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of a visualization (*not* of a <<glossary:Document>>, <<glossary:Book>>, or page). The [other](ref:doc-fraud-signals) [two](ref:book-fraud-signals) Detect endpoints return the complete URL, so you won't need to populate this parameter explicitly.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve an image file that contains a Detect Signal visualization.\n\n---\nSee our guide on [Interpreting Detect Signal Visualizations](doc:detect-signals#interpreting-visualizations) for more information about what the image means.\n\nYou'll generally use this endpoint through the URLs returned by the [Document-Level Fraud Signals](ref:doc-fraud-signals) or [Book-Level Fraud Signals](ref:book-fraud-signals) endpoints.\n> 📘 Don't forget your keys!\n> This endpoint requires authentication, just as the"
+        },
+        {
+          "info": {
+            "name": "Suspicious Activity Flags (Legacy)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/:book_uuid/suspicious-activity-flags",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that you want to receive Suspicious Activity information on."
+              }
+            ]
+          },
+          "docs": "Retrieve a report on possible instances of file tampering on any of the given <<glossary:Book>>'s bank statements, W-2s, and pay stubs.\n\n---\n\n> 🚧 We have a better version!\n> This product is superseded by our new Detect offering, which we recommend for all new work. A deprecation plan will be announced in the future."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

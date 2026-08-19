@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Book Queries API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Book Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Book from loan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/los-connect/encompass/book",
+            "params": [
+              {
+                "name": "loan_id",
+                "value": "c3f7e84d-8a91-4b1c-9460-192a746ad3c9",
+                "type": "query",
+                "description": "The unique Encompass loan identifier expressed in Globally Unique Identifier (GUID) format."
+              },
+              {
+                "name": "loan_number",
+                "value": "LN250918342",
+                "type": "query",
+                "description": "The numeric identifier assigned to an Encompass loan."
+              }
+            ]
+          },
+          "docs": "This API endpoint lets you retrieve the Ocrolus <<glossary:Book>> associated with a specific Encompass loan. You can query it using either the `Encompass loan_id` (GUID) or the `loan_number`, depending on which identifier you have available. \n\n> 📘 Note:\n> The system accepts either `loan_id` or `loan_number` to identify the loan. If both parameters are provided, or if neither is included in the request payload, the API returns a 400 error.\n"
+        },
+        {
+          "info": {
+            "name": "Loan details from Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/los-connect/book/:book_uuid/loans",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> from which you want to retrieve loan details. Mutually exclusive with `book_pk`."
+              }
+            ]
+          },
+          "docs": "This API retrieves the Encompass Loan GUID and related loan metadata using the Ocrolus <<glossary:Book>> UUID. It enables seamless mapping between an Ocrolus Book and its corresponding Encompass Loan, supporting accurate LOS integration, tracking, and synchronization between Ocrolus and Encompass systems.\n"
+        },
+        {
+          "info": {
+            "name": "Book information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/info",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                "type": "query",
+                "description": "The unique identifier of the <<glossary:Book>> whose information you want to retrieve. Mutually exclusive with `book_pk`."
+              },
+              {
+                "name": "pk",
+                "value": "30219565",
+                "type": "query",
+                "description": "Unique primary key (pk) of the <<glossary:Book>> whose information you want to retrieve. Mutually exclusive with `book_uuid`."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a <<glossary:Book>>, including uploaded <<glossary:Document>>s, bank account information, and transaction periods."
+        },
+        {
+          "info": {
+            "name": "Book list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/books",
+            "params": [
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Sets the number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query",
+                "description": "Sets the starting point of the results list. The list is index-based and starts at integer 0."
+              },
+              {
+                "name": "order",
+                "value": "ASC",
+                "type": "query",
+                "description": "By default, results are returned in descending order, which is newest to oldest."
+              },
+              {
+                "name": "order_by",
+                "value": "created",
+                "type": "query",
+                "description": "Determines what field to order the results by."
+              },
+              {
+                "name": "name",
+                "value": "My_Book",
+                "type": "query",
+                "description": "Filter books by name (exact match)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filter books by keyword search on book_name"
+              },
+              {
+                "name": "xid",
+                "value": "sample-xid",
+                "type": "query",
+                "description": "Filter books by xid (exact match)"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all <<glossary:Book>>s available to the current user.\n\n---\n\n> 📘\n> - By default results are ordered by <<glossary:Book>> PK in descending order but you can alter how and what books are returned by providing different parameters with your request.\n> - Use the `name` query parameter to find a <<glossary:Book>> by an exact name. This will be faster than `search` which uses approximate string matching algorithm.\n"
+        },
+        {
+          "info": {
+            "name": "Book status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/status",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                "type": "query",
+                "description": "The unique identifier of the <<glossary:Book>> whose status you want to retrieve. Mutually exclusive with `book_pk`."
+              },
+              {
+                "name": "pk",
+                "value": "30219565",
+                "type": "query",
+                "description": "Unique primary key (pk) of the <<glossary:Book>> whose status you want to retrieve. Mutually exclusive with `book_uuid`."
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a <<glossary:Book>>.\n\n---\nThis endpoint can also be used to keep track of the status of the Documents within the <<glossary:Book>>.\n\nFor more information about the various processing statuses of a <<glossary:Book>> during its life cycle, visit our guide on [Book Statuses](doc:book-status-code).\n\nSimilarly, if you are interested in knowing more about the different stages of Document processing, visit our guide on [Document Statuses](doc:document-status)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

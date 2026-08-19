@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands File Uploads API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Uploads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload PDF to Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "book_uuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pk",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "form_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "doc_name",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a PDF file to a <<glossary:Book>> for processing.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.   \n> 📘 \n>  - The maximum file size for upload is 200 MB.\n\n\nFor all Documents *except* bank statements, the optional `form_type` parameter can be used to specify the type of <<glossary:Document>>.   \n\nYou can see form types we support in our [forms di"
+        },
+        {
+          "info": {
+            "name": "Upload Mixed Document PDF to Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/upload/mixed",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "book_uuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pk",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "doc_name",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a PDF file containing more than one <<glossary:Document>> to a <<glossary:Book>>.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\n> 📘\n>  - The maximum file size for upload is 200 MB.\n"
+        },
+        {
+          "info": {
+            "name": "Upload Pay stub PDF to Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/document/paystub",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> where the uploaded file will be saved."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "book_uuid",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a known <<glossary:Pay stub>> file directly to a specific <<glossary:Book>>.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\nIf successful, the response will return the specific doc_uuid for the uploaded <<glossary:Document>>.\n> 📘\n>  - This endpoint is limited to PDF's where the form type is expected to be a PAYSTUB.\n>  - The maximum file size a"
+        },
+        {
+          "info": {
+            "name": "Upload Image to Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/upload/image",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "book_uuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "pk",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "return_image_pk",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload image files to a <<glossary:Book>>.\n\n--- \n\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\nWith the capability to classify images, you can upload a single image using this endpoint. To upload multiple images to the same <<glossary:Book>>, call this endpoint once for each image, and then call the [Finalize image group](ref:mark-image-group-complete) en"
+        },
+        {
+          "info": {
+            "name": "Finalize Image Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/upload/image/done",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize an image group and construct a <<glossary:Document>> from its images.\n\n---\n\nAfter you have [uploaded images](ref:upload-image), call this endpoint to finalize an image group and construct a <<glossary:Document>> from its content.\n\n> 📘\n> The term **image group** refers to a collection of images that may consist of one or more images.\n\n\nHere is the list of all the [Additional Supported Form Types](https://docs.ocrolus.com/docs/forms-directory) we support. For more information, please con"
+        },
+        {
+          "info": {
+            "name": "Upload aggregator JSON to Book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/upload/json",
+            "params": [
+              {
+                "name": "upload_intent",
+                "value": "add_analytics",
+                "type": "query",
+                "description": "Specifies the intent to process the Plaid JSON files uploaded to a Book. This parameter determines whether the uploaded transactions are simply added to the Book for analytics or actively compared against existing bank statement data to detect mismatches. \n\nThe available options to set intent are:\n- **`add_analytics`**: Adds transactions from the Plaid JSON to the Book without performing mismatch detection. Use this option for ongoing monitoring or when you only need to enrich the dataset with additional Plaid transactions. (Default if no value is specified.)\n- **`docs_to_digital`**: Runs the Docs-to-Digital algorithm. If used, the Plaid transactions are matched against bank statement data available in the Book, and any mismatches are flagged for review. Use this option when you want to perform reconciliation between digital (Plaid) and analog (PDF) sources.\n"
+              },
+              {
+                "name": "aggregate_source",
+                "value": "PLAID",
+                "type": "query",
+                "description": "Specifies the data aggregator source used to generate the uploaded JSON. This field is case-sensitive. If no value is provided, the system defaults to `PLAID`."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "pk",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "uuid",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "accounts",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "transactions",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "customers",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "institutions",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "doc_name",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This API uploads aggregator-provided JSON data (Plaid or Finicity) to an Ocrolus <<glossary:Book>>. This endpoint supports uploading:\n\n- Plaid Asset Report JSON\n- Plaid Transactions JSON\n- Finicity JSON bundles, including accounts, transactions, customers, and institutions\n\nFor Plaid, this endpoint takes the JSON output from Plaid's [**`/transactions/get`**](https://plaid.com/docs/api/products/#transactionsget) or [**`/asset_report/get`**](https://plaid.com/docs/api/products/#asset_reportget) en"
+        },
+        {
+          "info": {
+            "name": "Import Plaid Asset Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/import/plaid/asset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import an Asset Report directly from Plaid and construct a <<glossary:Document>> from it.\n\n---\n\n\nWith fully automated workflows in mind, Ocrolus and [Plaid](https://plaid.com) offer the ability to directly import the Asset Report of any customer who has provided Bank Account details via Plaid - without you having to explicitly download and handle the JSON report.\n\nTo achieve this, Plaid will ask you to [share an Audit Copy](https://plaid.com/docs/#4-share-an-audit-copy) of the Asset Report direc"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

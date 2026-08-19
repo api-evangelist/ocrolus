@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Tag Management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tag Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all tags (custom and system tags)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/analytics/tags",
+            "params": [
+              {
+                "name": "tag_type",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to set the filter the to retrieve either system tags or custom tags at a time."
+              }
+            ]
+          },
+          "docs": "This API is used to retrieves all available tags in the system, including both system-defined and custom-created tags. You can use the optional query parameter `is_system_tag` to filter the results:\n\nExamples:\n  - To retrieve all system-defined tags:\n    GET /v2/analytics/tags?is_system_tag=true\n\n  - To retrieve all custom-created tags:\n    GET /v2/analytics/tags?is_system_tag=false\n"
+        },
+        {
+          "info": {
+            "name": "Create tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v2/analytics/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API enables the creation of custom tags to classify transactions using user-defined criteria, including include/exclude terms, amount thresholds, and recurrence patterns."
+        },
+        {
+          "info": {
+            "name": "Retrieve a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/analytics/tags/:tag_uuid",
+            "params": [
+              {
+                "name": "tag_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the tag whose details are to be retrieved."
+              }
+            ]
+          },
+          "docs": "This API is used to retrieve details of a specific tag based on the specified `tag_uuid`. The response includes the tag's name, description, color, type (system or custom), include and exclude terms, and other configuration details.\n"
+        },
+        {
+          "info": {
+            "name": "Modify tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ocrolus.com/v2/analytics/tags/:tag_uuid",
+            "params": [
+              {
+                "name": "tag_uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the tag that you want to modify."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows you to modify an existing custom tag. You can update the tag's name, description, color, and customization logic."
+        },
+        {
+          "info": {
+            "name": "Delete tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ocrolus.com/v2/analytics/tags/:tag_uuid",
+            "params": [
+              {
+                "name": "tag_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tag that you want to delete."
+              }
+            ]
+          },
+          "docs": "This API allows you to delete a custom tag. System-defined tags cannot be deleted using this endpoint.\n\n\n  ---\n\n  > 🚧 **No turning back!**\n    > This action is not reversible, meaning that you can't recover deleted tags. Make sure you're ready!\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve revenue deduction tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/analytics/revenue-deduction-tags"
+          },
+          "docs": "Retrieves a list of all current revenue deduction tags. These tags represent transaction categories that are excluded from **Total Credits** when calculating **Net Revenue**.\n"
+        },
+        {
+          "info": {
+            "name": "Update revenue deduction tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ocrolus.com/v2/analytics/revenue-deduction-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows you to update the list of tags that should be deducted from all credits to calculate net revenue. Only the tag names provided in the request body will be used as revenue deduction tags after the update, and existing values will be replaced.\n"
+        },
+        {
+          "info": {
+            "name": "Override transaction tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ocrolus.com/v2/analytics/book/:book_uuid/transactions",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Book in which the transaction has to be overridden."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows you to manually override the tags applied to a transaction within a specific Book. You can assign one or more tag UUIDs to a transaction using its primary key (`txn_pk`).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Org Level Webhooks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Org Level Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set up an org-level webhook for your organization so your application can receive and respond to Ocrolus events in real time. Use this endpoint to create or update the webhook configuration. Ocrolus then delivers event payloads to your application as they occur, allowing you to automate downstream workflows.\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events).\n\n> 📘\n> Your web"
+        },
+        {
+          "info": {
+            "name": "Configure webhook secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid/rotate-secret",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "9be5c090-7dd6-465b-950e-885b95e1863a",
+                "type": "path",
+                "description": "The unique identifier of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API configures the secret key for a specific org-level webhook. Use this endpoint to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.\n"
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid/delete",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identification code (UUID) of the webhook."
+              }
+            ]
+          },
+          "docs": "Delete a webhook using the webhook's universally unique identification code (UUID)."
+        },
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/webhooks"
+          },
+          "docs": "This API retrieves a list of all the webhooks configured for your organization.\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+        },
+        {
+          "info": {
+            "name": "List webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid/events",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identification identifier of the webhook."
+              }
+            ]
+          },
+          "docs": "This API retrieves a list of events configured for a webhook using the webhook's universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+        },
+        {
+          "info": {
+            "name": "Retrieve webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identification code (UUID) of the webhook."
+              }
+            ]
+          },
+          "docs": "This API retrieves a specific webhook using its universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+        },
+        {
+          "info": {
+            "name": "Test webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid/test",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identification code (UUID) of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API sends a test payload to your configured webhook endpoint using a provided event.\n\n---\nThis endpoint requires users to provide an `event_uuid` for a notification event that you have configured a webhook for.\n\nYou can find configured notifications event and their uuids by using the [List events for Webhook endpoint](ref:list-events)."
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/webhook/:webhook_uuid/update",
+            "params": [
+              {
+                "name": "webhook_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identification code (UUID) of the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API updates the settings for a webhook in your organization by using the webhook's universally unique identification code (UUID).\n\n---\nYou can find a list of supported org-level event types and their sample notifications in the [Org-level webhook guide](doc:organization-level-webhook#available-events)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

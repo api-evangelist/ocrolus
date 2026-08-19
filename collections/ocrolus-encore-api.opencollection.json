@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Encore API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Encore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Book copy jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/copy-jobs",
+            "params": [
+              {
+                "name": "job_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of job to retrieve. By default, the API returns **`OUTBOUND`** jobs. The available options are:\n- **`OUTBOUND`**: Books you're sending to others.\n- **`INBOUND`**: Books others are sending to you.\n"
+              },
+              {
+                "name": "org_uuid",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "query",
+                "description": "A unique identifier (UUID) of the organization."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The starting point (number of records to skip) from the latest record to fetch results."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to be fetched starting from the specified **`offset`** value."
+              }
+            ]
+          },
+          "docs": "This API retrieves a list of <<glossary:Book>> copy jobs and their details. By default, it returns outbound jobs—requests your organization sent. You can also fetch inbound jobs—requests sent to your organization.\n\n> 📘 Note\n> This API is intended for small and medium business (SMB) funders.\n"
+        },
+        {
+          "info": {
+            "name": "Create Book copy jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/copy-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API submits asynchronous copy requests that duplicate a <<glossary:Book>> and all uploaded documents to a specified recipient organization. Each request creates a job. You can monitor job status using the [List Book Copy Jobs](https://docs.ocrolus.com/reference/list-book-copy-jobs) endpoint.\n### Supported workflows\n1. **Updating existing applications**: Use a prior share label on the Book you are sharing so the new docs are appended to existing Book. Prevents duplicate Books when an applica"
+        },
+        {
+          "info": {
+            "name": "Accept Book copy jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/copy-jobs/:job_id/accept",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "019afd81-59ed-7fce-b5f8-477927bbf31d",
+                "type": "path",
+                "description": "UUID of the Book copy job to accept."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API enables a recipient organization to accept an incoming <<glossary:Book>> copy request. Once accepted, Ocrolus begins copying the Book and its associated documents to the recipient organization. The recipient may optionally change the Book name when accepting a Book copy request. Alternatively, the recipient can rename the Book after it has been accepted.\nA `book.copy.request_accepted` webhook event is then triggered and sent to the sender organization.\n\n> 📘 Note\n> - This API is intende"
+        },
+        {
+          "info": {
+            "name": "Reject Book copy jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/copy-jobs/:job_id/reject",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "019afd81-59ed-7fce-b5f8-477927bbf31d",
+                "type": "path",
+                "description": "UUID of the Book copy job to reject."
+              }
+            ]
+          },
+          "docs": "This API allows the recipient organization to reject an incoming <<glossary:Book>> copy request. A `book.copy.request_rejected` webhook event is then triggered and sent to the sender organization.\n\n\n> 📘 Note\n> - This API is intended for small and medium business (SMB) funders using the Book copy feature.\n> - A Book copy job can be rejected only when its status is `AWAITING_RECIPIENT`.\n> - A Book cannot be rejected after it has been accepted. Additionally, a previously rejected Book cannot be re"
+        },
+        {
+          "info": {
+            "name": "Run automated cash flow kick-outs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/book/copy-jobs/run-kickouts"
+          },
+          "docs": "This API signals Ocrolus to run automated cash flow kick-outs using the recipient organization’s preconfigured Encore kick-out criteria. When triggered, Ocrolus evaluates all incoming <<glossary:Book>> copy jobs currently in the `AWAITING_RECIPIENT` state and applies the configured rules to automatically accept or reject them. After the evaluation completes, Ocrolus sends the resulting status updates to the sender organization using `book.copy.kickout_evaluated` webhook events.\n> 📘 Note\n> This "
+        },
+        {
+          "info": {
+            "name": "Retrieve Book copy settings (recipient address Book)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/settings/book-copy"
+          },
+          "docs": "This API retrieves a list of allowed recipient and sender organizations for <<glossary:Book>> copying.\n\n> 📘 Note\n> This API is intended for small and medium business (SMB) funders.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

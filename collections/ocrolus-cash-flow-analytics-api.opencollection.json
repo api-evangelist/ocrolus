@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Cash Flow Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cash Flow Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bank statement income calculator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income/bank-statement-v2",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              }
+            ]
+          },
+          "docs": "This API retrieves the bank statement income calculator output in JSON format.  You can also access this through the Dashboard. To learn more, see [Bank Statement Income Calculator](https://docs.ocrolus.com/docs/bank-statement-income-calculator).\n"
+        },
+        {
+          "info": {
+            "name": "Bank statement income calculator (Excel)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income/bank-statement-v2/xlsx",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              }
+            ]
+          },
+          "docs": "This API retrieves the bank statement income calculator in an Excel format.\n\n---\n\nVisit our [guide](https://docs.ocrolus.com/docs/bank-statement-income-calculator) for more information.\n\nThe output of this endpoint is intended for manual review, as opposed to automated consumption by your application.\n> 🚧\n> The response will have a MIME type of `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, hence there is no JSON response schema. See [here](https://docs.google.com/spreadsh"
+        },
+        {
+          "info": {
+            "name": "Book summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/summary",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              },
+              {
+                "name": "exclude_bank_account_pks",
+                "value": "9662788",
+                "type": "query",
+                "description": "Bank account primary key(s) to exclude from analytics calculations in the book summary. The underlying data remains in the system and is not deleted.\n> 📘 This parameter is in beta. If you encounter any bug, please reach out to [support@ocrolus.com](mailto:support@ocrolus.com).\n"
+              },
+              {
+                "name": "exclude_months",
+                "value": "2025-01",
+                "type": "query",
+                "description": "Months (in YYYY-MM format) of transaction to exclude from analytics calculations in the book summary. The underlying data remains in the system and is not deleted.\n> 📘 This parameter is in beta. If you encounter any bug, please reach out to [support@ocrolus.com](mailto:support@ocrolus.com).\n"
+              },
+              {
+                "name": "async",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+              }
+            ]
+          },
+          "docs": "\nThis API retrieves the Cash Flow Analytics summary of a Book in JSON format. It provides daily balances, bank account PII, and time series for all transaction categories at the <<glossary:Book>> and bank account level. \n\nIt offers quicker analytics generation, more granular and accurate transaction categories (including improved revenue and expense calculations), and a more concise structure.\n\n---\n\n### Async processing \n\nThis API supports asynchronous processing. To get the asynchronous result,"
+        },
+        {
+          "info": {
+            "name": "Cash flow features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/cash_flow_features",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that you'd like to analyze. All bank statements in this Book will be analyzed, and other documents will be ignored.\n"
+              },
+              {
+                "name": "async",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+              }
+            ]
+          },
+          "docs": "This API retrieves pre-engineered analytics on a series of bank statements within a <<glossary:Book>> with an object structure that’s suitable for modeling applications.\n> 📘 Note \n  > ***Min_days_to_include**: Minimum number of days required for the most recent calendar month to be included in monthly cash flow calculations. The default value is `0`. If the value is set to **32**, only fully completed months are included.\n\n---\n### Async processing \nThis API supports asynchronous processing. To "
+        },
+        {
+          "info": {
+            "name": "Enriched transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/enriched_txns",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that you'd like to analyze.\n"
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "The starting point (number of records to skip) from the latest transaction to fetch results."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "The maximum number of records to be fetched starting from the specified `offset` value."
+              },
+              {
+                "name": "include_pending_plaid_transactions",
+                "value": "false",
+                "type": "query",
+                "description": "Provides an option to include pending transactions in the response. When set to `true`, the response payload includes an additional `pending_plaid_transactions` field listing currently pending transactions for the Book’s Plaid-linked accounts.\n\nPending Plaid transactions are transactions that the financial institution has reported to Plaid but which have not yet posted to the account. For example, card authorizations that have not cleared, or ACH debits still in flight. Including them gives you early visibility into recent activity that will eventually appear in the posted transaction set.\n\n> 📘 Note \n> - Pending transactions are surfaced for visibility only. They are not processed through Ocrolus’s enrichment pipeline and therefore do not include tags, categories, or counterparties.\n> - These transactions are excluded from all analytics outputs. Cash flow features, Book summaries, risk scores, lender analytics, and analytics exports are computed only from posted transactions.  \n> - Once a pending transaction posts at the financial institution, it is processed through enrichment and appears in the standard posted transaction set on the next refresh. The pending entry is then removed.      \n"
+              },
+              {
+                "name": "async",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+              }
+            ]
+          },
+          "docs": "\nThis API provides categorizations for each transaction in the requested <<glossary:Book>>. It's the building block for all the Cash Flow Analytics products. It contains a comprehensive list of categories, accurate Transaction tagging, and improved revenue, expense, and transfer logic.\n\n---\n\n### Async processing \n\nThis API supports asynchronous processing. To get the asynchronous result, add `async=true` in the query parameter to run the request as a background job and receive a `job_id` immedia"
+        },
+        {
+          "info": {
+            "name": "SMB analytics (Excel)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/lender_analytics/xlsx",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the bank statements you'd like to have analyzed.\n"
+              },
+              {
+                "name": "async",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+              }
+            ]
+          },
+          "docs": "\nThis API retrieves analytics encompassing Enriched Transactions, Book Summary, Cash Flow Features for a Book in an Excel format.\n---\n\nThe output of this endpoint is intended for manual review, as opposed to automated consumption by your application.\n\n> 🚧\n> The response will have a MIME type of `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, hence there is no JSON response schema. See [here](https://docs.google.com/spreadsheets/d/1h7rIIlL4nrX5JxLhznDa69QKq11gAzWK) for an ex"
+        },
+        {
+          "info": {
+            "name": "Risk score",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/cash_flow_risk_score",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> that you'd like to analyze.\n"
+              },
+              {
+                "name": "async",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+              }
+            ]
+          },
+          "docs": "This API retrieves the Risk Score of a Book in JSON format. The Ocrolus Risk Score offers a highly analytical approach to predicting the probability of default for borrowers based on cash flow analytics. This endpoint offers the following benefits:\n\n- Make quicker, more accurate lending decisions backed by data - Leverage alternative data effectively to gain a complete view of borrowers and speed up decision making\n\n- Mitigate credit risk - Easily identifying borrowers that are likely to default"
+        },
+        {
+          "info": {
+            "name": "Cash flow benchmarking (CFB)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/analytics/book/:book_uuid/benchmark",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>>.\n"
+              },
+              {
+                "name": "time_window_days",
+                "value": "",
+                "type": "query",
+                "description": "Rolling window, in days, measured back from the Book's creation date. Sets the period over which the Book's metrics and the peer distribution are computed.\n"
+              },
+              {
+                "name": "geography_type",
+                "value": "",
+                "type": "query",
+                "description": "Geographic scope of the peer group. `msa` uses metropolitan statistical area codes.\n"
+              },
+              {
+                "name": "geography_code",
+                "value": "",
+                "type": "query",
+                "description": "Geographic identifier for the peer group: a state abbreviation (e.g., `NY`), an MSA code, or `ALL`. Must not be `ALL` when `geography_type` is `state` or `msa`.\n"
+              },
+              {
+                "name": "industry_level",
+                "value": "",
+                "type": "query",
+                "description": "<<glossary:NAICS>> granularity used to build the peer group."
+              },
+              {
+                "name": "industry_code",
+                "value": "",
+                "type": "query",
+                "description": "NAICS code matching `industry_level`. Required as a 6-digit code when `industry_level` is `naics6`. Otherwise derived from the Book's NAICS data.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve benchmarking percentiles for an SMB <<glossary:Book>>. The endpoint ranks the Book against anonymized peers across four metrics: revenue, expenses, fintech inflows, and fintech outflows. Use optional query parameters to shape the peer group by time window, geography, and industry granularity.\n\n> 🚧 Early access!\n> This feature is available through early access. To enable either feature for your organization, contact your Account Manager.\n\n> 📘 Peer-group validity\n> Results are returned "
+        },
+        {
+          "info": {
+            "name": "Credit shopping events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/credit-shopping-events",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "3927d5b7-ca34-4882-b23f-0ce40d40027c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>>.\n"
+              }
+            ]
+          },
+          "docs": "This API retrieve credit shopping events (CSE) for an SMB <<glossary:Book>>. It groups a merchant's loan inquiries into clusters to give lenders visibility into how frequently and how recently the merchant has shopped for credit. The response includes two velocity views — individual loan inquiries and grouped credit-shopping events, along with the full list of events and their anonymized lender inquiry timestamps.\n"
+        },
+        {
+          "info": {
+            "name": "Async job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/analytics/jobs/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e",
+                "type": "path",
+                "description": "The job ID returned in the `202` response when the async request was submitted.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the status and result of an analytics job created when any supported analytics endpoint is called with **`async=true`**. Poll this endpoint until the job reaches a terminal state (`DONE` or `FAILED`).\n\nThe job **`status`** moves through the following states: **`PENDING`** while the job is running, **`DONE`** when the result is ready, and **`FAILED`** if the job could not be completed. Poll every few seconds until a terminal state is reached. Large Books may take longer to process.\n\nWhe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

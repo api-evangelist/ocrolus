@@ -233,3 +233,9 @@ tools:
 - name: list_users
   description: List users
   source_operation: openapi/ocrolus-user-management-openapi.json#list-users
+deployment:
+  mode: none
+  verified: derived
+  tools: 75
+  checked: '2026-08-12'
+  source: catalog MCP census

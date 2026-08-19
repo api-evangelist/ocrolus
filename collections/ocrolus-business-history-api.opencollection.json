@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Business history API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Business history",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Business identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/business",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "",
+                "type": "path",
+                "description": "A universally unique identifier (UUID) of the Book used to retrieve its associated business."
+              }
+            ]
+          },
+          "docs": "This API retrieves the business associated with a given `book_uuid`. It returns the business ID and display name, which can be used with business-level endpoints to access aggregated data across multiple <<glossary:Book>>s. \nA single business can have multiple Books. All books associated with the same business within your organization return the same business ID.\n"
+        },
+        {
+          "info": {
+            "name": "Business overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/businesses/:business_id",
+            "params": [
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "path",
+                "description": "A universally unique identifier (UUID) of the business entity for which you want to retrieve overview information."
+              }
+            ]
+          },
+          "docs": "This API retrieves the full metadata profile for a business entity, including industry classification, loan inquiry history, and addresses derived from bank account holder information.\n"
+        },
+        {
+          "info": {
+            "name": "Business transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/businesses/:business_id/transactions",
+            "params": [
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "path",
+                "description": "A universally unique identifier (UUID) of the business entity for which you want to retrieve transction details."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of transactions to skip for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page, starting from the specified **offset**."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or after the specified date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date in `YYYY-MM-DD` format from which you want to filter transactions. The system includes only transactions with a `txn_date` on or before the specified date."
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Timestamp (ISO 8601) for filtering transactions ingested into the system after this time. The system uses `txn_created_ts` to determine the ingestion time. Use this for incremental retrieval to fetch only newly ingested transactions since your last request."
+              }
+            ]
+          },
+          "docs": "This API retrieves the paginated, deduplicated enriched transactions across all of the requesting org's <<glossary:Book>>s for a given business. Transactions are structurally compatible with the existing book-level enriched transactions API.\n\n  > 👍 Tips\n  > `start_date` and `end_date` filter transactions based on when they occurred at the bank, while `updated_since` filters based on when transactions were ingested into the system. Use `updated_since` to retrieve newly added data, even if the tr"
+        },
+        {
+          "info": {
+            "name": "Business summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/businesses/:business_id/summary",
+            "params": [
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "path",
+                "description": "A universally unique identifier (UUID) of the business entity for which you want to retrieve summary."
+              },
+              {
+                "name": "begin_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date in `YYYY-MM-DD` format for the financial summary period."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date in `YYYY-MM-DD` format for the financial summary period."
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "The date from which to retrieve updated business summaries."
+              }
+            ]
+          },
+          "docs": "This API retrieves the chronological financial summary for a business entity, calculated from deduplicated and organization-enriched transactions across all <<glossary:Book>> belonging to the requesting organization.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

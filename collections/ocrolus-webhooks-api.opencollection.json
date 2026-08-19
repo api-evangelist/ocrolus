@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Book Commands Webhooks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Configure webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/account/settings/update/webhook_endpoint",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "webhook_endpoint",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "event",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Set up a webhook for your account so your application can react to Ocrolus events.\n\n---\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> 📘 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organizati"
+        },
+        {
+          "info": {
+            "name": "Get webhook configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/account/settings/webhook_details"
+          },
+          "docs": "Retrieve your most recent webhook configuration.\n\n---\n\nReturns the same object as that of the most recent [webhook registration](ref:configure-webhook).\n\nYou can find a list of supported account-level event types and their sample notifications in the [Account-level webhook guide](doc:account-level-webhook#available-events).\n\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integr"
+        },
+        {
+          "info": {
+            "name": "Test webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/account/settings/test_webhook_endpoint"
+          },
+          "docs": "Send a test payload to your configured webhook endpoint. \n\n---\nRequests to this endpoint will send a `POST` request with a test payload of the following JSON in the request body:\n\n```json\n{\n  \"status\": \"VERIFICATION_COMPLETE\",\n  \"uploaded_doc_pk\": 0,\n  \"book_pk\": 0\n}\n```\n\n> 📘 \n> Your webhook integration should respond to incoming notifications with a status of `200 OK` to indicate that it's working properly.\n\nIf the webhook fails for any reason, the corresponding HTTP status code and message wi"
+        },
+        {
+          "info": {
+            "name": "Configure webhook secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/account/settings/webhook/rotate-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API configures the secret key for account-level webhook signature verification. Use this API to add a new secret or update an existing one. The secret is used to sign webhook payloads using HMAC SHA256, allowing you to verify that requests originate from Ocrolus.\n> 🚧 We have a better version!\n> This product is superseded by [Org Level Webhooks](doc:organization-level-webhook), which we recommend for improved functionality and integration.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

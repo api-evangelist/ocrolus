@@ -1,0 +1,1612 @@
+{
+  "item": [
+    {
+      "id": "e8b63c2a-c969-41f5-a5d6-6115d01eea71",
+      "name": "Income",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "008c6db4-1366-45a8-aec6-1a60cbdaed9b",
+          "name": "Income summary",
+          "request": {
+            "name": "Income summary",
+            "description": {
+              "content": "Retrieve a summarized view of income data for a specific <<glossary:Book>> in Ocrolus.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "income",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "guideline",
+                  "value": "FANNIE_MAE",
+                  "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87b5333e-b704-46ea-8bd9-7b7e16347d38",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"c1c24601-19a8-41fb-b760-f76b538c929b\",\n  \"income_summary_data\": [\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"borrower_name\": \"JOHN SAMPLE\",\n      \"wage_earner_income\": {\n        \"total_income\": 1533.59,\n        \"alerts\": [\n          {\n            \"message\": \"Choose the default income type on wage earner tab to see the correct total income for JOHN SAMPLE.\",\n            \"severity\": \"HIGH\"\n          }\n        ],\n        \"is_income_calculated\": false,\n        \"is_empty\": false\n      },\n      \"self_employed_income\": {\n        \"is_income_calculated\": true,\n        \"is_empty\": true,\n        \"total_income\": 0,\n        \"alerts\": []\n      },\n      \"rental_income\": {\n        \"is_income_calculated\": true,\n        \"is_empty\": true,\n        \"total_income\": 0,\n        \"alerts\": []\n      },\n      \"other_income\": {\n        \"is_income_calculated\": true,\n        \"is_empty\": true,\n        \"total_income\": 0,\n        \"alerts\": []\n      },\n      \"total_income\": 1533.59\n    }\n  ],\n  \"status\": 200,\n  \"message\": \"Success\",\n  \"total\": 1533.59\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21e8950e-2ba7-4dca-8a92-67ac33b931d3",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1200,\n  \"response\": null,\n  \"message\": \"Authentication failed\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Authentication failed\",\n    \"code\": 1200\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "170c5d4d-fb52-489b-8f4a-01b8068e35f8",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "944046c9-fc6c-4bff-a9ac-5041bed1aa05",
+          "name": "Income calculations",
+          "request": {
+            "name": "Income calculations",
+            "description": {
+              "content": "This API provides income values based on the specified guidelines for a <<glossary:Book>> type. The supported income types include `wage-earner`, `self-employed`, `rental`, and `other income`. A detailed description of income-related fields found in the `calculated_fields` objects within the totals array can be found in the [income calculation](https://docs.ocrolus.com/docs/income-calculations-api) definition. These fields include attributes like field name, default value, and title/header to identify and interpret each data point.\n  \n> 👍 Tips\n> To retrieve Fannie Mae income calculation data, first call the [Fannie Mae self-employed income calculation](https://docs.ocrolus.com/reference/self-employed-income-calculation-fm) API, and then call the this income calculation API.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "income-calculations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "guideline",
+                  "value": "FANNIE_MAE",
+                  "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2f5fbfa-149a-4c9c-a3fb-e6f284096483",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"c1c24601-19a8-41fb-b760-f76b538c929b\",\n  \"incomes\": [\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"300.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"25.0\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"25.0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"value\": \"past_year_and_additional_year_avg\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"value\": \"past_year_and_additional_year_avg\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"14.58\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"16.67\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"20.83\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"18.06\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"14.58\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Bonus Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"200.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"16.67\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Bonus Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"150.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"12.5\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Bonus Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"100.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"18.76\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"18.76\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"11.54\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Misc Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"100.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"8.33\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Misc Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"0\",\n          \"title\": \"Earnings\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"0\",\n          \"title\": \"# Months\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Misc Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"8000.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"1500.94\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"1500.94\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"value\": \"ytd_avg\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"value\": \"ytd_avg\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1500.94\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"hourly_rate\": \"0\",\n      \"hours_worked_per_week\": \"3\",\n      \"monthly_income\": \"0\",\n      \"pay_type\": \"Hourly Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"300.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"25.0\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"25.0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"value\": \"past_year_and_additional_year_avg\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"value\": \"past_year_and_additional_year_avg\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"14.58\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"16.67\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"20.83\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"18.06\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"14.58\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Shift Differential Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"8000.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"1500.94\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"1500.94\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"value\": \"ytd_avg\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"value\": \"ytd_avg\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1500.94\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"period_earnings\": \"0\",\n      \"pay_frequency\": \"HOURLY\",\n      \"monthly_income\": \"0\",\n      \"pay_type\": \"Salary Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"0\",\n          \"title\": \"Earnings\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"0\",\n          \"title\": \"# Months\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"period_earnings\": \"0\",\n      \"pay_frequency\": \"\",\n      \"monthly_income\": \"0\",\n      \"pay_type\": \"Salary Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"6500.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"541.67\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"period_earnings\": \"0\",\n      \"pay_frequency\": \"\",\n      \"monthly_income\": \"0\",\n      \"pay_type\": \"Salary Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"200.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"37.52\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"37.52\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"value\": \"ytd_two_year_avg\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"value\": \"ytd_2_year_avg\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"18.07\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"15.0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"21.93\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"18.07\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"13.75\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Overtime Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"180.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"15.0\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Overtime Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"150.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"12.5\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Overtime Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"120.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"5.33\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"22.51\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"22.51\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Commission Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"0\",\n          \"title\": \"Earnings\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"0\",\n          \"title\": \"# Months\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"0\",\n          \"title\": \"Monthly Income\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Commission Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"forms\": [\n        {\n          \"form_type\": \"VERIFICATION_OF_EMPLOYMENT\",\n          \"form_uuid\": \"dd8c7e79-7cf6-45be-ae5b-73e4ab8735e6\",\n          \"mixed_uploaded_doc_pk\": \"1117893\",\n          \"uploaded_doc_pk\": \"1960139\",\n          \"page_doc_pks\": [\n            \"14959404\"\n          ],\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"ytd_earnings\",\n          \"value\": \"100.0\",\n          \"title\": \"Earnings\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"months_elapsed\",\n          \"value\": \"12.0\",\n          \"title\": \"# Months\",\n          \"page_doc_pk\": \"14959404\"\n        },\n        {\n          \"name\": \"monthly_income\",\n          \"value\": \"8.33\",\n          \"title\": \"Monthly Income\",\n          \"page_doc_pk\": \"14959404\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"ytd_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD Avg\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"0\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"past_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past yr Avg\"\n        },\n        {\n          \"name\": \"ytd_one_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 1 yr Avg\"\n        },\n        {\n          \"name\": \"ytd_two_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"YTD + 2 yr Avg\"\n        },\n        {\n          \"name\": \"past_year_and_additional_year_avg\",\n          \"value\": \"0\",\n          \"title\": \"Past + 1 yr avg\"\n        }\n      ],\n      \"pay_type\": \"Commission Income\",\n      \"is_selected\": true\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"fields\": [\n        {\n          \"name\": \"bas_and_bah\",\n          \"value\": \"0\",\n          \"title\": \"bas_and_bah\"\n        },\n        {\n          \"name\": \"other_allowance\",\n          \"value\": \"0\",\n          \"title\": \"Other Allowance\"\n        },\n        {\n          \"name\": \"military_base_pay\",\n          \"value\": \"0\",\n          \"title\": \"Base Pay\"\n        },\n        {\n          \"name\": \"military_prop_pay\",\n          \"value\": \"0\",\n          \"title\": \"Prop Pay\"\n        },\n        {\n          \"name\": \"rations_allowance\",\n          \"value\": \"0\",\n          \"title\": \"Rations Allowance\"\n        },\n        {\n          \"name\": \"clothing_allowance\",\n          \"value\": \"0\",\n          \"title\": \"clothing_allowance\"\n        },\n        {\n          \"name\": \"quarters_allowance\",\n          \"value\": \"0\",\n          \"title\": \"Quarters Allowance\"\n        },\n        {\n          \"name\": \"military_combat_pay\",\n          \"value\": \"0\",\n          \"title\": \"Combat Pay\"\n        },\n        {\n          \"name\": \"military_flight_pay\",\n          \"value\": \"0\",\n          \"title\": \"Flight Pay\"\n        },\n        {\n          \"name\": \"military_hazard_pay\",\n          \"value\": \"0\",\n          \"title\": \"Hazard Pay\"\n        },\n        {\n          \"name\": \"military_overseas_pay\",\n          \"value\": \"0\",\n          \"title\": \"Overseas Pay\"\n        },\n        {\n          \"name\": \"variable_housing_allowance\",\n          \"value\": \"0\",\n          \"title\": \"Variable Housing Allowance\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"base_pay\",\n          \"value\": \"0\",\n          \"title\": \"Base Pay\"\n        },\n        {\n          \"name\": \"key_used\",\n          \"title\": \"Key Used\"\n        },\n        {\n          \"name\": \"is_edited\",\n          \"value\": \"False\",\n          \"title\": \"is_edited\"\n        },\n        {\n          \"name\": \"default_key\",\n          \"title\": \"Default Key\"\n        },\n        {\n          \"name\": \"entitlements\",\n          \"value\": \"0\",\n          \"title\": \"Entitlements\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"0\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"entitlements_and_base_pay\",\n          \"value\": \"0\",\n          \"title\": \"Entitlements + Base Pay\"\n        },\n        {\n          \"name\": \"entitlements_grossed_up_fifteen_percent_and_base_pay\",\n          \"value\": \"0\",\n          \"title\": \"Grossed up 15% + base pay\"\n        },\n        {\n          \"name\": \"entitlements_grossed_up_twenty_five_percent_and_base_pay\",\n          \"value\": \"0\",\n          \"title\": \"Grossed up 25% + base pay\"\n        }\n      ],\n      \"pay_type\": \"Military Income\"\n    },\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"income_type\": \"RENTAL\",\n      \"forms\": [\n        {\n          \"form_type\": \"A_1040_SCHEDULE_E_2019\",\n          \"form_uuid\": \"c3964b4a-43a2-49fd-a548-cbfef61077d6\",\n          \"mixed_uploaded_doc_pk\": \"1042882\",\n          \"uploaded_doc_pk\": \"1566639\",\n          \"page_doc_pks\": [\n            \"10825500\",\n            \"10825499\"\n          ],\n          \"page_doc_pk\": \"10825500\"\n        }\n      ],\n      \"year\": \"2019\",\n      \"address\": \"APT . 417 1192 EMMERICH ISLE BORERTON SC 09845-7015\",\n      \"property_type\": \"INVESTMENT\",\n      \"fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12.0\",\n          \"title\": \"Enter the number of months the property was in service (Step 1 Result)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"total_rent\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter total rents received (Line 3)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"tax_expense\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter tax expense (Line 16)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter depreciation expense or depletion (Line 18)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"total_expense\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter total expenses (Line 20)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"association_dues\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter homeowners' association dues. This expense must be specifically identified on Schedule E in order to add it back. (Line 19)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"proposed_pitia2a\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter proposed PITIA (for subject property) or existing PITIA (for non-subject property)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"insurance_expense\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter insurance expense (Line 9)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"mortgage_interest\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter mortgage interest paid (Line 12)\",\n          \"page_doc_pk\": \"10825500\"\n        },\n        {\n          \"name\": \"remaining_accounts\",\n          \"value\": \"0.0\",\n          \"title\": \"Multiply gross monthly rent or market rent by 75% (.75).  The remaining 25% accounts for vacancy loss, maintenance, and management expenses.\"\n        },\n        {\n          \"name\": \"extraordinary_expense\",\n          \"value\": \"10.0\",\n          \"title\": \"Enter any one-time extraordinary expense (e.g., casualty loss). There must be evidence of the nature of the one-time extraordinary expense. (Line 19)\",\n          \"page_doc_pk\": \"10825500\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"adjusted_income\",\n          \"value\": \"60.0\",\n          \"title\": \"Equals adjusted rental income\"\n        },\n        {\n          \"name\": \"qualifying_income\",\n          \"value\": \"-5.0\",\n          \"title\": \"Step 2A. Result: Monthly qualifying rental income (or loss):\"\n        },\n        {\n          \"name\": \"adjusted_monthly_income\",\n          \"value\": \"5.0\",\n          \"title\": \"Equals adjusted monthly rental income\"\n        }\n      ]\n    },\n    {\n      \"borrower_uuid\": \"6f9285f9-db32-4d95-b023-df82615d1cb3\",\n      \"business_uuid\": \"dc876b26-e555-453f-8b4b-9e63d94edcc1\",\n      \"income_type\": \"SELF_EMPLOYED\",\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"depletion\",\n          \"value\": \"10.0\",\n          \"title\": \"d. Depletion (Line 17)\"\n        },\n        {\n          \"name\": \"amortization\",\n          \"value\": \"10.0\",\n          \"title\": \"e. Amortization/Casualty (Review Attachment Related to (Line 20, Other deductions**)\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"10.0\",\n          \"title\": \"c. Depreciation (Line 16c, including 8825 Line 14)\"\n        },\n        {\n          \"name\": \"non_recurring_other_income\",\n          \"value\": \"10.0\",\n          \"title\": \"b. Nonrecurring Other (Income) or Loss (Lines 5, 6 & 7)\"\n        },\n        {\n          \"name\": \"ordinary_income_from_other_partnerships\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Ordinary (Income) Loss from Other Partnerships (Line 4)\"\n        },\n        {\n          \"name\": \"ordinary_income\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Ordinary Income/Loss (Line 1)*Review for Distribution Line 19A\"\n        },\n        {\n          \"name\": \"percent_ownership\",\n          \"value\": \"5.0\",\n          \"title\": \"Percent Ownership (From Schedule K-1)\"\n        },\n        {\n          \"name\": \"guaranteed_payments\",\n          \"value\": \"10.0\",\n          \"title\": \"c. Guaranteed Payments to Partner (Line 4c)\"\n        },\n        {\n          \"name\": \"net_rental_real_estate\",\n          \"value\": \"10.0\",\n          \"title\": \"b. Net Rental Real Estate; Other Net Income (Loss) (Lines 2, 3)*\"\n        },\n        {\n          \"name\": \"mortgages_payable\",\n          \"value\": \"10.0\",\n          \"title\": \"f. Mortgages or Notes Payable in Less than 1 Year (Schedule L, Line 16d***)\"\n        },\n        {\n          \"name\": \"travel_and_entertainment_expenses\",\n          \"value\": \"10.0\",\n          \"title\": \"g. Non-deductible Travel and Entertainment Expenses (Schedule M-1, Line 4b)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"subtotal\",\n          \"value\": \"30.0\",\n          \"title\": \"Subtotal\"\n        },\n        {\n          \"name\": \"total_form1065\",\n          \"value\": \"1.5\",\n          \"title\": \"Total Form 1065\"\n        },\n        {\n          \"name\": \"total_partnership_income\",\n          \"value\": \"31.5\",\n          \"title\": \"Total Partnership Income\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"income_by_tax_returns\": \"IRS Form 1065 - Partnership Income\",\n      \"xid\": \"XID-1\"\n    },\n    {\n      \"borrower_uuid\": \"6f9285f9-db32-4d95-b023-df82615d1cb3\",\n      \"business_uuid\": \"dc876b26-e555-453f-8b4b-9e63d94edcc1\",\n      \"income_type\": \"SELF_EMPLOYED\",\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"depletion\",\n          \"value\": \"0.0\",\n          \"title\": \"f. Depletion (Line 21)\"\n        },\n        {\n          \"name\": \"total_tax\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Total Tax (Line 31)\"\n        },\n        {\n          \"name\": \"amortization\",\n          \"value\": \"0.0\",\n          \"title\": \"g. Amortization/Casualty Loss (Review Attachment Related to Line 26, Other deductions*)\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"0.0\",\n          \"title\": \"e. Depreciation (Line 20)\"\n        },\n        {\n          \"name\": \"taxable_income\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Taxable Income (Line 30)\"\n        },\n        {\n          \"name\": \"net_operating_loss\",\n          \"value\": \"0.0\",\n          \"title\": \"h. Net Operating Loss and Special Deductions (Line 29c)\"\n        },\n        {\n          \"name\": \"non_recurring_gains\",\n          \"value\": \"0.0\",\n          \"title\": \"c. Nonrecurring (Gains) Losses (Lines 8, 9)\"\n        },\n        {\n          \"name\": \"non_recurring_other_income\",\n          \"value\": \"0.0\",\n          \"title\": \"d. Nonrecurring Other (Income) Loss (Line 10)\"\n        },\n        {\n          \"name\": \"dividends\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Ordinary Dividends (Line 5)\"\n        },\n        {\n          \"name\": \"interest_income\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Interest Income (Line 1)\"\n        },\n        {\n          \"name\": \"mortgages_payable\",\n          \"value\": \"0.0\",\n          \"title\": \"i. Mortgages or Notes Payable in Less than 1 Year (Schedule L, Line 17d**)\"\n        },\n        {\n          \"name\": \"travel_and_entertainment_expenses\",\n          \"value\": \"0.0\",\n          \"title\": \"j. Non-deductible Travel and Entertainment Expenses (Schedule M-1, Line 5c)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"subtotal\",\n          \"value\": \"0.0\",\n          \"title\": \"Subtotal\"\n        },\n        {\n          \"name\": \"total_form1120\",\n          \"value\": \"0.0\",\n          \"title\": \"Total Form 1120\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"income_by_tax_returns\": \"IRS Form 1120 - Regular Corporation\",\n      \"xid\": \"XID-1\"\n    },\n    {\n      \"borrower_uuid\": \"6f9285f9-db32-4d95-b023-df82615d1cb3\",\n      \"business_uuid\": \"dc876b26-e555-453f-8b4b-9e63d94edcc1\",\n      \"income_type\": \"SELF_EMPLOYED\",\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"w2_income\",\n          \"value\": \"0.0\",\n          \"title\": \"form_w2 - w2_income\"\n        },\n        {\n          \"name\": \"dividends\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_b - dividends\"\n        },\n        {\n          \"name\": \"interest_income\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_b - interest_income\"\n        },\n        {\n          \"name\": \"depletion\",\n          \"value\": \"0.0\",\n          \"title\": \"c. Depletion (Line 12)\"\n        },\n        {\n          \"name\": \"net_profit\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Net Profit or Loss (Line 31)\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"0.0\",\n          \"title\": \"d. Depreciation (Line 13)\"\n        },\n        {\n          \"name\": \"business_miles\",\n          \"value\": \"0.0\",\n          \"title\": \"Business Miles (Page 2, Part IV, Line 44a OR Related 4562, Line 30)\"\n        },\n        {\n          \"name\": \"amortization_loss\",\n          \"value\": \"0.0\",\n          \"title\": \"g. Amortization/Casualty Loss (Only add back Amort/CL - Review Schedule C Page 2, Part V*)\"\n        },\n        {\n          \"name\": \"depreciation_rate\",\n          \"value\": \"0.0\",\n          \"title\": \"X Depreciation Rate\"\n        },\n        {\n          \"name\": \"business_use_of_home\",\n          \"value\": \"0.0\",\n          \"title\": \"f. Business Use of Home (Line 30, Check applicable guidelines)\"\n        },\n        {\n          \"name\": \"non_recurring_other_income\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Nonrecurring Other (Income) Loss/Expenses (Line 6)\"\n        },\n        {\n          \"name\": \"meals_and_entertainment_expenses\",\n          \"value\": \"0.0\",\n          \"title\": \"e. Non-deductible Meals and Entertainment Expenses (Line 24b)\"\n        },\n        {\n          \"name\": \"recurring_capital_gains\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_d - recurring_capital_gains\"\n        },\n        {\n          \"name\": \"depletion\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_e - depletion\"\n        },\n        {\n          \"name\": \"royalties\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_e - royalties\"\n        },\n        {\n          \"name\": \"total_expenses\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_e - total_expenses\"\n        },\n        {\n          \"name\": \"amortization\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - amortization\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - depreciation\"\n        },\n        {\n          \"name\": \"net_farm_profit\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - net_farm_profit\"\n        },\n        {\n          \"name\": \"business_use_of_home\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - business_use_of_home\"\n        },\n        {\n          \"name\": \"non_tax_coop_payments\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - non_tax_coop_payments\"\n        },\n        {\n          \"name\": \"non_recurring_other_income\",\n          \"value\": \"0.0\",\n          \"title\": \"form1040_schedule_f - non_recurring_other_income\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"subtotal_schedule_c\",\n          \"value\": \"0.0\",\n          \"title\": \"Subtotal Schedule C\"\n        },\n        {\n          \"name\": \"subtotal_schedule_e\",\n          \"value\": \"0.0\",\n          \"title\": \"subtotal_schedule_e\"\n        },\n        {\n          \"name\": \"subtotal_schedule_f\",\n          \"value\": \"0.0\",\n          \"title\": \"subtotal_schedule_f\"\n        },\n        {\n          \"name\": \"total_mileage_depreciation\",\n          \"value\": \"0.0\",\n          \"title\": \"= Total Mileage Depreciation\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"income_by_tax_returns\": \"IRS Form 1040 - Individual Income Tax Return\",\n      \"xid\": \"XID-1\"\n    },\n    {\n      \"borrower_uuid\": \"6f9285f9-db32-4d95-b023-df82615d1cb3\",\n      \"business_uuid\": \"dc876b26-e555-453f-8b4b-9e63d94edcc1\",\n      \"income_type\": \"SELF_EMPLOYED\",\n      \"year\": \"2019\",\n      \"fields\": [\n        {\n          \"name\": \"depletion\",\n          \"value\": \"0.0\",\n          \"title\": \"c. Depletion (Line 15)\"\n        },\n        {\n          \"name\": \"amortization\",\n          \"value\": \"0.0\",\n          \"title\": \"d. Amortization/Casualty Loss (Review Attachment Related to Line 19, Other deductions**)\"\n        },\n        {\n          \"name\": \"depreciation\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Depreciation (Line 14, including 8825 Line 14)\"\n        },\n        {\n          \"name\": \"non_recurring_other_income\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Nonrecurring Other (Income) Loss (Lines 4, 5)\"\n        },\n        {\n          \"name\": \"ordinary_income\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Ordinary Income (Loss) (Line 1)*Review for Distribution Line 16D\"\n        },\n        {\n          \"name\": \"percent_ownership\",\n          \"value\": \"0.0\",\n          \"title\": \"Percent Ownership (From Schedule K-1, Line G) % %\"\n        },\n        {\n          \"name\": \"net_rental_real_estate\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Net Rental Real Estate; Other Net Rental Income (Loss) (Lines 2, 3)*\"\n        },\n        {\n          \"name\": \"mortgages_payable\",\n          \"value\": \"0.0\",\n          \"title\": \"e. Mortgages or Notes Payable in Less than 1 Year (Schedule L, Line 17d***)\"\n        },\n        {\n          \"name\": \"travel_and_entertainment_expenses\",\n          \"value\": \"0.0\",\n          \"title\": \"f. Non-deductible Travel and Entertainment Expenses (Schedule M-1, Line 3b) - Subtotal\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"subtotal\",\n          \"value\": \"0.0\",\n          \"title\": \"Subtotal\"\n        },\n        {\n          \"name\": \"total_form1120s\",\n          \"value\": \"0.0\",\n          \"title\": \"Total Form 1120S\"\n        },\n        {\n          \"name\": \"total_s_corp_income\",\n          \"value\": \"0.0\",\n          \"title\": \"Total S-Corp Income\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"income_by_tax_returns\": \"IRS Form 1120S - S Corporation Earnings\",\n      \"xid\": \"XID-1\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Tip income monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Tip income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Trust monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Trust\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"spousal_maintenance\",\n          \"value\": \"10.0\",\n          \"title\": \"Alimony monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Alimony\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Accessory unit monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Boarder income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2023\",\n      \"fields\": [\n        {\n          \"name\": \"depletion\",\n          \"value\": \"0.0\",\n          \"title\": \"c. Depletion (Line 18)\"\n        },\n        {\n          \"name\": \"royalties\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Royalties Received (Line 4)\"\n        },\n        {\n          \"name\": \"total_expenses\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Total Expenses (Line 20)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"0.0\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.42\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_e\",\n          \"value\": \"0.0\",\n          \"title\": \"Subtotal schedule E\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Royalty\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2024\",\n      \"fields\": [\n        {\n          \"name\": \"depletion\",\n          \"value\": \"10.0\",\n          \"title\": \"c. Depletion (Line 18)\"\n        },\n        {\n          \"name\": \"royalties\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Royalties Received (Line 4)\"\n        },\n        {\n          \"name\": \"total_expenses\",\n          \"value\": \"10.0\",\n          \"title\": \"b. Total Expenses (Line 20)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.42\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_e\",\n          \"value\": \"10.0\",\n          \"title\": \"Subtotal schedule E\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Royalty\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"amount_details\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Disability\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Other type monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Other\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"payer_name\",\n          \"value\": \"Retirement income\",\n          \"title\": \"payer_name\"\n        },\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Retirement Income monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Retirement/Pension/Annuity\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Foster care monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Foster care\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2023\",\n      \"fields\": [\n        {\n          \"name\": \"recurring_capital_gains\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Recurring Capital Gains (from Self-Employment) \"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"three_year_average\",\n          \"value\": \"0.0\",\n          \"title\": \"Three year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_d\",\n          \"value\": \"10.0\",\n          \"title\": \"Subtotal schedule D\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Capital gains\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2024\",\n      \"fields\": [\n        {\n          \"name\": \"recurring_capital_gains\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Recurring Capital Gains (from Self-Employment) \"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"three_year_average\",\n          \"value\": \"0.0\",\n          \"title\": \"Three year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_d\",\n          \"value\": \"10.0\",\n          \"title\": \"Subtotal schedule D\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Capital gains\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"child_support\",\n          \"value\": \"10.0\",\n          \"title\": \"Child support\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Child support\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Accessory unit monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Accessory unit income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Social security monthly amount\"\n        },\n        {\n          \"name\": \"gross_percentage\",\n          \"value\": \"5.0\",\n          \"title\": \"Gross up % applied\"\n        },\n        {\n          \"name\": \"non_taxable_portion\",\n          \"value\": \"0.0\",\n          \"title\": \"Non-taxable portion of total social security amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Social security\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Temporary leave monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Temporary leave\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Housing allowance monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Housing allowance\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Public assistance monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Public assistance\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"forms\": [\n        {\n          \"form_type\": \"A_1099_G\",\n          \"form_uuid\": \"6effbba0-e7ff-495e-8e51-0c6c1d574a4e\",\n          \"mixed_uploaded_doc_pk\": \"1121609\",\n          \"uploaded_doc_pk\": \"1964803\",\n          \"page_doc_pks\": [\n            \"15023414\"\n          ],\n          \"page_doc_pk\": \"15023414\"\n        }\n      ],\n      \"year\": \"2020\",\n      \"fields\": [\n        {\n          \"name\": \"unemployment_compensation\",\n          \"value\": \"16040.0\",\n          \"title\": \"Unemployment compensation (box1)\",\n          \"page_doc_pk\": \"15023414\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"1336.6666666666667\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.0\",\n          \"title\": \"Two year average\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Unemployment Income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"forms\": [\n        {\n          \"form_type\": \"A_1099_G\",\n          \"form_uuid\": \"e30b3912-13a6-400a-909f-464cd78f7904\",\n          \"mixed_uploaded_doc_pk\": \"1121608\",\n          \"uploaded_doc_pk\": \"1964802\",\n          \"page_doc_pks\": [\n            \"15023413\"\n          ],\n          \"page_doc_pk\": \"15023413\"\n        }\n      ],\n      \"year\": \"2021\",\n      \"fields\": [\n        {\n          \"name\": \"unemployment_compensation\",\n          \"value\": \"16080.0\",\n          \"title\": \"Unemployment compensation (box1)\",\n          \"page_doc_pk\": \"15023413\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"1340.0\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"1338.3333333333333\",\n          \"title\": \"Two year average\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Unemployment Income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Accessory unit monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Automobile allowance\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Separate maintenance monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Separate maintenance\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Mortgage differential monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Mortgage differential\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2023\",\n      \"fields\": [\n        {\n          \"name\": \"dividends\",\n          \"value\": \"0.0\",\n          \"title\": \"b. Dividends from Self-Employment (Line 5)\"\n        },\n        {\n          \"name\": \"interest_income\",\n          \"value\": \"0.0\",\n          \"title\": \"a. Interest Income from Self-Employment (Line 1)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"0.0\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_b\",\n          \"value\": \"0.0\",\n          \"title\": \"Subtotal schedule B\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Interest / Dividend\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"year\": \"2024\",\n      \"fields\": [\n        {\n          \"name\": \"dividends\",\n          \"value\": \"10.0\",\n          \"title\": \"b. Dividends from Self-Employment (Line 5)\"\n        },\n        {\n          \"name\": \"interest_income\",\n          \"value\": \"10.0\",\n          \"title\": \"a. Interest Income from Self-Employment (Line 1)\"\n        }\n      ],\n      \"calculated_fields\": [\n        {\n          \"name\": \"months\",\n          \"value\": \"12\",\n          \"title\": \"Months\"\n        },\n        {\n          \"name\": \"one_year_average\",\n          \"value\": \"1.67\",\n          \"title\": \"One year average\"\n        },\n        {\n          \"name\": \"two_year_average\",\n          \"value\": \"0.83\",\n          \"title\": \"Two year average\"\n        },\n        {\n          \"name\": \"subtotal_schedule_b\",\n          \"value\": \"20.0\",\n          \"title\": \"Subtotal schedule B\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Interest / Dividend\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Non borrower household monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Non borrower household income\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Defined contribution plan monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Defined contribution plan\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Employment related account monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Employment related account\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Mortgage credit certificate monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Mortgage credit certificate\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"VA benefits non-educational monthly amount\"\n        },\n        {\n          \"name\": \"gross_percentage\",\n          \"value\": \"25.0\",\n          \"title\": \"Gross up % applied\"\n        },\n        {\n          \"name\": \"non_taxable_portion\",\n          \"value\": \"5.0\",\n          \"title\": \"Non-taxable portion of total VA benefits non-educational amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"VA benefits non-educational\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Notes receivable installment monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Notes receivable installment\"\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"fields\": [\n        {\n          \"name\": \"amount_details\",\n          \"value\": \"10.0\",\n          \"title\": \"Housing choice voucher program monthly amount\"\n        }\n      ],\n      \"is_active\": true,\n      \"other_income_collection\": \"Housing choice voucher program\"\n    }\n  ],\n  \"borrowers\": [\n    {\n      \"uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"name\": \"JOHN SAMPLE\"\n    }\n  ],\n  \"employers\": [\n    {\n      \"uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"name\": \"ABC INC.\"\n    }\n  ],\n  \"properties\": [\n    {\n      \"uuid\": \"d8b23fa4-1e65-4c2e-8f7c-3c2a1b45a8e9\",\n      \"address\": \"1234 W 123TH ST FAKE STREET OH 12345\",\n      \"city\": \"FAKE CITY\",\n      \"postal_code\": \"12345\",\n      \"address_line1\": \"1234 W 123TH ST FAKE STREET\",\n      \"state\": \"OH\"\n    }\n  ],\n  \"alerts\": [\n    {\n      \"message\": \"Borrower received Commission income in 2019 and YTD, but not in 2020. Review if income can be used.\",\n      \"severity\": \"HIGH\",\n      \"income_type\": \"WAGE_EARNER\"\n    },\n    {\n      \"message\": \"Commission income not calculated, because there are no Paystubs or WVOE information from year 2020.\",\n      \"severity\": \"HIGH\",\n      \"income_type\": \"WAGE_EARNER\"\n    },\n    {\n      \"message\": \"Commission income was calculated but not used because two years of data are missing.\",\n      \"severity\": \"HIGH\",\n      \"income_type\": \"WAGE_EARNER\"\n    },\n    {\n      \"message\": \"Other income was calculated but not used because two years of data are missing.\",\n      \"severity\": \"HIGH\",\n      \"income_type\": \"WAGE_EARNER\"\n    }\n  ],\n  \"totals\": [\n    {\n      \"borrower_uuid\": \"a1d4c349-f630-4239-b268-ee22c7c23654\",\n      \"income_type\": \"WAGE_EARNER\",\n      \"business_uuid\": \"9ebe8d61-c2e2-4b04-8421-c24b5e841aca\",\n      \"calculated_fields\": [\n        {\n          \"name\": \"monthly_bonus\",\n          \"value\": \"14.58\",\n          \"title\": \"Bonus Income\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1533.59\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"monthly_salary\",\n          \"value\": \"1500.94\",\n          \"title\": \"Salary Income\"\n        },\n        {\n          \"name\": \"monthly_overtime\",\n          \"value\": \"18.07\",\n          \"title\": \"Overtime Income\"\n        }\n      ]\n    },\n    {\n      \"borrower_uuid\": \"c5798b3f-f1f9-4b81-8258-0c33dbbcf312\",\n      \"income_type\": \"OTHER\",\n      \"calculated_fields\": [\n        {\n          \"name\": \"tip\",\n          \"value\": \"10.0\",\n          \"title\": \"Tip\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1581.6633333333332\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"trust\",\n          \"value\": \"10.0\",\n          \"title\": \"Trust\"\n        },\n        {\n          \"name\": \"alimony\",\n          \"value\": \"10.0\",\n          \"title\": \"Alimony\"\n        },\n        {\n          \"name\": \"boarder\",\n          \"value\": \"10.0\",\n          \"title\": \"Boarder\"\n        },\n        {\n          \"name\": \"royalty\",\n          \"value\": \"0.42\",\n          \"title\": \"Royalty\"\n        },\n        {\n          \"name\": \"disability\",\n          \"value\": \"10.0\",\n          \"title\": \"Disability\"\n        },\n        {\n          \"name\": \"other_type\",\n          \"value\": \"10.0\",\n          \"title\": \"Other\"\n        },\n        {\n          \"name\": \"retirement\",\n          \"value\": \"10.0\",\n          \"title\": \"Retirement/Pension/Annuity\"\n        },\n        {\n          \"name\": \"foster_care\",\n          \"value\": \"10.0\",\n          \"title\": \"Foster Care\"\n        },\n        {\n          \"name\": \"capital_gains\",\n          \"value\": \"0.83\",\n          \"title\": \"Capital Gains\"\n        },\n        {\n          \"name\": \"child_support\",\n          \"value\": \"10.0\",\n          \"title\": \"Child Support\"\n        },\n        {\n          \"name\": \"accessory_unit\",\n          \"value\": \"10.0\",\n          \"title\": \"Accessory Unit\"\n        },\n        {\n          \"name\": \"social_security\",\n          \"value\": \"10.0\",\n          \"title\": \"Social Security\"\n        },\n        {\n          \"name\": \"temporary_leave\",\n          \"value\": \"10.0\",\n          \"title\": \"Temporary Leave\"\n        },\n        {\n          \"name\": \"housing_allowance\",\n          \"value\": \"10.0\",\n          \"title\": \"Housing Allowance\"\n        },\n        {\n          \"name\": \"public_assistance\",\n          \"value\": \"10.0\",\n          \"title\": \"Public Assistance\"\n        },\n        {\n          \"name\": \"unemployment_yearly\",\n          \"value\": \"1338.3333333333333\",\n          \"title\": \"Unemployment\"\n        },\n        {\n          \"name\": \"automobile_allowance\",\n          \"value\": \"10.0\",\n          \"title\": \"Automobile Allowance\"\n        },\n        {\n          \"name\": \"separate_maintenance\",\n          \"value\": \"10.0\",\n          \"title\": \"Separate Maintenance\"\n        },\n        {\n          \"name\": \"mortgage_differential\",\n          \"value\": \"10.0\",\n          \"title\": \"Mortgage Differential\"\n        },\n        {\n          \"name\": \"interest_and_dividends\",\n          \"value\": \"0.83\",\n          \"title\": \"Interest / Dividend\"\n        },\n        {\n          \"name\": \"non_borrower_household\",\n          \"value\": \"10.0\",\n          \"title\": \"Non Borrower Household\"\n        },\n        {\n          \"name\": \"defined_contribution_plan\",\n          \"value\": \"10.0\",\n          \"title\": \"Defined Contribution Plan\"\n        },\n        {\n          \"name\": \"employment_related_account\",\n          \"value\": \"10.0\",\n          \"title\": \"Employment Related Account\"\n        },\n        {\n          \"name\": \"mortgage_credit_certificate\",\n          \"value\": \"10.0\",\n          \"title\": \"Mortgage Credit Certificate\"\n        },\n        {\n          \"name\": \"va_benefits_non_educational\",\n          \"value\": \"11.25\",\n          \"title\": \"VA Benefits Non-Educational\"\n        },\n        {\n          \"name\": \"notes_receivable_installment\",\n          \"value\": \"10.0\",\n          \"title\": \"Notes Receivable Installment\"\n        },\n        {\n          \"name\": \"housing_choice_voucher_program\",\n          \"value\": \"10.0\",\n          \"title\": \"Housing Choice Voucher Program\"\n        }\n      ]\n    },\n    {\n      \"borrower_uuid\": \"6f9285f9-db32-4d95-b023-df82615d1cb3\",\n      \"income_type\": \"SELF_EMPLOYED\",\n      \"business_uuid\": \"dc876b26-e555-453f-8b4b-9e63d94edcc1\",\n      \"calculated_fields\": [\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"-4894.46\",\n          \"title\": \"Recommended Income\"\n        },\n        {\n          \"name\": \"schedule_c\",\n          \"value\": \"12.5\",\n          \"title\": \"Schedule C\"\n        },\n        {\n          \"name\": \"schedule_f\",\n          \"value\": \"5.0\",\n          \"title\": \"Schedule F\"\n        },\n        {\n          \"name\": \"s_corp_income\",\n          \"value\": \"-4915.42\",\n          \"title\": \"S Corporation Income\"\n        },\n        {\n          \"name\": \"partnership_income\",\n          \"value\": \"2.63\",\n          \"title\": \"Partnership Income\"\n        }\n      ]\n    },\n    {\n      \"borrower_uuid\": \"f9ffe36f-874f-43a4-bf14-f90182bd5dba\",\n      \"income_type\": \"RENTAL\",\n      \"calculated_fields\": [\n        {\n          \"name\": \"20 MARTY RUE NORTH THERONFURT NV 42512-1171\",\n          \"value\": \"939.6694214876034\",\n          \"title\": \"20 MARTY RUE NORTH THERONFURT NV 42512-1171\"\n        },\n        {\n          \"name\": \"APT . 111 8300 TREUTEL SKYWAY LENNYMOUTH IL 15550\",\n          \"value\": \"577.9824561403509\",\n          \"title\": \"APT . 111 8300 TREUTEL SKYWAY LENNYMOUTH IL 15550\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1517.6518776279543\",\n          \"title\": \"Recommended Income\"\n        }\n      ]\n    },\n    {\n      \"borrower_uuid\": \"fce7cb5f-f049-417c-849c-68fbbe8bc9bf\",\n      \"income_type\": \"RENTAL\",\n      \"calculated_fields\": [\n        {\n          \"name\": \"189 MARTY RUE NORTH THERONFURT NV 42512-1171\",\n          \"value\": \"949.5867768595042\",\n          \"title\": \"189 MARTY RUE NORTH THERONFURT NV 42512-1171\"\n        },\n        {\n          \"name\": \"APT . 169 8300 TREUTEL SKYWAY LENNYMOUTH IL 15550\",\n          \"value\": \"581.4912280701755\",\n          \"title\": \"APT . 169 8300 TREUTEL SKYWAY LENNYMOUTH IL 15550\"\n        },\n        {\n          \"name\": \"APT . 417 1192 EMMERICH ISLE BORERTON SC 09845-7015\",\n          \"value\": \"5.0\",\n          \"title\": \"APT . 417 1192 EMMERICH ISLE BORERTON SC 09845-7015\"\n        },\n        {\n          \"name\": \"recommended_income\",\n          \"value\": \"1506.0780049296795\",\n          \"title\": \"Recommended Income\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7b2688b-22f5-4723-b5d3-b9054bbd96d6",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1200,\n  \"response\": null,\n  \"message\": \"Authentication failed\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Authentication failed\",\n    \"code\": 1200\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47a91b17-83b1-4d27-ad7b-60439cdb0863",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cf178d4-63b8-474f-a66d-9f5570cc595c",
+          "name": "Configure income entity",
+          "request": {
+            "name": "Configure income entity",
+            "description": {
+              "content": "This API allows you to **update the employment start date** for a borrower–employer pair linked to a specific Ocrolus <<glossary:Book>>. You can optionally include identifiers such as the employer’s **EIN** (Employer Identification Number) and the borrower’s **last four SSN digits (Social Security Number)** for more accurate matching. If the borrower–employer pair exists, the record is updated; otherwise, a new one is created. When provided, the **employment start date** is also used in income calculation to ensure the precise and consistent results across the platform.\n> 📘 Note\n> - If the borrower–employer pair already exists, the system updates the existing record with the new start date.\n> - If the pair does not exist, a new configuration entry is created automatically.\n> - Optional identifiers (**`ein, last_four_ssn_digits`**, and **`income_type`**) help ensure accurate borrower–employer matching.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":uuid",
+                "income",
+                "entity_config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_details\": {\n    \"name\": \"<string>\",\n    \"ein\": \"<string>\"\n  },\n  \"borrower_details\": {\n    \"name\": \"<string>\",\n    \"last_four_ssn_digits\": \"<string>\"\n  },\n  \"xid\": \"<string>\",\n  \"employment_start_date\": \"<date>\",\n  \"income_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed5229c1-c7c8-4d72-8d1f-a2c96c755b32",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"uuid\": \"84b2e33c-94e0-4bb7-bb16-7125d553aa52\",\n    \"book_uuid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"borrower_details\": {\n      \"name\": \"JOHN A DOE\",\n      \"last_four_ssn_digits\": \"6789\"\n    },\n    \"entity_details\": {\n      \"name\": \"ACME MANUFACTURING INC\",\n      \"ein\": \"112233445\"\n    },\n    \"income_type\": \"WAGE_EARNER\",\n    \"employment_start_date\": \"2023-09-15\",\n    \"created_ts\": \"2025-10-15T13:44:42.367040\",\n    \"updated_ts\": \"2025-09-15T13:44:42.367040\",\n    \"xid\": \"XID-1\"\n  },\n  \"success\": true,\n  \"code\": 201\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82d5cb0c-a0f0-4126-b1e6-c9c6563b582a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"message\": \"Missing required field: employment_start_date\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7c5403a-8e98-4d60-8679-5d038d5e1be2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"message\": \"Authentication failed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "857d6fc1-8b34-4d75-b3a9-daf6718ef0f5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11db42c5-6e66-46cf-9f61-21f7dd963b7f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"message\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd2344f1-bc1a-4179-927a-5dd5561e0042",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":uuid",
+                    "income",
+                    "entity_config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_details\": {\n    \"name\": \"ACME MANUFACTURING INC\",\n    \"ein\": \"112233445\"\n  },\n  \"borrower_details\": {\n    \"name\": \"JOHN A DOE\",\n    \"last_four_ssn_digits\": \"6789\"\n  },\n  \"xid\": \"Xid-1\",\n  \"employment_start_date\": \"2023-09-15\",\n  \"income_type\": \"WAGE_EARNER\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fde64f5-19c4-48fe-ab40-b554b0bfe9e4",
+          "name": "Save income guideline",
+          "request": {
+            "name": "Save income guideline",
+            "description": {
+              "content": "This API lets you set or update the loan program or Government-Sponsored Enterprise (GSE) guideline for an Ocrolus <<glossary:Book>>. It ensures income calculations use the correct guideline (for example, Fannie Mae, Freddie Mac, FHA, VA, or USDA) and that the results are accurately reflected in the Ocrolus Dashboard for underwriting review. The most recent guideline is always used for income calculations by default.\n\nYou can use this API to:\n- Set the income guideline immediately after the Book is created.\n- Update the income guideline with a different guideline value later if the loan program changes. \n\n> 📘 Notes\n> - A valid `book_uuid` is required.\n> - Updated income calculations are reflected after processing is complete.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "income-guideline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "guideline",
+                  "value": "<string>",
+                  "description": "(Required) The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > 📘 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5ca6bdd-87a6-48b1-9718-115eaa6ff074",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-guideline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"996fbaeb-b723-47b4-896a-3cf64785b126\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"status\": \"created\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b53eb4-aa99-4420-83fc-7fa822dbceed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-guideline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"message\": \"Invalid or unsupported guideline value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "401db6c1-3e55-4375-a946-2a01cbcfba2d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-guideline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 403,\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2675f0f-d851-4a1a-8f09-9200af0c997a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-guideline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 404,\n  \"message\": \"Book not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "993a7945-b00b-4bfb-aef4-2f1cfbe0764d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income-guideline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "guideline",
+                      "value": "FANNIE_MAE"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa7cea94-93d0-421c-a854-b4c1540ef650",
+          "name": "Calculate Fannie Mae self-employed income",
+          "request": {
+            "name": "Calculate Fannie Mae self-employed income",
+            "description": {
+              "content": "This API calculates Fannie Mae self-employed income for a borrower–business pair in a Book. Send only the fields you want to update. The API merges these fields with the existing income record and recalculates the income.\nIf a field is missing or empty, the system may apply [organization-level default values](#organization-level-defaults) based on the income type and guideline. These defaults act as fallback values and never override fields explicitly provided in the request.\n\n> 👍 Tips\n> After calling this API, call the [Income calculations](https://docs.ocrolus.com/reference/income-calculations) API to retrieve the updated income data.\n\n## Merge behavior\nThe API performs a deep merge of the provided `meta_info` into the existing income record (common or tax-return specific).\n\n| Category | Merge behavior |\n|---|---|\n| Top-level meta fields such as `employment_start_date` | Provided values overwrite existing values. Fields not included in the request are preserved. |\n| Common `yearwise_details` | Merged by `year`. Only the fields provided for a given year are updated. |\n| Per-type `yearwise_details` such as `s_corporation_earnings.yearwise_details` | Merged by `year`. Existing fields are preserved unless explicitly overridden. |\n\n## Organization-level defaults\n\nOrganizations can configure default values for self-employed income fields by `org_uuid`, `income_type`, and `income_guideline`.\n\nDefaults act as fallback values during income updates. They are applied only when a supported field is missing or empty in the request. Explicit values, including `false`, `0`, and `None`, are never overridden.\n\n### Default application rules\n\n| Category | Field location | Fallback condition |\n|---|---|---|\n| Common scalar | `meta_info.field` | Applied when the value is `null` or an empty list `[]` |\n| Common yearwise | `meta_info.yearwise_details[].field` | Applied per year when the field value is `null` or `\"\"` |\n| Per-type yearwise | `meta_info.<type>.yearwise_details[].field` | Applied to each active tax year when the field value is `null` or `\"\"` |\n\n### Supported default fields\n| Category                      | Supported Fields                                                                                                                                                                                                                                                                                                                                       |\n| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| **Common defaults**           | `employment_start_date`, `employment_history_consistent_indicator`, `du_case_file_id`, `extraordinary_one_time_expense`, `non_deductible_meal`                                                                                                                                                                                                         |\n| **Per-type defaults**         | Supported under `s_corporation_earnings`, `partnership_income`, `regular_corporation`, and `individual_tax_return`.                                                                                                                                                                                                                                    |\n| **Per-type supported fields** | `adequate_business_liquidity`, `amortization`, `amortization_selection_type`, `is_final_return_override`, `is_borrower_trust_guaranter`, `compensation_of_officers_included_as_income`, `mortgages_notes_and_bonds_payable_less_than1_year`, `mortgages_notes_and_bonds_payable_less_than1_year_amount`, `guaranteed_payments_to_partners_alternative` |\n\nPer-type defaults are stored as flat key-value pairs in org config and are replicated into each active tax year's `yearwise_details` during update.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "income",
+                "self-employed",
+                "calculate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"borrower_uuid\": \"<uuid>\",\n  \"business_uuid\": \"<uuid>\",\n  \"income_guideline\": \"FANNIE_MAE\",\n  \"meta_info\": {\n    \"employment_start_date\": \"<string>\",\n    \"employment_history_consistent_indicator\": \"<boolean>\",\n    \"du_case_file_id\": \"<string>\",\n    \"yearwise_details\": [\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      },\n      {\n        \"year\": \"<integer>\",\n        \"is_selected\": \"<boolean>\",\n        \"extraordinary_one_time_expense\": \"<number>\",\n        \"non_deductible_meal\": \"<number>\"\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"<string>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"<string>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"<string>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"<string>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"<string>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"<string>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"adequate_business_liquidity\": \"<boolean>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"<string>\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": \"<number>\",\n          \"is_borrower_trust_guaranter\": \"<string>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\",\n          \"guaranteed_payments_to_partners_alternative\": \"<boolean>\"\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"column_a_officers_count\": \"<integer>\",\n          \"borrower_ownership_more_than25_pct\": \"<boolean>\",\n          \"all_officers_of_column_a_are_borrowers\": \"<integer>\",\n          \"form1125e_included\": \"<boolean>\",\n          \"compensation_of_officers_included_as_income\": \"<boolean>\",\n          \"amortization\": \"<number>\",\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": \"<boolean>\"\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"is_selected\": \"<boolean>\",\n          \"non_deductible_meal\": \"<number>\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0160e8cc-af62-4cee-9aea-7926a0324aad",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "self-employed",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"borrower_uuid\": \"11111111-1111-1111-1111-111111111111\",\n  \"business_uuid\": \"22222222-2222-2222-2222-222222222222\",\n  \"income_guideline\": \"FANNIE_MAE_RECOMMENDED\",\n  \"meta_info\": {\n    \"employment_start_date\": \"2020-01-15\",\n    \"employment_history_consistent_indicator\": true,\n    \"du_case_file_id\": \"DU-12345\",\n    \"yearwise_details\": [\n      {\n        \"year\": 2023,\n        \"is_selected\": true,\n        \"extraordinary_one_time_expense\": 1000,\n        \"non_deductible_meal\": 200\n      },\n      {\n        \"year\": 2022,\n        \"is_selected\": false,\n        \"extraordinary_one_time_expense\": null,\n        \"non_deductible_meal\": 150\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 15000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 500,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": null,\n          \"compensation_of_officers_included_as_income\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": 300,\n          \"amortization_selection_type\": \"2\",\n          \"is_final_return_override\": true,\n          \"guaranteed_payments_to_partners_alternative\": true\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 8000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false,\n          \"guaranteed_payments_to_partners_alternative\": null\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"column_a_officers_count\": 3,\n          \"borrower_ownership_more_than25_pct\": true,\n          \"all_officers_of_column_a_are_borrowers\": 1,\n          \"form1125e_included\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"amortization\": 1200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"column_a_officers_count\": null,\n          \"borrower_ownership_more_than25_pct\": false,\n          \"all_officers_of_column_a_are_borrowers\": 0,\n          \"form1125e_included\": false,\n          \"compensation_of_officers_included_as_income\": true,\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"non_deductible_meal\": 250\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"non_deductible_meal\": null\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"book_uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"borrower_uuid\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n  \"business_uuid\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n  \"income_guideline\": \"FANNIE_MAE_RECOMMENDED\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae3fee9c-553f-4dc6-9b21-fb4435ef25ae",
+              "name": "Missing request body, identifiers, meta_info or invalid Auth and income guideline",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "self-employed",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"borrower_uuid\": \"11111111-1111-1111-1111-111111111111\",\n  \"business_uuid\": \"22222222-2222-2222-2222-222222222222\",\n  \"income_guideline\": \"FANNIE_MAE_RECOMMENDED\",\n  \"meta_info\": {\n    \"employment_start_date\": \"2020-01-15\",\n    \"employment_history_consistent_indicator\": true,\n    \"du_case_file_id\": \"DU-12345\",\n    \"yearwise_details\": [\n      {\n        \"year\": 2023,\n        \"is_selected\": true,\n        \"extraordinary_one_time_expense\": 1000,\n        \"non_deductible_meal\": 200\n      },\n      {\n        \"year\": 2022,\n        \"is_selected\": false,\n        \"extraordinary_one_time_expense\": null,\n        \"non_deductible_meal\": 150\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 15000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 500,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": null,\n          \"compensation_of_officers_included_as_income\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": 300,\n          \"amortization_selection_type\": \"2\",\n          \"is_final_return_override\": true,\n          \"guaranteed_payments_to_partners_alternative\": true\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 8000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false,\n          \"guaranteed_payments_to_partners_alternative\": null\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"column_a_officers_count\": 3,\n          \"borrower_ownership_more_than25_pct\": true,\n          \"all_officers_of_column_a_are_borrowers\": 1,\n          \"form1125e_included\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"amortization\": 1200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"column_a_officers_count\": null,\n          \"borrower_ownership_more_than25_pct\": false,\n          \"all_officers_of_column_a_are_borrowers\": 0,\n          \"form1125e_included\": false,\n          \"compensation_of_officers_included_as_income\": true,\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"non_deductible_meal\": 250\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"non_deductible_meal\": null\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1200,\n  \"message\": \"Authentication failed\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Authentication failed\",\n    \"code\": 1200\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c25c853-9b02-4195-9db7-0cee717ecdc2",
+              "name": "No existing income",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "self-employed",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"borrower_uuid\": \"11111111-1111-1111-1111-111111111111\",\n  \"business_uuid\": \"22222222-2222-2222-2222-222222222222\",\n  \"income_guideline\": \"FANNIE_MAE_RECOMMENDED\",\n  \"meta_info\": {\n    \"employment_start_date\": \"2020-01-15\",\n    \"employment_history_consistent_indicator\": true,\n    \"du_case_file_id\": \"DU-12345\",\n    \"yearwise_details\": [\n      {\n        \"year\": 2023,\n        \"is_selected\": true,\n        \"extraordinary_one_time_expense\": 1000,\n        \"non_deductible_meal\": 200\n      },\n      {\n        \"year\": 2022,\n        \"is_selected\": false,\n        \"extraordinary_one_time_expense\": null,\n        \"non_deductible_meal\": 150\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 15000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 500,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": null,\n          \"compensation_of_officers_included_as_income\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": 300,\n          \"amortization_selection_type\": \"2\",\n          \"is_final_return_override\": true,\n          \"guaranteed_payments_to_partners_alternative\": true\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 8000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false,\n          \"guaranteed_payments_to_partners_alternative\": null\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"column_a_officers_count\": 3,\n          \"borrower_ownership_more_than25_pct\": true,\n          \"all_officers_of_column_a_are_borrowers\": 1,\n          \"form1125e_included\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"amortization\": 1200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"column_a_officers_count\": null,\n          \"borrower_ownership_more_than25_pct\": false,\n          \"all_officers_of_column_a_are_borrowers\": 0,\n          \"form1125e_included\": false,\n          \"compensation_of_officers_included_as_income\": true,\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"non_deductible_meal\": 250\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"non_deductible_meal\": null\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"No existing self-employed income found for this borrower-business combination\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f211d0a6-af32-4b12-9e8b-5814bed90f69",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "income",
+                    "self-employed",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"borrower_uuid\": \"11111111-1111-1111-1111-111111111111\",\n  \"business_uuid\": \"22222222-2222-2222-2222-222222222222\",\n  \"income_guideline\": \"FANNIE_MAE_RECOMMENDED\",\n  \"meta_info\": {\n    \"employment_start_date\": \"2020-01-15\",\n    \"employment_history_consistent_indicator\": true,\n    \"du_case_file_id\": \"DU-12345\",\n    \"yearwise_details\": [\n      {\n        \"year\": 2023,\n        \"is_selected\": true,\n        \"extraordinary_one_time_expense\": 1000,\n        \"non_deductible_meal\": 200\n      },\n      {\n        \"year\": 2022,\n        \"is_selected\": false,\n        \"extraordinary_one_time_expense\": null,\n        \"non_deductible_meal\": 150\n      }\n    ],\n    \"s_corporation_earnings\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 15000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 500,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": null,\n          \"compensation_of_officers_included_as_income\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"None\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"3\",\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"partnership_income\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"adequate_business_liquidity\": false,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"All\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": null,\n          \"is_borrower_trust_guaranter\": \"1\",\n          \"amortization\": 300,\n          \"amortization_selection_type\": \"2\",\n          \"is_final_return_override\": true,\n          \"guaranteed_payments_to_partners_alternative\": true\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"adequate_business_liquidity\": true,\n          \"mortgages_notes_and_bonds_payable_less_than1_year\": \"Some\",\n          \"mortgages_notes_and_bonds_payable_less_than1_year_amount\": 8000,\n          \"is_borrower_trust_guaranter\": \"2\",\n          \"amortization\": 200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false,\n          \"guaranteed_payments_to_partners_alternative\": null\n        }\n      ]\n    },\n    \"regular_corporation\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"column_a_officers_count\": 3,\n          \"borrower_ownership_more_than25_pct\": true,\n          \"all_officers_of_column_a_are_borrowers\": 1,\n          \"form1125e_included\": true,\n          \"compensation_of_officers_included_as_income\": false,\n          \"amortization\": 1200,\n          \"amortization_selection_type\": \"1\",\n          \"is_final_return_override\": false\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"column_a_officers_count\": null,\n          \"borrower_ownership_more_than25_pct\": false,\n          \"all_officers_of_column_a_are_borrowers\": 0,\n          \"form1125e_included\": false,\n          \"compensation_of_officers_included_as_income\": true,\n          \"amortization\": null,\n          \"amortization_selection_type\": \"3\",\n          \"is_final_return_override\": null\n        }\n      ]\n    },\n    \"individual_tax_return\": {\n      \"yearwise_details\": [\n        {\n          \"year\": 2023,\n          \"is_selected\": true,\n          \"non_deductible_meal\": 250\n        },\n        {\n          \"year\": 2022,\n          \"is_selected\": false,\n          \"non_deductible_meal\": null\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 500,\n  \"message\": \"Internal Server Error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b8b1f7af-b5b6-4781-9144-ee085c2c4462",
+    "name": "Account Level Webhooks Book Commands Income API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

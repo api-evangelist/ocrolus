@@ -1,0 +1,1161 @@
+{
+  "item": [
+    {
+      "id": "82bc1836-9413-4425-939c-eafbc89d3e97",
+      "name": "Capture",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba7d5829-df7c-4e82-8cd0-21b7d25f27ce",
+          "name": "Book form data",
+          "request": {
+            "name": "Book form data",
+            "description": {
+              "content": "Retrieve data for all forms uploaded to a <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "book_uuid",
+                  "value": "<string>",
+                  "description": "The unique identifier of the <<glossary:Book>> that contains the form data. Mutually exclusive with `pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pk",
+                  "value": "<string>",
+                  "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the form data. Mutually exclusive with `book_uuid`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7dbdb52-d126-4e97-b772-b6e7d228ad4e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "30219565"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"pk\": 33050664,\n    \"uuid\": \"9940d6b3-808b-47f2-936c-e05a8b767f00\",\n    \"name\": \"Example Book\",\n    \"created\": \"2023-05-03T16:09:46Z\",\n    \"created_ts\": \"2023-05-03T16:09:46Z\",\n    \"verified_pages_count\": 1,\n    \"book_status\": \"ACTIVE\",\n    \"id\": 33050664,\n    \"forms\": [\n      {\n        \"pk\": 46420211,\n        \"uuid\": \"cd26e2a3-8744-474a-a759-f42c025674e2\",\n        \"uploaded_doc_pk\": 54857464,\n        \"form_type\": \"DRIVERS_LICENSE\",\n        \"raw_fields\": {\n          \"drivers_license-General:dob\": {\n            \"value\": \"01/06/1958\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:zip\": {\n            \"value\": \"99999-1234\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:city\": {\n            \"value\": \"YOUR CITY\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:state\": {\n            \"value\": \"WA\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:suffix\": {\n            \"value\": \"\",\n            \"is_empty\": true,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:idNumber\": {\n            \"value\": \"WDLABCD456DG\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:lastName\": {\n            \"value\": \"SAMPLE\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:firstName\": {\n            \"value\": \"ALEXANDER\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:issueDate\": {\n            \"value\": \"01/06/2015\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:middleName\": {\n            \"value\": \"HAMILTON\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:countryName\": {\n            \"value\": \"UNITED STATES\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:addressLine1\": {\n            \"value\": \"123 STREET ADDRESS\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:addressLine2\": {\n            \"value\": \"\",\n            \"is_empty\": true,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:issuingState\": {\n            \"value\": \"WA\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          },\n          \"drivers_license-General:expirationDate\": {\n            \"value\": \"08/12/2020\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"DRIVING-LICENSE.pdf\",\n            \"confidence\": 1\n          }\n        },\n        \"form_config_pk\": 216696,\n        \"tables\": [],\n        \"attribute_data\": null\n      }\n    ],\n    \"book_is_complete\": true\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc56c5f7-9e15-4b71-8150-daab5263d200",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "30219565"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dac343d4-5816-40b9-acc7-a8872f09bb0a",
+          "name": "Book pay stub data",
+          "request": {
+            "name": "Book pay stub data",
+            "description": {
+              "content": "Retrieve pay stub data for a given <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "book",
+                ":book_uuid",
+                "paystub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "book_uuid",
+                  "description": "(Required) The unique identifier of a <<glossary:Book>> that contains the pay stub data."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f767a703-9e0d-4499-8b49-d889f4aa2fc7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>> that contains the pay stub data."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"uuid\": \"913766b3-26ed-4052-80fc-ab1a63c0c596\",\n      \"book_uuid\": \"f4bf4ca1-aa28-4044-b4ec-29089781eb05\",\n      \"doc_uuid\": \"b2293831-f1f9-4595-8fc7-5af25ddf4df3\",\n      \"status\": \"COMPLETED\",\n      \"doc_page_numbers\": [\n        1\n      ],\n      \"rejection_reason\": null,\n      \"uploaded_image_bucket_uuid\": null,\n      \"net_pay\": {\n        \"distribution_details\": [\n          {\n            \"description\": \"CHKG 648\",\n            \"bank_name\": null,\n            \"account_number\": \"648\",\n            \"bank_account_type\": \"CHKG\",\n            \"current_pay\": {\n              \"amount\": \"2295.81\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": {\n          \"description\": \"NET EARNINGS\",\n          \"canonical_description\": null,\n          \"current_pay\": {\n            \"amount\": \"2295.81\",\n            \"currency\": \"USD\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"17901.46\",\n            \"currency\": \"USD\"\n          }\n        }\n      },\n      \"earnings\": {\n        \"subtotals\": [\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"2576.92\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"5153.84\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"80.00\",\n            \"current_rate\": \"32.21\"\n          },\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13494.14\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"PAID TIME OFF\",\n            \"canonical_description\": \"PAID TIME OFF\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"238.48\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1923.90\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"663.88\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1163.00\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"13.74\",\n            \"current_rate\": \"48.32\"\n          },\n          {\n            \"description\": \"HOLIDAY\",\n            \"canonical_description\": \"HOLIDAY PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.40\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"COMMISSION\",\n            \"canonical_description\": \"COMMISSION\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2310.00\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"GROUP TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"4.54\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"32.92\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          }\n        ],\n        \"totals\": [\n          {\n            \"description\": \"EARNINGS\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"3245.34\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"25008.68\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"93.74\"\n          }\n        ]\n      },\n      \"deductions\": {\n        \"subtotals\": [\n          {\n            \"description\": \"VOLUNTARY LIFE\",\n            \"canonical_description\": \"LIFE INSURANCE\",\n            \"current_pay\": {\n              \"amount\": \"1.48\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"11.84\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"VISION PRE-TAX\",\n            \"canonical_description\": \"VISION\",\n            \"current_pay\": {\n              \"amount\": \"3.95\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"31.60\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SHORT  TERM  DISABILITY  POST-TAX\",\n            \"canonical_description\": \"SHORT TERM DISABILITY\",\n            \"current_pay\": {\n              \"amount\": \"20.19\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"150.06\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"MEDICAL PRE-TAX\",\n            \"canonical_description\": \"MEDICAL\",\n            \"current_pay\": {\n              \"amount\": \"76.94\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"615.52\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"EMPLOYER  PAID  GROUP  TERM LIFE\",\n            \"canonical_description\": \"LIFE INSURANCE\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"DENTAL PRE-TAX\",\n            \"canonical_description\": \"DENTAL\",\n            \"current_pay\": {\n              \"amount\": \"14.49\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"115.92\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"401K %\",\n            \"canonical_description\": \"401K\",\n            \"current_pay\": {\n              \"amount\": \"97.22\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"749.26\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SC STATE\",\n            \"canonical_description\": \"STATE TAX\",\n            \"current_pay\": {\n              \"amount\": \"195.58\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1453.35\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED INCOME TAX\",\n            \"canonical_description\": \"FEDERAL WITHHOLDINGS\",\n            \"current_pay\": {\n              \"amount\": \"294.17\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2091.96\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED MEDICARE\",\n            \"canonical_description\": \"EMPLOYEE MEDICARE\",\n            \"current_pay\": {\n              \"amount\": \"45.67\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"351.56\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED SOC SEC\",\n            \"canonical_description\": \"SOCIAL SECURITY EMPLOYEE TAX\",\n            \"current_pay\": {\n              \"amount\": \"195.30\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1503.23\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": []\n      },\n      \"employee\": {\n        \"name\": \"ALEXANDER HAMILTON\",\n        \"address\": {\n          \"line1\": \"123 MAIN ST\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041\"\n        },\n        \"marital_status\": \"MARRIED\",\n        \"taxpayer_id\": {\n          \"id_type\": \"SSN\",\n          \"last_4_digits\": \"5555\"\n        }\n      },\n      \"employer\": {\n        \"name\": \"BANK OF PHILADELPHIA\",\n        \"address\": {\n          \"line1\": \"PO BOX 75\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041-0064\"\n        }\n      },\n      \"paystub_details\": {\n        \"pay_period_start_date\": \"2021-04-05\",\n        \"pay_period_end_date\": \"2021-04-18\",\n        \"pay_date\": \"2021-04-23\",\n        \"paystub_provider\": null,\n        \"pay_frequency\": \"BI_WEEKLY\",\n        \"pay_frequency_captured\": \"NOT LISTED\"\n      },\n      \"employment_details\": {\n        \"hire_date\": null,\n        \"annual_salary\": {\n          \"amount\": null,\n          \"currency\": null\n        },\n        \"pay_basis\": null,\n        \"hourly_rate\": {\n          \"amount\": null,\n          \"currency\": null\n        }\n      },\n      \"confidence_scores\": null\n    },\n    {\n      \"uuid\": \"ae1cd66b-d366-4483-a938-4b7871dcaeaf\",\n      \"book_uuid\": \"f4bf4ca1-aa28-4044-b4ec-29089781eb05\",\n      \"doc_uuid\": \"83f6c264-1099-4113-9675-8c6a0c9651f2\",\n      \"status\": \"COMPLETED\",\n      \"doc_page_numbers\": [\n        1\n      ],\n      \"rejection_reason\": null,\n      \"uploaded_image_bucket_uuid\": null,\n      \"net_pay\": {\n        \"distribution_details\": [\n          {\n            \"description\": \"CHKG 648\",\n            \"bank_name\": null,\n            \"account_number\": \"648\",\n            \"bank_account_type\": \"CHKG\",\n            \"current_pay\": {\n              \"amount\": \"2367.08\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": {\n          \"description\": \"NET EARNINGS\",\n          \"canonical_description\": null,\n          \"current_pay\": {\n            \"amount\": \"2367.08\",\n            \"currency\": \"USD\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"20268.54\",\n            \"currency\": \"USD\"\n          }\n        }\n      },\n      \"earnings\": {\n        \"subtotals\": [\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"2576.92\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"7730.76\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"80.00\",\n            \"current_rate\": \"32.21\"\n          },\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13494.14\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"PAID TIME OFF\",\n            \"canonical_description\": \"PAID TIME OFF\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"238.48\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"764.38\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1927.38\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"15.82\",\n            \"current_rate\": \"48.32\"\n          },\n          {\n            \"description\": \"HOLIDAY\",\n            \"canonical_description\": \"HOLIDAY PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.40\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1923.90\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"GROUP TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"4.54\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"37.46\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"COMMISSION\",\n            \"canonical_description\": \"COMMISSION\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2310.00\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          }\n        ],\n        \"totals\": [\n          {\n            \"description\": \"EARNINGS\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"3345.84\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"28354.52\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"95.82\"\n          }\n        ]\n      },\n      \"deductions\": {\n        \"subtotals\": [\n          {\n            \"description\": \"VOLUNTARY LIFE\",\n            \"canonical_description\": \"LIFE INSURANCE\",\n            \"current_pay\": {\n              \"amount\": \"1.48\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13.32\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"VISION PRE-TAX\",\n            \"canonical_description\": \"VISION\",\n            \"current_pay\": {\n              \"amount\": \"3.95\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"35.55\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SHORT TERM  DISABILITY POST-TAX\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"20.19\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"170.25\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"MEDICAL PRE-TAX\",\n            \"canonical_description\": \"MEDICAL\",\n            \"current_pay\": {\n              \"amount\": \"76.94\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.46\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"EMPLOYER PAID GROUP  TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"DENTAL PRE-TAX\",\n            \"canonical_description\": \"DENTAL\",\n            \"current_pay\": {\n              \"amount\": \"14.49\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"130.41\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"401K %\",\n            \"canonical_description\": \"401K\",\n            \"current_pay\": {\n              \"amount\": \"100.24\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"849.50\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SC STATE\",\n            \"canonical_description\": \"STATE TAX\",\n            \"current_pay\": {\n              \"amount\": \"202.40\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1655.75\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED SOC SEC\",\n            \"canonical_description\": \"SOCIAL SECURITY EMPLOYEE TAX\",\n            \"current_pay\": {\n              \"amount\": \"201.53\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1704.76\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED MEDICARE\",\n            \"canonical_description\": \"EMPLOYEE MEDICARE\",\n            \"current_pay\": {\n              \"amount\": \"47.13\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"398.69\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED INCOME TAX\",\n            \"canonical_description\": \"FEDERAL WITHHOLDINGS\",\n            \"current_pay\": {\n              \"amount\": \"305.87\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2397.83\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": []\n      },\n      \"employee\": {\n        \"name\": \"ALEXANDER HAMILTON\",\n        \"address\": {\n          \"line1\": \"123 MAIN ST\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041\"\n        },\n        \"marital_status\": \"MARRIED\",\n        \"taxpayer_id\": {\n          \"id_type\": \"SSN\",\n          \"last_4_digits\": \"5555\"\n        }\n      },\n      \"employer\": {\n        \"name\": \"BANK OF PHILADELPHIA\",\n        \"address\": {\n          \"line1\": \"PO BOX 75\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041-0064\"\n        }\n      },\n      \"paystub_details\": {\n        \"pay_period_start_date\": \"2021-04-19\",\n        \"pay_period_end_date\": \"2021-05-02\",\n        \"pay_date\": \"2021-05-07\",\n        \"paystub_provider\": null,\n        \"pay_frequency\": \"BI_WEEKLY\",\n        \"pay_frequency_captured\": \"NOT LISTED\"\n      },\n      \"employment_details\": {\n        \"hire_date\": null,\n        \"annual_salary\": {\n          \"amount\": null,\n          \"currency\": null\n        },\n        \"pay_basis\": \"HOURLY\",\n        \"hourly_rate\": {\n          \"amount\": null,\n          \"currency\": null\n        }\n      },\n      \"confidence_scores\": null\n    }\n  ],\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dd0cc01-c85d-4685-9b5e-6e12264f9bbd",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "book",
+                    ":book_uuid",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "book_uuid",
+                      "description": "(Required) The unique identifier of a <<glossary:Book>> that contains the pay stub data."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b9aad6d-c107-46ab-a1c3-8ce4fb9590c0",
+          "name": "Doc form data",
+          "request": {
+            "name": "Doc form data",
+            "description": {
+              "content": "Get field data for all <<glossary:Form>>s captured in a <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "document",
+                "forms",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "doc_uuid",
+                  "value": "<string>",
+                  "description": "The unique identifier of the <<glossary:Document>> that contains the form data. Mutually exclusive with `pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pk",
+                  "value": "<string>",
+                  "description": "The <<glossary:PK>> of the <<glossary:Document>> that contains the form data. Mutually exclusive with `doc_uuid`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d16f8703-eb65-44eb-9770-270397962e7d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "forms",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "doc_uuid",
+                      "value": "32765c32-1a15-477a-8a2d-fe8cbe89ac9c"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"pk\": 54425689,\n    \"uuid\": \"5e253b1d-d6eb-4f42-b6f1-c5daa1ae29a2\",\n    \"forms\": [\n      {\n        \"pk\": 46115051,\n        \"uuid\": \"d79541a9-d049-45c2-bf93-6258fd1e0043\",\n        \"form_type\": \"VOIDED_CHECK\",\n        \"form_config_pk\": 216942,\n        \"tables\": [],\n        \"raw_fields\": {\n          \"voided_check-Part1:nameOfBank\": {\n            \"value\": \"FIRST BANK OF EXAMPLES\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part2:accountNumber\": {\n            \"value\": \"40123456789\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part2:routingNumber\": {\n            \"value\": \"101112131\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:nameOfBusiness\": {\n            \"value\": \"OCROLUS INC.\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessAddress:zip\": {\n            \"value\": \"11111\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessPhoneNumber\": {\n            \"value\": \"\",\n            \"is_empty\": true,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessAddress:city\": {\n            \"value\": \"NEW YORK\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessAddress:state\": {\n            \"value\": \"NY\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part2:checkNumber(TopOfCheck)\": {\n            \"value\": \"1025\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part2:checkNumber(BottomOfCheck)\": {\n            \"value\": \"001025\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessAddress:addressLine1\": {\n            \"value\": \"123 EXAMPLE DR\",\n            \"is_empty\": false,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          },\n          \"voided_check-Part1:businessAddress:addressLine2\": {\n            \"value\": \"\",\n            \"is_empty\": true,\n            \"alias_used\": null,\n            \"source_filename\": \"Ocrolus Sample PDF - Voided Check.pdf\",\n            \"confidence\": 1\n          }\n        }\n      }\n    ]\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39de3af9-dfb3-4284-afe3-17bab4cb2855",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "document",
+                    "forms",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "doc_uuid",
+                      "value": "32765c32-1a15-477a-8a2d-fe8cbe89ac9c"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1501,\n  \"response\": null,\n  \"message\": \"Document not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Document not found\",\n    \"code\": 1501\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b11d3928-ab94-4052-8a04-2f18788125bc",
+          "name": "Doc pay stub data",
+          "request": {
+            "name": "Doc pay stub data",
+            "description": {
+              "content": "Retrieve pay stub data for a given <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [Pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "document",
+                ":doc_uuid",
+                "paystub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "doc_uuid",
+                  "description": "(Required) The unique identifier of the <<glossary:Document>> that contains the pay stub data."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c452622-0e70-44ef-a919-b5ac4d03567b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":doc_uuid",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doc_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Document>> that contains the pay stub data."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"uuid\": \"ae1cd66b-d366-4483-a938-4b7871dcaeaf\",\n      \"book_uuid\": \"f4bf4ca1-aa28-4044-b4ec-29089781eb05\",\n      \"doc_uuid\": \"83f6c264-1099-4113-9675-8c6a0c9651f2\",\n      \"status\": \"COMPLETED\",\n      \"doc_page_numbers\": [\n        1\n      ],\n      \"rejection_reason\": null,\n      \"uploaded_image_bucket_uuid\": null,\n      \"net_pay\": {\n        \"distribution_details\": [\n          {\n            \"description\": \"CHKG 648\",\n            \"bank_name\": null,\n            \"account_number\": \"648\",\n            \"bank_account_type\": \"CHKG\",\n            \"current_pay\": {\n              \"amount\": \"2367.08\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": {\n          \"description\": \"NET EARNINGS\",\n          \"canonical_description\": null,\n          \"current_pay\": {\n            \"amount\": \"2367.08\",\n            \"currency\": \"USD\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"20268.54\",\n            \"currency\": \"USD\"\n          }\n        }\n      },\n      \"earnings\": {\n        \"subtotals\": [\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"2576.92\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"7730.76\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"80.00\",\n            \"current_rate\": \"32.21\"\n          },\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13494.14\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"PAID TIME OFF\",\n            \"canonical_description\": \"PAID TIME OFF\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"238.48\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"764.38\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1927.38\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"15.82\",\n            \"current_rate\": \"48.32\"\n          },\n          {\n            \"description\": \"HOLIDAY\",\n            \"canonical_description\": \"HOLIDAY PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.40\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1923.90\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"GROUP TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"4.54\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"37.46\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"COMMISSION\",\n            \"canonical_description\": \"COMMISSION\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2310.00\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          }\n        ],\n        \"totals\": [\n          {\n            \"description\": \"EARNINGS\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"3345.84\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"28354.52\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"95.82\"\n          }\n        ]\n      },\n      \"deductions\": {\n        \"subtotals\": [\n          {\n            \"description\": \"VOLUNTARY LIFE\",\n            \"canonical_description\": \"LIFE INSURANCE\",\n            \"current_pay\": {\n              \"amount\": \"1.48\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13.32\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"VISION PRE-TAX\",\n            \"canonical_description\": \"VISION\",\n            \"current_pay\": {\n              \"amount\": \"3.95\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"35.55\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SHORT TERM  DISABILITY POST-TAX\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"20.19\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"170.25\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"MEDICAL PRE-TAX\",\n            \"canonical_description\": \"MEDICAL\",\n            \"current_pay\": {\n              \"amount\": \"76.94\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.46\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"EMPLOYER PAID GROUP  TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"DENTAL PRE-TAX\",\n            \"canonical_description\": \"DENTAL\",\n            \"current_pay\": {\n              \"amount\": \"14.49\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"130.41\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"401K %\",\n            \"canonical_description\": \"401K\",\n            \"current_pay\": {\n              \"amount\": \"100.24\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"849.50\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SC STATE\",\n            \"canonical_description\": \"STATE TAX\",\n            \"current_pay\": {\n              \"amount\": \"202.40\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1655.75\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED SOC SEC\",\n            \"canonical_description\": \"SOCIAL SECURITY EMPLOYEE TAX\",\n            \"current_pay\": {\n              \"amount\": \"201.53\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1704.76\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED MEDICARE\",\n            \"canonical_description\": \"EMPLOYEE MEDICARE\",\n            \"current_pay\": {\n              \"amount\": \"47.13\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"398.69\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED INCOME TAX\",\n            \"canonical_description\": \"FEDERAL WITHHOLDINGS\",\n            \"current_pay\": {\n              \"amount\": \"305.87\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2397.83\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": []\n      },\n      \"employee\": {\n        \"name\": \"ALEXANDER HAMILTON\",\n        \"address\": {\n          \"line1\": \"123 MAIN ST\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041\"\n        },\n        \"marital_status\": \"MARRIED\",\n        \"taxpayer_id\": {\n          \"id_type\": \"SSN\",\n          \"last_4_digits\": \"5555\"\n        }\n      },\n      \"employer\": {\n        \"name\": \"BANK OF PHILADELPHIA\",\n        \"address\": {\n          \"line1\": \"PO BOX 75\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041-0064\"\n        }\n      },\n      \"paystub_details\": {\n        \"pay_period_start_date\": \"2021-04-19\",\n        \"pay_period_end_date\": \"2021-05-02\",\n        \"pay_date\": \"2021-05-07\",\n        \"paystub_provider\": null,\n        \"pay_frequency\": \"BI_WEEKLY\",\n        \"pay_frequency_captured\": \"NOT LISTED\"\n      },\n      \"employment_details\": {\n        \"hire_date\": null,\n        \"annual_salary\": {\n          \"amount\": null,\n          \"currency\": null\n        },\n        \"pay_basis\": \"HOURLY\",\n        \"hourly_rate\": {\n          \"amount\": null,\n          \"currency\": null\n        }\n      },\n      \"confidence_scores\": null\n    }\n  ],\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50eb4fc0-1904-4e09-aaef-4add67d9b6aa",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "document",
+                    ":doc_uuid",
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doc_uuid",
+                      "description": "(Required) The unique identifier of the <<glossary:Document>> that contains the pay stub data."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1501,\n  \"response\": null,\n  \"message\": \"Document not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Document not found\",\n    \"code\": 1501\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46f59290-1205-4882-8779-2fbc7f914865",
+          "name": "Form data",
+          "request": {
+            "name": "Form data",
+            "description": {
+              "content": "Retrieve field data for a <<glossary:Form>>.\n\n---\n\nA detailed description of the response can be found on the [Form data](https://docs.ocrolus.com/docs/form-data) data type definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uuid",
+                  "value": "<string>",
+                  "description": "The unique identifier of a <<glossary:Form>>."
+                },
+                {
+                  "disabled": false,
+                  "key": "pk",
+                  "value": "<string>",
+                  "description": "The unique primary key of a <<glossary:Form>>."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb59c762-d6ee-4538-82b9-f6485890d1c2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "form"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "cd26e2a3-8744-474a-a759-f42c025674e2"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"pk\": 46420211,\n    \"uuid\": \"cd26e2a3-8744-474a-a759-f42c025674e2\",\n    \"form_type\": \"DRIVERS_LICENSE\",\n    \"raw_fields\": {\n      \"drivers_license-General:dob\": {\n        \"value\": \"01/06/1958\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:zip\": {\n        \"value\": \"99999-1234\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:city\": {\n        \"value\": \"YOUR CITY\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:state\": {\n        \"value\": \"WA\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:suffix\": {\n        \"value\": \"\",\n        \"is_empty\": true,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:idNumber\": {\n        \"value\": \"WDLABCD456DG\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:lastName\": {\n        \"value\": \"SAMPLE\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:firstName\": {\n        \"value\": \"ALEXANDER\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:issueDate\": {\n        \"value\": \"01/06/2015\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:middleName\": {\n        \"value\": \"HAMILTON\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:countryName\": {\n        \"value\": \"UNITED STATES\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:addressLine1\": {\n        \"value\": \"123 STREET ADDRESS\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:addressLine2\": {\n        \"value\": \"\",\n        \"is_empty\": true,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:issuingState\": {\n        \"value\": \"WA\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      },\n      \"drivers_license-General:expirationDate\": {\n        \"value\": \"08/12/2020\",\n        \"is_empty\": false,\n        \"alias_used\": null,\n        \"source_filename\": \"DRIVING-LICENSE.pdf\",\n        \"confidence\": 1\n      }\n    },\n    \"other_frauds\": [],\n    \"id\": 46420211\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a717cab-f2f9-4c99-8be3-8deeb71b4f87",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "form"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uuid",
+                      "value": "cd26e2a3-8744-474a-a759-f42c025674e2"
+                    },
+                    {
+                      "key": "pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 2301,\n  \"response\": null,\n  \"message\": \"DB Object Not Found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"DB Object Not Found\",\n    \"code\": 2301\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc089986-1ac0-47e2-823f-ea17e3c99a2d",
+          "name": "Pay stub data",
+          "request": {
+            "name": "Pay stub data",
+            "description": {
+              "content": "Retrieve pay stub data for a given <<glossary:Pay stub>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "paystub",
+                ":paystub_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paystub_uuid",
+                  "description": "(Required) The unique identifier of a pay stub."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ec9251f-daf1-43eb-a205-e46a6d969fd1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "paystub",
+                    ":paystub_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paystub_uuid",
+                      "description": "(Required) The unique identifier of a pay stub."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"uuid\": \"ae1cd66b-d366-4483-a938-4b7871dcaeaf\",\n      \"book_uuid\": \"f4bf4ca1-aa28-4044-b4ec-29089781eb05\",\n      \"doc_uuid\": \"83f6c264-1099-4113-9675-8c6a0c9651f2\",\n      \"status\": \"COMPLETED\",\n      \"doc_page_numbers\": [\n        1\n      ],\n      \"rejection_reason\": null,\n      \"uploaded_image_bucket_uuid\": null,\n      \"net_pay\": {\n        \"distribution_details\": [\n          {\n            \"description\": \"CHKG 648\",\n            \"bank_name\": null,\n            \"account_number\": \"648\",\n            \"bank_account_type\": \"CHKG\",\n            \"current_pay\": {\n              \"amount\": \"2367.08\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": {\n          \"description\": \"NET EARNINGS\",\n          \"canonical_description\": null,\n          \"current_pay\": {\n            \"amount\": \"2367.08\",\n            \"currency\": \"USD\"\n          },\n          \"ytd_pay\": {\n            \"amount\": \"20268.54\",\n            \"currency\": \"USD\"\n          }\n        }\n      },\n      \"earnings\": {\n        \"subtotals\": [\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"2576.92\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"7730.76\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"80.00\",\n            \"current_rate\": \"32.21\"\n          },\n          {\n            \"description\": \"REGULAR\",\n            \"canonical_description\": \"REGULAR PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13494.14\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"PAID TIME OFF\",\n            \"canonical_description\": \"PAID TIME OFF\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"238.48\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"764.38\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1927.38\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"15.82\",\n            \"current_rate\": \"48.32\"\n          },\n          {\n            \"description\": \"HOLIDAY\",\n            \"canonical_description\": \"HOLIDAY PAY\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.40\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"OVERTIME\",\n            \"canonical_description\": \"OVERTIME\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1923.90\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"GROUP TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"4.54\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"37.46\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          },\n          {\n            \"description\": \"COMMISSION\",\n            \"canonical_description\": \"COMMISSION\",\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2310.00\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": null,\n            \"current_rate\": null\n          }\n        ],\n        \"totals\": [\n          {\n            \"description\": \"EARNINGS\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"3345.84\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"28354.52\",\n              \"currency\": \"USD\"\n            },\n            \"current_hours\": \"95.82\"\n          }\n        ]\n      },\n      \"deductions\": {\n        \"subtotals\": [\n          {\n            \"description\": \"VOLUNTARY LIFE\",\n            \"canonical_description\": \"LIFE INSURANCE\",\n            \"current_pay\": {\n              \"amount\": \"1.48\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"13.32\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"VISION PRE-TAX\",\n            \"canonical_description\": \"VISION\",\n            \"current_pay\": {\n              \"amount\": \"3.95\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"35.55\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SHORT TERM  DISABILITY POST-TAX\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"20.19\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"170.25\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"MEDICAL PRE-TAX\",\n            \"canonical_description\": \"MEDICAL\",\n            \"current_pay\": {\n              \"amount\": \"76.94\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"692.46\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"EMPLOYER PAID GROUP  TERM LIFE\",\n            \"canonical_description\": null,\n            \"current_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"0.00\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"DENTAL PRE-TAX\",\n            \"canonical_description\": \"DENTAL\",\n            \"current_pay\": {\n              \"amount\": \"14.49\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"130.41\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"401K %\",\n            \"canonical_description\": \"401K\",\n            \"current_pay\": {\n              \"amount\": \"100.24\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"849.50\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"SC STATE\",\n            \"canonical_description\": \"STATE TAX\",\n            \"current_pay\": {\n              \"amount\": \"202.40\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1655.75\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED SOC SEC\",\n            \"canonical_description\": \"SOCIAL SECURITY EMPLOYEE TAX\",\n            \"current_pay\": {\n              \"amount\": \"201.53\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"1704.76\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED MEDICARE\",\n            \"canonical_description\": \"EMPLOYEE MEDICARE\",\n            \"current_pay\": {\n              \"amount\": \"47.13\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"398.69\",\n              \"currency\": \"USD\"\n            }\n          },\n          {\n            \"description\": \"FED INCOME TAX\",\n            \"canonical_description\": \"FEDERAL WITHHOLDINGS\",\n            \"current_pay\": {\n              \"amount\": \"305.87\",\n              \"currency\": \"USD\"\n            },\n            \"ytd_pay\": {\n              \"amount\": \"2397.83\",\n              \"currency\": \"USD\"\n            }\n          }\n        ],\n        \"totals\": []\n      },\n      \"employee\": {\n        \"name\": \"ALEXANDER HAMILTON\",\n        \"address\": {\n          \"line1\": \"123 MAIN ST\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041\"\n        },\n        \"marital_status\": \"MARRIED\",\n        \"taxpayer_id\": {\n          \"id_type\": \"SSN\",\n          \"last_4_digits\": \"5555\"\n        }\n      },\n      \"employer\": {\n        \"name\": \"BANK OF PHILADELPHIA\",\n        \"address\": {\n          \"line1\": \"PO BOX 75\",\n          \"line2\": null,\n          \"city\": \"LEXINGTON\",\n          \"state_code\": \"SC\",\n          \"postal_code\": \"12041-0064\"\n        }\n      },\n      \"paystub_details\": {\n        \"pay_period_start_date\": \"2021-04-19\",\n        \"pay_period_end_date\": \"2021-05-02\",\n        \"pay_date\": \"2021-05-07\",\n        \"paystub_provider\": null,\n        \"pay_frequency\": \"BI_WEEKLY\",\n        \"pay_frequency_captured\": \"NOT LISTED\"\n      },\n      \"employment_details\": {\n        \"hire_date\": null,\n        \"annual_salary\": {\n          \"amount\": null,\n          \"currency\": null\n        },\n        \"pay_basis\": \"HOURLY\",\n        \"hourly_rate\": {\n          \"amount\": null,\n          \"currency\": null\n        }\n      },\n      \"confidence_scores\": null\n    }\n  ],\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78da2d20-a3ab-4afb-95e1-7c8f516d797e",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "paystub",
+                    ":paystub_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paystub_uuid",
+                      "description": "(Required) The unique identifier of a pay stub."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1501,\n  \"response\": null,\n  \"message\": \"Document not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Document not found\",\n    \"code\": 1501\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6740ff0b-3874-467f-93a4-5e23c754bbc7",
+          "name": "Transactions",
+          "request": {
+            "name": "Transactions",
+            "description": {
+              "content": "Retrieve transactions from all Documents uploaded to a <<glossary:Book>>.\n\n---\n> 🚧 \n> The Transactions endpoint provides raw transactions output. If you are looking for enriched transactions complete with a list of categories, transaction tagging, and improved revenue, expense, and transfer logic, please visit the [Enriched transactions page](ref:enriched-transactions)\n\n> 📘\n> If `uploaded_doc_pk` or `uploaded_doc_uuid` are not provided in the request, transactions from all Documents in the Book will be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "book_uuid",
+                  "value": "<uuid>",
+                  "description": "The unique identifier of a <<glossary:Book>>. Mutually exclusive with `book_pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "book_pk",
+                  "value": "<uuid>",
+                  "description": "The unique primary key of a <<glossary:Book>>. Mutually exclusive with `book_uuid`."
+                },
+                {
+                  "disabled": false,
+                  "key": "uploaded_doc_uuid",
+                  "value": "<string>",
+                  "description": "The unique identifier of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_pk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "uploaded_doc_pk",
+                  "value": "<string>",
+                  "description": "The unique primary key of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_uuid`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "280ad723-0396-44fb-bfbf-0a5681c0f124",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "book_pk",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "uploaded_doc_uuid",
+                      "value": "4ad17d9e-1963-44c3-b709-2c5c80b9d667"
+                    },
+                    {
+                      "key": "uploaded_doc_pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"txns\": [\n      {\n        \"page_idx\": 0,\n        \"bank_account_pk\": 12942296,\n        \"amount\": \"-299.35\",\n        \"bbox\": [\n          142,\n          2971,\n          2208,\n          3021\n        ],\n        \"txn_date\": \"09/10/2020\",\n        \"page_doc_pk\": 304060599,\n        \"pk\": 3573037068,\n        \"uploaded_doc_pk\": 50867399,\n        \"description\": \"AMERICAN EXPRES DES: PAYMENT ID: 38945835INDN: CONSOLIDATED [... ]\",\n        \"txn_pk_duplicate_of\": null,\n        \"comment\": \"\",\n        \"explanation\": \"\",\n        \"has_probable_transfers\": false,\n        \"tags\": {},\n        \"period_pk\": 37445192\n      },\n      {\n        \"page_idx\": 1,\n        \"bank_account_pk\": 12942296,\n        \"amount\": \"1853.14\",\n        \"bbox\": [\n          142,\n          704,\n          2196,\n          742\n        ],\n        \"txn_date\": \"09/13/2020\",\n        \"page_doc_pk\": 304060600,\n        \"pk\": 3573037062,\n        \"uploaded_doc_pk\": 50867399,\n        \"description\": \"ACH WEB - SINGLE PAYMENT VENMO 4675294668\",\n        \"txn_pk_duplicate_of\": null,\n        \"comment\": \"\",\n        \"explanation\": \"\",\n        \"has_probable_transfers\": false,\n        \"tags\": {},\n        \"period_pk\": 37445192\n      },\n      {\n        \"page_idx\": 2,\n        \"bank_account_pk\": 12942296,\n        \"amount\": \"-3250.00\",\n        \"bbox\": [\n          158,\n          1013,\n          2204,\n          1075\n        ],\n        \"txn_date\": \"10/05/2020\",\n        \"page_doc_pk\": 304060598,\n        \"pk\": 3573037076,\n        \"uploaded_doc_pk\": 50867399,\n        \"description\": \" CHECKCARD  BROOKLYN HEIGHTS REAL ESTATE #  MONTAGUE [... ]  \",\n        \"txn_pk_duplicate_of\": null,\n        \"comment\": \"\",\n        \"explanation\": \"\",\n        \"has_probable_transfers\": false,\n        \"tags\": {},\n        \"period_pk\": 37445192\n      }\n    ],\n    \"uploaded_docs\": {\n      \"50867394\": {\n        \"name\": \"july.pdf(0,1,2,3)\",\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"pages\": 4,\n        \"pk\": 50867394,\n        \"uuid\": \"30021344a56d4037a6f3d453444edae2\",\n        \"rejection_reason\": null,\n        \"uploaded_doc_type\": \"BANK_STATEMENT\",\n        \"sub_doc_type\": null,\n        \"sub_doc_type_details\": null,\n        \"mixed_uploaded_doc_pk\": 10891054,\n        \"mixed_uploaded_doc_uuid\": \"428110d2-ed77-44de-88bb-18003cfc10e6\"\n      },\n      \"50867397\": {\n        \"name\": \"aug.pdf(0,1,2)\",\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"pages\": 3,\n        \"pk\": 50867397,\n        \"uuid\": \"d3f07a7914da43cd80ba6c8db870c4e9\",\n        \"rejection_reason\": null,\n        \"uploaded_doc_type\": \"BANK_STATEMENT\",\n        \"sub_doc_type\": null,\n        \"sub_doc_type_details\": null,\n        \"mixed_uploaded_doc_pk\": 10891055,\n        \"mixed_uploaded_doc_uuid\": \"be431968-c6f3-4153-be1c-a7141f1321f4\"\n      },\n      \"50867399\": {\n        \"name\": \"sept.pdf(0,1,2,3)\",\n        \"status\": \"VERIFICATION_COMPLETE\",\n        \"pages\": 4,\n        \"pk\": 50867399,\n        \"uuid\": \"3ea6c08016c941de967317e6aadb90c2\",\n        \"rejection_reason\": null,\n        \"uploaded_doc_type\": \"BANK_STATEMENT\",\n        \"sub_doc_type\": null,\n        \"sub_doc_type_details\": null,\n        \"mixed_uploaded_doc_pk\": 10891056,\n        \"mixed_uploaded_doc_uuid\": \"6110bb35-07bf-469b-ac18-8401b5e850d4\"\n      }\n    },\n    \"bank_accounts\": {\n      \"12942296\": {\n        \"pk\": 12942296,\n        \"book_pk\": 28741420,\n        \"name\": \"488083738759 CHASE CHECKING\",\n        \"bank_name\": \"CHASE\",\n        \"activity_info\": {\n          \"active\": [\n            {\n              \"start\": {\n                \"year\": 2020,\n                \"month\": 9,\n                \"day\": 10\n              },\n              \"end\": {\n                \"year\": 2020,\n                \"month\": 10,\n                \"day\": 9\n              }\n            }\n          ],\n          \"missing\": []\n        },\n        \"account_type\": \"CHECKING\",\n        \"account_holder\": \"JILL S COFFEE\",\n        \"account_number\": \"488083738759\",\n        \"holder_zip\": \"11215\",\n        \"holder_country\": \"US\",\n        \"holder_state\": \"NY\",\n        \"holder_city\": \"New York\",\n        \"holder_address_1\": \"74 Prospect Park West Park Slope\",\n        \"holder_address_2\": null,\n        \"account_category\": \"PERSONAL ACCOUNT\",\n        \"member_id\": \"MEMBER\",\n        \"account_source\": \"VOA_PLAID\",\n        \"id\": 12942296,\n        \"book_uuid\": \"ffb922fb88f14702a4d36a4d64a18013\",\n        \"periods\": [\n          {\n            \"pk\": 37445192,\n            \"uuid\": \"c283613c-d20a-4aac-b8b3-5dfd608ba111\",\n            \"bank_account_pk\": 12942296,\n            \"begin_date\": \"09/10/2020\",\n            \"end_date\": \"10/09/2020\",\n            \"begin_balance\": \"2935.81\",\n            \"end_balance\": \"3956.07\",\n            \"primary_recon_error_reason\": null,\n            \"secondary_recon_error_reason\": null,\n            \"absolute_recon_error\": \"25445.86\",\n            \"uploaded_doc_pk\": 50867399\n          }\n        ],\n        \"account_holders\": [\n          \"JILL S COFFEE\"\n        ]\n      },\n      \"12942297\": {\n        \"pk\": 12942297,\n        \"book_pk\": 28741420,\n        \"name\": \"381053654285 CHASE SAVINGS\",\n        \"bank_name\": \"CHASE\",\n        \"activity_info\": {\n          \"active\": [\n            {\n              \"start\": {\n                \"year\": 2020,\n                \"month\": 7,\n                \"day\": 10\n              },\n              \"end\": {\n                \"year\": 2020,\n                \"month\": 9,\n                \"day\": 9\n              }\n            }\n          ],\n          \"missing\": []\n        },\n        \"account_type\": \"SAVINGS\",\n        \"account_holder\": \"JILL SMITH\",\n        \"account_number\": \"381053654285\",\n        \"holder_zip\": \"11215\",\n        \"holder_country\": \"US\",\n        \"holder_state\": \"NY\",\n        \"holder_city\": \"New York\",\n        \"holder_address_1\": \"307 8TH AVENUE PARK SLOPE\",\n        \"holder_address_2\": \"APARTMENT 3B\",\n        \"account_category\": \"PERSONAL ACCOUNT\",\n        \"member_id\": \"MEMBER\",\n        \"account_source\": \"VOA_FINICITY\",\n        \"id\": 12942297,\n        \"book_uuid\": \"ffb922fb88f14702a4d36a4d64a18013\",\n        \"periods\": [\n          {\n            \"pk\": 37445187,\n            \"uuid\": \"fd063f12-609d-44e0-b82c-8bd09f30bf83\",\n            \"bank_account_pk\": 12942297,\n            \"begin_date\": \"07/10/2020\",\n            \"end_date\": \"08/09/2020\",\n            \"begin_balance\": \"17340.41\",\n            \"end_balance\": \"23601.79\",\n            \"primary_recon_error_reason\": \"Potential Fraud\",\n            \"secondary_recon_error_reason\": \"Invalid Amount(s) Or Balance(s)\",\n            \"absolute_recon_error\": \"25445.86\",\n            \"uploaded_doc_pk\": 50867394\n          },\n          {\n            \"pk\": 37445191,\n            \"uuid\": \"7c389cb4-1107-4a58-acbc-ca2e4ec1070f\",\n            \"bank_account_pk\": 12942297,\n            \"begin_date\": \"08/10/2020\",\n            \"end_date\": \"09/09/2020\",\n            \"begin_balance\": \"23601.41\",\n            \"end_balance\": \"20965.12\",\n            \"primary_recon_error_reason\": \"Potential Fraud\",\n            \"secondary_recon_error_reason\": \"Invalid Amount(s) Or Balance(s)\",\n            \"absolute_recon_error\": \"25445.86\",\n            \"uploaded_doc_pk\": 50867397\n          }\n        ],\n        \"account_holders\": [\n          \"JILL SMITH\"\n        ]\n      }\n    },\n    \"bank_checks\": [\n      {\n        \"uuid\": \"520dc1b834754da38fa0f2880b9ae2c3\",\n        \"bank_account_pk\": 290879,\n        \"amount\": \"100.00\",\n        \"pay_to\": \"FAKE\",\n        \"txn_date\": \"01/01/2000\",\n        \"check_number\": \"34434\",\n        \"memo_number\": \"\"\n      },\n      {\n        \"uuid\": \"4f7a0b3cad27410c85772ea2fa51c25e\",\n        \"bank_account_pk\": 290879,\n        \"amount\": \"200.00\",\n        \"pay_to\": \"FAKE\",\n        \"txn_date\": \"01/05/2000\",\n        \"check_number\": \"5555\",\n        \"memo_number\": \"\"\n      }\n    ],\n    \"tags\": {}\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c042e39-f027-47a4-bfea-dd94325ff8fa",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "book_uuid",
+                      "value": "19aab921-25a5-4beb-a59e-ac72320061d6"
+                    },
+                    {
+                      "key": "book_pk",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "uploaded_doc_uuid",
+                      "value": "4ad17d9e-1963-44c3-b709-2c5c80b9d667"
+                    },
+                    {
+                      "key": "uploaded_doc_pk",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46e7db3b-c798-4b56-b666-2a905cf0f6bd",
+    "name": "Account Level Webhooks Book Commands Capture API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

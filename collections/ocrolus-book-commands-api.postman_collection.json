@@ -1,0 +1,513 @@
+{
+  "item": [
+    {
+      "id": "4277423d-9d5d-4f1c-bb61-c1e284a2c0c0",
+      "name": "Book Commands",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "837ea902-3d88-4469-8c7e-169aad733ed8",
+          "name": "Create Book",
+          "request": {
+            "name": "Create Book",
+            "description": {
+              "content": "Create a <<glossary:Book>> that you can use to group related <<glossary:Document>>s. Each document must be uploaded to a <<glossary:Book>>, so you'll need to create one with this endpoint before you can upload files. <<glossary:Book>>s are generally used to store related <<glossary:Document>>s, such as for a loan application or a case file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"book_class\": \"<string>\",\n  \"book_type\": \"<string>\",\n  \"is_public\": \"<boolean>\",\n  \"xid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16c81c10-ba48-4272-9f8e-00ab72c7f75f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Book\",\n  \"is_public\": true,\n  \"xid\": \"123ABC\",\n  \"book_type\": \"DEFAULT\",\n  \"book_class\": \"COMPLETE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"name\": \"Example Book\",\n    \"created\": \"2023-05-25T17:23:45Z\",\n    \"created_ts\": \"2023-05-25T17:23:45Z\",\n    \"pk\": 34101490,\n    \"owner_email\": \"email@address.com\",\n    \"is_public\": true,\n    \"uuid\": \"52dfdb53-6652-4d3a-a3db-fe864c6ff2fb\",\n    \"book_type\": \"DEFAULT\",\n    \"xid\": null,\n    \"id\": 34101490,\n    \"book_class\": \"COMPLETE\"\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68237aa4-6233-4a4c-ac07-8f61980c6b83",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Book\",\n  \"is_public\": true,\n  \"xid\": \"123ABC\",\n  \"book_type\": \"DEFAULT\",\n  \"book_class\": \"COMPLETE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"message\": \"Book exists\",\n  \"code\": 1402,\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book exists\",\n    \"code\": 1402\n  },\n  \"response\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80f68044-28ac-420f-b6fd-53bffb55f9d6",
+          "name": "Delete Book",
+          "request": {
+            "name": "Delete Book",
+            "description": {
+              "content": "Delete a <<glossary:Book>> that you no longer need.\n\n---\n> 🚧 No turning back!\n> Deleting a <<glossary:Book>> also deletes the <<glossary:Document>>s contained within. This action is not reversible, meaning that you can't recover deleted <<glossary:Document>>s and <<glossary:Book>>s. Make sure you're ready!",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_id\": \"<string>\",\n  \"book_uuid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6baf7e84-7a21-4774-a8e4-5bba54264bec",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"19aab921-25a5-4beb-a59e-ac72320061d6\",\n  \"book_id\": \"30219565\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"OK\",\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "526c3d4a-0b94-4eca-b6f3-f41f7b2d79ee",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"19aab921-25a5-4beb-a59e-ac72320061d6\",\n  \"book_id\": \"30219565\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd85473d-e5b3-406e-bb45-e4b1ce0bed16",
+          "name": "Update Book",
+          "request": {
+            "name": "Update Book",
+            "description": {
+              "content": "Configure various properties of a <<glossary:Book>>.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "book",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_uuid\": \"<string>\",\n  \"pk\": \"<string>\",\n  \"book_class\": \"<string>\",\n  \"book_type\": \"<string>\",\n  \"is_public\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"xid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6320cbd3-bb7c-46ad-af72-0595694d81fe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"19aab921-25a5-4beb-a59e-ac72320061d6\",\n  \"pk\": 30219565,\n  \"name\": \"Example Book\",\n  \"is_public\": true,\n  \"xid\": \"123ABC\",\n  \"book_class\": \"COMPLETE\",\n  \"book_type\": \"DEFAULT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"name\": \"Example Book\",\n    \"created\": \"2023-07-31T15:59:51Z\",\n    \"created_ts\": \"2023-07-31T15:59:51Z\",\n    \"pk\": 34101490,\n    \"uuid\": \"52dfdb53-6652-4d3a-a3db-fe864c6ff2fb\",\n    \"owner_email\": \"email@address.com\",\n    \"is_public\": true,\n    \"xid\": null,\n    \"book_type\": \"DEFAULT\",\n    \"id\": 34101490,\n    \"book_context\": {\n      \"uuid\": \"7876239a-ff18-42f3-a6b8-66db5af2e26a\",\n      \"book_uuid\": \"68a101e1-591c-4b87-acf3-ab8a55ceb746\",\n      \"book_class\": \"INSTANT\",\n      \"created_ts\": \"2023-07-31T15:59:51Z\"\n    }\n  },\n  \"message\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95cb2690-2a3f-4cdb-a3a0-c5ad3626b39c",
+              "name": "Client Errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "book",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"book_uuid\": \"19aab921-25a5-4beb-a59e-ac72320061d6\",\n  \"pk\": 30219565,\n  \"name\": \"Example Book\",\n  \"is_public\": true,\n  \"xid\": \"123ABC\",\n  \"book_class\": \"COMPLETE\",\n  \"book_type\": \"DEFAULT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"code\": 1401,\n  \"response\": null,\n  \"message\": \"Book not found\",\n  \"meta\": {\n    \"status\": 400,\n    \"msg\": \"Book not found\",\n    \"code\": 1401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ocrolus.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.ocrolus.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "430cf44a-bfdf-4d6b-abc9-72a52b9764e5",
+    "name": "Account Level Webhooks Book Commands API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Income API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Income",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Income summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income/summary",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> from which the income summary is retrieved."
+              },
+              {
+                "name": "guideline",
+                "value": "",
+                "type": "query",
+                "description": "The guideline to be used for retrieving the income summary. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve a summarized view of income data for a specific <<glossary:Book>> in Ocrolus."
+        },
+        {
+          "info": {
+            "name": "Income calculations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income-calculations",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Book>> from which the income calculations are retrieved."
+              },
+              {
+                "name": "guideline",
+                "value": "",
+                "type": "query",
+                "description": "The guideline to be used for retrieving the income calculations. Supported values include FANNIE_MAE, FREDDIE_MAC, FHA, VA, and USDA.\n"
+              }
+            ]
+          },
+          "docs": "This API provides income values based on the specified guidelines for a <<glossary:Book>> type. The supported income types include `wage-earner`, `self-employed`, `rental`, and `other income`. A detailed description of income-related fields found in the `calculated_fields` objects within the totals array can be found in the [income calculation](https://docs.ocrolus.com/docs/income-calculations-api) definition. These fields include attributes like field name, default value, and title/header to id"
+        },
+        {
+          "info": {
+            "name": "Configure income entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v2/book/:uuid/income/entity_config",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the Ocrolus <<glossary:Book>> for which borrower–employer data should be configured."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows you to **update the employment start date** for a borrower–employer pair linked to a specific Ocrolus <<glossary:Book>>. You can optionally include identifiers such as the employer’s **EIN** (Employer Identification Number) and the borrower’s **last four SSN digits (Social Security Number)** for more accurate matching. If the borrower–employer pair exists, the record is updated; otherwise, a new one is created. When provided, the **employment start date** is also used in income c"
+        },
+        {
+          "info": {
+            "name": "Save income guideline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income-guideline",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the Ocrolus <<glossary:Book>> for which the loan program or GSE guideline should be created or updated."
+              },
+              {
+                "name": "guideline",
+                "value": "",
+                "type": "query",
+                "description": "The guideline to be used for retrieving the income calculations. Supported values include `FANNIE_MAE`, `FREDDIE_MAC`, `FHA, `VA`, `USDA`, `CONVENTIONAL`.\n \n > 📘 The `CONVENTIONAL` guideline translates to the Fannie Mae income guideline.\n"
+              }
+            ]
+          },
+          "docs": "This API lets you set or update the loan program or Government-Sponsored Enterprise (GSE) guideline for an Ocrolus <<glossary:Book>>. It ensures income calculations use the correct guideline (for example, Fannie Mae, Freddie Mac, FHA, VA, or USDA) and that the results are accurately reflected in the Ocrolus Dashboard for underwriting review. The most recent guideline is always used for income calculations by default.\n\nYou can use this API to:\n- Set the income guideline immediately after the Book"
+        },
+        {
+          "info": {
+            "name": "Calculate Fannie Mae self-employed income",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/income/self-employed/calculate",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "13e6d579-4699-43e2-a419-8a29bcb5f922",
+                "type": "path",
+                "description": "The unique identifier of the Ocrolus <<glossary:Book>> for which self-employed income should be calculated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API calculates Fannie Mae self-employed income for a borrower–business pair in a Book. Send only the fields you want to update. The API merges these fields with the existing income record and recalculates the income.\nIf a field is missing or empty, the system may apply [organization-level default values](#organization-level-defaults) based on the income type and guideline. These defaults act as fallback values and never override fields explicitly provided in the request.\n\n> 👍 Tips\n> After "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands User management API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/invitations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Number of records to skip from the beginning of the result set. Use this with `limit` for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of records to return per page, starting from the specified `offset` value."
+              }
+            ]
+          },
+          "docs": "This API returns a paginated list of pending invitations for your organization. Use this endpoint to review outstanding invitations before sending reminders or re-inviting users whose invitations have expired."
+        },
+        {
+          "info": {
+            "name": "Create invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ocrolus.com/v1/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API invites a new user to your organization by email. If the email has been invited before, the existing invitation is refreshed with a new expiration date.\n\n> 👍 Tip: \n  > The invitation is valid for 7 days. If the user does not accept the invitation within that time frame, they will need to be re-invited.\n"
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/users",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "The number of records to skip before returning results. Used for pagination. Defaults to 0 if not specified."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "The maximum number of records to return per page, starting from the specified `offset` value. Defaults to 50 if not specified."
+              },
+              {
+                "name": "is_manager",
+                "value": "true",
+                "type": "query",
+                "description": "Use this parameter to narrow results by manager status. Set to `true` to return only users with manager permissions, or `false` to return only standard users. If not provided, all users in your organization are returned regardless of their manager status."
+              },
+              {
+                "name": "sort",
+                "value": "email",
+                "type": "query",
+                "description": "The field to use when sorting the list of users. Use `id` to sort by the user's unique identifier, or `email` to sort alphabetically by email address. Defaults to `id` if not specified."
+              },
+              {
+                "name": "order",
+                "value": "asc",
+                "type": "query",
+                "description": "The sort direction for the results. Use `asc` for ascending order or `desc` for descending order. Defaults to `asc` if not specified."
+              }
+            ]
+          },
+          "docs": "This API returns a paginated list of Dashboard members in your organization. Use this endpoint to review existing users, filter by manager status, or sort results by ID or email."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

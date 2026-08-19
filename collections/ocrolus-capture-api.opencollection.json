@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Level Webhooks Book Commands Capture API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.ocrolus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Capture",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Book form data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/book/forms",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                "type": "query",
+                "description": "The unique identifier of the <<glossary:Book>> that contains the form data. Mutually exclusive with `pk`."
+              },
+              {
+                "name": "pk",
+                "value": "30219565",
+                "type": "query",
+                "description": "The <<glossary:PK>> of the <<glossary:Book>> that contains the form data. Mutually exclusive with `book_uuid`."
+              }
+            ]
+          },
+          "docs": "Retrieve data for all forms uploaded to a <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition."
+        },
+        {
+          "info": {
+            "name": "Book pay stub data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/book/:book_uuid/paystub",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "95573c48-93da-472d-ac86-c7e9b58bd53d",
+                "type": "path",
+                "description": "The unique identifier of a <<glossary:Book>> that contains the pay stub data."
+              }
+            ]
+          },
+          "docs": "Retrieve pay stub data for a given <<glossary:Book>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition."
+        },
+        {
+          "info": {
+            "name": "Doc form data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/document/forms/fields",
+            "params": [
+              {
+                "name": "doc_uuid",
+                "value": "32765c32-1a15-477a-8a2d-fe8cbe89ac9c",
+                "type": "query",
+                "description": "The unique identifier of the <<glossary:Document>> that contains the form data. Mutually exclusive with `pk`."
+              },
+              {
+                "name": "pk",
+                "value": "655324",
+                "type": "query",
+                "description": "The <<glossary:PK>> of the <<glossary:Document>> that contains the form data. Mutually exclusive with `doc_uuid`."
+              }
+            ]
+          },
+          "docs": "Get field data for all <<glossary:Form>>s captured in a <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition. "
+        },
+        {
+          "info": {
+            "name": "Doc pay stub data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/document/:doc_uuid/paystub",
+            "params": [
+              {
+                "name": "doc_uuid",
+                "value": "32765c32-1a15-477a-8a2d-fe8cbe89ac9c",
+                "type": "path",
+                "description": "The unique identifier of the <<glossary:Document>> that contains the pay stub data."
+              }
+            ]
+          },
+          "docs": "Retrieve pay stub data for a given <<glossary:Document>>.\n\n---\n\nA detailed description of the response can be found on the [Pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition"
+        },
+        {
+          "info": {
+            "name": "Form data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/form",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "cd26e2a3-8744-474a-a759-f42c025674e2",
+                "type": "query",
+                "description": "The unique identifier of a <<glossary:Form>>."
+              },
+              {
+                "name": "pk",
+                "value": "123456",
+                "type": "query",
+                "description": "The unique primary key of a <<glossary:Form>>."
+              }
+            ]
+          },
+          "docs": "Retrieve field data for a <<glossary:Form>>.\n\n---\n\nA detailed description of the response can be found on the [Form data](https://docs.ocrolus.com/docs/form-data) data type definition."
+        },
+        {
+          "info": {
+            "name": "Pay stub data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v2/paystub/:paystub_uuid",
+            "params": [
+              {
+                "name": "paystub_uuid",
+                "value": "ce3585b5-44a0-4273-8ca9-c885a353bd87",
+                "type": "path",
+                "description": "The unique identifier of a pay stub."
+              }
+            ]
+          },
+          "docs": "Retrieve pay stub data for a given <<glossary:Pay stub>>.\n\n---\n\nA detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition."
+        },
+        {
+          "info": {
+            "name": "Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ocrolus.com/v1/transaction",
+            "params": [
+              {
+                "name": "book_uuid",
+                "value": "19aab921-25a5-4beb-a59e-ac72320061d6",
+                "type": "query",
+                "description": "The unique identifier of a <<glossary:Book>>. Mutually exclusive with `book_pk`."
+              },
+              {
+                "name": "book_pk",
+                "value": "5244323",
+                "type": "query",
+                "description": "The unique primary key of a <<glossary:Book>>. Mutually exclusive with `book_uuid`."
+              },
+              {
+                "name": "uploaded_doc_uuid",
+                "value": "4ad17d9e-1963-44c3-b709-2c5c80b9d667",
+                "type": "query",
+                "description": "The unique identifier of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_pk`."
+              },
+              {
+                "name": "uploaded_doc_pk",
+                "value": "52386256",
+                "type": "query",
+                "description": "The unique primary key of a <<glossary:Document>>. Mutually exclusive with `uploaded_doc_uuid`."
+              }
+            ]
+          },
+          "docs": "Retrieve transactions from all Documents uploaded to a <<glossary:Book>>.\n\n---\n> 🚧 \n> The Transactions endpoint provides raw transactions output. If you are looking for enriched transactions complete with a list of categories, transaction tagging, and improved revenue, expense, and transfer logic, please visit the [Enriched transactions page](ref:enriched-transactions)\n\n> 📘\n> If `uploaded_doc_pk` or `uploaded_doc_uuid` are not provided in the request, transactions from all Documents in the Boo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
