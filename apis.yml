@@ -41,6 +41,19 @@ tags:
 - Income Verification
 - Bank Statement Analysis
 - Mortgage
+- Machine-Learning
+- Cash Flow Analytics
+tags_raw:
+- Company
+- Fintech
+- Document Automation
+- Lending
+- Underwriting
+- OCR
+- Fraud Detection
+- Income Verification
+- Bank Statement Analysis
+- Mortgage
 - Machine Learning
 - Cash Flow Analytics
 maintainers:
@@ -257,6 +270,8 @@ apis:
   humanURL: https://docs.ocrolus.com/docs/guide
   baseURL: https://api.ocrolus.com
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
@@ -311,6 +326,8 @@ apis:
   humanURL: https://docs.ocrolus.com/docs/guide
   baseURL: https://api.ocrolus.com
   tags:
+  - User Management
+  tags_raw:
   - User management
   properties:
   - type: OpenAPI
@@ -329,6 +346,8 @@ apis:
   humanURL: https://docs.ocrolus.com/docs/guide
   baseURL: https://api.ocrolus.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
