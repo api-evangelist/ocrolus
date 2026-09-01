@@ -338,7 +338,7 @@ apis:
   humanURL: https://docs.ocrolus.com/docs/guide
   baseURL: https://api.ocrolus.com
   tags:
-  - User management
+  - User Management
   tags_raw:
   - User management
   properties:
