@@ -276,26 +276,6 @@ apis:
     url: errors/ocrolus-error-codes.yml
   - type: Webhooks
     url: asyncapi/ocrolus-webhooks.yml
-- aid: ocrolus:ocrolus-oauth-api
-  name: Ocrolus Oauth API
-  description: The Oauth API from Ocrolus — 1 operation(s) for oauth.
-  humanURL: https://docs.ocrolus.com/docs/guide
-  baseURL: https://api.ocrolus.com
-  tags:
-  - Authentication
-  tags_raw:
-  - Oauth
-  properties:
-  - type: OpenAPI
-    url: openapi/ocrolus-oauth-api-openapi.yml
-  - type: Authentication
-    url: authentication/ocrolus-authentication.yml
-  - type: RateLimits
-    url: rate-limits/ocrolus-rate-limits.yml
-  - type: ErrorCatalog
-    url: errors/ocrolus-error-codes.yml
-  - type: Webhooks
-    url: asyncapi/ocrolus-webhooks.yml
 - aid: ocrolus:ocrolus-org-level-webhooks-api
   name: Ocrolus Org Level Webhooks API
   description: The Org Level Webhooks API from Ocrolus — 8 operation(s) for org level webhooks.
@@ -364,6 +344,24 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/ocrolus-webhooks-api-openapi.yml
+  - type: Authentication
+    url: authentication/ocrolus-authentication.yml
+  - type: RateLimits
+    url: rate-limits/ocrolus-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/ocrolus-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ocrolus-webhooks.yml
+- aid: ocrolus:ocrolus-oauth-api
+  name: Ocrolus OAUTH API
+  description: The Oauth API from Ocrolus — 1 operation(s) for oauth.
+  humanURL: https://docs.ocrolus.com/docs/guide
+  baseURL: https://api.ocrolus.com
+  tags:
+  - Oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/ocrolus-oauth-api-openapi.yml
   - type: Authentication
     url: authentication/ocrolus-authentication.yml
   - type: RateLimits
