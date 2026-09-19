@@ -358,6 +358,8 @@ apis:
   humanURL: https://docs.ocrolus.com/docs/guide
   baseURL: https://api.ocrolus.com
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
