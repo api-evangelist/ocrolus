@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Tag Management API
+  title: Tag Management API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -195,7 +195,19 @@ paths:
       operationId: get-all-tags
       tags:
       - Tag Management
-      description: "This API is used to retrieves all available tags in the system, including both system-defined and custom-created tags. You can use the optional query parameter `is_system_tag` to filter the results:\n\nExamples:\n  - To retrieve all system-defined tags:\n    GET /v2/analytics/tags?is_system_tag=true\n\n  - To retrieve all custom-created tags:\n    GET /v2/analytics/tags?is_system_tag=false\n"
+      description: 'This API is used to retrieves all available tags in the system, including both system-defined and custom-created tags. You can use the optional query parameter `is_system_tag` to filter the results:
+
+
+        Examples:
+
+        - To retrieve all system-defined tags:
+
+        GET /v2/analytics/tags?is_system_tag=true
+
+
+        - To retrieve all custom-created tags:
+
+        GET /v2/analytics/tags?is_system_tag=false'
       parameters:
       - name: tag_type
         in: query
@@ -364,9 +376,7 @@ paths:
       operationId: get-tag
       tags:
       - Tag Management
-      description: 'This API is used to retrieve details of a specific tag based on the specified `tag_uuid`. The response includes the tag''s name, description, color, type (system or custom), include and exclude terms, and other configuration details.
-
-        '
+      description: This API is used to retrieve details of a specific tag based on the specified `tag_uuid`. The response includes the tag's name, description, color, type (system or custom), include and exclude terms, and other configuration details.
       parameters:
       - name: tag_uuid
         in: path
@@ -443,29 +453,34 @@ paths:
                         description: Amount-related conditions.
                         properties:
                           gt:
-                            type: number
-                            nullable: true
+                            type:
+                            - number
+                            - 'null'
                             description: The specified greater than value. If a transaction has an amount greater than the specified value, the system will automatically apply the tag to that transaction.
                           lt:
-                            type: number
-                            nullable: true
+                            type:
+                            - number
+                            - 'null'
                             description: The specified less than value. If a transaction has an amount less than the specified value, the system will automatically apply the tag to that transaction.
                           eq:
-                            type: number
-                            nullable: true
+                            type:
+                            - number
+                            - 'null'
                             description: The specified equal to value. If a transaction has an amount equal to the specified value, the system will automatically apply the specified tag to that transaction.
                       recurrence:
                         type: object
                         description: Recurrence-related conditions.
                         properties:
                           max_days:
-                            type: integer
-                            nullable: true
+                            type:
+                            - integer
+                            - 'null'
                             description: The maximum numebr of days until when the transction is ignored. If a transaction recur within the specified `max_days`, the system will automatically apply the specified tag to that transaction.
                             example: null
                           min_days:
-                            type: integer
-                            nullable: true
+                            type:
+                            - integer
+                            - 'null'
                             description: The minumum numebr of days until when the transction is ignored. If a transaction recur within the specified `min_days`, the system will automatically apply the specified tag to that transaction.
                             example: null
               examples:
@@ -753,7 +768,15 @@ paths:
                     message: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
     delete:
       summary: Delete tag
-      description: "This API allows you to delete a custom tag. System-defined tags cannot be deleted using this endpoint.\n\n\n  ---\n\n  > \U0001F6A7 **No turning back!**\n    > This action is not reversible, meaning that you can't recover deleted tags. Make sure you're ready!\n"
+      description: 'This API allows you to delete a custom tag. System-defined tags cannot be deleted using this endpoint.
+
+
+        ---
+
+
+        > 🚧 **No turning back!**
+
+        > This action is not reversible, meaning that you can''t recover deleted tags. Make sure you''re ready!'
       operationId: delete-tag
       tags:
       - Tag Management
@@ -862,9 +885,7 @@ paths:
       operationId: get-revenue-deduction-tags
       tags:
       - Tag Management
-      description: 'Retrieves a list of all current revenue deduction tags. These tags represent transaction categories that are excluded from **Total Credits** when calculating **Net Revenue**.
-
-        '
+      description: Retrieves a list of all current revenue deduction tags. These tags represent transaction categories that are excluded from **Total Credits** when calculating **Net Revenue**.
       x-readme:
         samples-languages:
         - curl
@@ -975,9 +996,7 @@ paths:
       operationId: update-revenue-deduction-tag
       tags:
       - Tag Management
-      description: 'This API allows you to update the list of tags that should be deducted from all credits to calculate net revenue. Only the tag names provided in the request body will be used as revenue deduction tags after the update, and existing values will be replaced.
-
-        '
+      description: This API allows you to update the list of tags that should be deducted from all credits to calculate net revenue. Only the tag names provided in the request body will be used as revenue deduction tags after the update, and existing values will be replaced.
       requestBody:
         description: The tag names mentioned in the body are the tags that would be present in the deduction part of the revenue formula.
         required: true
@@ -1116,9 +1135,7 @@ paths:
       operationId: override-transaction-tag
       tags:
       - Tag Management
-      description: 'This API allows you to manually override the tags applied to a transaction within a specific Book. You can assign one or more tag UUIDs to a transaction using its primary key (`txn_pk`).
-
-        '
+      description: This API allows you to manually override the tags applied to a transaction within a specific Book. You can assign one or more tag UUIDs to a transaction using its primary key (`txn_pk`).
       parameters:
       - name: book_uuid
         in: path

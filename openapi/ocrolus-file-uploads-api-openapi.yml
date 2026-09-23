@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands File Uploads API
+  title: File Uploads API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -13,7 +13,22 @@ paths:
     post:
       summary: Upload PDF to Book
       operationId: upload-pdf-to-book
-      description: "Upload a PDF file to a <<glossary:Book>> for processing.\n\n---\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.   \n> \U0001F4D8 \n>  - The maximum file size for upload is 200 MB.\n\n\nFor all Documents *except* bank statements, the optional `form_type` parameter can be used to specify the type of <<glossary:Document>>.   \n\nYou can see form types we support in our [forms directory](https://docs.ocrolus.com/docs/all-supported-documents). For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization."
+      description: 'Upload a PDF file to a > for processing.
+
+
+        ---
+
+        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit our guide for more information.
+
+        > 📘
+
+        > - The maximum file size for upload is 200 MB.
+
+
+        For all Documents *except* bank statements, the optional `form_type` parameter can be used to specify the type of >.
+
+
+        You can see form types we support in our forms directory. For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization.'
       tags:
       - File Uploads
       requestBody:
@@ -292,19 +307,17 @@ paths:
     post:
       summary: Upload Mixed Document PDF to Book
       operationId: upload-mixed-document
-      description: 'Upload a PDF file containing more than one <<glossary:Document>> to a <<glossary:Book>>.
+      description: 'Upload a PDF file containing more than one > to a >.
 
 
         ---
 
-        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.
+        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit our guide for more information.
 
 
         > 📘
 
-        >  - The maximum file size for upload is 200 MB.
-
-        '
+        > - The maximum file size for upload is 200 MB.'
       tags:
       - File Uploads
       requestBody:
@@ -696,21 +709,21 @@ paths:
     post:
       summary: Upload Pay stub PDF to Book
       operationId: upload-paystub
-      description: 'Upload a known <<glossary:Pay stub>> file directly to a specific <<glossary:Book>>.
+      description: 'Upload a known > file directly to a specific >.
 
 
         ---
 
-        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.
+        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit our guide for more information.
 
 
-        If successful, the response will return the specific doc_uuid for the uploaded <<glossary:Document>>.
+        If successful, the response will return the specific doc_uuid for the uploaded >.
 
         > 📘
 
-        >  - This endpoint is limited to PDF''s where the form type is expected to be a PAYSTUB.
+        > - This endpoint is limited to PDF''s where the form type is expected to be a PAYSTUB.
 
-        >  - The maximum file size allowed for upload is 200 MB.'
+        > - The maximum file size allowed for upload is 200 MB.'
       tags:
       - File Uploads
       parameters:
@@ -955,7 +968,24 @@ paths:
     post:
       summary: Upload Image to Book
       operationId: upload-image
-      description: "Upload image files to a <<glossary:Book>>.\n\n--- \n\nYou can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit [our guide](https://docs.ocrolus.com/reference/multipartform-data-payloads) for more information.\n\nWith the capability to classify images, you can upload a single image using this endpoint. To upload multiple images to the same <<glossary:Book>>, call this endpoint once for each image, and then call the [Finalize image group](ref:mark-image-group-complete) endpoint to complete the image group. \n\nWe support uploads of the images in the **JPEG**, **PNG**, **BMP**, and **TIFF** (Single-image files only) formats.   \n\n> \U0001F4D8 \n> The term **image group** refers to a collection of images that may consist of one or more images."
+      description: 'Upload image files to a >.
+
+
+        ---
+
+
+        You can upload a file to this endpoint as a `multipart/form-data` encoded payload. Visit our guide for more information.
+
+
+        With the capability to classify images, you can upload a single image using this endpoint. To upload multiple images to the same >, call this endpoint once for each image, and then call the Finalize image group endpoint to complete the image group.
+
+
+        We support uploads of the images in the **JPEG**, **PNG**, **BMP**, and **TIFF** (Single-image files only) formats.
+
+
+        > 📘
+
+        > The term **image group** refers to a collection of images that may consist of one or more images.'
       tags:
       - File Uploads
       requestBody:
@@ -1293,13 +1323,13 @@ paths:
     post:
       summary: Finalize Image Group
       operationId: mark-image-group-complete
-      description: 'Finalize an image group and construct a <<glossary:Document>> from its images.
+      description: 'Finalize an image group and construct a > from its images.
 
 
         ---
 
 
-        After you have [uploaded images](ref:upload-image), call this endpoint to finalize an image group and construct a <<glossary:Document>> from its content.
+        After you have uploaded images, call this endpoint to finalize an image group and construct a > from its content.
 
 
         > 📘
@@ -1307,8 +1337,7 @@ paths:
         > The term **image group** refers to a collection of images that may consist of one or more images.
 
 
-
-        Here is the list of all the [Additional Supported Form Types](https://docs.ocrolus.com/docs/forms-directory) we support. For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization.'
+        Here is the list of all the Additional Supported Form Types we support. For more information, please contact your Account Executive or Customer Success Executive to discuss other options for your organization.'
       tags:
       - File Uploads
       requestBody:
@@ -1613,7 +1642,53 @@ paths:
     post:
       summary: Upload aggregator JSON to Book
       operationId: upload-json
-      description: "This API uploads aggregator-provided JSON data (Plaid or Finicity) to an Ocrolus <<glossary:Book>>. This endpoint supports uploading:\n\n- Plaid Asset Report JSON\n- Plaid Transactions JSON\n- Finicity JSON bundles, including accounts, transactions, customers, and institutions\n\nFor Plaid, this endpoint takes the JSON output from Plaid's [**`/transactions/get`**](https://plaid.com/docs/api/products/#transactionsget) or [**`/asset_report/get`**](https://plaid.com/docs/api/products/#asset_reportget) endpoints. To learn more, see the [Plaid integration](https://docs.ocrolus.com/docs/plaid) guide.\n\nFor Finicity, this endpoint requires a complete and internally consistent JSON bundle. Ocrolus validates references across files (accounts, customers, institutions, transactions) before generating accounts and periods. Partial Finicity uploads are not supported. To learn more, see the [Account aggregator](https://docs.ocrolus.com/docs/aggregator-finicity) guide.\n\n> \U0001F44D Tips \n  > - You can upload multiple JSON files at a time using this endpoint.\n  > - For best results, create a separate Book for each Plaid Asset Report. Do not upload JSON files alongside PDF statements, as the data may not reconcile.   \n  > - When multiple Finicity JSON files are uploaded, they are combined into a single document within the Book.\n  > - This is a shared endpoint for all both Plaid and Finicity JSON uploads. Aggregator-specific behavior is controlled using the **`aggregate_source`** parameter.\n  > - Ensure that all the Finicity JSON files originate from the same Finicity data pull and belong to the same account set.\n  > - Verify that all cross-file identifiers of Finicity (accountId, customerId, institutionId) resolve correctly.\n\n##Plaid and Finicity statement period construction\nPlaid Asset Reports do not provide explicit statement periods. Ocrolus constructs periods based on transaction dates. For example, if transactions span Jan 15 to Apr 4, statement periods are created as:\n- Jan 15 - Jan 31\n- Feb 1 - Feb 28\n- Mar 1 - Mar 31\n- Apr 1 - Apr 4\n\n> ❗️ Having unusual problems?\n  > Do not use older versions of Plaid’s Python or Ruby client libraries to access these endpoints. Users have reported access issues with outdated versions. Upgrade to the latest available client libraries before proceeding. If you believe this behavior is a bug, open a support ticket with Plaid. As a temporary workaround, use a general-purpose HTTP request library.\n"
+      description: 'This API uploads aggregator-provided JSON data (Plaid or Finicity) to an Ocrolus >. This endpoint supports uploading:
+
+
+        - Plaid Asset Report JSON
+
+        - Plaid Transactions JSON
+
+        - Finicity JSON bundles, including accounts, transactions, customers, and institutions
+
+
+        For Plaid, this endpoint takes the JSON output from Plaid''s **`/transactions/get`** or **`/asset_report/get`** endpoints. To learn more, see the Plaid integration guide.
+
+
+        For Finicity, this endpoint requires a complete and internally consistent JSON bundle. Ocrolus validates references across files (accounts, customers, institutions, transactions) before generating accounts and periods. Partial Finicity uploads are not supported. To learn more, see the Account aggregator guide.
+
+
+        > 👍 Tips
+
+        > - You can upload multiple JSON files at a time using this endpoint.
+
+        > - For best results, create a separate Book for each Plaid Asset Report. Do not upload JSON files alongside PDF statements, as the data may not reconcile.
+
+        > - When multiple Finicity JSON files are uploaded, they are combined into a single document within the Book.
+
+        > - This is a shared endpoint for all both Plaid and Finicity JSON uploads. Aggregator-specific behavior is controlled using the **`aggregate_source`** parameter.
+
+        > - Ensure that all the Finicity JSON files originate from the same Finicity data pull and belong to the same account set.
+
+        > - Verify that all cross-file identifiers of Finicity (accountId, customerId, institutionId) resolve correctly.
+
+
+        ##Plaid and Finicity statement period construction
+
+        Plaid Asset Reports do not provide explicit statement periods. Ocrolus constructs periods based on transaction dates. For example, if transactions span Jan 15 to Apr 4, statement periods are created as:
+
+        - Jan 15 - Jan 31
+
+        - Feb 1 - Feb 28
+
+        - Mar 1 - Mar 31
+
+        - Apr 1 - Apr 4
+
+
+        > ❗️ Having unusual problems?
+
+        > Do not use older versions of Plaid’s Python or Ruby client libraries to access these endpoints. Users have reported access issues with outdated versions. Upgrade to the latest available client libraries before proceeding. If you believe this behavior is a bug, open a support ticket with Plaid. As a temporary workaround, use a general-purpose HTTP request library.'
       tags:
       - File Uploads
       parameters:
@@ -1887,7 +1962,33 @@ paths:
     post:
       summary: Import Plaid Asset Report
       operationId: import-plaid-asset-report
-      description: "Import an Asset Report directly from Plaid and construct a <<glossary:Document>> from it.\n\n---\n\n\nWith fully automated workflows in mind, Ocrolus and [Plaid](https://plaid.com) offer the ability to directly import the Asset Report of any customer who has provided Bank Account details via Plaid - without you having to explicitly download and handle the JSON report.\n\nTo achieve this, Plaid will ask you to [share an Audit Copy](https://plaid.com/docs/#4-share-an-audit-copy) of the Asset Report directly with Ocrolus.\n\nNext, Ocrolus will use the provided `audit_copy_token` to extract the associated Audit Report from Plaid. This _must_ be a production token, as Ocrolus does not support sandbox tokens.\n\nThen, Ocrolus will import the Audit Report into the specified <<glossary:Book>>. \n> \U0001F4D8 \n> Creating an Audit Copy Token\n> - You can create an **Audit Copy Token** with Plaid using our auditor_id of `ocrolus`. Use this value when invoking the `createAuditCopy` function on the Plaid client object.\n\n> \U0001F6A7 \n> Due to masking of account numbers in Plaid data, we are unable to reconcile bank accounts across Plaid data and PDF bank statements. Mixing such uploads within the same book may result in duplicate bank accounts, periods and transactions."
+      description: 'Import an Asset Report directly from Plaid and construct a > from it.
+
+
+        ---
+
+
+        With fully automated workflows in mind, Ocrolus and Plaid offer the ability to directly import the Asset Report of any customer who has provided Bank Account details via Plaid - without you having to explicitly download and handle the JSON report.
+
+
+        To achieve this, Plaid will ask you to share an Audit Copy of the Asset Report directly with Ocrolus.
+
+
+        Next, Ocrolus will use the provided `audit_copy_token` to extract the associated Audit Report from Plaid. This _must_ be a production token, as Ocrolus does not support sandbox tokens.
+
+
+        Then, Ocrolus will import the Audit Report into the specified >.
+
+        > 📘
+
+        > Creating an Audit Copy Token
+
+        > - You can create an **Audit Copy Token** with Plaid using our auditor_id of `ocrolus`. Use this value when invoking the `createAuditCopy` function on the Plaid client object.
+
+
+        > 🚧
+
+        > Due to masking of account numbers in Plaid data, we are unable to reconcile bank accounts across Plaid data and PDF bank statements. Mixing such uploads within the same book may result in duplicate bank accounts, periods and transactions.'
       tags:
       - File Uploads
       requestBody:

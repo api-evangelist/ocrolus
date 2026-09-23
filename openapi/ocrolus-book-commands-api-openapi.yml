@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands API
+  title: Book Commands API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -12,7 +12,7 @@ paths:
   /v1/book/add:
     post:
       summary: Create Book
-      description: Create a <<glossary:Book>> that you can use to group related <<glossary:Document>>s. Each document must be uploaded to a <<glossary:Book>>, so you'll need to create one with this endpoint before you can upload files. <<glossary:Book>>s are generally used to store related <<glossary:Document>>s, such as for a loan application or a case file.
+      description: Create a > that you can use to group related >s. Each document must be uploaded to a >, so you'll need to create one with this endpoint before you can upload files. >s are generally used to store related >s, such as for a loan application or a case file.
       operationId: create-a-book
       tags:
       - Book Commands
@@ -211,14 +211,14 @@ paths:
   /v1/book/remove:
     post:
       summary: Delete Book
-      description: 'Delete a <<glossary:Book>> that you no longer need.
+      description: 'Delete a > that you no longer need.
 
 
         ---
 
         > 🚧 No turning back!
 
-        > Deleting a <<glossary:Book>> also deletes the <<glossary:Document>>s contained within. This action is not reversible, meaning that you can''t recover deleted <<glossary:Document>>s and <<glossary:Book>>s. Make sure you''re ready!'
+        > Deleting a > also deletes the >s contained within. This action is not reversible, meaning that you can''t recover deleted >s and >s. Make sure you''re ready!'
       operationId: delete-a-book
       tags:
       - Book Commands
@@ -340,7 +340,7 @@ paths:
   /v1/book/update:
     post:
       summary: Update Book
-      description: Configure various properties of a <<glossary:Book>>.
+      description: Configure various properties of a >.
       operationId: update-book
       tags:
       - Book Commands

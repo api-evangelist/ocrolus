@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Encore API
+  title: Encore API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -15,7 +15,7 @@ paths:
       operationId: create-book-copy-jobs
       tags:
       - Encore
-      description: 'This API submits asynchronous copy requests that duplicate a <<glossary:Book>> and all uploaded documents to a specified recipient organization. Each request creates a job. You can monitor job status using the [List Book Copy Jobs](https://docs.ocrolus.com/reference/list-book-copy-jobs) endpoint.
+      description: 'This API submits asynchronous copy requests that duplicate a > and all uploaded documents to a specified recipient organization. Each request creates a job. You can monitor job status using the List Book Copy Jobs endpoint.
 
         ### Supported workflows
 
@@ -24,7 +24,7 @@ paths:
         2. **Renewal/re-engagement**: This workflows support two approaches. You can create a new Book by using either a new shared Book label to initiate a new application with receivers, or a previously used shared Book label to associate the new application with an existing one. Alternatively, you can reuse an existing Book, similar to the application update workflow.
 
 
-        To learn more, see the [Sender''s guide](https://docs.ocrolus.com/docs/senders#supported-workflows).
+        To learn more, see the Sender''s guide.
 
 
         > 👍 Suggestion
@@ -36,9 +36,7 @@ paths:
 
         > - This API is intended for small and medium business (SMB) funders.
 
-        > - This API supports a maximum of 50 requests per call meaning you can include up to 50 Book copy requests in a single API call. If you need to process more, split them into multiple calls.
-
-        '
+        > - This API supports a maximum of 50 requests per call meaning you can include up to 50 Book copy requests in a single API call. If you need to process more, split them into multiple calls.'
       requestBody:
         description: Example of body to be sent to submit Book copy jobs.
         required: true
@@ -289,14 +287,12 @@ paths:
       operationId: list-book-copy-jobs
       tags:
       - Encore
-      description: 'This API retrieves a list of <<glossary:Book>> copy jobs and their details. By default, it returns outbound jobs—requests your organization sent. You can also fetch inbound jobs—requests sent to your organization.
+      description: 'This API retrieves a list of > copy jobs and their details. By default, it returns outbound jobs—requests your organization sent. You can also fetch inbound jobs—requests sent to your organization.
 
 
         > 📘 Note
 
-        > This API is intended for small and medium business (SMB) funders.
-
-        '
+        > This API is intended for small and medium business (SMB) funders.'
       parameters:
       - name: job_type
         in: query
@@ -548,7 +544,16 @@ paths:
       operationId: copy-jobs-accept
       tags:
       - Encore
-      description: "This API enables a recipient organization to accept an incoming <<glossary:Book>> copy request. Once accepted, Ocrolus begins copying the Book and its associated documents to the recipient organization. The recipient may optionally change the Book name when accepting a Book copy request. Alternatively, the recipient can rename the Book after it has been accepted.\nA `book.copy.request_accepted` webhook event is then triggered and sent to the sender organization.\n\n> \U0001F4D8 Note\n> - This API is intended for small and medium business (SMB) funders using the Book copy feature. \n> - A Book copy job can be accepted only when its status is `AWAITING_RECIPIENT` or `REJECTED`.\n"
+      description: 'This API enables a recipient organization to accept an incoming > copy request. Once accepted, Ocrolus begins copying the Book and its associated documents to the recipient organization. The recipient may optionally change the Book name when accepting a Book copy request. Alternatively, the recipient can rename the Book after it has been accepted.
+
+        A `book.copy.request_accepted` webhook event is then triggered and sent to the sender organization.
+
+
+        > 📘 Note
+
+        > - This API is intended for small and medium business (SMB) funders using the Book copy feature.
+
+        > - A Book copy job can be accepted only when its status is `AWAITING_RECIPIENT` or `REJECTED`.'
       parameters:
       - name: job_id
         in: path
@@ -711,8 +716,7 @@ paths:
       operationId: copy-jobs-reject
       tags:
       - Encore
-      description: 'This API allows the recipient organization to reject an incoming <<glossary:Book>> copy request. A `book.copy.request_rejected` webhook event is then triggered and sent to the sender organization.
-
+      description: 'This API allows the recipient organization to reject an incoming > copy request. A `book.copy.request_rejected` webhook event is then triggered and sent to the sender organization.
 
 
         > 📘 Note
@@ -721,9 +725,7 @@ paths:
 
         > - A Book copy job can be rejected only when its status is `AWAITING_RECIPIENT`.
 
-        > - A Book cannot be rejected after it has been accepted. Additionally, a previously rejected Book cannot be rejected again.
-
-        '
+        > - A Book cannot be rejected after it has been accepted. Additionally, a previously rejected Book cannot be rejected again.'
       parameters:
       - name: job_id
         in: path
@@ -855,7 +857,7 @@ paths:
       operationId: run-kick-outs
       tags:
       - Encore
-      description: 'This API signals Ocrolus to run automated cash flow kick-outs using the recipient organization’s preconfigured Encore kick-out criteria. When triggered, Ocrolus evaluates all incoming <<glossary:Book>> copy jobs currently in the `AWAITING_RECIPIENT` state and applies the configured rules to automatically accept or reject them. After the evaluation completes, Ocrolus sends the resulting status updates to the sender organization using `book.copy.kickout_evaluated` webhook events.
+      description: 'This API signals Ocrolus to run automated cash flow kick-outs using the recipient organization’s preconfigured Encore kick-out criteria. When triggered, Ocrolus evaluates all incoming > copy jobs currently in the `AWAITING_RECIPIENT` state and applies the configured rules to automatically accept or reject them. After the evaluation completes, Ocrolus sends the resulting status updates to the sender organization using `book.copy.kickout_evaluated` webhook events.
 
         > 📘 Note
 
@@ -924,14 +926,12 @@ paths:
       operationId: get-book-copy-settings-allow-list
       tags:
       - Encore
-      description: 'This API retrieves a list of allowed recipient and sender organizations for <<glossary:Book>> copying.
+      description: 'This API retrieves a list of allowed recipient and sender organizations for > copying.
 
 
         > 📘 Note
 
-        > This API is intended for small and medium business (SMB) funders.
-
-        '
+        > This API is intended for small and medium business (SMB) funders.'
       x-readme:
         samples-languages:
         - curl

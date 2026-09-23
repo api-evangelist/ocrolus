@@ -1,21 +1,26 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands User management API
+  title: User management API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
 security:
 - oauth: []
 tags:
-- name: User management
+- name: User Management
 paths:
   /v1/invitations:
     post:
       summary: Create invitation
       operationId: create-invitation
       tags:
-      - User management
-      description: "This API invites a new user to your organization by email. If the email has been invited before, the existing invitation is refreshed with a new expiration date.\n\n> \U0001F44D Tip: \n  > The invitation is valid for 7 days. If the user does not accept the invitation within that time frame, they will need to be re-invited.\n"
+      - User Management
+      description: 'This API invites a new user to your organization by email. If the email has been invited before, the existing invitation is refreshed with a new expiration date.
+
+
+        > 👍 Tip:
+
+        > The invitation is valid for 7 days. If the user does not accept the invitation within that time frame, they will need to be re-invited.'
       x-readme:
         samples-languages:
         - curl
@@ -112,7 +117,7 @@ paths:
       summary: List invitations
       operationId: list-invitations
       tags:
-      - User management
+      - User Management
       description: This API returns a paginated list of pending invitations for your organization. Use this endpoint to review outstanding invitations before sending reminders or re-inviting users whose invitations have expired.
       parameters:
       - name: offset
@@ -203,7 +208,7 @@ paths:
       summary: List users
       operationId: list-users
       tags:
-      - User management
+      - User Management
       description: This API returns a paginated list of Dashboard members in your organization. Use this endpoint to review existing users, filter by manager status, or sort results by ID or email.
       parameters:
       - name: offset
@@ -320,155 +325,7 @@ paths:
                 Internal Server Error:
                   $ref: '#/components/examples/InternalServerError'
 components:
-  examples:
-    SuccessCreateInvitationsResponse:
-      value:
-        email: jane.doe@example.com
-        first_name: Jane
-        last_name: Doe
-        is_manager: false
-        invited_by_account_pk: 1042
-        created_at: '2026-06-08T10:30:00Z'
-        expires_at: '2026-06-15T10:30:00Z'
-    SuccessListInvitationsResponse:
-      value:
-        invitations:
-        - email: jane.doe@example.com
-          first_name: Jane
-          last_name: Doe
-          is_manager: false
-          invited_by_account_pk: 1042
-          created_at: '2026-06-08T10:30:00Z'
-          expires_at: '2026-06-15T10:30:00Z'
-        - email: john.smith@example.com
-          first_name: John
-          last_name: Smith
-          is_manager: true
-          invited_by_account_pk: null
-          created_at: '2026-06-07T08:00:00Z'
-          expires_at: '2026-06-14T08:00:00Z'
-        total: 2
-        offset: 0
-        limit: 50
-    ForbiddenError:
-      summary: Forbidden
-      value:
-        status: 403
-        message: Forbidden
-        code: 4030
-    InternalServerError:
-      summary: Internal server error
-      value:
-        status: 500
-        message: An internal server error occurred.
-        code: 5000
-    SuccessListUsersResponse:
-      value:
-        users:
-        - id: 1042
-          email: jane.doe@example.com
-          first_name: Jane
-          last_name: Doe
-          is_manager: false
-        - id: 1043
-          email: john.smith@example.com
-          first_name: John
-          last_name: Smith
-          is_manager: true
-        total: 2
-        offset: 0
-        limit: 50
-    PreconditionFailedError:
-      summary: Precondition Failed
-      value:
-        status: 412
-        message: Precondition Failed
-        code: 4120
-    BadRequestError:
-      summary: Bad request
-      value:
-        status: 400
-        message: Bad Request
-        code: 4000
-    InvalidAuthError:
-      summary: Unauthorized - Invalid Authentication
-      value:
-        status: 401
-        message: Authentication failed
-        code: 1200
   schemas:
-    SuccessListInvitationsSchema:
-      title: Success
-      type: object
-      description: Schema for the successful response of listing invitations.
-      properties:
-        invitations:
-          type: array
-          description: Pending invitations on the current page.
-          items:
-            type: object
-            description: A pending invitation in your organization.
-            properties:
-              email:
-                type: string
-                format: email
-                example: jane.doe@example.com
-                description: Email address of the invited user whose invitation is pending.
-              first_name:
-                type: string
-                nullable: true
-                example: Jane
-                description: First name of the invited user.
-              last_name:
-                type: string
-                nullable: true
-                example: Doe
-                description: Last name of the invited user.
-              is_manager:
-                type: boolean
-                example: false
-                description: Indicates whether the invited user was granted manager permissions.
-              invited_by_account_pk:
-                type: integer
-                nullable: true
-                example: 1042
-                description: A unique identifier of the user who sent the invitation.
-              created_at:
-                type: string
-                format: date-time
-                example: '2026-06-08T10:30:00Z'
-                description: Timestamp indicating when the invitation was created.
-              expires_at:
-                type: string
-                format: date-time
-                example: '2026-06-15T10:30:00Z'
-                description: Timestamp indicating when the invitation expires.
-        total:
-          type: integer
-          example: 2
-          description: Total number of pending invitations in your organization.
-        offset:
-          type: integer
-          example: 0
-          description: The number of records skipped for this page. Reflects the offset value submitted in the request.
-        limit:
-          type: integer
-          example: 50
-          description: The maximum number of records returned for this page. Reflects the limit value submitted in the request.
-    NewClientErrorSchema:
-      properties:
-        status:
-          type: integer
-          description: A numerical code that indicates the status of the request.
-          example: 400
-        message:
-          type: string
-          description: A human-readable message providing details about the response status.
-          example: Book not found
-        code:
-          type: integer
-          description: A numerical code that indicates the nature of an error. To learn more about error codes, see [here](https://docs.ocrolus.com/reference/ocrolus-status-codes-api).
-          example: 1401
     SuccessListUsersSchema:
       title: Success
       type: object
@@ -514,6 +371,67 @@ components:
           type: integer
           example: 50
           description: The maximum number of records returned for this page. Reflects the limit value submitted in the request.
+    SuccessListInvitationsSchema:
+      title: Success
+      type: object
+      description: Schema for the successful response of listing invitations.
+      properties:
+        invitations:
+          type: array
+          description: Pending invitations on the current page.
+          items:
+            type: object
+            description: A pending invitation in your organization.
+            properties:
+              email:
+                type: string
+                format: email
+                example: jane.doe@example.com
+                description: Email address of the invited user whose invitation is pending.
+              first_name:
+                type:
+                - string
+                - 'null'
+                example: Jane
+                description: First name of the invited user.
+              last_name:
+                type:
+                - string
+                - 'null'
+                example: Doe
+                description: Last name of the invited user.
+              is_manager:
+                type: boolean
+                example: false
+                description: Indicates whether the invited user was granted manager permissions.
+              invited_by_account_pk:
+                type:
+                - integer
+                - 'null'
+                example: 1042
+                description: A unique identifier of the user who sent the invitation.
+              created_at:
+                type: string
+                format: date-time
+                example: '2026-06-08T10:30:00Z'
+                description: Timestamp indicating when the invitation was created.
+              expires_at:
+                type: string
+                format: date-time
+                example: '2026-06-15T10:30:00Z'
+                description: Timestamp indicating when the invitation expires.
+        total:
+          type: integer
+          example: 2
+          description: Total number of pending invitations in your organization.
+        offset:
+          type: integer
+          example: 0
+          description: The number of records skipped for this page. Reflects the offset value submitted in the request.
+        limit:
+          type: integer
+          example: 50
+          description: The maximum number of records returned for this page. Reflects the limit value submitted in the request.
     SuccessCreateInvitationsSchema:
       title: Success
       type: object
@@ -525,13 +443,15 @@ components:
           example: jane.doe@example.com
           description: Email address of the invited user.
         first_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Jane
           description: First name of the invited user.
         last_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Doe
           description: Last name of the invited user.
         is_manager:
@@ -539,8 +459,9 @@ components:
           example: false
           description: Indicates whether the invited user was granted manager permissions.
         invited_by_account_pk:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 1042
           description: A unique identifier of the user who sent the invitation.
         created_at:
@@ -553,6 +474,96 @@ components:
           format: date-time
           example: '2026-06-15T10:30:00Z'
           description: Timestamp indicating when the invitation expires.
+    NewClientErrorSchema:
+      properties:
+        status:
+          type: integer
+          description: A numerical code that indicates the status of the request.
+          example: 400
+        message:
+          type: string
+          description: A human-readable message providing details about the response status.
+          example: Book not found
+        code:
+          type: integer
+          description: A numerical code that indicates the nature of an error. To learn more about error codes, see [here](https://docs.ocrolus.com/reference/ocrolus-status-codes-api).
+          example: 1401
+  examples:
+    BadRequestError:
+      summary: Bad request
+      value:
+        status: 400
+        message: Bad Request
+        code: 4000
+    InternalServerError:
+      summary: Internal server error
+      value:
+        status: 500
+        message: An internal server error occurred.
+        code: 5000
+    InvalidAuthError:
+      summary: Unauthorized - Invalid Authentication
+      value:
+        status: 401
+        message: Authentication failed
+        code: 1200
+    PreconditionFailedError:
+      summary: Precondition Failed
+      value:
+        status: 412
+        message: Precondition Failed
+        code: 4120
+    SuccessListInvitationsResponse:
+      value:
+        invitations:
+        - email: jane.doe@example.com
+          first_name: Jane
+          last_name: Doe
+          is_manager: false
+          invited_by_account_pk: 1042
+          created_at: '2026-06-08T10:30:00Z'
+          expires_at: '2026-06-15T10:30:00Z'
+        - email: john.smith@example.com
+          first_name: John
+          last_name: Smith
+          is_manager: true
+          invited_by_account_pk: null
+          created_at: '2026-06-07T08:00:00Z'
+          expires_at: '2026-06-14T08:00:00Z'
+        total: 2
+        offset: 0
+        limit: 50
+    SuccessListUsersResponse:
+      value:
+        users:
+        - id: 1042
+          email: jane.doe@example.com
+          first_name: Jane
+          last_name: Doe
+          is_manager: false
+        - id: 1043
+          email: john.smith@example.com
+          first_name: John
+          last_name: Smith
+          is_manager: true
+        total: 2
+        offset: 0
+        limit: 50
+    SuccessCreateInvitationsResponse:
+      value:
+        email: jane.doe@example.com
+        first_name: Jane
+        last_name: Doe
+        is_manager: false
+        invited_by_account_pk: 1042
+        created_at: '2026-06-08T10:30:00Z'
+        expires_at: '2026-06-15T10:30:00Z'
+    ForbiddenError:
+      summary: Forbidden
+      value:
+        status: 403
+        message: Forbidden
+        code: 4030
   securitySchemes:
     oauth:
       type: oauth2

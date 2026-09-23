@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Capture API
+  title: Capture API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -13,13 +13,13 @@ paths:
     get:
       summary: Book form data
       operationId: book-form-data
-      description: 'Retrieve data for all forms uploaded to a <<glossary:Book>>.
+      description: 'Retrieve data for all forms uploaded to a >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition.'
+        A detailed description of the response can be found on the form data data type definition.'
       tags:
       - Capture
       parameters:
@@ -335,13 +335,13 @@ paths:
     get:
       summary: Book pay stub data
       operationId: book-paystub-data
-      description: 'Retrieve pay stub data for a given <<glossary:Book>>.
+      description: 'Retrieve pay stub data for a given >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition.'
+        A detailed description of the response can be found on the pay stub data type definition.'
       tags:
       - Capture
       parameters:
@@ -1325,13 +1325,13 @@ paths:
     get:
       summary: Doc form data
       operationId: doc-form-data
-      description: 'Get field data for all <<glossary:Form>>s captured in a <<glossary:Document>>.
+      description: 'Get field data for all >s captured in a >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [form data](https://docs.ocrolus.com/docs/form-data) data type definition. '
+        A detailed description of the response can be found on the form data data type definition.'
       tags:
       - Capture
       parameters:
@@ -1560,13 +1560,13 @@ paths:
     get:
       summary: Doc pay stub data
       operationId: doc-paystub-data
-      description: 'Retrieve pay stub data for a given <<glossary:Document>>.
+      description: 'Retrieve pay stub data for a given >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [Pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition'
+        A detailed description of the response can be found on the Pay stub data type definition'
       tags:
       - Capture
       parameters:
@@ -2304,13 +2304,13 @@ paths:
     get:
       summary: Form data
       operationId: form-field-data
-      description: 'Retrieve field data for a <<glossary:Form>>.
+      description: 'Retrieve field data for a >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [Form data](https://docs.ocrolus.com/docs/form-data) data type definition.'
+        A detailed description of the response can be found on the Form data data type definition.'
       tags:
       - Capture
       parameters:
@@ -2585,13 +2585,13 @@ paths:
     get:
       summary: Pay stub data
       operationId: paystub-data
-      description: 'Retrieve pay stub data for a given <<glossary:Pay stub>>.
+      description: 'Retrieve pay stub data for a given >.
 
 
         ---
 
 
-        A detailed description of the response can be found on the [pay stub](https://docs.ocrolus.com/docs/pay-stub) data type definition.'
+        A detailed description of the response can be found on the pay stub data type definition.'
       tags:
       - Capture
       parameters:
@@ -3329,7 +3329,19 @@ paths:
     get:
       summary: Transactions
       operationId: transactions
-      description: "Retrieve transactions from all Documents uploaded to a <<glossary:Book>>.\n\n---\n> \U0001F6A7 \n> The Transactions endpoint provides raw transactions output. If you are looking for enriched transactions complete with a list of categories, transaction tagging, and improved revenue, expense, and transfer logic, please visit the [Enriched transactions page](ref:enriched-transactions)\n\n> \U0001F4D8\n> If `uploaded_doc_pk` or `uploaded_doc_uuid` are not provided in the request, transactions from all Documents in the Book will be provided."
+      description: 'Retrieve transactions from all Documents uploaded to a >.
+
+
+        ---
+
+        > 🚧
+
+        > The Transactions endpoint provides raw transactions output. If you are looking for enriched transactions complete with a list of categories, transaction tagging, and improved revenue, expense, and transfer logic, please visit the Enriched transactions page
+
+
+        > 📘
+
+        > If `uploaded_doc_pk` or `uploaded_doc_uuid` are not provided in the request, transactions from all Documents in the Book will be provided.'
       tags:
       - Capture
       parameters:

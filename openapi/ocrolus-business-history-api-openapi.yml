@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Business history API
+  title: Business history API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -15,7 +15,9 @@ paths:
       operationId: business-identifier
       tags:
       - Business history
-      description: "This API retrieves the business associated with a given `book_uuid`. It returns the business ID and display name, which can be used with business-level endpoints to access aggregated data across multiple <<glossary:Book>>s. \nA single business can have multiple Books. All books associated with the same business within your organization return the same business ID.\n"
+      description: 'This API retrieves the business associated with a given `book_uuid`. It returns the business ID and display name, which can be used with business-level endpoints to access aggregated data across multiple >s.
+
+        A single business can have multiple Books. All books associated with the same business within your organization return the same business ID.'
       parameters:
       - name: book_uuid
         in: path
@@ -100,9 +102,7 @@ paths:
       operationId: business-overview
       tags:
       - Business history
-      description: 'This API retrieves the full metadata profile for a business entity, including industry classification, loan inquiry history, and addresses derived from bank account holder information.
-
-        '
+      description: This API retrieves the full metadata profile for a business entity, including industry classification, loan inquiry history, and addresses derived from bank account holder information.
       parameters:
       - name: business_id
         in: path
@@ -241,8 +241,9 @@ paths:
                           description: The primary line of the address, typically including the street number and name.
                           example: 123 MAIN STREET
                         holder_address_2:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           description: The secondary line of the address, which may include apartment, suite, unit, building, or floor.
                           example: SUITE 200
                         holder_city:
@@ -396,7 +397,12 @@ paths:
       operationId: business-transactions
       tags:
       - Business history
-      description: "This API retrieves the paginated, deduplicated enriched transactions across all of the requesting org's <<glossary:Book>>s for a given business. Transactions are structurally compatible with the existing book-level enriched transactions API.\n\n  > \U0001F44D Tips\n  > `start_date` and `end_date` filter transactions based on when they occurred at the bank, while `updated_since` filters based on when transactions were ingested into the system. Use `updated_since` to retrieve newly added data, even if the transaction dates are earlier.\n"
+      description: 'This API retrieves the paginated, deduplicated enriched transactions across all of the requesting org''s >s for a given business. Transactions are structurally compatible with the existing book-level enriched transactions API.
+
+
+        > 👍 Tips
+
+        > `start_date` and `end_date` filter transactions based on when they occurred at the bank, while `updated_since` filters based on when transactions were ingested into the system. Use `updated_since` to retrieve newly added data, even if the transaction dates are earlier.'
       parameters:
       - name: business_id
         in: path
@@ -564,28 +570,34 @@ paths:
                           example: true
                           description: Transaction at physical ATM locations.
                         bank:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Transaction associated with a traditional bank/depository institution.
                         bank_branch:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Transaction with a physical bank branch.
                         bank_cash_advance:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Cash advance transaction with a traditional bank.
                         bank_loan:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Loan transaction with a traditional bank.
                         benefits:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Transaction associated with government benefits.
                         card_rewards:
-                          type: boolean
-                          nullable: true
+                          type:
+                          - boolean
+                          - 'null'
                           description: Transaction associated with credit card rewards.
                         checks:
                           type: boolean
@@ -887,9 +899,7 @@ paths:
       operationId: business-summary
       tags:
       - Business history
-      description: 'This API retrieves the chronological financial summary for a business entity, calculated from deduplicated and organization-enriched transactions across all <<glossary:Book>> belonging to the requesting organization.
-
-        '
+      description: This API retrieves the chronological financial summary for a business entity, calculated from deduplicated and organization-enriched transactions across all > belonging to the requesting organization.
       parameters:
       - name: business_id
         in: path
@@ -6534,36 +6544,21 @@ paths:
                   $ref: '#/components/examples/InternalServerError'
 components:
   examples:
-    BusinessNotFoundError:
-      summary: Business not found
-      value:
-        message: The requested business was not found.
-        status: 404
     BookNotBelongToOrganizationError:
       summary: Book not associated with requesting organization
       value:
         message: The Book does not belong to the requesting organization.
         status: 403
-    InvalidBusinessIDFormatError:
-      summary: Invalid Business ID Format
+    BusinessNotFoundError:
+      summary: Business not found
       value:
-        message: The provided business ID is not in a valid format.
-        status: 400
+        message: The requested business was not found.
+        status: 404
     InternalServerError:
       summary: Internal server error
       value:
         message: An internal server error occurred.
         status: 500
-    BusinessIdentityNotAssociatedWithBookError:
-      summary: No business entity associated with Book
-      value:
-        message: No business entity is associated with the given Book.
-        status: 404
-    BusinessNotBelongToOrganizationError:
-      summary: Business not associated with requesting organization
-      value:
-        message: The Business does not belong to the requesting organization.
-        status: 403
     InvalidAuthError:
       summary: Invalid Authentication
       value:
@@ -6574,10 +6569,25 @@ components:
           status: 400
           msg: Authentication failed
           code: 1200
+    BusinessNotBelongToOrganizationError:
+      summary: Business not associated with requesting organization
+      value:
+        message: The Business does not belong to the requesting organization.
+        status: 403
     InvalidBookUUIDFormatError:
       summary: Invalid Book UUID Format
       value:
         message: The provided book UUID is not in a valid format.
+        status: 400
+    BusinessIdentityNotAssociatedWithBookError:
+      summary: No business entity associated with Book
+      value:
+        message: No business entity is associated with the given Book.
+        status: 404
+    InvalidBusinessIDFormatError:
+      summary: Invalid Business ID Format
+      value:
+        message: The provided business ID is not in a valid format.
         status: 400
   securitySchemes:
     oauth:

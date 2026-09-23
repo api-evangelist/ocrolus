@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Book Queries API
+  title: Book Queries API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -12,7 +12,12 @@ paths:
   /v2/los-connect/encompass/book:
     get:
       summary: Book from loan
-      description: "This API endpoint lets you retrieve the Ocrolus <<glossary:Book>> associated with a specific Encompass loan. You can query it using either the `Encompass loan_id` (GUID) or the `loan_number`, depending on which identifier you have available. \n\n> \U0001F4D8 Note:\n> The system accepts either `loan_id` or `loan_number` to identify the loan. If both parameters are provided, or if neither is included in the request payload, the API returns a 400 error.\n"
+      description: 'This API endpoint lets you retrieve the Ocrolus > associated with a specific Encompass loan. You can query it using either the `Encompass loan_id` (GUID) or the `loan_number`, depending on which identifier you have available.
+
+
+        > 📘 Note:
+
+        > The system accepts either `loan_id` or `loan_number` to identify the loan. If both parameters are provided, or if neither is included in the request payload, the API returns a 400 error.'
       operationId: book-from-loan
       deprecated: false
       tags:
@@ -178,9 +183,7 @@ paths:
   /v2/los-connect/book/{book_uuid}/loans:
     get:
       summary: Loan details from Book
-      description: 'This API retrieves the Encompass Loan GUID and related loan metadata using the Ocrolus <<glossary:Book>> UUID. It enables seamless mapping between an Ocrolus Book and its corresponding Encompass Loan, supporting accurate LOS integration, tracking, and synchronization between Ocrolus and Encompass systems.
-
-        '
+      description: This API retrieves the Encompass Loan GUID and related loan metadata using the Ocrolus > UUID. It enables seamless mapping between an Ocrolus Book and its corresponding Encompass Loan, supporting accurate LOS integration, tracking, and synchronization between Ocrolus and Encompass systems.
       operationId: loan-from-book
       deprecated: false
       tags:
@@ -339,7 +342,7 @@ paths:
   /v1/book/info:
     get:
       summary: Book information
-      description: Retrieve details of a <<glossary:Book>>, including uploaded <<glossary:Document>>s, bank account information, and transaction periods.
+      description: Retrieve details of a >, including uploaded >s, bank account information, and transaction periods.
       operationId: book-info
       deprecated: false
       tags:
@@ -906,7 +909,7 @@ paths:
   /v1/books:
     get:
       summary: Book list
-      description: 'Retrieve a list of all <<glossary:Book>>s available to the current user.
+      description: 'Retrieve a list of all >s available to the current user.
 
 
         ---
@@ -914,11 +917,9 @@ paths:
 
         > 📘
 
-        > - By default results are ordered by <<glossary:Book>> PK in descending order but you can alter how and what books are returned by providing different parameters with your request.
+        > - By default results are ordered by > PK in descending order but you can alter how and what books are returned by providing different parameters with your request.
 
-        > - Use the `name` query parameter to find a <<glossary:Book>> by an exact name. This will be faster than `search` which uses approximate string matching algorithm.
-
-        '
+        > - Use the `name` query parameter to find a > by an exact name. This will be faster than `search` which uses approximate string matching algorithm.'
       operationId: book-list
       tags:
       - Book Queries
@@ -1061,18 +1062,18 @@ paths:
     get:
       summary: Book status
       operationId: book-status
-      description: 'Retrieve the status of a <<glossary:Book>>.
+      description: 'Retrieve the status of a >.
 
 
         ---
 
-        This endpoint can also be used to keep track of the status of the Documents within the <<glossary:Book>>.
+        This endpoint can also be used to keep track of the status of the Documents within the >.
 
 
-        For more information about the various processing statuses of a <<glossary:Book>> during its life cycle, visit our guide on [Book Statuses](doc:book-status-code).
+        For more information about the various processing statuses of a > during its life cycle, visit our guide on Book Statuses.
 
 
-        Similarly, if you are interested in knowing more about the different stages of Document processing, visit our guide on [Document Statuses](doc:document-status).'
+        Similarly, if you are interested in knowing more about the different stages of Document processing, visit our guide on Document Statuses.'
       tags:
       - Book Queries
       parameters:

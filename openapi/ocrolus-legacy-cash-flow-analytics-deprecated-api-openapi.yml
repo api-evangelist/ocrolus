@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Account Level Webhooks Book Commands Legacy Cash Flow Analytics (Deprecated) API
+  title: Analyze Legacy Cash Flow Analytics (Deprecated) API
   version: 1.0.0
 servers:
 - url: https://api.ocrolus.com
@@ -16,21 +16,19 @@ paths:
       deprecated: true
       tags:
       - Legacy Cash Flow Analytics (Deprecated)
-      description: 'Retrieves analytics for a <<glossary:Book>> in JSON format, for use within your own application workflows.
+      description: 'Retrieves analytics for a > in JSON format, for use within your own application workflows.
 
 
         ---
 
         > 🚧 We have a better version!
 
-        > This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.
+        > This product was deprecated in December 2023 and has been superseded by our new Analytics 2.0 offering, which we recommend for all new work.
 
 
         > 📘 Multiple endpoints, one object
 
-        > This endpoint and [the asynchronous version](ref:async-analytics-result) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to XLSX files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).
-
-        '
+        > This endpoint and the asynchronous version return analytics objects in the same format. The XLSX endpoint logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to XLSX files. You can find a detailed reference of the returned analytics object here.'
       parameters:
       - name: book_uuid
         in: query
@@ -305,33 +303,30 @@ paths:
       deprecated: true
       tags:
       - Legacy Cash Flow Analytics (Deprecated)
-      description: 'Retrieves analytics for a <<glossary:Book>> in Excel-compatible XLSX format (not to be confused with the legacy XLS format).
+      description: 'Retrieves analytics for a > in Excel-compatible XLSX format (not to be confused with the legacy XLS format).
 
 
         ---
 
         > 🚧 We have a better version!
 
-        > This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.
-
+        > This product was deprecated in December 2023 and has been superseded by our new Analytics 2.0 offering, which we recommend for all new work.
 
 
         The output of this endpoint is intended for manual review, as opposed to automated consumption by your application.
 
 
-        Some fields provided in the [JSON output](doc:analytics) are not listed in the XLSX output. This behavior may change in future revisions of this endpoint.
+        Some fields provided in the JSON output are not listed in the XLSX output. This behavior may change in future revisions of this endpoint.
 
 
         > 📘 Multiple endpoints, one object
 
-        > This endpoint returns the same information as the [JSON versions](ref:analytics), but in a different format. You can find a detailed reference of the JSON analytics object [here](doc:analytics-type), although it doesn''t strictly apply to the file returned by this endpoint.
+        > This endpoint returns the same information as the JSON versions, but in a different format. You can find a detailed reference of the JSON analytics object here, although it doesn''t strictly apply to the file returned by this endpoint.
 
 
         > 🚧
 
-        > The response will have a MIME type of `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, hence there is no JSON response schema. See [here](https://docs.google.com/spreadsheets/d/1tCjC3ZmmGWyZnF18YMfhOVFBnt_MZ_58) for an example output.
-
-        '
+        > The response will have a MIME type of `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, hence there is no JSON response schema. See here for an example output.'
       parameters:
       - $ref: '#/components/parameters/pk'
         required: true
@@ -573,24 +568,22 @@ paths:
       deprecated: true
       tags:
       - Legacy Cash Flow Analytics (Deprecated)
-      description: 'Request analytics for a <<glossary:Book>> to be computed behind the scenes. You''ll be notified when they''re ready.
+      description: 'Request analytics for a > to be computed behind the scenes. You''ll be notified when they''re ready.
 
 
         ---
 
         > 🚧 We have a better version!
 
-        > This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.
+        > This product was deprecated in December 2023 and has been superseded by our new Analytics 2.0 offering, which we recommend for all new work.
 
 
-        You can retrieve the results when they''re ready by [registering a webhook](doc:registering-webhook-endpoint) that listens for the `ANALYTICS_COMPLETED` event. You can also poll the [Async Analytics Result endpoint](ref:async-analytics-result) regularly if you don''t mind exchanging precision for simplicity.
+        You can retrieve the results when they''re ready by registering a webhook that listens for the `ANALYTICS_COMPLETED` event. You can also poll the Async Analytics Result endpoint regularly if you don''t mind exchanging precision for simplicity.
 
 
         > 📘 Multiple endpoints, one object
 
-        > The [asynchronous results endpoint](ref:async-analytics-result) and [the synchronous version](ref:analytics) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to Excel files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).
-
-        '
+        > The asynchronous results endpoint and the synchronous version return analytics objects in the same format. The XLSX endpoint logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to Excel files. You can find a detailed reference of the returned analytics object here.'
       requestBody:
         content:
           application/json:
@@ -876,14 +869,12 @@ paths:
 
         > 🚧 We have a better version!
 
-        > This product was deprecated in December 2023 and has been superseded by our [new Analytics 2.0 offering](ref:book-summary), which we recommend for all new work.
+        > This product was deprecated in December 2023 and has been superseded by our new Analytics 2.0 offering, which we recommend for all new work.
 
 
         > 📘 Multiple endpoints, one object
 
-        > This endpoint and [the synchronous version](ref:analytics) return analytics objects in the same format. The [XLSX endpoint](ref:analytics-excel) logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to Excel files. You can find a detailed reference of the returned analytics object [here](doc:analytics-type).
-
-        '
+        > This endpoint and the synchronous version return analytics objects in the same format. The XLSX endpoint logically returns most of the same information, but does not use the same schema since JSON schemas don''t apply to Excel files. You can find a detailed reference of the returned analytics object here.'
       parameters:
       - name: analytics_request_id
         in: query
@@ -989,151 +980,1476 @@ paths:
                         default: 0
                         description: A numerical code that indicates the nature of an error.
 components:
-  parameters:
-    extra_fields:
-      name: extra_fields
-      in: query
-      description: 'A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.
-
-
-        Future revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.
-
-        '
-      deprecated: true
-      style: form
-      explode: false
-      schema:
-        $ref: '#/components/schemas/ExtraFields'
-    pk:
-      name: pk
-      in: query
-      description: 'The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you''d like to have analyzed.
-
-        '
-      schema:
-        $ref: '#/components/schemas/pk'
   schemas:
-    pk:
-      description: 'The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you''d like to have analyzed.
+    PeriodAnalytics:
+      description: 'Analytics for a contiguous time period described on a bank statement. Non-contiguous periods are represented with multiple objects of this type.
 
         '
-      type: integer
-      format: uint64
-    EstimatedRevenueCalculationTransactionsByMonth:
-      title: Estimated Revenue Calculation Transactions by Month
-      description: 'The list of credit transactions used to calculate estimated revenues grouped by category and calendar month.
-
-        estimated_revenue = all credits - revenue_deducted -  transfer + revenue_included - alternative_lender + factoring The estimated revenue of the business grouped by calendar month. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as "Refund", "Reversal", "Cash Back", "Return", and about 20 others.
-
-        '
-      x-metric-category: Transaction-Level Data
       required:
-      - added_factoring_txns
-      - added_specific_terms_txns
-      - deposits
-      - deducted_alternative_lender_txns
-      - deducted_specific_terms_txns
-      - deducted_transfer_deposit_txns
+      - alternative_lender_transactions
+      - average_amount
+      - average_daily_balance
+      - average_daily_balance_weekday
+      - average_daily_cash_flow
+      - average_daily_cash_flow_weekday
+      - average_deposit
+      - bank_account_pk
+      - begin_balance
+      - begin_date
+      - deposit_count
+      - deposit_max
+      - deposit_min
+      - deposit_sum
+      - end_balance
+      - end_date
+      - estimated_revenue
+      - estimated_revenue_calc_txns
+      - negative_balances
+      - negative_balances_weekday
+      - negative_cash_flows
+      - negative_cash_flows_weekday
+      - nsf_count
+      - nsf_transactions_paid_or_negative_balance_count
+      - payroll
+      - period_month_days
+      - period_month_txns
+      - pk
+      - primary_recon_error_reason
+      - secondary_recon_error_reason
+      - txn_count
+      - uploaded_doc_pk
+      - withdrawal_count
+      - withdrawal_sum
+      - withdrawals_max
       properties:
-        added_factoring_txns:
-          description: 'Credit transactions identified as factoring. Added to the total revenue estimate.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-        added_specific_terms_txns:
-          description: 'Credit transactions that are *likely* to be revenue deposits. We maintain a list of terms that signal this quality. Transactions with a description that includes one of these phrases are included here.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+        alternative_lender_transactions:
+          title: List of Alternative Lender Transactions
+          description: 'A list of all transactions to/from alternative lenders, including small business lenders, personal lenders, and mortgage players. This list also includes transactions relating to Merchant Cash Advance and Factoring, though these are separately filtered in unique lists for Merchant Cash Advance Transactions and Factoring Transactions.
 
             '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-        deposits:
-          description: 'Credit transactions identified as deposits, for use in revenue estimations.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-        deducted_alternative_lender_txns:
-          description: 'Credit transactions identified as alternative lending. Deducted from the total revenue estimate.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-        deducted_specific_terms_txns:
-          description: 'Credit transactions that are *unlikely* to be revenue deposits. We maintain a list of terms that signal this quality, such as "Refund", "Reversal", "Cash Back", and "Return". Transactions with a description that includes one of these phrases are included here.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-        deducted_transfer_deposit_txns:
-          description: 'Credit transactions identified as transfers. Deducted from the total revenue estimate.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-key-pattern: ^\d{2}/\d{4}$
-    PeriodBalanceMismatch:
-      type: object
-      description: An indication of gaps between statement periods captured in the bank account.
-      properties:
-        begin_date:
+          minItems: 0
+          x-metric-category: Competition & Debt Capacity
+          items:
+            $ref: '#/components/schemas/Transaction'
+        average_amount:
+          title: Average Amount
+          description: The average absolute value of transaction amounts in a statement period.
+          x-metric-category: Cash Inflows & Outflows
           type: string
-          description: The starting date of the unaccounted-for statement period.
-          pattern: ^\d{2}/\d{2}/\d{4}$
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        average_daily_balance:
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          title: Average Daily Balance
+          description: The average daily ending balance (including weekends).
+          x-metric-category: Cash Balances
+        average_daily_balance_weekday:
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          title: Average Daily Balance (Weekdays)
+          description: The average daily ending balance of weekdays.
+          x-metric-category: Cash Balances
+        average_daily_cash_flow:
+          title: Average Daily Cash Flow
+          description: 'Average daily net cash flow, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        average_daily_cash_flow_weekday:
+          title: Average Weekday Cash Flows
+          description: 'Average daily net cash flow on weekdays, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        average_deposit:
+          title: Average Deposit
+          description: The average value of credit transactions
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        bank_account_pk:
+          title: Bank Account Primary Key
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: integer
+          format: uint64
         begin_balance:
+          title: Begin Balance
+          description: 'The beginning balance of the statement period captured from the summary section of a bank statement.
+
+            '
+          x-metric-category: Cash Balances
           type: string
-          description: The starting balance of the unaccounted-for statement period.
           pattern: ^[+-]?\d+(\.\d{1,2})?$
-        end_date:
+          x-pii: true
+        begin_date:
+          title: Begin Date
+          description: 'The beginning date of the statement period captured from the summary section of a bank statement.
+
+            '
+          x-pii: true
           type: string
-          description: The ending date of the unaccounted-for statement period.
           pattern: ^\d{2}/\d{2}/\d{4}$
-        end_balance:
+        deposit_count:
+          title: Deposit Count
+          description: The total number of credit transactions.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        deposit_max:
+          title: Maximum Deposit
+          description: The credit txn(s) with the largest amount
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deposit_min:
+          title: Minimum Deposit
+          description: The credit txn(s) with the smallest amount
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deposit_sum:
+          title: Deposit Sum
+          description: Sum of all credit transactions
           type: string
-          description: The ending balance of the unaccounted-for statement period.
           pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        end_balance:
+          title: End Balance
+          description: 'The ending balance of the statement period captured from the summary section of a bank statement.
+
+            '
+          x-metric-category: Cash Balances
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-pii: true
+        end_date:
+          title: End Date
+          description: 'The ending date of the statement period captured from the summary section of a bank statement.
+
+            '
+          type: string
+          pattern: ^\d{2}/\d{2}/\d{4}$
+          x-pii: true
+        estimated_revenue:
+          title: Estimated Revenue
+          description: 'The estimated revenue of the business. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as Refund, Reversal, Cash Back, Return, and about 20 others.
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        estimated_revenue_calc_txns:
+          $ref: '#/components/schemas/EstimatedRevenueCalculationTransactions'
+        negative_balances:
+          title: List of Negative Balances
+          description: The list of all days in which the daily ending balance fell below zero
+          type: array
+          minItems: 0
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        negative_balances_weekday:
+          title: List of Weekdays with Negative Balances
+          description: The list of all weekdays in which the daily ending balance fell below zero
+          type: array
+          minItems: 0
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        negative_cash_flows:
+          title: List of Negative Cash Flow Days
+          description: List of dates where net cash flows (defined as credits - debits) are negative.
+          type: array
+          minItems: 0
+          x-metric-category: Cash Inflows & Outflows
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        negative_cash_flows_weekday:
+          title: List of Negative Cash Flow Weekdays
+          description: List of weekdays where net cash flows (defined as credits - debits) are negative.
+          type: array
+          minItems: 0
+          x-metric-category: Cash Inflows & Outflows
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        nsf_count:
+          title: NSF Count
+          description: 'The number of unique NSF & Overdraft fees for each bank account. This is especially useful with institutions that lump NSF fees into one transaction.
+
+            '
+          x-metric-category: Overdrafts/NSF
+          type: integer
+          minimum: 0
+        nsf_transactions_paid_or_negative_balance_count:
+          title: NSF Transactions Paid Or Negative Balance Count
+          description: The count of transactions associated with overdraft transactions.
+          x-metric-category: Overdrafts/NSF
+          type: integer
+          minimum: 0
+        nsf_transactions_returned_or_not_paid_count:
+          title: NSF Transactions Returned Or Not Paid Count
+          description: The count of transactions associated with returned and/or unpaid items due to NSF fees.
+          x-metric-category: Overdrafts/NSF
+          type: integer
+          minimum: 0
+        payroll:
+          type: string
+          description: 'The sum of payroll transaction amounts within this period.
+
+            '
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        period_month_days:
+          title: Period Day Count by Month
+          description: Number of days in the period grouped by month
+          additionalProperties:
+            type: integer
+            minimum: 0
+          x-key-pattern: ^\d{2}/\d{4}$
+        period_month_txns:
+          title: Period Transaction Count by Month
+          description: Number of transactions in the period grouped by month
+          additionalProperties:
+            type: integer
+            minimum: 0
+          x-key-pattern: ^\d{2}/\d{4}$
+        pk:
+          title: Primary Key
+          description: A unique identifying integer.
+          type: integer
+          format: uint64
+          x-pii: true
+        primary_recon_error_reason:
+          title: Primary Reconciliation Error Reason
+          description: Manual verifier flag for suspicious activity after inspection
+          default: None
+          type: string
+        secondary_recon_error_reason:
+          title: Secondary Reconciliation Error Reason
+          description: Manual verifier flag for suspicious activity after inspection
+          type: string
+          deprecated: true
+        txn_count:
+          title: Transaction Count
+          description: The total number of transactions in a bank account.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        uploaded_doc_pk:
+          title: Uploaded Document Primary Key
+          description: Unique identifying integer
+          x-pii: true
+          type: integer
+          format: uint64
+        withdrawal_count:
+          title: Withdrawal Count
+          description: The total number of debit transactions.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        withdrawal_sum:
+          title: Withdrawal Sum
+          description: The total monetary value of debits
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        withdrawals_max:
+          title: Max Withdrawal
+          description: The debit transaction(s) with the most negative amount
+          x-metric-category: Cash Inflows & Outflows
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+    BankAccountAnalytics:
+      description: 'Detailed analytics computed on a particular bank account. A <<glossary:Book>> may contain bank statements from multiple bank accounts, therefore the Book analytics may contain multiple objects of this type.
+
+        '
+      required:
+      - account_category
+      - account_holder
+      - account_number
+      - account_type
+      - activity_info
+      - alt_lender_payments_by_month
+      - alternative_lender_transactions
+      - average_alt_lender_payments
+      - average_by_month
+      - average_daily_balance
+      - average_daily_balance_by_month
+      - average_daily_balance_weekday
+      - average_daily_balance_weekday_by_month
+      - average_daily_cash_flow
+      - average_daily_cash_flow_weekday
+      - average_deposit_by_month
+      - average_mca_payments
+      - bank_name
+      - book_pk
+      - cash_balance_trend_30d
+      - cash_balance_trend_60d
+      - cash_balance_trend_90d
+      - cash_expense_days_by_month
+      - cash_flow_trend_30d
+      - cash_flow_trend_60d
+      - cash_flow_trend_90d
+      - daily_balances
+      - daily_cash_flows
+      - debt_consolidator_txns
+      - deposit_count
+      - deposit_max_by_month
+      - deposit_min_by_month
+      - deposit_sum
+      - deposits_count_by_month
+      - deposits_sum_by_month
+      - estimated_daily_expense_by_month
+      - estimated_daily_revenue_by_month
+      - estimated_expense_by_month
+      - estimated_expense_txns_list
+      - estimated_revenue_by_month
+      - estimated_revenue_by_month_calc_txns
+      - estimated_revenue_txns_list
+      - factor_txns
+      - holder_address_1
+      - holder_address_2
+      - holder_city
+      - holder_country
+      - holder_state
+      - holder_zip
+      - insurance_credits
+      - insurance_debits
+      - insurance_terms
+      - interbank_transactions
+      - mca_payments_by_month
+      - merchant_cash_advance_lender_txns
+      - minimum_balance_by_month
+      - name
+      - negative_balances_by_month
+      - negative_balances_by_month_weekday
+      - negative_balances_weekday
+      - negative_cash_flows
+      - negative_cash_flows_weekday
+      - net_cash_flows_by_month
+      - non_estimated_revenue_txns_list
+      - nsf_count
+      - nsf_count_by_month
+      - nsf_transactions
+      - nsf_transactions_paid_or_negative_balance
+      - nsf_transactions_paid_or_negative_balance_count_by_month
+      - nsf_transactions_returned_or_not_paid
+      - nsf_transactions_returned_or_not_paid_count_by_month
+      - outside_source_deposits
+      - payroll
+      - period_balance_mismatches
+      - periods
+      - pk
+      - ppp_loan_txns
+      - probable_recurring_txns
+      - recurring_vs_episodic_inflows_by_month
+      - recurring_vs_episodic_outflows_by_month
+      - round_number_txns
+      - suspicious_activities
+      - total_days
+      - transfer
+      - txn_count
+      - withdrawal_count
+      - withdrawal_sum
+      - withdrawals
+      - withdrawals_max_by_month
+      - withdrawals_sum_by_month
+      properties:
+        account_category:
+          title: Bank Account Category
+          description: 'Indicates different categories of bank accounts captured from documents.
+
+            '
+          type: string
+          enum:
+          - BUSINESS ACCOUNT
+          - PERSONAL ACCOUNT
+          - UNKNOWN
+          x-pii: true
+        account_holder:
+          title: Bank Account Holder
+          type: string
+          description: 'The name of the person or entity who owns this bank account.
+
+            '
+          x-pii: true
+        account_holders:
+          title: Bank Account Holders
+          type: array
+          description: 'This field will be a single-element array with the value given in `account_holder`.
+
+            '
+          x-pii: true
+          deprecated: true
+          items:
+            type: string
+            minItems: 0
+        account_number:
+          title: Bank Account Number
+          description: 'The captured number of this bank account.
+
+            '
+          type: string
+          x-pii: true
+        account_type:
+          title: Bank Account Type
+          description: 'Bank account type indicates the different types of bank accounts captured from documents.
+
+            '
+          type: string
+          enum:
+          - SAVINGS
+          - CHECKING
+          - CHECK CASHING HISTORY
+          - CREDITCARD
+          - IOLTA
+          - UNKNOWN
+          x-pii: true
+        activity_info:
+          title: Bank Account Activity Info
+          $ref: '#/components/schemas/ActivityInfo'
+        alt_lender_payments_by_month:
+          title: Alternative Lender Payments by Month
+          description: 'Debits (i.e. payments) made to alternative lenders grouped by calendar month. Provides context into a customer''s access to competitive financing as well as debt service requirements. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Competition & Debt Capacity
+          x-key-pattern: ^\d{2}/\d{4}$
+          example:
+            01/2021: '2733.48'
+            07/2020: '0.00'
+            08/2020: '0.00'
+            09/2020: '0.00'
+            12/2020: '2733.48'
+        alternative_lender_transactions:
+          title: List of Alternative Lender Transactions
+          description: 'A list of all transactions to/from alternative lenders, including small business lenders, personal lenders, and mortgage players. This list also includes transactions relating to Merchant Cash Advance and Factoring, though these are separately filtered in unique lists for Merchant Cash Advance Transactions and Factoring Transactions.
+
+            '
+          minItems: 0
+          x-metric-category: Competition & Debt Capacity
+          items:
+            $ref: '#/components/schemas/Transaction'
+        atm_withdrawals_num:
+          title: Number of ATM Withdrawals
+          type: integer
+          description: Total number of all ATM withdrawals from the bank account
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        atm_withdrawals_sum:
+          title: Amount of ATM Withdrawals
+          description: The sum of all atm withdrawal amounts
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        average_alt_lender_payments:
+          title: Average Monthly Alternative Lender Payments
+          description: 'Average monthly debits (i.e. payments) made to alternative lenders. Provides context into a customer''s access to competitive financing as well as debt service requirements.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Competition & Debt Capacity
+        average_by_month:
+          title: Average Transaction Size by Month
+          description: 'The average absolute value of all transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        average_daily_balance:
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          title: Average Daily Balance
+          description: The average daily ending balance (including weekends).
+          x-metric-category: Cash Balances
+        average_daily_balance_by_month:
+          title: Average Daily Balance by Month
+          description: 'The average daily ending balance (including weekends) grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{4}$
+        average_daily_balance_weekday:
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          title: Average Daily Balance (Weekdays)
+          description: The average daily ending balance of weekdays.
+          x-metric-category: Cash Balances
+        average_daily_balance_weekday_by_month:
+          title: Average Daily Balance (Weekdays) by Month
+          description: 'The average daily ending balance of weekdays grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{4}$
+        average_daily_cash_flow:
+          title: Average Daily Cash Flow
+          description: 'Average daily net cash flow, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        average_daily_cash_flow_weekday:
+          title: Average Weekday Cash Flows
+          description: 'Average daily net cash flow on weekdays, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        average_deposit_by_month:
+          title: Average Deposit by Month
+          description: 'The average value of credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        average_mca_payments:
+          title: Average Monthly MCA Payments
+          description: 'Average monthly debits (i.e. payments) made to merchant cash advance lenders. Provides context into a customer''s access to competitive financing as well as debt service requirements.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Competition & Debt Capacity
+        bank_name:
+          title: Bank Name
+          description: Name of the bank which issued the bank statement.
+          type: string
+          minLength: 0
+          x-pii: true
+          x-metric-category: PII/Metadata
+        book_pk:
+          title: Book Primary Key
+          description: 'The unique identifier for the <<glossary:Book>> that was used to compute these analytics.
+
+            '
+          type: integer
+          format: uint64
+          x-pii: true
+          x-metric-category: PII/Metadata
+        branch_withdrawals_num:
+          title: Number of Branch Cash Withdrawals
+          description: Number of cash withdrawals from a physical location.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        branch_withdrawals_sum:
+          title: Amount of Branch Cash Withdrawals
+          description: Amount of branch cash withdrawals from a physical location.
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        cash_balance_trend_30d:
+          title: 30-Day Cash Balance Trend
+          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-30 to t-16) - (Mean cash balance t-15 to t-1) ) / standard deviation of cash balance over t-30 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+        cash_balance_trend_60d:
+          title: 60-Day Cash Balance Trend
+          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-60 to t-31) - (Mean cash balance t-30 to t-1) ) / standard deviation of cash balance over t-60 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+        cash_balance_trend_90d:
+          title: 90-Day Cash Balance Trend
+          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-90 to t-46) - (Mean cash balance t-45 to t-1) ) / standard deviation of cash balance over t-90 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+        cash_expense_days_by_month:
+          title: Cash Expense Days by Month
+          description: 'Cash expense days grouped by month. Measures the amount of runway a business has given its operating expenses. Cash expense days = (average daily balance)/(average daily expense) Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-key-pattern: ^\d{2}/\d{4}$
+        cash_flow_trend_30d:
+          title: 30-Day Cash Flow Trend
+          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-30 to t-16) - (Mean cash flow t-15 to t-1) ) / standard deviation of cash flow over t-30 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        cash_flow_trend_60d:
+          title: 60-Day Cash Flow Trend
+          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-60 to t-31) - (Mean cash flow t-30 to t-1) ) / standard deviation of cash flow over t-60 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        cash_flow_trend_90d:
+          title: 90-Day Cash Flow Trend
+          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-90 to t-46) - (Mean cash flow t-45 to t-1) ) / standard deviation of cash flow over t-90 to t-1
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        casino_lottery_num:
+          title: Number of Casino & Lottery Transactions
+          description: 'The number of credit transactions originating from casino or lottery winnings.
+
+            '
+          type: integer
+          minimum: 0
+          x-metric-category: Fraud & Questionable Data
+        casino_lottery_sum:
+          title: Number of Casino & Lottery Transactions
+          description: 'The total amount of credit transactions originating from casino or lottery winnings.
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Fraud & Questionable Data
+        checks_highest_incidence:
+          title: Amount of check with highest incidence
+          description: 'Most commonly occurring check amount and the number of such occurrences in form `[amount, num_occurences]`. If no checks were received in this bank statement, will have a value of `["0.00", 0]`.
+
+            '
+          type: array
+          minItems: 2
+          maxItems: 2
+          x-type-description-override: Two-element array of `[string, int]`.
+          items:
+            anyOf:
+            - type: string
+              pattern: ^[+-]?\d+(\.\d{1,2})?$
+            - type: integer
+              minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        checks_num:
+          title: Number of Checks
+          description: Number of checks
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        credit_card_payments_num:
+          title: Number of Credit Card Payments
+          description: Number of Credit Card Payments
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        credit_card_payments_sum:
+          title: Amount of Credit Card Payments
+          description: Amount of Credit Card Payments
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        daily_balances:
+          title: Running Daily Balance
+          description: 'A list of the daily ending balances for every day. Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
+        daily_cash_flows:
+          title: Daily Cash Flow List
+          description: 'A list of net cash flows for each available date. Net Cash Flow = Credits - Debits. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
+
+            Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
+        daily_cash_flows_weekday:
+          title: Weekday Cash Flow List
+          description: 'A list of net cash flows for each available weekday. Net Cash Flow = Credits - Debits. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt. Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
+        debt_consolidator_txns:
+          title: Debt Consolidator Transactions
+          description: A list of all transactions to/from debt consolidation (refinancing) companies.
+          x-metric-category: Competition & Debt Capacity
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deposit_count:
+          title: Deposit Count
+          description: The total number of credit transactions.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        deposit_max_by_month:
+          title: Max Deposit by Month
+          description: 'The credit transactions with the largest amount grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        deposit_min_by_month:
+          title: Min Deposit by Month
+          description: 'The credit transactions with the smallest amount grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        deposit_sum:
+          title: Deposit Sum
+          description: Sum of all credit transactions
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        deposits_count_by_month:
+          title: Total Deposits Count by Month
+          description: 'The count of all credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: integer
+            minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        deposits_sum_by_month:
+          title: Total Deposits Sum by Month
+          description: 'The sum of all credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        equipment_lease_payments_num:
+          title: Number of Equipment Lease Payments
+          description: Number of outflow transactions to equipment leasing companies
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        equipment_lease_payments_sum:
+          title: Amount of Equipment Lease Payments
+          description: Total amount of outflow transactions to equipment leasing companies
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        estimated_daily_expense_by_month:
+          title: Estimated Daily Expense by Month
+          description: 'Estimated daily expenses grouped by month. Important for understanding the costs required to operate the business as well as the firm''s ability to adapt spending during a period of disruption. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        estimated_daily_revenue_by_month:
+          title: Estimated Daily Revenue by Month
+          description: "Estimated daily revenue grouped by month. Important for understanding the magnitude of revenue, trend of revenue, and the resilience of revenue to the present situation. \nEach key is a string representing a month and a year, using the regex `^\\d{2}/\\d{4}$` (i.e `MM/YYYY`).\n"
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        estimated_expense_by_month:
+          title: Estimated Expense by Month
+          description: 'Estimated monthly expenses grouped by calendar month. Important for understanding the costs required to operate the business as well as the firm''s ability to adapt spending during a period of disruption. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        estimated_expense_txns_list:
+          title: Estimated Expense Transactions
+          description: List of transactions included in estimated expense calculations.
+          type: array
+          x-metric-category: Transaction-Level Data
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        estimated_revenue_by_month:
+          title: Estimated Revenue by Month
+          type: object
+          description: 'The estimated revenue of the business grouped by calendar month. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as "Refund", "Reversal", "Cash Back", "Return", and about 20 others.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        estimated_revenue_by_month_calc_txns:
+          $ref: '#/components/schemas/EstimatedRevenueCalculationTransactionsByMonth'
+        estimated_revenue_txns_list:
+          title: Estimated Revenue Transactions
+          description: 'The ungrouped list of credit transactions that comprise the estimated revenue of the applicant.
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          x-metric-category: Transaction-Level Data
+        factor_txns:
+          title: Factoring Transactions
+          description: 'A list of all transactions to/from invoice factoring companies.
+
+            '
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          x-metric-category: Competition & Debt Capacity
+        holder_address_1:
+          title: Bank account holder address (Line 1)
+          description: 'The primary address of the person or entity who owns this bank account.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: string
+        holder_address_2:
+          title: Bank account holder address (Line 2)
+          description: 'Extra address information about the owner of this bank account, usually about a particular suite or office. Will be `null` if not provided.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type:
+          - string
+          - 'null'
+        holder_city:
+          title: Bank account holder city
+          description: 'The town or city of the account holder''s address.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: string
+        holder_country:
+          title: Bank account holder country
+          description: 'The captured country of residence of the account holder. We only support American bank statements at this time.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: string
+        holder_state:
+          title: Bank account holder state
+          description: 'The captured state or territory of the account holder.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: string
+        holder_zip:
+          title: Bank account holder ZIP
+          description: 'The captured postal code of the account holder.
+
+            '
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: string
+        id:
+          x-pii: true
+          x-metric-category: PII/Metadata
+          type: integer
+          deprecated: true
+        insurance_credits:
+          title: Insurance Credits
+          description: A list of all positive transactions from insurance providers.
+          x-metric-category: Transaction-Level Data
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          minItems: 0
+        insurance_debits:
+          title: Insurance Debits
+          description: A list of all negative transactions from insurance providers.
+          x-metric-category: Transaction-Level Data
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          minItems: 0
+        insurance_payments_num:
+          title: Number of insurance payments
+          description: Number of insurance payments
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        insurance_payments_sum:
+          title: Amount of insurance payments
+          description: Amount of insurance payments
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        insurance_terms:
+          title: Insurance Terms
+          description: 'A list of negative transactions associated with insurance companies.
+
+            '
+          type: array
+          minItems: 0
+          x-metric-category: Cash Inflows & Outflows
+          items:
+            $ref: '#/components/schemas/Transaction'
+        interbank_transactions:
+          title: List of Interbank Transactions
+          description: A list of all transactions to/from any bank or financial institution.
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        lottery_withdrawals_num:
+          title: Number of Lottery Withdrawals
+          description: Number of outflow transactions spent on lottery
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        lottery_withdrawals_sum:
+          title: Amount of insurance payments
+          description: Total amount of outflow transactions spent on lottery
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        mca_payments_by_month:
+          title: MCA Payments by Month
+          description: 'Debits (i.e. payments) made to merchant cash advance lenders, broken out by month. Provides context into a customer''s access to competitive financing as well as debt service requirements. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Competition & Debt Capacity
+          x-key-pattern: ^\d{2}/\d{4}$
+        merchant_cash_advance_lender_txns:
+          title: Merchant Cash Advance Transactions
+          description: A list of all transactions to/from merchant cash advance companies.
+          x-metric-category: Competition & Debt Capacity
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        merchant_service_deposits_num:
+          title: Number of merchant service deposits (Card)
+          description: 'Total number of merchant service deposits (positive transactions matching with merchant service terms) in the bank account
+
+            '
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        merchant_service_deposits_sum:
+          title: Amount of merchant service deposits (Card)
+          description: 'The sum of merchant service deposit transactions amounts (positive transactions matching with merchant service terms) in the bank account
+
+            '
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        minimum_balance_by_month:
+          title: Minimum Balance by Month
+          description: 'The lowest end-of-day balance in a calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{4}$
+        name:
+          title: Name
+          description: Name of the Book or bank account
+          type: string
+          minLength: 0
+          x-pii: true
+        negative_balances_by_month:
+          title: List of Days Negative Balance by Month
+          description: 'The list of all days in which the daily ending balance fell below zero grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`). Months with no days ending with a negative balance are represented with empty arrays.
+
+            '
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              pattern: ^\d{2}/\d{2}/\d{4}$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{4}$
+        negative_balances_by_month_weekday:
+          title: List of Weekdays with Negative Balance by Month
+          description: 'The list of all weekdays in which the daily ending balance fell below zero grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`). Months with no days ending with a negative balance are represented with empty arrays.
+
+            '
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              pattern: ^\d{2}/\d{2}/\d{4}$
+          x-metric-category: Cash Balances
+          x-key-pattern: ^\d{2}/\d{4}$
+        negative_balances_weekday:
+          title: List of Weekdays with Negative Balances
+          description: The list of all weekdays in which the daily ending balance fell below zero
+          type: array
+          minItems: 0
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        negative_cash_flows:
+          title: List of Negative Cash Flow Days
+          description: List of dates where net cash flows (defined as credits - debits) are negative.
+          type: array
+          minItems: 0
+          x-metric-category: Cash Inflows & Outflows
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        negative_cash_flows_weekday:
+          title: List of Negative Cash Flow Weekdays
+          description: List of weekdays where net cash flows (defined as credits - debits) are negative.
+          type: array
+          minItems: 0
+          x-metric-category: Cash Inflows & Outflows
+          items:
+            type: string
+            pattern: ^\d{2}/\d{2}/\d{4}$
+        net_cash_flows_by_month:
+          title: Net Cash Flow By Month
+          minProperties: 0
+          description: 'The net cash flow grouped by month, where `Net Cash Flow = Credits - Debits`.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-key-pattern: ^\d{2}/\d{4}$
+        non_estimated_revenue_txns_list:
+          title: Deposits Not Included in Estimated Revenue
+          description: The list of credit transactions that are excluded from the “Estimated Revenue by Month” calculation.
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nsf_count:
+          title: NSF Count
+          description: 'The number of unique NSF & Overdraft fees for each bank account. This is especially useful with institutions that lump NSF fees into one transaction.
+
+            '
+          x-metric-category: Overdrafts/NSF
+          type: integer
+          minimum: 0
+        nsf_count_by_month:
+          title: NSF Count by Month
+          description: 'The number of unique NSF fees grouped by month. This is especially useful with institutions that lump NSF fees into one transaction. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Overdrafts/NSF
+          x-key-pattern: ^\d{2}/\d{4}$
+        nsf_transactions:
+          title: List of NSF Transactions
+          description: A list of transactions associated with non-sufficient funds and overdraft transactions.
+          x-metric-category: Overdrafts/NSF
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nsf_transactions_paid_or_negative_balance:
+          title: NSF Transactions Paid Or Negative Balance
+          description: A list of transactions associated with overdraft transactions.
+          x-metric-category: Overdrafts/NSF
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nsf_transactions_paid_or_negative_balance_count_by_month:
+          title: NSF Transactions Paid Or Negative Balance Count
+          description: 'The count of transactions associated with overdraft transactions grouped by month Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: integer
+            minimum: 0
+          x-metric-category: Overdrafts/NSF
+          x-key-pattern: ^\d{2}/\d{4}$
+        nsf_transactions_returned_or_not_paid:
+          title: NSF Transactions Returned Or Not Paid
+          description: 'A list of transactions associated with returned and/or unpaid items due to NSF fees.
+
+            '
+          x-metric-category: Overdrafts/NSF
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        nsf_transactions_returned_or_not_paid_count_by_month:
+          title: NSF Transactions Returned Or Not Paid Month
+          description: 'The count of transactions associated with returned and/or unpaid items due to NSF fees grouped by month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: integer
+            minimum: 0
+          x-metric-category: Overdrafts/NSF
+          x-key-pattern: ^\d{2}/\d{4}$
+        outside_source_deposits:
+          title: List of Deposits from Outside Sources
+          description: The list of credit transactions that are not transfers
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        paypal_num:
+          title: Number of Paypal Transactions
+          description: Number of Paypal Transactions
+          deprecated: true
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        paypal_sum:
+          title: Amount of Paypal Transactions
+          description: Amount of Paypal Transactions
+          deprecated: true
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        payroll:
+          title: Payroll
+          description: A list of all transactions from payroll providers.
+          type: array
+          minItems: 0
+          x-metric-category: Transaction-Level Data
+          items:
+            $ref: '#/components/schemas/Transaction'
+        payroll_num:
+          title: Number of Payroll Payments
+          description: 'For business account only, the total number of payroll transactions (negative transactions matching with payroll term list) in the bank account
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        payroll_sum:
+          title: Amount of Payroll Payments
+          description: 'For business account only, the sum of payroll transactions'' amounts (negative transactions matching with payroll term list) in the bank account
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        period_balance_mismatches:
+          title: Period Balance Mismatches
+          description: 'An indication of gaps between statement periods captured in the bank account.
+
+            '
+          x-metric-category: Fraud & Questionable Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/PeriodBalanceMismatch'
+        periods:
+          title: Period Level Analytics
+          description: Contains list of period level JSONs
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/PeriodAnalytics'
+        pk:
+          title: Primary Key
+          description: A unique identifying integer.
+          type: integer
+          format: uint64
+          x-pii: true
+        ppp_loan_txns:
+          title: PPP Loan Transactions
+          description: A list of credit transactions associated with the SBA Payroll Protection Program
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        probable_recurring_txns:
+          title: Probable Recurring Transactions
+          description: 'A list of transactions with the same dollar value that are greater than $10 and occur two or more times within 45 days.
+
+            '
+          type: array
+          minItems: 0
+          x-metric-category: Transaction-Level Data
+          items:
+            $ref: '#/components/schemas/Transaction'
+        recurring_vs_episodic_inflows_by_month:
+          title: Recurring Inflow Ratio
+          description: 'The ratio of total recurring credit transactions to total non-recurring credit transactions. Demonstrates stability of revenues. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        recurring_vs_episodic_outflows_by_month:
+          title: Recurring Outflow Ratio
+          description: 'The ratio of total recurring debit transactions to total non-recurring debit transactions. Measures fixed expenses. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        remote_deposits_num:
+          title: Number of remote capture deposits
+          description: 'Total number of remote deposits in the bank account
+
+            '
+          deprecated: true
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        remote_deposits_sum:
+          title: Amount of remote capture deposits
+          description: 'Sum of remote deposit amounts in the bank account
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          deprecated: true
+        returned_items:
+          title: Returned Items
+          deprecated: true
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        round_number_txns:
+          title: List of Transactions Ending in 5 Zeros or More
+          description: 'A list of transactions that end in at least five zeroes, e.g., $1,000.00.
+
+            '
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        state_tax_payments_num:
+          title: Number of state tax payments
+          description: Number of tax payments that are not US tax payments
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+          deprecated: true
+        state_tax_payments_sum:
+          title: Amount of state tax payments
+          description: Amount of tax payments that are not US tax payments
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          deprecated: true
+        suspicious_activities:
+          $ref: '#/components/schemas/SuspiciousActivities'
+        tolls_num:
+          title: Number of toll payments (EZ Pass, Tollway, etc)
+          description: Number of toll payments
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        tolls_sum:
+          title: Amount of toll payments
+          description: Amount of toll payments
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        total_days:
+          title: Total Days
+          description: 'The total number of days in all statement periods captured in the bank account.
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        transfer:
+          $ref: '#/components/schemas/Transfers'
+        transfer_num:
+          title: Number of Transfers
+          description: 'Total number of transfer transactions (positive and negative transactions matching with transfer term list) in the bank account
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: integer
+          minimum: 0
+        transfer_sum:
+          title: Amount of Transfers
+          description: 'Sum of transfer transactions'' amounts (positive and negative transactions matching with transfer term list) in the bank account
+
+            '
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        txn_count:
+          title: Transaction Count
+          description: The total number of transactions in a bank account.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        txn_four_zeros:
+          title: Number of transactions ending in 4 zeros (00.00)
+          description: Number of transactions ending in 4 zeros (00.00)
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        usa_tax_payments_num:
+          title: Number of USA Tax Payments
+          description: 'Number of US tax payments
+
+            '
+          deprecated: true
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        usa_tax_payments_sum:
+          title: Amount of USA Tax Payments
+          description: Amount of US tax payments
+          x-metric-category: Cash Inflows & Outflows
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        venmo_zelle_cashapp_num:
+          title: Number of Venmo, Zelle, and Cash App Transactions
+          description: 'Total number of transactions that include terms such as Venmo, Zelle or Cash App
+
+            '
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        venmo_zelle_cashapp_sum:
+          title: Amount of Venmo, Zelle, and Cash App Transactions
+          description: Sum of amounts for Venmo, Zelle and Cash App transactions
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        withdrawal_count:
+          title: Withdrawal Count
+          description: The total number of debit transactions.
+          type: integer
+          minimum: 0
+          x-metric-category: Cash Inflows & Outflows
+        withdrawal_sum:
+          title: Withdrawal Sum
+          description: The total monetary value of debits
+          type: string
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+        withdrawals:
+          title: Withdrawals
+          description: The list of all debits transactions from a bank account.
+          x-metric-category: Transaction-Level Data
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        withdrawals_max_by_month:
+          title: Max Withdrawals by Month
+          description: 'The debit transaction(s) with the most negative amount grouped by month.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+        withdrawals_sum_by_month:
+          title: Total Withdrawals Sum by Month
+          description: 'The sum of all debit transactions grouped by calendar month.
+
+            '
+          additionalProperties:
+            type: string
+            pattern: ^[+-]?\d+(\.\d{1,2})?$
+          x-metric-category: Cash Inflows & Outflows
+          x-key-pattern: ^\d{2}/\d{4}$
+    DatePartRange:
+      title: Date Part Range
+      type: object
+      description: 'A range of dates within activity info.
+
+        '
+      required:
+      - start
+      - end
+      properties:
+        start:
+          $ref: '#/components/schemas/DateParts'
+        end:
+          $ref: '#/components/schemas/DateParts'
     BookAnalytics:
       description: 'Detailed analytics computed on the requested <<glossary:Book>>.
 
         All monetary amounts are given in USD.
 
         '
-      nullable: true
       example:
         value:
           mca_payments_by_month:
@@ -19414,1187 +20730,159 @@ components:
           type: integer
           format: uint64
           x-pii: true
-    ActivityInfo:
-      description: 'A series of date ranges indicating periods of activity and inactivity in a bank account.
+    pk:
+      description: 'The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you''d like to have analyzed.
+
+        '
+      type: integer
+      format: uint64
+    Transfers:
+      title: Transfers
+      description: The list of all transfers to or from a bank account.
+      x-metric-category: Transaction-Level Data
+      required:
+      - debit_transfer
+      - credit_transfer
+      properties:
+        debit_transfer:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        credit_transfer:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+    EstimatedRevenueCalculationTransactions:
+      title: Estimated Revenue Calculation Transactions
+      description: 'The list of credit transactions that comprise the estimated revenue calculations for the business.
+
+        '
+      properties:
+        added_factoring_txns:
+          type: array
+          description: 'Credit transactions identified as factoring. Added to the total revenue estimate.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        added_specific_terms_txns:
+          type: array
+          description: 'Credit transactions that are *likely* to be revenue deposits. We maintain a list of terms that signal this quality. Transactions with a description that includes one of these phrases are included here.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deposits:
+          type: array
+          description: Credit transactions identified as deposits, for use in revenue estimations.
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deducted_alternative_lender_txns:
+          type: array
+          description: 'Credit transactions identified as alternative lending. Deducted from the total revenue estimate.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deducted_specific_terms_txns:
+          type: array
+          description: 'Credit transactions that are unlikely to be revenue deposits. We maintain a list of terms that signal this quality, such as "Refund", "Reversal", "Cash Back", and "Return". Transactions with a description that includes one of these phrases are included here.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+        deducted_transfer_deposit_txns:
+          type: array
+          description: 'Credit transactions identified as transfers. Deducted from the total revenue estimate.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Transaction'
+    SuspiciousActivities:
+      title: Suspicious Activities
+      deprecated: true
+      description: 'Suspicious activity flags.
+
+        Deprecated because this represents legacy detection. We suggest using our dedicated [Suspicious Activity Flags](ref:suspicious-activity), which reveals suspicious activity signals with much greater accuracy and fidelity than offered by this attribute.
 
         '
       required:
-      - active
-      - missing
-      type: object
+      - has_weekend_transactions
+      - high_amount_average_daily_balance
+      - balance_ending_with_zero
+      - no_txn_in_weekdays_within_period
+      - high_txns_amount_atm_over_cash
+      - high_txns_count_atm_over_cash
       properties:
-        active:
-          type: array
-          minItems: 0
-          description: Series of date ranges during which this bank account shows activity.
-          items:
-            $ref: '#/components/schemas/DatePartRange'
-        missing:
-          type: array
-          minItems: 0
-          description: Series of date ranges during which this bank account _does not_ show activity.
-          items:
-            $ref: '#/components/schemas/DatePartRange'
-    BankAccountAnalytics:
-      description: 'Detailed analytics computed on a particular bank account. A <<glossary:Book>> may contain bank statements from multiple bank accounts, therefore the Book analytics may contain multiple objects of this type.
+        has_weekend_transactions:
+          type: boolean
+        high_amount_average_daily_balance:
+          type: boolean
+        balance_ending_with_zero:
+          type: boolean
+        no_txn_in_weekdays_within_period:
+          type: boolean
+        high_txns_amount_atm_over_cash:
+          type: boolean
+        high_txns_count_atm_over_cash:
+          type: boolean
+    ExtraFields:
+      type: array
+      description: 'A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.
+
+
+        Future revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.
 
         '
-      required:
-      - account_category
-      - account_holder
-      - account_number
-      - account_type
-      - activity_info
-      - alt_lender_payments_by_month
-      - alternative_lender_transactions
-      - average_alt_lender_payments
-      - average_by_month
-      - average_daily_balance
-      - average_daily_balance_by_month
-      - average_daily_balance_weekday
-      - average_daily_balance_weekday_by_month
-      - average_daily_cash_flow
-      - average_daily_cash_flow_weekday
-      - average_deposit_by_month
-      - average_mca_payments
-      - bank_name
-      - book_pk
-      - cash_balance_trend_30d
-      - cash_balance_trend_60d
-      - cash_balance_trend_90d
-      - cash_expense_days_by_month
-      - cash_flow_trend_30d
-      - cash_flow_trend_60d
-      - cash_flow_trend_90d
-      - daily_balances
-      - daily_cash_flows
-      - debt_consolidator_txns
-      - deposit_count
-      - deposit_max_by_month
-      - deposit_min_by_month
-      - deposit_sum
-      - deposits_count_by_month
-      - deposits_sum_by_month
-      - estimated_daily_expense_by_month
-      - estimated_daily_revenue_by_month
-      - estimated_expense_by_month
-      - estimated_expense_txns_list
-      - estimated_revenue_by_month
-      - estimated_revenue_by_month_calc_txns
-      - estimated_revenue_txns_list
-      - factor_txns
-      - holder_address_1
-      - holder_address_2
-      - holder_city
-      - holder_country
-      - holder_state
-      - holder_zip
-      - insurance_credits
-      - insurance_debits
-      - insurance_terms
-      - interbank_transactions
-      - mca_payments_by_month
-      - merchant_cash_advance_lender_txns
-      - minimum_balance_by_month
-      - name
-      - negative_balances_by_month
-      - negative_balances_by_month_weekday
-      - negative_balances_weekday
-      - negative_cash_flows
-      - negative_cash_flows_weekday
-      - net_cash_flows_by_month
-      - non_estimated_revenue_txns_list
-      - nsf_count
-      - nsf_count_by_month
-      - nsf_transactions
-      - nsf_transactions_paid_or_negative_balance
-      - nsf_transactions_paid_or_negative_balance_count_by_month
-      - nsf_transactions_returned_or_not_paid
-      - nsf_transactions_returned_or_not_paid_count_by_month
-      - outside_source_deposits
-      - payroll
-      - period_balance_mismatches
-      - periods
-      - pk
-      - ppp_loan_txns
-      - probable_recurring_txns
-      - recurring_vs_episodic_inflows_by_month
-      - recurring_vs_episodic_outflows_by_month
-      - round_number_txns
-      - suspicious_activities
-      - total_days
-      - transfer
-      - txn_count
-      - withdrawal_count
-      - withdrawal_sum
-      - withdrawals
-      - withdrawals_max_by_month
-      - withdrawals_sum_by_month
-      properties:
-        account_category:
-          title: Bank Account Category
-          description: 'Indicates different categories of bank accounts captured from documents.
-
-            '
-          type: string
-          enum:
-          - BUSINESS ACCOUNT
-          - PERSONAL ACCOUNT
-          - UNKNOWN
-          x-pii: true
-        account_holder:
-          title: Bank Account Holder
-          type: string
-          description: 'The name of the person or entity who owns this bank account.
-
-            '
-          x-pii: true
-        account_holders:
-          title: Bank Account Holders
-          type: array
-          description: 'This field will be a single-element array with the value given in `account_holder`.
-
-            '
-          x-pii: true
-          deprecated: true
-          items:
-            type: string
-            minItems: 0
-        account_number:
-          title: Bank Account Number
-          description: 'The captured number of this bank account.
-
-            '
-          type: string
-          x-pii: true
-        account_type:
-          title: Bank Account Type
-          description: 'Bank account type indicates the different types of bank accounts captured from documents.
-
-            '
-          type: string
-          enum:
-          - SAVINGS
-          - CHECKING
-          - CHECK CASHING HISTORY
-          - CREDITCARD
-          - IOLTA
-          - UNKNOWN
-          x-pii: true
-        activity_info:
-          title: Bank Account Activity Info
-          $ref: '#/components/schemas/ActivityInfo'
-        alt_lender_payments_by_month:
-          title: Alternative Lender Payments by Month
-          description: 'Debits (i.e. payments) made to alternative lenders grouped by calendar month. Provides context into a customer''s access to competitive financing as well as debt service requirements. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Competition & Debt Capacity
-          x-key-pattern: ^\d{2}/\d{4}$
-          example:
-            01/2021: '2733.48'
-            07/2020: '0.00'
-            08/2020: '0.00'
-            09/2020: '0.00'
-            12/2020: '2733.48'
-        alternative_lender_transactions:
-          title: List of Alternative Lender Transactions
-          description: 'A list of all transactions to/from alternative lenders, including small business lenders, personal lenders, and mortgage players. This list also includes transactions relating to Merchant Cash Advance and Factoring, though these are separately filtered in unique lists for Merchant Cash Advance Transactions and Factoring Transactions.
-
-            '
-          minItems: 0
-          x-metric-category: Competition & Debt Capacity
-          items:
-            $ref: '#/components/schemas/Transaction'
-        atm_withdrawals_num:
-          title: Number of ATM Withdrawals
-          type: integer
-          description: Total number of all ATM withdrawals from the bank account
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        atm_withdrawals_sum:
-          title: Amount of ATM Withdrawals
-          description: The sum of all atm withdrawal amounts
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        average_alt_lender_payments:
-          title: Average Monthly Alternative Lender Payments
-          description: 'Average monthly debits (i.e. payments) made to alternative lenders. Provides context into a customer''s access to competitive financing as well as debt service requirements.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Competition & Debt Capacity
-        average_by_month:
-          title: Average Transaction Size by Month
-          description: 'The average absolute value of all transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        average_daily_balance:
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          title: Average Daily Balance
-          description: The average daily ending balance (including weekends).
-          x-metric-category: Cash Balances
-        average_daily_balance_by_month:
-          title: Average Daily Balance by Month
-          description: 'The average daily ending balance (including weekends) grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{4}$
-        average_daily_balance_weekday:
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          title: Average Daily Balance (Weekdays)
-          description: The average daily ending balance of weekdays.
-          x-metric-category: Cash Balances
-        average_daily_balance_weekday_by_month:
-          title: Average Daily Balance (Weekdays) by Month
-          description: 'The average daily ending balance of weekdays grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{4}$
-        average_daily_cash_flow:
-          title: Average Daily Cash Flow
-          description: 'Average daily net cash flow, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        average_daily_cash_flow_weekday:
-          title: Average Weekday Cash Flows
-          description: 'Average daily net cash flow on weekdays, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        average_deposit_by_month:
-          title: Average Deposit by Month
-          description: 'The average value of credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        average_mca_payments:
-          title: Average Monthly MCA Payments
-          description: 'Average monthly debits (i.e. payments) made to merchant cash advance lenders. Provides context into a customer''s access to competitive financing as well as debt service requirements.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Competition & Debt Capacity
-        bank_name:
-          title: Bank Name
-          description: Name of the bank which issued the bank statement.
-          type: string
-          minLength: 0
-          x-pii: true
-          x-metric-category: PII/Metadata
-        book_pk:
-          title: Book Primary Key
-          description: 'The unique identifier for the <<glossary:Book>> that was used to compute these analytics.
-
-            '
-          type: integer
-          format: uint64
-          x-pii: true
-          x-metric-category: PII/Metadata
-        branch_withdrawals_num:
-          title: Number of Branch Cash Withdrawals
-          description: Number of cash withdrawals from a physical location.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        branch_withdrawals_sum:
-          title: Amount of Branch Cash Withdrawals
-          description: Amount of branch cash withdrawals from a physical location.
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        cash_balance_trend_30d:
-          title: 30-Day Cash Balance Trend
-          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-30 to t-16) - (Mean cash balance t-15 to t-1) ) / standard deviation of cash balance over t-30 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-        cash_balance_trend_60d:
-          title: 60-Day Cash Balance Trend
-          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-60 to t-31) - (Mean cash balance t-30 to t-1) ) / standard deviation of cash balance over t-60 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-        cash_balance_trend_90d:
-          title: 90-Day Cash Balance Trend
-          description: 'The normalized change in daily cash balance over time. Used to measure the change in cash balances for a business in different environments. ((Mean cash balance t-90 to t-46) - (Mean cash balance t-45 to t-1) ) / standard deviation of cash balance over t-90 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-        cash_expense_days_by_month:
-          title: Cash Expense Days by Month
-          description: 'Cash expense days grouped by month. Measures the amount of runway a business has given its operating expenses. Cash expense days = (average daily balance)/(average daily expense) Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-key-pattern: ^\d{2}/\d{4}$
-        cash_flow_trend_30d:
-          title: 30-Day Cash Flow Trend
-          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-30 to t-16) - (Mean cash flow t-15 to t-1) ) / standard deviation of cash flow over t-30 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        cash_flow_trend_60d:
-          title: 60-Day Cash Flow Trend
-          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-60 to t-31) - (Mean cash flow t-30 to t-1) ) / standard deviation of cash flow over t-60 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        cash_flow_trend_90d:
-          title: 90-Day Cash Flow Trend
-          description: 'The normalized change in daily cash flow over time. Used to measure the change in profitability for a business in different environments. ((Mean cash flow t-90 to t-46) - (Mean cash flow t-45 to t-1) ) / standard deviation of cash flow over t-90 to t-1
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        casino_lottery_num:
-          title: Number of Casino & Lottery Transactions
-          description: 'The number of credit transactions originating from casino or lottery winnings.
-
-            '
-          type: integer
-          minimum: 0
-          x-metric-category: Fraud & Questionable Data
-        casino_lottery_sum:
-          title: Number of Casino & Lottery Transactions
-          description: 'The total amount of credit transactions originating from casino or lottery winnings.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Fraud & Questionable Data
-        checks_highest_incidence:
-          title: Amount of check with highest incidence
-          description: 'Most commonly occurring check amount and the number of such occurrences in form `[amount, num_occurences]`. If no checks were received in this bank statement, will have a value of `["0.00", 0]`.
-
-            '
-          type: array
-          minItems: 2
-          maxItems: 2
-          x-type-description-override: Two-element array of `[string, int]`.
-          items:
-            anyOf:
-            - type: string
-              pattern: ^[+-]?\d+(\.\d{1,2})?$
-            - type: integer
-              minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        checks_num:
-          title: Number of Checks
-          description: Number of checks
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        credit_card_payments_num:
-          title: Number of Credit Card Payments
-          description: Number of Credit Card Payments
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        credit_card_payments_sum:
-          title: Amount of Credit Card Payments
-          description: Amount of Credit Card Payments
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        daily_balances:
-          title: Running Daily Balance
-          description: 'A list of the daily ending balances for every day. Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
-        daily_cash_flows:
-          title: Daily Cash Flow List
-          description: 'A list of net cash flows for each available date. Net Cash Flow = Credits - Debits. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
-
-            Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
-        daily_cash_flows_weekday:
-          title: Weekday Cash Flow List
-          description: 'A list of net cash flows for each available weekday. Net Cash Flow = Credits - Debits. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt. Each key is a string representing a date, using the regex `^\d{2}/\d{2}/\d{4}$` (i.e `MM/DD/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{2}/\d{4}$
-        debt_consolidator_txns:
-          title: Debt Consolidator Transactions
-          description: A list of all transactions to/from debt consolidation (refinancing) companies.
-          x-metric-category: Competition & Debt Capacity
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deposit_count:
-          title: Deposit Count
-          description: The total number of credit transactions.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        deposit_max_by_month:
-          title: Max Deposit by Month
-          description: 'The credit transactions with the largest amount grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        deposit_min_by_month:
-          title: Min Deposit by Month
-          description: 'The credit transactions with the smallest amount grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        deposit_sum:
-          title: Deposit Sum
-          description: Sum of all credit transactions
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        deposits_count_by_month:
-          title: Total Deposits Count by Month
-          description: 'The count of all credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: integer
-            minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        deposits_sum_by_month:
-          title: Total Deposits Sum by Month
-          description: 'The sum of all credit transactions grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        equipment_lease_payments_num:
-          title: Number of Equipment Lease Payments
-          description: Number of outflow transactions to equipment leasing companies
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        equipment_lease_payments_sum:
-          title: Amount of Equipment Lease Payments
-          description: Total amount of outflow transactions to equipment leasing companies
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        estimated_daily_expense_by_month:
-          title: Estimated Daily Expense by Month
-          description: 'Estimated daily expenses grouped by month. Important for understanding the costs required to operate the business as well as the firm''s ability to adapt spending during a period of disruption. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        estimated_daily_revenue_by_month:
-          title: Estimated Daily Revenue by Month
-          description: "Estimated daily revenue grouped by month. Important for understanding the magnitude of revenue, trend of revenue, and the resilience of revenue to the present situation. \nEach key is a string representing a month and a year, using the regex `^\\d{2}/\\d{4}$` (i.e `MM/YYYY`).\n"
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        estimated_expense_by_month:
-          title: Estimated Expense by Month
-          description: 'Estimated monthly expenses grouped by calendar month. Important for understanding the costs required to operate the business as well as the firm''s ability to adapt spending during a period of disruption. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        estimated_expense_txns_list:
-          title: Estimated Expense Transactions
-          description: List of transactions included in estimated expense calculations.
-          type: array
-          x-metric-category: Transaction-Level Data
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        estimated_revenue_by_month:
-          title: Estimated Revenue by Month
-          type: object
-          description: 'The estimated revenue of the business grouped by calendar month. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as "Refund", "Reversal", "Cash Back", "Return", and about 20 others.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        estimated_revenue_by_month_calc_txns:
-          $ref: '#/components/schemas/EstimatedRevenueCalculationTransactionsByMonth'
-        estimated_revenue_txns_list:
-          title: Estimated Revenue Transactions
-          description: 'The ungrouped list of credit transactions that comprise the estimated revenue of the applicant.
-
-            '
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          x-metric-category: Transaction-Level Data
-        factor_txns:
-          title: Factoring Transactions
-          description: 'A list of all transactions to/from invoice factoring companies.
-
-            '
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          x-metric-category: Competition & Debt Capacity
-        holder_address_1:
-          title: Bank account holder address (Line 1)
-          description: 'The primary address of the person or entity who owns this bank account.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-        holder_address_2:
-          title: Bank account holder address (Line 2)
-          description: 'Extra address information about the owner of this bank account, usually about a particular suite or office. Will be `null` if not provided.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-          nullable: true
-        holder_city:
-          title: Bank account holder city
-          description: 'The town or city of the account holder''s address.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-        holder_country:
-          title: Bank account holder country
-          description: 'The captured country of residence of the account holder. We only support American bank statements at this time.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-        holder_state:
-          title: Bank account holder state
-          description: 'The captured state or territory of the account holder.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-        holder_zip:
-          title: Bank account holder ZIP
-          description: 'The captured postal code of the account holder.
-
-            '
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: string
-        id:
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: integer
-          deprecated: true
-        insurance_credits:
-          title: Insurance Credits
-          description: A list of all positive transactions from insurance providers.
-          x-metric-category: Transaction-Level Data
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          minItems: 0
-        insurance_debits:
-          title: Insurance Debits
-          description: A list of all negative transactions from insurance providers.
-          x-metric-category: Transaction-Level Data
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          minItems: 0
-        insurance_payments_num:
-          title: Number of insurance payments
-          description: Number of insurance payments
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        insurance_payments_sum:
-          title: Amount of insurance payments
-          description: Amount of insurance payments
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        insurance_terms:
-          title: Insurance Terms
-          description: 'A list of negative transactions associated with insurance companies.
-
-            '
-          type: array
-          minItems: 0
-          x-metric-category: Cash Inflows & Outflows
-          items:
-            $ref: '#/components/schemas/Transaction'
-        interbank_transactions:
-          title: List of Interbank Transactions
-          description: A list of all transactions to/from any bank or financial institution.
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        lottery_withdrawals_num:
-          title: Number of Lottery Withdrawals
-          description: Number of outflow transactions spent on lottery
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        lottery_withdrawals_sum:
-          title: Amount of insurance payments
-          description: Total amount of outflow transactions spent on lottery
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        mca_payments_by_month:
-          title: MCA Payments by Month
-          description: 'Debits (i.e. payments) made to merchant cash advance lenders, broken out by month. Provides context into a customer''s access to competitive financing as well as debt service requirements. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Competition & Debt Capacity
-          x-key-pattern: ^\d{2}/\d{4}$
-        merchant_cash_advance_lender_txns:
-          title: Merchant Cash Advance Transactions
-          description: A list of all transactions to/from merchant cash advance companies.
-          x-metric-category: Competition & Debt Capacity
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        merchant_service_deposits_num:
-          title: Number of merchant service deposits (Card)
-          description: 'Total number of merchant service deposits (positive transactions matching with merchant service terms) in the bank account
-
-            '
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        merchant_service_deposits_sum:
-          title: Amount of merchant service deposits (Card)
-          description: 'The sum of merchant service deposit transactions amounts (positive transactions matching with merchant service terms) in the bank account
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        minimum_balance_by_month:
-          title: Minimum Balance by Month
-          description: 'The lowest end-of-day balance in a calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{4}$
-        name:
-          title: Name
-          description: Name of the Book or bank account
-          type: string
-          minLength: 0
-          x-pii: true
-        negative_balances_by_month:
-          title: List of Days Negative Balance by Month
-          description: 'The list of all days in which the daily ending balance fell below zero grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`). Months with no days ending with a negative balance are represented with empty arrays.
-
-            '
-          additionalProperties:
-            type: array
-            items:
-              type: string
-              pattern: ^\d{2}/\d{2}/\d{4}$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{4}$
-        negative_balances_by_month_weekday:
-          title: List of Weekdays with Negative Balance by Month
-          description: 'The list of all weekdays in which the daily ending balance fell below zero grouped by calendar month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`). Months with no days ending with a negative balance are represented with empty arrays.
-
-            '
-          additionalProperties:
-            type: array
-            items:
-              type: string
-              pattern: ^\d{2}/\d{2}/\d{4}$
-          x-metric-category: Cash Balances
-          x-key-pattern: ^\d{2}/\d{4}$
-        negative_balances_weekday:
-          title: List of Weekdays with Negative Balances
-          description: The list of all weekdays in which the daily ending balance fell below zero
-          type: array
-          minItems: 0
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        negative_cash_flows:
-          title: List of Negative Cash Flow Days
-          description: List of dates where net cash flows (defined as credits - debits) are negative.
-          type: array
-          minItems: 0
-          x-metric-category: Cash Inflows & Outflows
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        negative_cash_flows_weekday:
-          title: List of Negative Cash Flow Weekdays
-          description: List of weekdays where net cash flows (defined as credits - debits) are negative.
-          type: array
-          minItems: 0
-          x-metric-category: Cash Inflows & Outflows
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        net_cash_flows_by_month:
-          title: Net Cash Flow By Month
-          minProperties: 0
-          description: 'The net cash flow grouped by month, where `Net Cash Flow = Credits - Debits`.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-key-pattern: ^\d{2}/\d{4}$
-        non_estimated_revenue_txns_list:
-          title: Deposits Not Included in Estimated Revenue
-          description: The list of credit transactions that are excluded from the “Estimated Revenue by Month” calculation.
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        nsf_count:
-          title: NSF Count
-          description: 'The number of unique NSF & Overdraft fees for each bank account. This is especially useful with institutions that lump NSF fees into one transaction.
-
-            '
-          x-metric-category: Overdrafts/NSF
-          type: integer
-          minimum: 0
-        nsf_count_by_month:
-          title: NSF Count by Month
-          description: 'The number of unique NSF fees grouped by month. This is especially useful with institutions that lump NSF fees into one transaction. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Overdrafts/NSF
-          x-key-pattern: ^\d{2}/\d{4}$
-        nsf_transactions:
-          title: List of NSF Transactions
-          description: A list of transactions associated with non-sufficient funds and overdraft transactions.
-          x-metric-category: Overdrafts/NSF
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        nsf_transactions_paid_or_negative_balance:
-          title: NSF Transactions Paid Or Negative Balance
-          description: A list of transactions associated with overdraft transactions.
-          x-metric-category: Overdrafts/NSF
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        nsf_transactions_paid_or_negative_balance_count_by_month:
-          title: NSF Transactions Paid Or Negative Balance Count
-          description: 'The count of transactions associated with overdraft transactions grouped by month Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: integer
-            minimum: 0
-          x-metric-category: Overdrafts/NSF
-          x-key-pattern: ^\d{2}/\d{4}$
-        nsf_transactions_returned_or_not_paid:
-          title: NSF Transactions Returned Or Not Paid
-          description: 'A list of transactions associated with returned and/or unpaid items due to NSF fees.
-
-            '
-          x-metric-category: Overdrafts/NSF
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        nsf_transactions_returned_or_not_paid_count_by_month:
-          title: NSF Transactions Returned Or Not Paid Month
-          description: 'The count of transactions associated with returned and/or unpaid items due to NSF fees grouped by month. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: integer
-            minimum: 0
-          x-metric-category: Overdrafts/NSF
-          x-key-pattern: ^\d{2}/\d{4}$
-        outside_source_deposits:
-          title: List of Deposits from Outside Sources
-          description: The list of credit transactions that are not transfers
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        paypal_num:
-          title: Number of Paypal Transactions
-          description: Number of Paypal Transactions
-          deprecated: true
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        paypal_sum:
-          title: Amount of Paypal Transactions
-          description: Amount of Paypal Transactions
-          deprecated: true
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        payroll:
-          title: Payroll
-          description: A list of all transactions from payroll providers.
-          type: array
-          minItems: 0
-          x-metric-category: Transaction-Level Data
-          items:
-            $ref: '#/components/schemas/Transaction'
-        payroll_num:
-          title: Number of Payroll Payments
-          description: 'For business account only, the total number of payroll transactions (negative transactions matching with payroll term list) in the bank account
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        payroll_sum:
-          title: Amount of Payroll Payments
-          description: 'For business account only, the sum of payroll transactions'' amounts (negative transactions matching with payroll term list) in the bank account
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        period_balance_mismatches:
-          title: Period Balance Mismatches
-          description: 'An indication of gaps between statement periods captured in the bank account.
-
-            '
-          x-metric-category: Fraud & Questionable Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/PeriodBalanceMismatch'
-        periods:
-          title: Period Level Analytics
-          description: Contains list of period level JSONs
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/PeriodAnalytics'
-        pk:
-          title: Primary Key
-          description: A unique identifying integer.
-          type: integer
-          format: uint64
-          x-pii: true
-        ppp_loan_txns:
-          title: PPP Loan Transactions
-          description: A list of credit transactions associated with the SBA Payroll Protection Program
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        probable_recurring_txns:
-          title: Probable Recurring Transactions
-          description: 'A list of transactions with the same dollar value that are greater than $10 and occur two or more times within 45 days.
-
-            '
-          type: array
-          minItems: 0
-          x-metric-category: Transaction-Level Data
-          items:
-            $ref: '#/components/schemas/Transaction'
-        recurring_vs_episodic_inflows_by_month:
-          title: Recurring Inflow Ratio
-          description: 'The ratio of total recurring credit transactions to total non-recurring credit transactions. Demonstrates stability of revenues. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        recurring_vs_episodic_outflows_by_month:
-          title: Recurring Outflow Ratio
-          description: 'The ratio of total recurring debit transactions to total non-recurring debit transactions. Measures fixed expenses. Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        remote_deposits_num:
-          title: Number of remote capture deposits
-          description: 'Total number of remote deposits in the bank account
-
-            '
-          deprecated: true
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        remote_deposits_sum:
-          title: Amount of remote capture deposits
-          description: 'Sum of remote deposit amounts in the bank account
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          deprecated: true
-        returned_items:
-          title: Returned Items
-          deprecated: true
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        round_number_txns:
-          title: List of Transactions Ending in 5 Zeros or More
-          description: 'A list of transactions that end in at least five zeroes, e.g., $1,000.00.
-
-            '
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        state_tax_payments_num:
-          title: Number of state tax payments
-          description: Number of tax payments that are not US tax payments
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-          deprecated: true
-        state_tax_payments_sum:
-          title: Amount of state tax payments
-          description: Amount of tax payments that are not US tax payments
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          deprecated: true
-        suspicious_activities:
-          $ref: '#/components/schemas/SuspiciousActivities'
-        tolls_num:
-          title: Number of toll payments (EZ Pass, Tollway, etc)
-          description: Number of toll payments
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        tolls_sum:
-          title: Amount of toll payments
-          description: Amount of toll payments
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        total_days:
-          title: Total Days
-          description: 'The total number of days in all statement periods captured in the bank account.
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        transfer:
-          $ref: '#/components/schemas/Transfers'
-        transfer_num:
-          title: Number of Transfers
-          description: 'Total number of transfer transactions (positive and negative transactions matching with transfer term list) in the bank account
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: integer
-          minimum: 0
-        transfer_sum:
-          title: Amount of Transfers
-          description: 'Sum of transfer transactions'' amounts (positive and negative transactions matching with transfer term list) in the bank account
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        txn_count:
-          title: Transaction Count
-          description: The total number of transactions in a bank account.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        txn_four_zeros:
-          title: Number of transactions ending in 4 zeros (00.00)
-          description: Number of transactions ending in 4 zeros (00.00)
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        usa_tax_payments_num:
-          title: Number of USA Tax Payments
-          description: 'Number of US tax payments
-
-            '
-          deprecated: true
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        usa_tax_payments_sum:
-          title: Amount of USA Tax Payments
-          description: Amount of US tax payments
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        venmo_zelle_cashapp_num:
-          title: Number of Venmo, Zelle, and Cash App Transactions
-          description: 'Total number of transactions that include terms such as Venmo, Zelle or Cash App
-
-            '
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        venmo_zelle_cashapp_sum:
-          title: Amount of Venmo, Zelle, and Cash App Transactions
-          description: Sum of amounts for Venmo, Zelle and Cash App transactions
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        withdrawal_count:
-          title: Withdrawal Count
-          description: The total number of debit transactions.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        withdrawal_sum:
-          title: Withdrawal Sum
-          description: The total monetary value of debits
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        withdrawals:
-          title: Withdrawals
-          description: The list of all debits transactions from a bank account.
-          x-metric-category: Transaction-Level Data
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        withdrawals_max_by_month:
-          title: Max Withdrawals by Month
-          description: 'The debit transaction(s) with the most negative amount grouped by month.
-
-            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
-
-            '
-          additionalProperties:
-            type: array
-            minItems: 0
-            items:
-              $ref: '#/components/schemas/Transaction'
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
-        withdrawals_sum_by_month:
-          title: Total Withdrawals Sum by Month
-          description: 'The sum of all debit transactions grouped by calendar month.
-
-            '
-          additionalProperties:
-            type: string
-            pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-          x-key-pattern: ^\d{2}/\d{4}$
+      uniqueItems: true
+      deprecated: true
+      items:
+        type: string
+        enum:
+        - atm_withdrawals_num
+        - atm_withdrawals_sum
+        - branch_withdrawals_num
+        - branch_withdrawals_sum
+        - casino_lottery_num
+        - casino_lottery_sum
+        - checks_highest_incidence
+        - checks_num
+        - credit_card_payments_num
+        - credit_card_payments_sum
+        - daily_cash_flows_weekday
+        - equipment_lease_payments_num
+        - equipment_lease_payments_sum
+        - insurance_payments_num
+        - insurance_payments_sum
+        - lottery_withdrawals_num
+        - lottery_withdrawals_sum
+        - merchant_service_deposits_num
+        - merchant_service_deposits_sum
+        - paypal_num
+        - paypal_sum
+        - payroll_num
+        - payroll_sum
+        - remote_deposits_num
+        - remote_deposits_sum
+        - state_tax_payments_num
+        - state_tax_payments_sum
+        - tolls_num
+        - tolls_sum
+        - transfer_num
+        - transfer_sum
+        - txn_four_zeros
+        - usa_tax_payments_num
+        - usa_tax_payments_sum
+        - venmo_zelle_cashapp_num
+        - venmo_zelle_cashapp_sum
     AnalyticsRequestStatus:
       type: string
       description: 'The current state of the asynchronous analytics request.
@@ -20623,6 +20911,160 @@ components:
       - The request has completed and the resulting analytics object is enclosed.
       - The request is still being processed. Check back later.
       - The request has been processed, and the window of time to retrieve the results has passed. If you still need the data returned by this request, submit a new one.
+    EstimatedRevenueCalculationTransactionsByMonth:
+      title: Estimated Revenue Calculation Transactions by Month
+      description: 'The list of credit transactions used to calculate estimated revenues grouped by category and calendar month.
+
+        estimated_revenue = all credits - revenue_deducted -  transfer + revenue_included - alternative_lender + factoring The estimated revenue of the business grouped by calendar month. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as "Refund", "Reversal", "Cash Back", "Return", and about 20 others.
+
+        '
+      x-metric-category: Transaction-Level Data
+      required:
+      - added_factoring_txns
+      - added_specific_terms_txns
+      - deposits
+      - deducted_alternative_lender_txns
+      - deducted_specific_terms_txns
+      - deducted_transfer_deposit_txns
+      properties:
+        added_factoring_txns:
+          description: 'Credit transactions identified as factoring. Added to the total revenue estimate.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+        added_specific_terms_txns:
+          description: 'Credit transactions that are *likely* to be revenue deposits. We maintain a list of terms that signal this quality. Transactions with a description that includes one of these phrases are included here.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+        deposits:
+          description: 'Credit transactions identified as deposits, for use in revenue estimations.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+        deducted_alternative_lender_txns:
+          description: 'Credit transactions identified as alternative lending. Deducted from the total revenue estimate.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+        deducted_specific_terms_txns:
+          description: 'Credit transactions that are *unlikely* to be revenue deposits. We maintain a list of terms that signal this quality, such as "Refund", "Reversal", "Cash Back", and "Return". Transactions with a description that includes one of these phrases are included here.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+        deducted_transfer_deposit_txns:
+          description: 'Credit transactions identified as transfers. Deducted from the total revenue estimate.
+
+            Each key is a string representing a month and a year, using the regex `^\d{2}/\d{4}$` (i.e `MM/YYYY`).
+
+            '
+          additionalProperties:
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/components/schemas/Transaction'
+          x-key-pattern: ^\d{2}/\d{4}$
+    PeriodBalanceMismatch:
+      type: object
+      description: An indication of gaps between statement periods captured in the bank account.
+      properties:
+        begin_date:
+          type: string
+          description: The starting date of the unaccounted-for statement period.
+          pattern: ^\d{2}/\d{2}/\d{4}$
+        begin_balance:
+          type: string
+          description: The starting balance of the unaccounted-for statement period.
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+        end_date:
+          type: string
+          description: The ending date of the unaccounted-for statement period.
+          pattern: ^\d{2}/\d{2}/\d{4}$
+        end_balance:
+          type: string
+          description: The ending balance of the unaccounted-for statement period.
+          pattern: ^[+-]?\d+(\.\d{1,2})?$
+    ActivityInfo:
+      description: 'A series of date ranges indicating periods of activity and inactivity in a bank account.
+
+        '
+      required:
+      - active
+      - missing
+      type: object
+      properties:
+        active:
+          type: array
+          minItems: 0
+          description: Series of date ranges during which this bank account shows activity.
+          items:
+            $ref: '#/components/schemas/DatePartRange'
+        missing:
+          type: array
+          minItems: 0
+          description: Series of date ranges during which this bank account _does not_ show activity.
+          items:
+            $ref: '#/components/schemas/DatePartRange'
+    DateParts:
+      description: An object encoding of dates in activity ranges.
+      required:
+      - year
+      - month
+      - day
+      properties:
+        year:
+          type: integer
+          minimum: 1900
+          description: The year represented by this date object.
+        month:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: 'The month represented by this date object. 1 represents January, and 12 represents December.
+
+            '
+        day:
+          type: integer
+          minimum: 1
+          maximum: 31
+          description: 'The day of the month represented by this date object. 1 represents the first day of the month.
+
+            '
     Transaction:
       description: 'Detailed information about a specific credit or debit within a bank account.
 
@@ -20703,481 +21145,19 @@ components:
           description: 'Details about the transaction that were captured from the original bank statement.
 
             '
-    SuspiciousActivities:
-      title: Suspicious Activities
-      deprecated: true
-      description: 'Suspicious activity flags.
-
-        Deprecated because this represents legacy detection. We suggest using our dedicated [Suspicious Activity Flags](ref:suspicious-activity), which reveals suspicious activity signals with much greater accuracy and fidelity than offered by this attribute.
-
-        '
-      required:
-      - has_weekend_transactions
-      - high_amount_average_daily_balance
-      - balance_ending_with_zero
-      - no_txn_in_weekdays_within_period
-      - high_txns_amount_atm_over_cash
-      - high_txns_count_atm_over_cash
-      properties:
-        has_weekend_transactions:
-          type: boolean
-        high_amount_average_daily_balance:
-          type: boolean
-        balance_ending_with_zero:
-          type: boolean
-        no_txn_in_weekdays_within_period:
-          type: boolean
-        high_txns_amount_atm_over_cash:
-          type: boolean
-        high_txns_count_atm_over_cash:
-          type: boolean
-    EstimatedRevenueCalculationTransactions:
-      title: Estimated Revenue Calculation Transactions
-      description: 'The list of credit transactions that comprise the estimated revenue calculations for the business.
-
-        '
-      properties:
-        added_factoring_txns:
-          type: array
-          description: 'Credit transactions identified as factoring. Added to the total revenue estimate.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        added_specific_terms_txns:
-          type: array
-          description: 'Credit transactions that are *likely* to be revenue deposits. We maintain a list of terms that signal this quality. Transactions with a description that includes one of these phrases are included here.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deposits:
-          type: array
-          description: Credit transactions identified as deposits, for use in revenue estimations.
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deducted_alternative_lender_txns:
-          type: array
-          description: 'Credit transactions identified as alternative lending. Deducted from the total revenue estimate.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deducted_specific_terms_txns:
-          type: array
-          description: 'Credit transactions that are unlikely to be revenue deposits. We maintain a list of terms that signal this quality, such as "Refund", "Reversal", "Cash Back", and "Return". Transactions with a description that includes one of these phrases are included here.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deducted_transfer_deposit_txns:
-          type: array
-          description: 'Credit transactions identified as transfers. Deducted from the total revenue estimate.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-    Transfers:
-      title: Transfers
-      description: The list of all transfers to or from a bank account.
-      x-metric-category: Transaction-Level Data
-      required:
-      - debit_transfer
-      - credit_transfer
-      properties:
-        debit_transfer:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        credit_transfer:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-    ExtraFields:
-      type: array
-      description: 'A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.
-
-
-        Future revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.
-
-        '
-      uniqueItems: true
-      deprecated: true
-      items:
-        type: string
-        enum:
-        - atm_withdrawals_num
-        - atm_withdrawals_sum
-        - branch_withdrawals_num
-        - branch_withdrawals_sum
-        - casino_lottery_num
-        - casino_lottery_sum
-        - checks_highest_incidence
-        - checks_num
-        - credit_card_payments_num
-        - credit_card_payments_sum
-        - daily_cash_flows_weekday
-        - equipment_lease_payments_num
-        - equipment_lease_payments_sum
-        - insurance_payments_num
-        - insurance_payments_sum
-        - lottery_withdrawals_num
-        - lottery_withdrawals_sum
-        - merchant_service_deposits_num
-        - merchant_service_deposits_sum
-        - paypal_num
-        - paypal_sum
-        - payroll_num
-        - payroll_sum
-        - remote_deposits_num
-        - remote_deposits_sum
-        - state_tax_payments_num
-        - state_tax_payments_sum
-        - tolls_num
-        - tolls_sum
-        - transfer_num
-        - transfer_sum
-        - txn_four_zeros
-        - usa_tax_payments_num
-        - usa_tax_payments_sum
-        - venmo_zelle_cashapp_num
-        - venmo_zelle_cashapp_sum
-    DateParts:
-      description: An object encoding of dates in activity ranges.
-      required:
-      - year
-      - month
-      - day
-      properties:
-        year:
-          type: integer
-          minimum: 1900
-          description: The year represented by this date object.
-        month:
-          type: integer
-          minimum: 1
-          maximum: 12
-          description: 'The month represented by this date object. 1 represents January, and 12 represents December.
-
-            '
-        day:
-          type: integer
-          minimum: 1
-          maximum: 31
-          description: 'The day of the month represented by this date object. 1 represents the first day of the month.
-
-            '
-    PeriodAnalytics:
-      description: 'Analytics for a contiguous time period described on a bank statement. Non-contiguous periods are represented with multiple objects of this type.
-
-        '
-      required:
-      - alternative_lender_transactions
-      - average_amount
-      - average_daily_balance
-      - average_daily_balance_weekday
-      - average_daily_cash_flow
-      - average_daily_cash_flow_weekday
-      - average_deposit
-      - bank_account_pk
-      - begin_balance
-      - begin_date
-      - deposit_count
-      - deposit_max
-      - deposit_min
-      - deposit_sum
-      - end_balance
-      - end_date
-      - estimated_revenue
-      - estimated_revenue_calc_txns
-      - negative_balances
-      - negative_balances_weekday
-      - negative_cash_flows
-      - negative_cash_flows_weekday
-      - nsf_count
-      - nsf_transactions_paid_or_negative_balance_count
-      - payroll
-      - period_month_days
-      - period_month_txns
-      - pk
-      - primary_recon_error_reason
-      - secondary_recon_error_reason
-      - txn_count
-      - uploaded_doc_pk
-      - withdrawal_count
-      - withdrawal_sum
-      - withdrawals_max
-      properties:
-        alternative_lender_transactions:
-          title: List of Alternative Lender Transactions
-          description: 'A list of all transactions to/from alternative lenders, including small business lenders, personal lenders, and mortgage players. This list also includes transactions relating to Merchant Cash Advance and Factoring, though these are separately filtered in unique lists for Merchant Cash Advance Transactions and Factoring Transactions.
-
-            '
-          minItems: 0
-          x-metric-category: Competition & Debt Capacity
-          items:
-            $ref: '#/components/schemas/Transaction'
-        average_amount:
-          title: Average Amount
-          description: The average absolute value of transaction amounts in a statement period.
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        average_daily_balance:
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          title: Average Daily Balance
-          description: The average daily ending balance (including weekends).
-          x-metric-category: Cash Balances
-        average_daily_balance_weekday:
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          title: Average Daily Balance (Weekdays)
-          description: The average daily ending balance of weekdays.
-          x-metric-category: Cash Balances
-        average_daily_cash_flow:
-          title: Average Daily Cash Flow
-          description: 'Average daily net cash flow, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        average_daily_cash_flow_weekday:
-          title: Average Weekday Cash Flows
-          description: 'Average daily net cash flow on weekdays, where `Net Cash Flow = Credits - Debits`. Important to understand if the business is running a surplus or deficit and how much free cash flow may be available for servicing new debt.
-
-            '
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        average_deposit:
-          title: Average Deposit
-          description: The average value of credit transactions
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        bank_account_pk:
-          title: Bank Account Primary Key
-          x-pii: true
-          x-metric-category: PII/Metadata
-          type: integer
-          format: uint64
-        begin_balance:
-          title: Begin Balance
-          description: 'The beginning balance of the statement period captured from the summary section of a bank statement.
-
-            '
-          x-metric-category: Cash Balances
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-pii: true
-        begin_date:
-          title: Begin Date
-          description: 'The beginning date of the statement period captured from the summary section of a bank statement.
-
-            '
-          x-pii: true
-          type: string
-          pattern: ^\d{2}/\d{2}/\d{4}$
-        deposit_count:
-          title: Deposit Count
-          description: The total number of credit transactions.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        deposit_max:
-          title: Maximum Deposit
-          description: The credit txn(s) with the largest amount
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deposit_min:
-          title: Minimum Deposit
-          description: The credit txn(s) with the smallest amount
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-        deposit_sum:
-          title: Deposit Sum
-          description: Sum of all credit transactions
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        end_balance:
-          title: End Balance
-          description: 'The ending balance of the statement period captured from the summary section of a bank statement.
-
-            '
-          x-metric-category: Cash Balances
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-pii: true
-        end_date:
-          title: End Date
-          description: 'The ending date of the statement period captured from the summary section of a bank statement.
-
-            '
-          type: string
-          pattern: ^\d{2}/\d{2}/\d{4}$
-          x-pii: true
-        estimated_revenue:
-          title: Estimated Revenue
-          description: 'The estimated revenue of the business. This is calculated by summing together all credit transactions, then removing all transfer credits (except for wire transfers), all alternative lender credits (except for factoring credits), and all transactions that contain words that signify that they are not revenue deposits. This includes words such as Refund, Reversal, Cash Back, Return, and about 20 others.
-
-            '
-          x-metric-category: Cash Inflows & Outflows
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        estimated_revenue_calc_txns:
-          $ref: '#/components/schemas/EstimatedRevenueCalculationTransactions'
-        negative_balances:
-          title: List of Negative Balances
-          description: The list of all days in which the daily ending balance fell below zero
-          type: array
-          minItems: 0
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        negative_balances_weekday:
-          title: List of Weekdays with Negative Balances
-          description: The list of all weekdays in which the daily ending balance fell below zero
-          type: array
-          minItems: 0
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        negative_cash_flows:
-          title: List of Negative Cash Flow Days
-          description: List of dates where net cash flows (defined as credits - debits) are negative.
-          type: array
-          minItems: 0
-          x-metric-category: Cash Inflows & Outflows
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        negative_cash_flows_weekday:
-          title: List of Negative Cash Flow Weekdays
-          description: List of weekdays where net cash flows (defined as credits - debits) are negative.
-          type: array
-          minItems: 0
-          x-metric-category: Cash Inflows & Outflows
-          items:
-            type: string
-            pattern: ^\d{2}/\d{2}/\d{4}$
-        nsf_count:
-          title: NSF Count
-          description: 'The number of unique NSF & Overdraft fees for each bank account. This is especially useful with institutions that lump NSF fees into one transaction.
-
-            '
-          x-metric-category: Overdrafts/NSF
-          type: integer
-          minimum: 0
-        nsf_transactions_paid_or_negative_balance_count:
-          title: NSF Transactions Paid Or Negative Balance Count
-          description: The count of transactions associated with overdraft transactions.
-          x-metric-category: Overdrafts/NSF
-          type: integer
-          minimum: 0
-        nsf_transactions_returned_or_not_paid_count:
-          title: NSF Transactions Returned Or Not Paid Count
-          description: The count of transactions associated with returned and/or unpaid items due to NSF fees.
-          x-metric-category: Overdrafts/NSF
-          type: integer
-          minimum: 0
-        payroll:
-          type: string
-          description: 'The sum of payroll transaction amounts within this period.
-
-            '
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-        period_month_days:
-          title: Period Day Count by Month
-          description: Number of days in the period grouped by month
-          additionalProperties:
-            type: integer
-            minimum: 0
-          x-key-pattern: ^\d{2}/\d{4}$
-        period_month_txns:
-          title: Period Transaction Count by Month
-          description: Number of transactions in the period grouped by month
-          additionalProperties:
-            type: integer
-            minimum: 0
-          x-key-pattern: ^\d{2}/\d{4}$
-        pk:
-          title: Primary Key
-          description: A unique identifying integer.
-          type: integer
-          format: uint64
-          x-pii: true
-        primary_recon_error_reason:
-          title: Primary Reconciliation Error Reason
-          description: Manual verifier flag for suspicious activity after inspection
-          default: None
-          type: string
-        secondary_recon_error_reason:
-          title: Secondary Reconciliation Error Reason
-          description: Manual verifier flag for suspicious activity after inspection
-          type: string
-          deprecated: true
-        txn_count:
-          title: Transaction Count
-          description: The total number of transactions in a bank account.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        uploaded_doc_pk:
-          title: Uploaded Document Primary Key
-          description: Unique identifying integer
-          x-pii: true
-          type: integer
-          format: uint64
-        withdrawal_count:
-          title: Withdrawal Count
-          description: The total number of debit transactions.
-          type: integer
-          minimum: 0
-          x-metric-category: Cash Inflows & Outflows
-        withdrawal_sum:
-          title: Withdrawal Sum
-          description: The total monetary value of debits
-          type: string
-          pattern: ^[+-]?\d+(\.\d{1,2})?$
-          x-metric-category: Cash Inflows & Outflows
-        withdrawals_max:
-          title: Max Withdrawal
-          description: The debit transaction(s) with the most negative amount
-          x-metric-category: Cash Inflows & Outflows
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/Transaction'
-    DatePartRange:
-      title: Date Part Range
-      type: object
-      description: 'A range of dates within activity info.
-
-        '
-      required:
-      - start
-      - end
-      properties:
-        start:
-          $ref: '#/components/schemas/DateParts'
-        end:
-          $ref: '#/components/schemas/DateParts'
   examples:
+    AnalyticsNotSupportError:
+      summary: Analytics Not Supported
+      value:
+        status: 400
+        code: 9002
+        message: Analytics is not supported for this type of case.
+    AnalyticsOnlySupportBankStatementsError:
+      summary: Bank Statements Only
+      value:
+        status: 400
+        code: 9003
+        message: Analytics (JSON) can only process analytics for bank statements
     SuccessV1AsyncAnalyticsResponse:
       value:
         status: 200
@@ -39220,12 +39200,6 @@ components:
                       month: 9
                       day: 9
                   missing: []
-    AnalyticsNotSupportError:
-      summary: Analytics Not Supported
-      value:
-        status: 400
-        code: 9002
-        message: Analytics is not supported for this type of case.
     SuccessV1AnalyticsResponse:
       value:
         status: 200
@@ -57265,12 +57239,29 @@ components:
                   month: 9
                   day: 9
               missing: []
-    AnalyticsOnlySupportBankStatementsError:
-      summary: Bank Statements Only
-      value:
-        status: 400
-        code: 9003
-        message: Analytics (JSON) can only process analytics for bank statements
+  parameters:
+    pk:
+      name: pk
+      in: query
+      description: 'The <<glossary:PK>> of the <<glossary:Book>> that contains the bank statements you''d like to have analyzed.
+
+        '
+      schema:
+        $ref: '#/components/schemas/pk'
+    extra_fields:
+      name: extra_fields
+      in: query
+      description: 'A list of extra analytics fields to include in the result. See [here](doc:extra-fields) for a full list. These fields are also listed in this documentation.
+
+
+        Future revisions of this endpoint will include these fields by default. This will _not_ constitute a [breaking change](doc:breaking-change-policy), so we may not give advance notice.
+
+        '
+      deprecated: true
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/ExtraFields'
   securitySchemes:
     oauth:
       type: oauth2
@@ -57281,3 +57272,7 @@ components:
         clientCredentials:
           tokenUrl: https://auth.ocrolus.com/oauth/token
           scopes: {}
+x-regexes:
+  money: ^[+-]?\d+(\.\d{1,2})?$
+  month: ^\d{2}/\d{4}$
+  date: ^\d{2}/\d{2}/\d{4}$
