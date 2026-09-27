@@ -34,9 +34,7 @@
     "ocrolus-tag-management-api-openapi.yml",
     "ocrolus-user-management-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [
     "ocrolus-analyze-openapi.json: dangling $ref: #/paths/~1v2~1analytics~1jobs~1%7Bjob_id%7D/get/responses/500/content/application~1json/examples/internal_server_error",
     "ocrolus-analyze-openapi.json: dangling $ref: #/paths/~1v2~1analytics~1jobs~1%7Bjob_id%7D/get/responses/500/content/application~1json/schema",
@@ -81,8 +79,7 @@
     "ocrolus-tag-management-openapi.json: declared missing tag: Tag Management",
     "ocrolus-user-management-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "ocrolus-user-management-openapi.json: declared missing tag: User management",
-    "superseded outputs removed: ocrolus-o-auth-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 16 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "ocrolus-book-commands-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -96,7 +93,7 @@
     "ocrolus-file-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ocrolus-income-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ocrolus-legacy-cash-flow-analytics-deprecated-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ocrolus-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ocrolus-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ocrolus-org-level-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ocrolus-tag-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ocrolus-user-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",

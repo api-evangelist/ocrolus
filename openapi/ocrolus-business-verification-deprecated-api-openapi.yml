@@ -471,6 +471,42 @@ paths:
                     description: Data potentially retained from the servor.
                     example: Successfully stored API key
 components:
+  examples:
+    SuccessBusinessVerification:
+      summary: Success
+      value:
+        book_uuid: c383ac62-61b8-43eb-a71f-88c8037ad681
+        business_uuid: 950335c1-1c55-432a-8be7-2961a03d0b5b
+        middesk_response:
+          object: business
+          id: 5966eefe-7ba5-4e98-9f95-1e8d0bca6ec6
+          name: Middesk
+          external_id: '12345678'
+          created_at: '2019-02-04T18:17:20.421Z'
+          updated_at: '2019-02-04T18:17:20.421Z'
+          status: pending
+          addresses:
+          - object: address
+            address_line1: 577 howard street
+            address_line2: suite 400
+            city: san francisco
+            state: CA
+            postal_code: '94105'
+            full_address: 577 howard st, suite 400, san francisco CA 94105
+            created_at: '2019-02-04T18:17:20.533Z'
+            updated_at: '2019-02-04T18:17:20.533Z'
+          people:
+          - object: person
+            name: Kyle Mack
+            submitted: true
+          phone_numbers:
+          - object: phone_number
+            phone_number: '6507970487'
+          website:
+            url: https://www.middesk.com
+          tin:
+            tin: 12-3410000
+          subscription: null
   schemas:
     SuccessBusinessVerification:
       title: Success
@@ -613,42 +649,6 @@ components:
               subscription:
                 type: string
                 example: null
-  examples:
-    SuccessBusinessVerification:
-      summary: Success
-      value:
-        book_uuid: c383ac62-61b8-43eb-a71f-88c8037ad681
-        business_uuid: 950335c1-1c55-432a-8be7-2961a03d0b5b
-        middesk_response:
-          object: business
-          id: 5966eefe-7ba5-4e98-9f95-1e8d0bca6ec6
-          name: Middesk
-          external_id: '12345678'
-          created_at: '2019-02-04T18:17:20.421Z'
-          updated_at: '2019-02-04T18:17:20.421Z'
-          status: pending
-          addresses:
-          - object: address
-            address_line1: 577 howard street
-            address_line2: suite 400
-            city: san francisco
-            state: CA
-            postal_code: '94105'
-            full_address: 577 howard st, suite 400, san francisco CA 94105
-            created_at: '2019-02-04T18:17:20.533Z'
-            updated_at: '2019-02-04T18:17:20.533Z'
-          people:
-          - object: person
-            name: Kyle Mack
-            submitted: true
-          phone_numbers:
-          - object: phone_number
-            phone_number: '6507970487'
-          website:
-            url: https://www.middesk.com
-          tin:
-            tin: 12-3410000
-          subscription: null
   securitySchemes:
     oauth:
       type: oauth2

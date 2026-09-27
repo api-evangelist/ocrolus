@@ -6544,21 +6544,41 @@ paths:
                   $ref: '#/components/examples/InternalServerError'
 components:
   examples:
-    BookNotBelongToOrganizationError:
-      summary: Book not associated with requesting organization
+    BusinessIdentityNotAssociatedWithBookError:
+      summary: No business entity associated with Book
       value:
-        message: The Book does not belong to the requesting organization.
-        status: 403
+        message: No business entity is associated with the given Book.
+        status: 404
     BusinessNotFoundError:
       summary: Business not found
       value:
         message: The requested business was not found.
         status: 404
+    InvalidBusinessIDFormatError:
+      summary: Invalid Business ID Format
+      value:
+        message: The provided business ID is not in a valid format.
+        status: 400
     InternalServerError:
       summary: Internal server error
       value:
         message: An internal server error occurred.
         status: 500
+    BookNotBelongToOrganizationError:
+      summary: Book not associated with requesting organization
+      value:
+        message: The Book does not belong to the requesting organization.
+        status: 403
+    InvalidBookUUIDFormatError:
+      summary: Invalid Book UUID Format
+      value:
+        message: The provided book UUID is not in a valid format.
+        status: 400
+    BusinessNotBelongToOrganizationError:
+      summary: Business not associated with requesting organization
+      value:
+        message: The Business does not belong to the requesting organization.
+        status: 403
     InvalidAuthError:
       summary: Invalid Authentication
       value:
@@ -6569,26 +6589,6 @@ components:
           status: 400
           msg: Authentication failed
           code: 1200
-    BusinessNotBelongToOrganizationError:
-      summary: Business not associated with requesting organization
-      value:
-        message: The Business does not belong to the requesting organization.
-        status: 403
-    InvalidBookUUIDFormatError:
-      summary: Invalid Book UUID Format
-      value:
-        message: The provided book UUID is not in a valid format.
-        status: 400
-    BusinessIdentityNotAssociatedWithBookError:
-      summary: No business entity associated with Book
-      value:
-        message: No business entity is associated with the given Book.
-        status: 404
-    InvalidBusinessIDFormatError:
-      summary: Invalid Business ID Format
-      value:
-        message: The provided business ID is not in a valid format.
-        status: 400
   securitySchemes:
     oauth:
       type: oauth2

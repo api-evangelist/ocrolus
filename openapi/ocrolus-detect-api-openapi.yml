@@ -482,60 +482,6 @@ paths:
                           description: A numerical code that indicates the nature of an error.
 components:
   schemas:
-    ErrorResponse:
-      description: 'Indicates an error returned by Detect.
-
-        '
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A human-readable description of the error.
-          minLength: 1
-    Signal:
-      description: 'Details about a suspected instance of fraudulent document manipulation and all accompanying data.
-
-        '
-      required:
-      - identifier
-      - display_name
-      - signal_count
-      - supporting_data
-      - page_number
-      properties:
-        identifier:
-          type: string
-          description: "An identifier that describes the type of suspected fraud signal. This value is stable and can be relied upon in your application logic. For a list of all possible values, [visit our guide on Detect Signals](https://docs.ocrolus.com/reference/signal-definition#identifier) \n"
-        display_name:
-          type: string
-          description: 'A human-friendly name for the fraud signal named in `identifier`. This value is unlikely to change, but you shouldn''t rely on it for application logic. You should display this value within your own application where applicable.
-
-            '
-        signal_count:
-          type: integer
-          minimum: 1
-          description: 'The number of fraud signals that we''ve identified. Will be the same as the length of the `supporting_data` array.
-
-            '
-        page_number:
-          type:
-          - integer
-          - 'null'
-          minimum: 1
-          description: 'The (one-indexed) number of the flagged page. Will be `null` if the fraud signal isn''t specific to any particular page, such as for inconsistent data or erroneous arithmetic.
-
-            This number refers to the index of the page within the document, rather than any number that''s captured from the page or its metadata. In other words, this value will be `1` for the first page of a document, even "Page 2" is written in one of its corners.
-
-            '
-        supporting_data:
-          type: array
-          minItems: 1
-          description: 'The specific captured data that supports a claim of fraudulent activity.
-
-            '
-          items:
-            $ref: '#/components/schemas/PageSupportingData'
     SignalAnalysis:
       description: 'The result of the fraud analysis that was requested for the provided <<glossary:Book>>.
 
@@ -561,132 +507,6 @@ components:
         book_dashboard_url:
           type: string
           description: A unique Ocrolus Dashboard URL that links directly to the Dashboard for the given <<glossary:Book>>.
-    SuspiciousActivityFlagsSuccessfulResponse:
-      title: Success
-      type: object
-      properties:
-        status:
-          type: integer
-          description: A numerical code that indicates the status of the request.
-        response:
-          type: object
-          description: An object received from the server that potentially contains data.
-          properties:
-            book_uuid:
-              type: string
-              description: Unique identifier of the <<glossary:Book>>.
-            suspicious_activity_results:
-              type: array
-              description: Details of the detected suspicious activities.
-              items:
-                type: object
-                properties:
-                  form_uuid:
-                    type: string
-                    description: Unique identifier of the form.
-                  form_type:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: Name of the form type.
-                  account_type:
-                    type: string
-                    description: Type of account associated with the form.
-                  flags:
-                    type: array
-                    description: Details of the individual suspicious activities flags.
-                    items:
-                      type: object
-                      properties:
-                        suspicious_activity_detected:
-                          type: boolean
-                          description: Whether suspicious activity was detected.
-                        reason:
-                          type: string
-                          description: Reason for the suspicious activity detection.
-                        suspicious_activity_location:
-                          type: object
-                          properties:
-                            upload_origin:
-                              type: string
-                              description: Origin of the upload.
-                            doc_uuid:
-                              type: string
-                              description: Unique identifier for the document.
-                            suspicious_activity_page_indexes:
-                              type: array
-                              items:
-                                type: integer
-                                description: Indexes of pages where suspicious activity was detected.
-        message:
-          type: string
-          description: A textual description that indicates details about this response's status.
-    DocumentAnalysis:
-      description: 'Represents signal analysis for a particular <<glossary:Document>> within a <<glossary:Book>>.
-
-        '
-      required:
-      - uploaded_doc_type
-      - detect_status
-      - uploaded_doc_uuid
-      - form_analysis
-      properties:
-        uploaded_doc_uuid:
-          type: string
-          format: uuid
-          description: 'The unique identifier of the uploaded document.
-
-            '
-        uploaded_doc_type:
-          type: string
-          description: 'The type of the uploaded document. We currently only support signal analysis on the types that are listed here.
-
-            '
-          enum:
-          - BANK_STATEMENT
-          - PAYSTUB
-          - FORM
-        mixed_uploaded_doc_uuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: 'The unique identifier of the Mixed Document that this object represents. This field will be `null` if this was not a Mixed Document.
-
-            '
-        detect_status:
-          type: string
-          description: 'The current state of this document in our processing pipeline. The statuses are as follows:
-
-            - *`PENDING`:* This document is still being processed, and no results are available yet. Check back later.
-
-            - *`COMPLETED`:* This document has been completely processed, and complete results are enclosed.
-
-            - *`UNABLE_TO_PROCESS`:* This document could not be processed, most likely because it''s of an unsupported type.
-
-            - *`UNSUPPORTED`:* This document is of unsupported file type.
-
-            - *`DELETED`:* This document has been deleted.
-
-            '
-          enum:
-          - PENDING
-          - COMPLETED
-          - UNABLE_TO_PROCESS
-          - UNSUPPORTED
-          - DELETED
-        form_analysis:
-          type: array
-          minItems: 1
-          description: 'Analysis results on each form in this document. Each object represents a different form.
-
-            '
-          items:
-            $ref: '#/components/schemas/FormAnalysis'
-        is_image_based_pdf:
-          type: string
-          description: Determines whether the document is an image based PDF (a scan of a PDF or an export of a PDF or similar) or an original PDF produced by a financial institution or payroll provider.
     VisualizationRegion:
       description: 'A highlighted region of suspected fraud, as well as the information needed to depict it visually.
 
@@ -765,6 +585,121 @@ components:
             '
           items:
             $ref: '#/components/schemas/VisualizationRegion'
+    SuspiciousActivityFlagsSuccessfulResponse:
+      title: Success
+      type: object
+      properties:
+        status:
+          type: integer
+          description: A numerical code that indicates the status of the request.
+        response:
+          type: object
+          description: An object received from the server that potentially contains data.
+          properties:
+            book_uuid:
+              type: string
+              description: Unique identifier of the <<glossary:Book>>.
+            suspicious_activity_results:
+              type: array
+              description: Details of the detected suspicious activities.
+              items:
+                type: object
+                properties:
+                  form_uuid:
+                    type: string
+                    description: Unique identifier of the form.
+                  form_type:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the form type.
+                  account_type:
+                    type: string
+                    description: Type of account associated with the form.
+                  flags:
+                    type: array
+                    description: Details of the individual suspicious activities flags.
+                    items:
+                      type: object
+                      properties:
+                        suspicious_activity_detected:
+                          type: boolean
+                          description: Whether suspicious activity was detected.
+                        reason:
+                          type: string
+                          description: Reason for the suspicious activity detection.
+                        suspicious_activity_location:
+                          type: object
+                          properties:
+                            upload_origin:
+                              type: string
+                              description: Origin of the upload.
+                            doc_uuid:
+                              type: string
+                              description: Unique identifier for the document.
+                            suspicious_activity_page_indexes:
+                              type: array
+                              items:
+                                type: integer
+                                description: Indexes of pages where suspicious activity was detected.
+        message:
+          type: string
+          description: A textual description that indicates details about this response's status.
+    ErrorResponse:
+      description: 'Indicates an error returned by Detect.
+
+        '
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error.
+          minLength: 1
+    Signal:
+      description: 'Details about a suspected instance of fraudulent document manipulation and all accompanying data.
+
+        '
+      required:
+      - identifier
+      - display_name
+      - signal_count
+      - supporting_data
+      - page_number
+      properties:
+        identifier:
+          type: string
+          description: "An identifier that describes the type of suspected fraud signal. This value is stable and can be relied upon in your application logic. For a list of all possible values, [visit our guide on Detect Signals](https://docs.ocrolus.com/reference/signal-definition#identifier) \n"
+        display_name:
+          type: string
+          description: 'A human-friendly name for the fraud signal named in `identifier`. This value is unlikely to change, but you shouldn''t rely on it for application logic. You should display this value within your own application where applicable.
+
+            '
+        signal_count:
+          type: integer
+          minimum: 1
+          description: 'The number of fraud signals that we''ve identified. Will be the same as the length of the `supporting_data` array.
+
+            '
+        page_number:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          description: 'The (one-indexed) number of the flagged page. Will be `null` if the fraud signal isn''t specific to any particular page, such as for inconsistent data or erroneous arithmetic.
+
+            This number refers to the index of the page within the document, rather than any number that''s captured from the page or its metadata. In other words, this value will be `1` for the first page of a document, even "Page 2" is written in one of its corners.
+
+            '
+        supporting_data:
+          type: array
+          minItems: 1
+          description: 'The specific captured data that supports a claim of fraudulent activity.
+
+            '
+          items:
+            $ref: '#/components/schemas/PageSupportingData'
     EventPayload:
       description: 'A notice that something important has happened. The object includes details about the event.
 
@@ -880,21 +815,6 @@ components:
           - int
           - float
           - bool
-    PageSupportingData:
-      description: 'Details about the data that serves as the basis of a claim of fraudulent activity.
-
-        '
-      required:
-      - values
-      properties:
-        values:
-          type: array
-          minItems: 1
-          description: 'The data that supports a claim of potentially fraudulent activity. The meaning of each object depends on the fraud signal.
-
-            '
-          items:
-            $ref: '#/components/schemas/PageSupportingDataValue'
     FormAnalysis:
       description: 'Analysis of potential fraud signals on a particular form.
 
@@ -966,33 +886,87 @@ components:
             authenticity_status:
               type: string
               description: A categorical document integrity result (`HIGH`, `MEDIUM`, `LOW`) derived from detection signals and the authenticity score.
+    DocumentAnalysis:
+      description: 'Represents signal analysis for a particular <<glossary:Document>> within a <<glossary:Book>>.
+
+        '
+      required:
+      - uploaded_doc_type
+      - detect_status
+      - uploaded_doc_uuid
+      - form_analysis
+      properties:
+        uploaded_doc_uuid:
+          type: string
+          format: uuid
+          description: 'The unique identifier of the uploaded document.
+
+            '
+        uploaded_doc_type:
+          type: string
+          description: 'The type of the uploaded document. We currently only support signal analysis on the types that are listed here.
+
+            '
+          enum:
+          - BANK_STATEMENT
+          - PAYSTUB
+          - FORM
+        mixed_uploaded_doc_uuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: 'The unique identifier of the Mixed Document that this object represents. This field will be `null` if this was not a Mixed Document.
+
+            '
+        detect_status:
+          type: string
+          description: 'The current state of this document in our processing pipeline. The statuses are as follows:
+
+            - *`PENDING`:* This document is still being processed, and no results are available yet. Check back later.
+
+            - *`COMPLETED`:* This document has been completely processed, and complete results are enclosed.
+
+            - *`UNABLE_TO_PROCESS`:* This document could not be processed, most likely because it''s of an unsupported type.
+
+            - *`UNSUPPORTED`:* This document is of unsupported file type.
+
+            - *`DELETED`:* This document has been deleted.
+
+            '
+          enum:
+          - PENDING
+          - COMPLETED
+          - UNABLE_TO_PROCESS
+          - UNSUPPORTED
+          - DELETED
+        form_analysis:
+          type: array
+          minItems: 1
+          description: 'Analysis results on each form in this document. Each object represents a different form.
+
+            '
+          items:
+            $ref: '#/components/schemas/FormAnalysis'
+        is_image_based_pdf:
+          type: string
+          description: Determines whether the document is an image based PDF (a scan of a PDF or an export of a PDF or similar) or an original PDF produced by a financial institution or payroll provider.
+    PageSupportingData:
+      description: 'Details about the data that serves as the basis of a claim of fraudulent activity.
+
+        '
+      required:
+      - values
+      properties:
+        values:
+          type: array
+          minItems: 1
+          description: 'The data that supports a claim of potentially fraudulent activity. The meaning of each object depends on the fraud signal.
+
+            '
+          items:
+            $ref: '#/components/schemas/PageSupportingDataValue'
   examples:
-    DetectSignalFoundEvent:
-      value:
-        status: VERIFICATION_COMPLETE
-        book_pk: 103780
-        book_name: test-notification-3
-        book_uuid: a2703368-b362-4d57-abd4-e00efc05657b
-        event_name: document.detect.signal_found
-        uploaded_doc_pk: 1434693
-        notification_type: STATUS
-        uploaded_doc_name: sample bankstatement3.pdf
-        uploaded_doc_uuid: 4961c569-39a4-4f7c-8d32-02e6162e9b88
-        is_cloud_compliant: true
-        notification_reason: Detect signals found in document
-    DetectSignalNotFoundEvent:
-      value:
-        status: VERIFICATION_COMPLETE
-        book_pk: 103760
-        book_name: test-notification
-        book_uuid: 5a9f2eed-7de7-4d6a-ab8a-28d0e91bf680
-        event_name: document.detect.signal_not_found
-        uploaded_doc_pk: 1434677
-        notification_type: STATUS
-        uploaded_doc_name: sample bankstatement.pdf
-        uploaded_doc_uuid: 63231617-d558-4838-ab4c-699b392f0c17
-        is_cloud_compliant: true
-        notification_reason: No detect signals found in document
     SuccessBookSignalsResponse:
       value:
         book_uuid: 739184f1-8bff-4c46-8b65-af0616902a11
@@ -1038,6 +1012,32 @@ components:
               authenticity_status: LOW
           is_image_based_pdf: false
         book_dashboard_url: https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11
+    DetectSignalNotFoundEvent:
+      value:
+        status: VERIFICATION_COMPLETE
+        book_pk: 103760
+        book_name: test-notification
+        book_uuid: 5a9f2eed-7de7-4d6a-ab8a-28d0e91bf680
+        event_name: document.detect.signal_not_found
+        uploaded_doc_pk: 1434677
+        notification_type: STATUS
+        uploaded_doc_name: sample bankstatement.pdf
+        uploaded_doc_uuid: 63231617-d558-4838-ab4c-699b392f0c17
+        is_cloud_compliant: true
+        notification_reason: No detect signals found in document
+    DetectSignalFoundEvent:
+      value:
+        status: VERIFICATION_COMPLETE
+        book_pk: 103780
+        book_name: test-notification-3
+        book_uuid: a2703368-b362-4d57-abd4-e00efc05657b
+        event_name: document.detect.signal_found
+        uploaded_doc_pk: 1434693
+        notification_type: STATUS
+        uploaded_doc_name: sample bankstatement3.pdf
+        uploaded_doc_uuid: 4961c569-39a4-4f7c-8d32-02e6162e9b88
+        is_cloud_compliant: true
+        notification_reason: Detect signals found in document
     SuccessDocSignalsResponse:
       value:
         book_uuid: 739184f1-8bff-4c46-8b65-af0616902a11
@@ -1082,33 +1082,6 @@ components:
                 description: fields misaligned
           is_image_based_pdf: false
         book_dashboard_url: https://dashboard.ocrolus.com/books/739184f1-8bff-4c46-8b65-af0616902a11
-  responses:
-    Forbidden:
-      description: 'You don''t have permission to access the requested <<glossary:Book>>, or this endpoint hasn''t been enabled for your organization.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            Forbidden:
-              summary: Forbidden
-              value:
-                message: Unauthorized
-    Unauthorized:
-      description: 'The provided access token can''t be used to grant you access to this resource. Make sure the token hasn''t expired.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            Unauthorized:
-              summary: Unauthorized
-              value:
-                message: Unauthorized
   callbacks:
     WebhookEvent:
       default:
@@ -1128,6 +1101,33 @@ components:
               description: 'Any response you send to the event payload will be ignored.
 
                 '
+  responses:
+    Unauthorized:
+      description: 'The provided access token can''t be used to grant you access to this resource. Make sure the token hasn''t expired.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            Unauthorized:
+              summary: Unauthorized
+              value:
+                message: Unauthorized
+    Forbidden:
+      description: 'You don''t have permission to access the requested <<glossary:Book>>, or this endpoint hasn''t been enabled for your organization.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            Forbidden:
+              summary: Forbidden
+              value:
+                message: Unauthorized
   securitySchemes:
     oauth:
       type: oauth2

@@ -49,11 +49,11 @@ tags:
 - Lending
 - Underwriting
 - OCR
-- Fraud Detection
+- Fraud Prevention
 - Income Verification
 - Bank Statement Analysis
 - Mortgage
-- Machine-Learning
+- Machine Learning
 - Cash Flow Analytics
 tags_raw:
 - Company
@@ -68,6 +68,7 @@ tags_raw:
 - Mortgage
 - Machine Learning
 - Cash Flow Analytics
+- Machine-Learning
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

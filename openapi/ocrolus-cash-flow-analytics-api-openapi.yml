@@ -6330,35 +6330,79 @@ paths:
                     message: Internal Server Error.
 components:
   examples:
-    TxnLimitExceeded:
-      summary: Transaction Limit Exceeded
+    InvalidBookUUID:
+      summary: Invalid book_uuid
       value:
         status: 400
-        code: 1100
-        message: Book summary cannot be generated for these many transactions
+        message: Confirm the book_uuid is well-formed and was submitted by your organization.
     TxnTagsProcessingError:
       summary: Analytics Still Processing
       value:
         status: 425
         code: 9004
         message: Analytics are still being processed, please check back momentari
+    AsyncJobFailed:
+      summary: Job failed
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        status: FAILED
+        error: Book transaction count exceeds the maximum supported by the async serving path
+    BookPermissionError:
+      summary: No Permission
+      value:
+        status: 403
+        code: 2102
+        message: No permission to access this book
+    TxnLimitExceededError:
+      summary: Transaction Limit Exceeded
+      value:
+        status: 422
+        code: 1100
+        message: Book transaction limit exceeded
+    AsyncJobPending:
+      summary: Accepted — still processing
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        status: PENDING
     BookNotFoundError:
       summary: Book Not Found
       value:
         status: 404
         code: 1401
         message: Book not found
-    InvalidBookUUID:
-      summary: Invalid book_uuid
+    AsyncJobNotFound:
+      summary: Job ID not found or has expired
       value:
-        status: 400
-        message: Confirm the book_uuid is well-formed and was submitted by your organization.
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        error: Job not found or has expired
+    SMBEntityNotResolved:
+      summary: No SMB entity resolved for the Book
+      value:
+        status: 404
+        message: Confirm the Book finished processing and resolved to an SMB entity.
     RiskScoreNotEnabled:
       summary: Risk score not enabled
       value:
         status: 400
         code: 1200
         message: Risk score is not enabled for this org
+    TxnLimitExceeded:
+      summary: Transaction Limit Exceeded
+      value:
+        status: 400
+        code: 1100
+        message: Book summary cannot be generated for these many transactions
+    MissingOrInvalidCredentials:
+      summary: Missing or invalid credentials
+      value:
+        status: 401
+        message: Provide or refresh your OAuth bearer token.
+    TransactionsNotFoundError:
+      summary: Transactions not found
+      value:
+        status: 404
+        message: No transactions found in the book
+        code: 9006
     SuccessEnrichedTxnsResponse:
       value:
         book_uuid: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
@@ -6577,1806 +6621,13 @@ components:
           txn_date: '2025-01-01'
           uploaded_doc_uuid: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
         analytic_constants_version: 1.0.6
-    AsyncJobNotFound:
-      summary: Job ID not found or has expired
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        error: Job not found or has expired
-    AsyncJobPending:
-      summary: Accepted — still processing
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        status: PENDING
-    AsyncJobFailed:
-      summary: Job failed
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        status: FAILED
-        error: Book transaction count exceeds the maximum supported by the async serving path
     AsyncJobDone:
       summary: OK - completed
       value:
         job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
         status: DONE
         result_url: https://.../async_jobs/0f2b9c3a...?X-Amz-Signature=...
-    TransactionsNotFoundError:
-      summary: Transactions not found
-      value:
-        status: 404
-        message: No transactions found in the book
-        code: 9006
-    SMBEntityNotResolved:
-      summary: No SMB entity resolved for the Book
-      value:
-        status: 404
-        message: Confirm the Book finished processing and resolved to an SMB entity.
-    MissingOrInvalidCredentials:
-      summary: Missing or invalid credentials
-      value:
-        status: 401
-        message: Provide or refresh your OAuth bearer token.
-    TxnLimitExceededError:
-      summary: Transaction Limit Exceeded
-      value:
-        status: 422
-        code: 1100
-        message: Book transaction limit exceeded
-    BookPermissionError:
-      summary: No Permission
-      value:
-        status: 403
-        code: 2102
-        message: No permission to access this book
-  parameters:
-    AsyncParameter:
-      name: async
-      in: query
-      required: false
-      description: "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
-      schema:
-        type: boolean
-        default: false
-      example: true
   schemas:
-    SuccessEnrichedTxnsSchema:
-      properties:
-        book_uuid:
-          type: string
-          description: Unique identifier of the <<glossary:Book>>.
-          example:
-          - caaa57ba-8909-4a05-9dcc-e7cc057e3c48
-          format: uuid
-        filtered_total:
-          type: integer
-          description: The total number of transactions retrieved after applying `offset` and `limit`.
-          example: 50
-        offset:
-          type: integer
-          description: The starting index for paginated transactions result.
-          example: 1
-        limit:
-          type: integer
-          description: The maximum number of transactions returned per page starting from the specified `offset` value.
-          example: 50
-        enriched_transactions:
-          type: array
-          items:
-            type: object
-            properties:
-              txn_pk:
-                type: integer
-                example:
-                - 2640590368
-                description: Unique identifier of the transaction
-              txn_date:
-                type: string
-                example: '2021-01-09'
-                description: Date of the transaction in ISO 8601-compliant YYYY-MM-DD format.
-              description:
-                type: string
-                example: CHECKCARD 0109 LIBERTY PAPER SUPPLIES
-                description: A brief description of the transaction.
-              bank_account_pk:
-                type: integer
-                example: 123246
-                description: The primary key of the bank account associated with the transaction.
-              uploaded_doc_pk:
-                type: integer
-                example: 123246
-                description: The primary key of the <<glossary:Document>> associated with the transaction.
-              uploaded_doc_name:
-                type: string
-                example: december_bank_statement
-                description: The name of the <<glossary:Document>> associated with the transaction.
-              amount:
-                type: string
-                example:
-                - -127.99
-                description: Transaction amount. Positive values represent credits, and negative values represent debits. This amount includes dollars and cents; to avoid floating-point precision errors, consider parsing this field with a decimal data type, as opposed to a native `float` or `double`.
-              atm:
-                type: boolean
-                example: true
-                description: Transaction at physical ATM locations
-              bank_branch:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction with a physical bank branch
-              bank_cash_advance:
-                type:
-                - boolean
-                - 'null'
-                description: Cash advance with traditional bank
-              bank_loan:
-                type:
-                - boolean
-                - 'null'
-                description: Loan transaction with a traditional bank
-              bank:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction associated with a traditional bank/depository institution
-              benefits:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction associated with government benefits
-              card_rewards:
-                type:
-                - boolean
-                - 'null'
-                description: 'Transaction associated with credit card rewards
-
-                  '
-              checks:
-                type: boolean
-                example: true
-                description: Transaction with a check (physical or electronic)
-              counterparty:
-                type: string
-                description: Standardized identifier of the transaction counterparty.
-              credit_builder:
-                type: boolean
-                example: false
-                description: Transaction with credit builder companies
-              credit_card:
-                type: boolean
-                example: true
-                description: Credit card transaction
-              crypto:
-                type: boolean
-                example: true
-                description: Transaction associated with cryptocurrency and related companies
-              debit_card:
-                type: boolean
-                example: true
-                description: Debit card transaction
-              debt_consolidator:
-                type: boolean
-                example: true
-                description: Transaction associated with debt refinancing and consolidation companies
-              deposits:
-                type: boolean
-                example: true
-                description: Amount greater than zero
-              equipment_lease:
-                type: boolean
-                example: true
-                description: Transaction associated with equipment leasing companies
-              expense:
-                type: boolean
-                example: true
-                description: Withdrawals that have been included as expense
-              factoring:
-                type: boolean
-                example: true
-                description: Transaction associated with factoring companies
-              federal_tax:
-                type: boolean
-                example: true
-                description: Federal tax transaction
-              fintech_loan:
-                type: boolean
-                example: true
-                description: Loan transaction with a fintech company
-              fintech_loan_source:
-                type:
-                - string
-                - 'null'
-                description: The source of a loan transaction with a fintech company
-              fintech_mca:
-                type: boolean
-                example: true
-                description: Merchant cash advance transaction with a fintech company
-              fintech_mca_source:
-                type:
-                - string
-                - 'null'
-                description: The source of a merchant cash advance transaction with a fintech company
-              fintech:
-                type: boolean
-                example: true
-                description: Transaction associated with a fintech company
-              gambling:
-                type: boolean
-                example: true
-                description: Transaction associated with gambling like casino and lottery
-              insurance:
-                type: boolean
-                example: true
-                description: Transaction associated with insurance premiums or payouts
-              internal_transfer:
-                type: boolean
-                example: true
-                description: Transfer between accounts with the same owner
-              investment:
-                type: boolean
-                example: true
-                description: Transaction associated with investment and brokerage companies
-              large_deposits:
-                type: boolean
-                example: true
-                description: Large amount of deposite in the account
-              merchant_service_transfer:
-                type: boolean
-                example: true
-                description: Transfer to/from a merchant service company
-              merchant_service:
-                type: boolean
-                example: true
-                description: Transaction associated with payment processing companies
-              nsf:
-                type: boolean
-                example: true
-                description: Non-sufficient funds transactions and fees
-              nsf_paid_or_negative_balance:
-                type: boolean
-                example: true
-                description: Indicates a paid transaction despite insufficient funds (NSF) or an account with a negative balance
-              nsf_returned_or_not_paid:
-                type: boolean
-                example: true
-                description: Indicates a transaction that was returned or declined due to non-sufficient funds (NSF) and was not successfully paid
-              other_loan:
-                type: boolean
-                example: true
-                description: Loan transaction that does not fit into `fintech_loan` or `bank_loan`
-              other_transfer:
-                type: boolean
-                example: true
-                description: Transfer that does not fit into other categories
-              outside_source_deposits:
-                type: boolean
-                example: true
-                description: Deposits that are not `internal_transfer` or `other_transfer`
-              overdraft:
-                type: boolean
-                example: true
-                description: Fees associated with overdraft events
-              paypal:
-                type: boolean
-                example: true
-                description: Transaction with PayPal
-              payroll_tax:
-                type: boolean
-                example: true
-                description: Payroll tax transaction
-              payroll:
-                type: boolean
-                example: true
-                description: Transaction associated with payroll activities and companies
-              probable_recurring_txns:
-                type: boolean
-                example: true
-                description: Transactions with two or more similar occurences
-              remote:
-                type: boolean
-                example: true
-                description: Remote or mobile transactions
-              returned_item:
-                type: boolean
-                example: true
-                description: Items that were returned due to a non-sufficent funds event
-              revenue_deduction_other:
-                type: boolean
-                example: true
-                description: Transaction that had been removed from revenue but does not fit into other categories
-              revenue_deduction:
-                type: boolean
-                example: true
-                description: Deposits that have not been included in revenue
-              revenue:
-                type: boolean
-                example: true
-                description: Deposits that have been included in revenue
-              reversed:
-                type: boolean
-                example: true
-                description: Transaction that has been reversed
-              sba:
-                type: boolean
-                example: true
-                description: Transaction associated with the Small Business Administration
-              state_tax:
-                type: boolean
-                example: true
-                description: State tax transaction
-              tolls:
-                type: boolean
-                example: true
-                description: Transaction associated with transportation tolls (bridges, highways, etc.)
-              truck_stop:
-                type: boolean
-                example: true
-                description: Transaction at truck stop areas
-              txn_five_zeros:
-                type: boolean
-                example: true
-                description: Amount is multiple of $1000.00
-              txn_four_zeros:
-                type: boolean
-                example: true
-                description: Amount is multiple of $100.00
-              venmo_zelle_cashapp:
-                type: boolean
-                example: true
-                description: Transaction with Venmo, Zelle, or Cash App
-              wire_transfer:
-                type: boolean
-                example: true
-                description: Wire transfer
-              withdrawals:
-                type: boolean
-                example: true
-                description: Amount less than zero
-              comment:
-                type: string
-                description: Additional notes or remarks about the transaction.
-              is_noteworthy:
-                type: boolean
-                description: Indicates whether the transaction is considered noteworthy based on internal business rules and risk factors. A value of `true` highlights transactions that may require additional attention or review.
-              page_idx:
-                type: integer
-                description: The page number of the Document where this transaction was recorded
-              unreconciled_internal_transfer:
-                type: boolean
-                description: Indicates that an internal transfer transaction could not be fully reconciled because one or both associated bank accounts were not identified within the Book.
-              reconciled_txn_pk:
-                type:
-                - string
-                - 'null'
-                description: A unique primary key (PK) of the transaction representing the other side of a reconciled internal transfer. It ensures that both sides of the transfer are connected within the Book.
-              rideshare:
-                type: boolean
-                description: A fee deducted by the rideshare platform from the driver's earnings as a service charge.
-              custom_tag:
-                type: boolean
-                description: Any user defined tag based on business needs.
-        total:
-          type: integer
-          description: The total number of enriched_transactions found in this <<glossary:Book>>
-        number_of_docs_in_book:
-          type: integer
-          description: the total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>
-        number_of_docs_processed:
-          type: integer
-          description: the total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
-        uploaded_docs:
-          type: array
-          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
-          items:
-            type: object
-            properties:
-              pk:
-                type: integer
-                description: Unique personal key for the <<glossary:Document>>.
-              uuid:
-                type: string
-                description: Universal unique identifier for the <<glossary:Document>>.
-              status:
-                type: string
-                description: Processing status of the <<glossary:Document>>.
-              pages:
-                type: integer
-                description: The total number of pages present in the <<glossary:Document>>.
-              mixed_uploaded_doc_pk:
-                type: integer
-                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              mixed_uploaded_doc_uuid:
-                type: string
-                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              rejection_reason:
-                type: string
-                description: An optional attribute that briefly explains why a Document was rejected.
-        mismatched_transactions:
-          type: array
-          description: "List of transactions that do not reconcile between Plaid and PDF bank statement data. \n"
-          items:
-            type: object
-            properties:
-              txn_pk:
-                type: integer
-                description: Unique identifier for the transaction.
-                example: 123
-              txn_date:
-                type: string
-                description: The date of the transaction (YYYY-MM-DD format).
-                example: '2024-01-01'
-              description:
-                type: string
-                description: Details of the transaction.
-                example: TRANSFER TO CHECKING
-              amount:
-                type: string
-                description: The transaction amount where negative indicates debit.
-                example: -2000.01
-              uploaded_doc_pk:
-                type: integer
-                description: Identifier for the associated uploaded document.
-                example: 123456
-              uploaded_doc_format:
-                type: string
-                description: Format of the uploaded document (e.g., PLAID, PDF, etc.).
-                example: PLAID
-              severity:
-                type: string
-                description: The risk level (High, Medium, or Low) assigned to each mismatched transaction, based on business rules that help you prioritize critical discrepancies such as NSFs, MCAs, overdrafts, and other high-risk activities.
-                example: High
-              reason_code:
-                type: string
-                description: The reason code indicating why a transaction was flagged as a mismatch (e.g., Posting Date Difference, Non-Critical Transaction, Critical Category Mismatch).
-                example: critical_category_mismatch
-              related_txn_pk:
-                type: integer
-                description: The primary key of the related transaction, if applicable.
-                example: 456
-              tags:
-                type: string
-                description: Comma-separated tags associated with the transaction used to identify the nature of the transaction.
-                example: fintech, fintech_loan
-              counterparty:
-                type: string
-                description: Standardized identifier of the transaction counterparty.
-                example: Credibly
-        bank_checks:
-          type: array
-          description: List of images within the bank statement that have been processed by the system for check detection.
-          items:
-            type: object
-            properties:
-              uuid:
-                type: string
-                description: Unique identifier for the check entry.
-                example: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
-              bank_account_pk:
-                type: integer
-                description: Primary key of the associated bank account.
-                example: 290879
-              amount:
-                type: string
-                description: Amount associated with the check.
-                example: 100
-              pay_to:
-                type: string
-                description: Name of the check recipient.
-                example: Fake
-              txn_date:
-                type: string
-                description: Date the check was issued or processed (MM/DD/YYYY).
-                example: 01/01/2000
-              check_number:
-                type: string
-                description: Check number.
-                example: 34434
-              memo_number:
-                type: string
-                description: Reference number.
-                example: ''
-        pending_plaid_transactions:
-          type: array
-          description: List of pending transactions from Plaid. This section is included in the response only when the `include_pending_plaid_transactions` query parameter is set to `true`.
-          items:
-            type: object
-            properties:
-              amount:
-                type: string
-                description: The transaction amount.
-                example: '1714.65'
-              description:
-                type: string
-                description: Details of the transaction.
-                example: Payment Received
-              iso_currency_code:
-                type: string
-                description: The currency code for the transaction.
-                example: USD
-              plaid_account_id:
-                type: string
-                description: The Plaid account ID.
-                example: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
-              plaid_txn_id:
-                type: string
-                description: The Plaid transaction ID.
-                example: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
-              txn_date:
-                type: string
-                description: The date of the transaction in YYYY-MM-DD format.
-                example: '2025-01-01'
-              uploaded_doc_uuid:
-                type: string
-                description: The UUID of the uploaded document.
-                example: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
-        analytic_constants_version:
-          type: string
-          description: The version of the constants used in analytical calculations.
-          example: 1.0.6
-    SuccessBookSummarySchema:
-      title: Success
-      properties:
-        book_pk:
-          type: integer
-          description: A unique numerical identifier for a <<glossary:Book>>, commonly referred to as the Book primary key (Book pk).
-          example: 18843681
-        book_name:
-          type: string
-          description: The name of the Book used for the analytics calculation.
-          example: Jill's Coffee  (v.3)
-        txn_count:
-          type: integer
-          description: The number of transactions considered for analytics calculation.
-          example: 324
-        naics4_code:
-          type: integer
-          description: A 4-digit North American Industry Classification System (NAICS) code that represents the industry of the Book.
-          example: 7225
-        naics_description:
-          type: string
-          description: "\nThe description of the 4-digit NAICS code, indicating the industry classification of the Book category.\n\n  > \U0001F4D8 In Books with multiple businesses or fragmented merchant activity, the widget may show the following statuses as applicable:\n  > - **`Pending - Industry Data`**: Classification is in progress.  \n  > - **`Unable to find a unique SMB merchant`**: The system is not able to find a unique merchant mapped to the documents in the Book.  \n  > - **`Not Available`**: The system has found a unique merchant, but this merchant does not have industry classification data.\n"
-          example: Restaurants and Other Eating Places
-        naics6_code:
-          type: integer
-          description: A six-digit NAICS code that provides a more granular industry classification for the merchant. This code refines the broader NAICS category and is commonly used for detailed industry analysis, peer comparisons, and benchmarking.
-          example: 7225
-        naics6_description:
-          type: string
-          description: A human-readable description of the six-digit NAICS code that specifies the merchant’s exact industry segment within the broader NAICS classification.
-          example: Snack and Nonalcoholic Beverage Bars
-        naics_override:
-          type: boolean
-          description: Shows if the 4-digit NAICSA code was overriden by the lender.
-          example: true
-        mcc_code:
-          type: integer
-          description: A four-digit code assigned by payment networks that classifies a merchant based on the primary type of goods or services they provide. Merchant Category Code (MCC) are commonly derived from card transaction data and are used for transaction categorization, risk assessment, and analytics.
-          example: 7225
-        mcc_description_:
-          type: string
-          description: A human-readable description of the MCC that explains the merchant’s primary business activity as defined by the card network.
-          example: Snack and Nonalcoholic Beverage Bars
-        sic_code:
-          type: integer
-          description: A four-digit Standard Industrial Classification (SIC) code that identifies the merchant’s primary business activity using the legacy SIC system. SIC codes are derived from bank statement data and are used for industry classification, regulatory reporting, and analytics.
-          example: 172
-        sic_description_:
-          type: string
-          description: A human-readable description of the SIC code that explains the merchant’s primary industry classification under the SIC system.
-          example: GRAPES
-        loan_inquiries:
-          type: object
-          description: 'Summary of loan applications made by the SMB entity, including application history and application velocity over various time windows.
-
-            '
-          properties:
-            smb_entity_name:
-              type: string
-              description: Merchant name derived from the account holder name in the bank statement.
-              example: ABC Corp
-            total_applications:
-              type: integer
-              description: Total number of applications Ocrolus has seen for the merchant, up to the creation time of the current Book.
-              example: 3
-            application_history:
-              type: array
-              description: List of prior application timestamps for the merchant, shown in descending order.
-              items:
-                type: object
-                properties:
-                  created_ts:
-                    type: string
-                    format: date-time
-                    description: The timestamp when the loan application was created.
-                    example: '2025-10-10T12:00:00Z'
-            velocity:
-              type: object
-              description: Number of applications the merchant has submitted within trailing time windows (30–365 days).
-              properties:
-                30_day_count:
-                  type: integer
-                  description: Number of applications in the last 30 days.
-                  example: 2
-                60_day_count:
-                  type: integer
-                  description: Number of applications in the last 60 days.
-                  example: 2
-                90_day_count:
-                  type: integer
-                  description: Number of applications in the last 90 days.
-                  example: 3
-                180_day_count:
-                  type: integer
-                  description: Number of applications in the last 180 days.
-                  example: 3
-                270_day_count:
-                  type: integer
-                  description: Number of applications in the last 270 days.
-                  example: 3
-                365_day_count:
-                  type: integer
-                  description: Number of applications in the last 365 days.
-                  example: 3
-        book_mismatch_severity:
-          type: string
-          description: 'The severity of mismatches detected in the Book, such as discrepancies between uploaded documents and extracted data. Possible values include Low, Medium, and High.
-
-            > 📘 **This attribute is in beta. If you encounter any bug, please reach out to support@ocrolus.com.**
-
-            '
-          example: high
-        daily_balances:
-          type: array
-          description: A time series showing the daily balances on a daily basis.
-        daily_cash_flows:
-          type: array
-          description: A daily time series of cash flows, calculated as the difference between total credits and total debits, arranged in chronological order.
-        average_daily_cash_flow:
-          type: number
-          description: The average value in `daily_cash_flows`.
-        net_cash_flows_by_month:
-          type: array
-          description: The cash flows resulting from the difference between total credits and total debits, categorized by calendar month.
-        minimum_balance_by_month:
-          type: array
-          description: The minimum daily balance grouped by calendar month.
-        maximum_balance_by_month:
-          type: array
-          description: The maximum daily balance grouped by calendar month.
-        average_daily_balance:
-          type: number
-          description: The average amount in `daily_balances`.
-        average_daily_balance_by_month:
-          type: array
-          description: The average daily balance grouped by calendar month.
-        average_daily_balance_weekday:
-          type: number
-          description: The average daily balance on weekdays
-        average_daily_balance_weekday_by_month:
-          type: array
-          description: The average daily balance on weekdays grouped by calendar month.
-        total_days:
-          type: number
-          description: Total number of days for which analytics is calculated.
-        negative_balances_by_month:
-          type: array
-          description: List of dates with negative ending balances grouped by calendar month.
-        negative_balances_weekday_by_month:
-          type: array
-          description: List of dates with negative ending balances on weekdays grouped by calendar month.
-        nnegative_balances_weekday_count_by_month:
-          type: array
-          description: List of dates with count of negative ending balances grouped by calendar month.
-        cash_balance_trend_30d:
-          type: number
-          description: Daily cash balance trend of 30 days. The calculation formula is `((Mean cash balance over first 15 days ) - (Mean cash balance over last 15 days) ) / standard deviation of cash balance over the period`.
-        cash_balance_trend_60d:
-          type: number
-          description: Daily cash balance trend of 60 days. The calculation formula is `((Mean cash balance over first 30 days ) - (Mean cash balance over last 30 days) ) / standard deviation of cash balance over the period`.
-        cash_balance_trend_90d:
-          type: number
-          description: Daily cash balance trend of 90 days. The calculation formula is `((Mean cash balance over first 45 days ) - (Mean cash balance over last 45 days) ) / standard deviation of cash balance over the period`.
-        cash_flow_trend_30d:
-          type: number
-          description: Daily cash flow trend of 30 days. The calculation formula is `((Mean cash flow over first 15 days ) - (Mean cash flow over last 15 days) ) / standard deviation of cash flow over the period`.
-        cash_flow_trend_60d:
-          type: number
-          description: Daily cash flow trend of 60 days. The calculation formula is `((Mean cash flow over first 30 days ) - (Mean cash flow over last 30 days) ) / standard deviation of cash flow over the period`.
-        cash_flow_trend_90d:
-          type: number
-          description: Daily cash flow trend of 90 days.  The calculation formula is `((Mean cash flow over first 45 days ) - (Mean cash flow over last 45 days) ) / standard deviation of cash flow over the period`.
-        average_txn_size_by_month:
-          type: object
-          description: The average transaction size grouped by month.
-        average_deposits_by_month:
-          type: object
-          description: The average number of deposits size grouped by month.
-        expense_by_month:
-          type: array
-          description: Expenses grouped by calendar month.
-        withdrawals_by_month:
-          type: array
-          description: Withdrawals grouped by calendar month.
-        revenue_by_month:
-          type: array
-          description: Revenue grouped by calendar month.
-        revenue_deduction_by_month:
-          type: array
-          description: Revenue deductions grouped by calendar month.
-        deposits_by_month:
-          type: array
-          description: Deposits grouped by calendar month.
-        outside_source_deposits_by_month:
-          type: array
-          description: Outside source deposits grouped by calendar month.
-        large_deposits_by_month:
-          type: array
-          description: List of large amount of deposits grouped by calendar month.
-        debt_consolidator_inflows_by_month:
-          type: array
-          description: Debt consolidator inflows grouped by calendar month.
-        debt_consolidator_outflows_by_month:
-          type: array
-          description: Debt consolidator outflows grouped by calendar month.
-        factoring_inflows_by_month:
-          type: array
-          description: Factoring inflows grouped by calendar month.
-        factoring_outflows_by_month:
-          type: array
-          description: Factoring outflows grouped by calendar month.
-        payroll_inflows_by_month:
-          type: array
-          description: Payroll inflows grouped by calendar month.
-        payroll_outflows_by_month:
-          type: array
-          description: Payroll outflows grouped by calendar month.
-        insurance_inflows_by_month:
-          type: array
-          description: Insurance inflows grouped by calendar month.
-        insurance_outflows_by_month:
-          type: array
-          description: Insurance outflows grouped by calendar month.
-        venmo_zelle_cashapp_inflows_by_month:
-          type: array
-          description: Venmo/Zelle/Cash App inflows grouped by calendar month.
-        venmo_zelle_cashapp_outflows_by_month:
-          type: array
-          description: Venmo/Zelle/Cash App outflows grouped by calendar month.
-        atm_inflows_by_month:
-          type: array
-          description: Automated teller machine (ATM) inflows grouped by calendar month.
-        atm_outflows_by_month:
-          type: array
-          description: Automated teller machine (ATM) outflows grouped by calendar month.
-        tolls_inflows_by_month:
-          type: array
-          description: Toll inflows grouped by calendar month.
-        tolls_outflows_by_month:
-          type: array
-          description: Toll outflows grouped by calendar month.
-        paypal_inflows_by_month:
-          type: array
-          description: PayPal inflows grouped by calendar month.
-        paypal_outflows_by_month:
-          type: array
-          description: Paypal outflows grouped by calendar month.
-        equipment_lease_inflows_by_month:
-          type: array
-          description: Equipment lease inflows grouped by calendar month.
-        equipment_lease_outflows_by_month:
-          type: array
-          description: Equipment lease outflows grouped by calendar month.
-        checks_inflows_by_month:
-          type: array
-          description: Check inflows grouped by calendar month.
-        checks_outflows_by_month:
-          type: array
-          description: Check outflows grouped by calendar month.
-        txn_four_zeros_inflows_by_month:
-          type: array
-          description: Transactions with four zeros inflows grouped by calendar month.
-        txn_four_zeros_outflows_by_month:
-          type: array
-          description: Transactions with four zeros outflows grouped by calendar month.
-        txn_five_zeros_inflows_by_month:
-          type: array
-          description: Transactions with five zeros inflows grouped by calendar month.
-        txn_five_zeros_outflows_by_month:
-          type: array
-          description: Transactions with five zeros outflows grouped by calendar month.
-        probable_recurring_txns_inflows_by_month:
-          type: array
-          description: Recurring transactions inflows grouped by calendar month.
-        probable_recurring_txns_outflows_by_month:
-          type: array
-          description: Recurring transactions outflows grouped by calendar month.
-        fintech_loan_inflows_by_month:
-          type: array
-          description: Fintech loan inflows grouped by calendar month.
-        fintech_loan_outflows_by_month:
-          type: array
-          description: Fintech loan outflows grouped by calendar month.
-        bank_loan_inflows_by_month:
-          type: array
-          description: Bank loan inflows grouped by calendar month.
-        bank_loan_outflows_by_month:
-          type: array
-          description: Bank loan outflows grouped by calendar month.
-        other_loan_inflows_by_month:
-          type: array
-          description: Other loan inflows grouped by calendar month.
-        other_loan_outflows_by_month:
-          type: array
-          description: Other loan outflows grouped by calendar month.
-        fintech_mca_inflows_by_month:
-          type: array
-          description: Fintech MCA (merchant cash adavance) inflows grouped by calendar month.
-        fintech_mca_outflows_by_month:
-          type: array
-          description: Fintech MCA (merchant cash adavance) outflows grouped by calendar month.
-        bank_cash_advance_inflows_by_month:
-          type: array
-          description: Bank cash advance inflows grouped by calendar month.
-        bank_cash_advance_outflows_by_month:
-          type: array
-          description: Bank cash advance outflows grouped by calendar month.
-        debit_card_inflows_by_month:
-          type: array
-          description: Debit card inflows grouped by calendar month.
-        debit_card_outflows_by_month:
-          type: array
-          description: Debit card outflows grouped by calendar month.
-        credit_card_inflows_by_month:
-          type: array
-          description: Credit card inflows grouped by calendar month.
-        credit_card_outflows_by_month:
-          type: array
-          description: Credit card outflows grouped by calendar month.
-        merchant_service_inflows_by_month:
-          type: array
-          description: Merchant service inflows grouped by calendar month.
-        merchant_service_outflows_by_month:
-          type: array
-          description: Merchant service outflows grouped by calendar month.
-        sba_inflows_by_month:
-          type: array
-          description: SBA inflows grouped by calendar month.
-        sba_outflows_by_month:
-          type: array
-          description: SBA outflows grouped by calendar month.
-        remote_inflows_by_month:
-          type: array
-          description: Remote inflows grouped by calendar month.
-        remote_outflows_by_month:
-          type: array
-          description: Remote outflows grouped by calendar month.
-        benefits_inflows_by_month:
-          type: array
-          description: Benefit inflows grouped by calendar month.
-        benefits_outflows_by_month:
-          type: array
-          description: Benefit outflows grouped by calendar month.
-        card_rewards_inflows_by_month:
-          type: array
-          description: Card reward inflows grouped by calendar month.
-        card_rewards_outflows_by_month:
-          type: array
-          description: Card reward outflows grouped by calendar month.
-        crypto_inflows_by_month:
-          type: array
-          description: Crypto inflows grouped by calendar month.
-        crypto_outflows_by_month:
-          type: array
-          description: Crypto outflows grouped by calendar month.
-        gambling_inflows_by_month:
-          type: array
-          description: Gambling inflows grouped by calendar month.
-        gambling_outflows_by_month:
-          type: array
-          description: Gambling outflows grouped by calendar month.
-        investment_inflows_by_month:
-          type: array
-          description: Investment inflows grouped by calendar month.
-        investment_outflows_by_month:
-          type: array
-          description: Investment outflows grouped by calendar month.
-        reversed_inflows_by_month:
-          type: array
-          description: Reversed inflows grouped by calendar month.
-        reversed_outflows_by_month:
-          type: array
-          description: Reversed outflows grouped by calendar month.
-        state_tax_inflows_by_month:
-          type: array
-          description: State tax inflows grouped by calendar month.
-        state_tax_outflows_by_month:
-          type: array
-          description: State tax outflows grouped by calendar month.
-        payroll_tax_inflows_by_month:
-          type: array
-          description: Payroll tax inflows grouped by calendar month.
-        payroll_tax_outflows_by_month:
-          type: array
-          description: Payroll tax outflows grouped by calendar month.
-        internal_transfer_inflows_by_month:
-          type: array
-          description: Internal transfer inflows grouped by calendar month.
-        internal_transfer_outflows_by_month:
-          type: array
-          description: Internal transfer outflows grouped by calendar month.
-        merchant_service_transfer_inflows_by_month:
-          type: array
-          description: Merchant service transfer inflows grouped by calendar month.
-        merchant_service_transfer_outflows_by_month:
-          type: array
-          description: Merchant service transfer outflows grouped by calendar month.
-        wire_transfer_inflows_by_month:
-          type: array
-          description: Wire transfer inflows grouped by calendar month.
-        wire_transfer_outflows_by_month:
-          type: array
-          description: Wire transfer outflows grouped by calendar month.
-        other_transfer_inflows_by_month:
-          type: array
-          description: Other transfer inflows grouped by calendar month.
-        other_transfer_outflows_by_month:
-          type: array
-          description: Other transfer outflows grouped by calendar month.
-        truck_stop_inflows_by_month:
-          type: array
-          description: Truck stop inflows grouped by calendar month.
-        truck_stop_outflows_by_month:
-          type: array
-          description: Truck stop outflows grouped by calendar month.
-        federal_tax_inflows_by_month:
-          type: array
-          description: Federal tax inflows grouped by calendar month.
-        federal_tax_outflows_by_month:
-          type: array
-          description: Federal tax outflows grouped by calendar month.
-        bank_branch_inflows_by_month:
-          type: array
-          description: Bank branch inflows grouped by calendar month.
-        bank_branch_outflows_by_month:
-          type: array
-          description: Bank branch outflows grouped by calendar month.
-        credit_builder_inflows_by_month:
-          type: array
-          description: Credit builder inflows grouped by calendar month.
-        credit_builder_outflows_by_month:
-          type: array
-          description: Credit builder outflows grouped by calendar month.
-        rideshare_by_month:
-          type: array
-          description: List of transactions pertaining to rideshares grouped by calendar month.
-        expense_count_by_month:
-          type: array
-          description: Expense counts grouped by calendar month.
-        withdrawals_count_by_month:
-          type: array
-          description: Withdrawal counts grouped by calendar month.
-        revenue_count_by_month:
-          type: array
-          description: Revenue counts grouped by calendar month.
-        deposits_count_by_month:
-          type: array
-          description: Deposit counts grouped by calendar month.
-        nsf_fee_count_by_month:
-          type: array
-          description: Non-sufficient funds (NSF) fees count grouped by calendar month.
-        nsf_divisor:
-          type: number
-          description: Calculated amount for a single NSF fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with nsf = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise nsf_divisor = None and no scaling occurs.
-        nsf_raw_fee_count_by_month:
-          type: array
-          description: Non-sufficient funds (NSF) fee count (NOT including common divisor logic) grouped by calendar month.
-        overdraft_fee_count_by_month:
-          type: array
-          description: Overdraft fees count grouped by calendar month.
-        overdraft_divisor:
-          type: number
-          description: Calculated amount for a single overdraft fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with overdraft = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise overdraft = None and no scaling occurs.
-        overdraft_raw_fee_count_by_month:
-          type: array
-          description: Overdraft fee count (NOT including common divisor logic) grouped by calendar month.
-        returned_item_deposit_count_by_month:
-          type: array
-          description: Returned item deposit count grouped by calendar month.
-        returned_item_withdrawal_count_by_month:
-          type: array
-          description: Returned item withdrawal count grouped by calendar month.
-        fintech_loan_sources:
-          type: array
-          description: An array summarizing fintech loan sources found in this Book.
-          items:
-            type: object
-            properties:
-              source:
-                type: string
-                description: The name of the lender.
-              deposit_sum:
-                type: integer
-                description: The total proceeds from the lender.
-              deposit_count:
-                type: integer
-                description: The number of proceed events from the lender.
-              deposit:
-                type: array
-                description: List of deposits for fintech loans.
-              pmt_sum:
-                type: integer
-                description: The total payments to the lender.
-              pmt_count:
-                type: integer
-                description: The number of payment events to the lender
-              pmt_frequency:
-                type: array
-                description: The average number of days between each payment to the lender
-              pmts:
-                type: array
-                description: List of payments from fintech loans.
-              events:
-                type: array
-                description: Used to make an informed evaluation of debt status based on payment patterns for fintech loans and fintech MCAs. The available options are PAID IN FULL, STOP PAYMENT, REDUCED PAYMENT, INCREASED PAYMENT, and PAYMENT FREQUENCY CHANGE.
-        fintech_mca_sources:
-          type: array
-          description: An array summarizing fintech mca sources found in this Book.
-          items:
-            type: object
-            properties:
-              source:
-                type: string
-                description: The name of the lender.
-              deposit_sum:
-                type: integer
-                description: The total proceeds from the lender.
-              deposit_count:
-                type: integer
-                description: The number of proceed events from the lender.
-              pmt_sum:
-                type: integer
-                description: The total payments to the lender.
-              pmt_count:
-                type: integer
-                description: The number of payment events to the lender.
-              pmt_frequency:
-                type: array
-                description: The average number of days between each payment to the lender.
-        num_fintech_loan_sources:
-          type: integer
-          description: Number of unique fintech_loan_sources.
-        num_fintech_mca_sources:
-          type: integer
-          description: Number of unique fintech_mca_sources.
-        counterparties:
-          type: array
-          description: Distribution statistics of revenue and expense counterparties.
-          items:
-            type: object
-            properties:
-              category:
-                type: string
-                description: The financial classification of the transactions associated with a counterparty.
-              distribution:
-                type: array
-                description: A breakdown of specific counterparties within a category, including their transaction details.
-                items:
-                  type: object
-                  properties:
-                    counterparty:
-                      type: string
-                      description: Standardized identifier of the transaction counterparty.
-                    rank:
-                      type: number
-                      description: The position of the counterparty within the category, based on the transaction amount.
-                    proportion:
-                      type: number
-                      description: The percentage of the total amount within the category attributed to the counterparty.
-                    amount:
-                      type: number
-                      description: The total monetary value of transactions associated with the counterparty in the specified category.
-              average_per_counteryparty:
-                type: number
-                description: The average monetary value of transactions per counterparty in the specified category.
-              num_counterparties:
-                type: number
-                description: The total number of counterparties within the specified category.
-        cash_flow_at_a_glance:
-          type: object
-          description: Summarized cash flow analytics.
-          properties:
-            total_revenue:
-              type: number
-              description: Sum total of all revenue found within this Book.
-            total_expense:
-              type: number
-              description: Sum total of all expenses found within this Book.
-            total_loan_proceeds:
-              type: number
-              description: Sum total of all loan proceeds found within this Book.
-            total_loan_payments:
-              type: number
-              description: Sum total of all loan proceeds found within this Book.
-            debt_coverage_ratio:
-              type: number
-              description: The overall debt coverage ratio of this Book.
-            total_nsf_fee_count:
-              type: number
-              description: Count of all Non-sufficient funds (NSF) fees within this Book.
-        missing_bank_accounts:
-          type: object
-          description: Unreconciled internal transfers showing bank accounts that were not submitted by borrowers during underwriting.
-          properties:
-            account_type:
-              type: string
-              description: The type of the missing bank account such CHECKING or SAVINGS.
-            account_number:
-              type: number
-              description: The missing bank account number.
-            total_transfered_to:
-              type: number
-              description: The total amount transferred to the missing bank account.
-            total_transfered_from:
-              type: number
-              description: The total amount transferred from the missing bank account.
-        bank_accounts:
-          type: array
-          description: An array of bank account level analytics JSONs.
-          items:
-            type: object
-            properties:
-              bank_account_pk:
-                type: number
-                description: Unique integer identifier for bank account.
-              bank_account_name:
-                type: string
-                description: The name of the bank account used to calculate analytics.
-              bank_name:
-                type: string
-                description: The name of bank issuing the bank statement.
-              account_type:
-                type: string
-                description: Indicates whether the account is a checking or savings account.
-              account_holder:
-                type: string
-                description: Name of the bank account holder.
-              account_number:
-                type: string
-                description: Bank account number used to calculate analytics.
-              holder_zip:
-                type: string
-                description: Zip code of the bank account holder.
-              holder_country:
-                type: string
-                description: Country of the bank account holder.
-              holder_state:
-                type: string
-                description: State of the bank account holder.
-              holder_city:
-                type: string
-                description: City of the bank account holder.
-              holder_address_1:
-                type: string
-                description: First line address of the bank account holder.
-              holder_address_2:
-                type: string
-                description: Second line address of the bank account holder.
-              account_category:
-                type: string
-                description: Indicates whether the account is a personal or business account.
-              txn_count:
-                type: integer
-                description: The number of transactions considered for analytics calculation on bank account level.
-                example: 244
-              daily_balances:
-                type: array
-                description: A time series showing the daily balances on a daily basis.
-              daily_cash_flows:
-                type: array
-                description: A daily time series of cash flows, calculated as the difference between total credits and total debits, arranged in chronological order.
-              average_daily_cash_flow:
-                type: number
-                description: The average value in `daily_cash_flows`.
-              net_cash_flows_by_month:
-                type: array
-                description: The cash flows resulting from the difference between total credits and total debits, categorized by calendar month.
-              minimum_balance_by_month:
-                type: array
-                description: The minimum daily balance grouped by calendar month.
-              average_daily_balance:
-                type: number
-                description: The average amount in `daily_balances`.
-              average_daily_balance_by_month:
-                type: array
-                description: The average daily balance grouped by calendar month.
-              average_daily_balance_weekday:
-                type: number
-                description: The average daily balance on weekdays
-              average_daily_balance_weekday_by_month:
-                type: array
-                description: The average daily balance on weekdays grouped by calendar month.
-              total_days:
-                type: number
-                description: Total number of days for which analytics is calculated.
-              negative_balances_by_month:
-                type: array
-                description: List of dates with negative ending balances grouped by calendar month.
-              negative_balances_count_by_month:
-                type: array
-                description: Count of negative ending balances grouped by calendar month
-              negative_balances_weekday_by_month:
-                type: array
-                description: List of weekdays with negative ending balances grouped by calendar month
-              negative_balances_weekday_count_by_month:
-                type: array
-                description: Count of weekdays with negative ending balances grouped by calendar month
-              cash_balance_trend_30d:
-                type: number
-                description: Daily cash balance trend of 30 days. The calculation formula is `((Mean cash balance over first 15 days ) - (Mean cash balance over last 15 days) ) / standard deviation of cash balance over the period`.
-              cash_balance_trend_60d:
-                type: number
-                description: Daily cash balance trend of 60 days. The calculation formula is `((Mean cash balance over first 30 days ) - (Mean cash balance over last 30 days) ) / standard deviation of cash balance over the period`.
-              cash_balance_trend_90d:
-                type: number
-                description: Daily cash balance trend of 90 days. The calculation formula is `((Mean cash balance over first 45 days ) - (Mean cash balance over last 45 days) ) / standard deviation of cash balance over the period`.
-              cash_flow_trend_30d:
-                type: number
-                description: Daily cash flow trend of 30 days. The calculation formula is `((Mean cash flow over first 15 days ) - (Mean cash flow over last 15 days) ) / standard deviation of cash flow over the period`.
-              cash_flow_trend_60d:
-                type: number
-                description: Daily cash flow trend of 60 days. The calculation formula is `((Mean cash flow over first 30 days ) - (Mean cash flow over last 30 days) ) / standard deviation of cash flow over the period`.
-              cash_flow_trend_90d:
-                type: number
-                description: Daily cash flow trend of 90 days.  The calculation formula is `((Mean cash flow over first 45 days ) - (Mean cash flow over last 45 days) ) / standard deviation of cash flow over the period`.
-              average_txn_size_by_month:
-                type: object
-                description: The average transaction size grouped by month.
-              average_deposits_by_month:
-                type: object
-                description: The average number of deposits size grouped by month.
-              expense_by_month:
-                type: array
-                description: Expenses grouped by calendar month.
-              withdrawals_by_month:
-                type: array
-                description: Withdrawals grouped by calendar month.
-              revenue_by_month:
-                type: array
-                description: Revenue grouped by calendar month.
-              revenue_deduction_by_month:
-                type: array
-                description: Revenue deductions grouped by calendar month.
-              deposits_by_month:
-                type: array
-                description: Deposits grouped by calendar month.
-              outside_source_deposits_by_month:
-                type: array
-                description: Outside source deposits grouped by calendar month.
-              debt_consolidator_inflows_by_month:
-                type: array
-                description: Debt consolidator inflows grouped by calendar month.
-              debt_consolidator_outflows_by_month:
-                type: array
-                description: Debt consolidator outflows grouped by calendar month.
-              factoring_inflows_by_month:
-                type: array
-                description: Factoring inflows grouped by calendar month.
-              factoring_outflows_by_month:
-                type: array
-                description: Factoring outflows grouped by calendar month.
-              payroll_inflows_by_month:
-                type: array
-                description: Payroll inflows grouped by calendar month.
-              payroll_outflows_by_month:
-                type: array
-                description: Payroll outflows grouped by calendar month.
-              insurance_inflows_by_month:
-                type: array
-                description: Insurance inflows grouped by calendar month.
-              insurance_outflows_by_month:
-                type: array
-                description: Insurance outflows grouped by calendar month.
-              venmo_zelle_cashapp_inflows_by_month:
-                type: array
-                description: Venmo/Zelle/Cash App inflows grouped by calendar month.
-              venmo_zelle_cashapp_outflows_by_month:
-                type: array
-                description: Venmo/Zelle/Cash App outflows grouped by calendar month.
-              atm_inflows_by_month:
-                type: array
-                description: Automated teller machine (ATM) inflows grouped by calendar month.
-              atm_outflows_by_month:
-                type: array
-                description: Automated teller machine (ATM) outflows grouped by calendar month.
-              tolls_inflows_by_month:
-                type: array
-                description: Toll inflows grouped by calendar month.
-              tolls_outflows_by_month:
-                type: array
-                description: Toll outflows grouped by calendar month.
-              paypal_inflows_by_month:
-                type: array
-                description: PayPal inflows grouped by calendar month.
-              paypal_outflows_by_month:
-                type: array
-                description: Paypal outflows grouped by calendar month.
-              equipment_lease_inflows_by_month:
-                type: array
-                description: Equipment lease inflows grouped by calendar month.
-              equipment_lease_outflows_by_month:
-                type: array
-                description: Equipment lease outflows grouped by calendar month.
-              checks_inflows_by_month:
-                type: array
-                description: Check inflows grouped by calendar month.
-              checks_outflows_by_month:
-                type: array
-                description: Check outflows grouped by calendar month.
-              txn_four_zeros_inflows_by_month:
-                type: array
-                description: Transactions with four zeros inflows grouped by calendar month.
-              txn_four_zeros_outflows_by_month:
-                type: array
-                description: Transactions with four zeros outflows grouped by calendar month.
-              txn_five_zeros_inflows_by_month:
-                type: array
-                description: Transactions with five zeros inflows grouped by calendar month.
-              txn_five_zeros_outflows_by_month:
-                type: array
-                description: Transactions with five zeros outflows grouped by calendar month.
-              probable_recurring_txns_inflows_by_month:
-                type: array
-                description: Recurring transactions inflows grouped by calendar month.
-              probable_recurring_txns_outflows_by_month:
-                type: array
-                description: Recurring transactions outflows grouped by calendar month.
-              fintech_loan_inflows_by_month:
-                type: array
-                description: Fintech loan inflows grouped by calendar month.
-              fintech_loan_outflows_by_month:
-                type: array
-                description: Fintech loan outflows grouped by calendar month.
-              bank_loan_inflows_by_month:
-                type: array
-                description: Bank loan inflows grouped by calendar month.
-              bank_loan_outflows_by_month:
-                type: array
-                description: Bank loan outflows grouped by calendar month.
-              other_loan_inflows_by_month:
-                type: array
-                description: Other loan inflows grouped by calendar month.
-              other_loan_outflows_by_month:
-                type: array
-                description: Other loan outflows grouped by calendar month.
-              fintech_mca_inflows_by_month:
-                type: array
-                description: Fintech MCA (merchant cash adavance) inflows grouped by calendar month.
-              fintech_mca_outflows_by_month:
-                type: array
-                description: Fintech MCA (merchant cash adavance) outflows grouped by calendar month.
-              bank_cash_advance_inflows_by_month:
-                type: array
-                description: Bank cash advance inflows grouped by calendar month.
-              bank_cash_advance_outflows_by_month:
-                type: array
-                description: Bank cash advance outflows grouped by calendar month.
-              debit_card_inflows_by_month:
-                type: array
-                description: Debit card inflows grouped by calendar month.
-              debit_card_outflows_by_month:
-                type: array
-                description: Debit card outflows grouped by calendar month.
-              credit_card_inflows_by_month:
-                type: array
-                description: Credit card inflows grouped by calendar month.
-              credit_card_outflows_by_month:
-                type: array
-                description: Credit card outflows grouped by calendar month.
-              merchant_service_inflows_by_month:
-                type: array
-                description: Merchant service inflows grouped by calendar month.
-              merchant_service_outflows_by_month:
-                type: array
-                description: Merchant service outflows grouped by calendar month.
-              sba_inflows_by_month:
-                type: array
-                description: SBA inflows grouped by calendar month.
-              sba_outflows_by_month:
-                type: array
-                description: SBA outflows grouped by calendar month.
-              remote_inflows_by_month:
-                type: array
-                description: Remote inflows grouped by calendar month.
-              remote_outflows_by_month:
-                type: array
-                description: Remote outflows grouped by calendar month.
-              benefits_inflows_by_month:
-                type: array
-                description: Benefit inflows grouped by calendar month.
-              benefits_outflows_by_month:
-                type: array
-                description: Benefit outflows grouped by calendar month.
-              card_rewards_inflows_by_month:
-                type: array
-                description: Card reward inflows grouped by calendar month.
-              card_rewards_outflows_by_month:
-                type: array
-                description: Card reward outflows grouped by calendar month.
-              crypto_inflows_by_month:
-                type: array
-                description: Crypto inflows grouped by calendar month.
-              crypto_outflows_by_month:
-                type: array
-                description: Crypto outflows grouped by calendar month.
-              gambling_inflows_by_month:
-                type: array
-                description: Gambling inflows grouped by calendar month.
-              gambling_outflows_by_month:
-                type: array
-                description: Gambling outflows grouped by calendar month.
-              investment_inflows_by_month:
-                type: array
-                description: Investment inflows grouped by calendar month.
-              investment_outflows_by_month:
-                type: array
-                description: Investment outflows grouped by calendar month.
-              reversed_inflows_by_month:
-                type: array
-                description: Reversed inflows grouped by calendar month.
-              reversed_outflows_by_month:
-                type: array
-                description: Reversed outflows grouped by calendar month.
-              state_tax_inflows_by_month:
-                type: array
-                description: State tax inflows grouped by calendar month.
-              state_tax_outflows_by_month:
-                type: array
-                description: State tax outflows grouped by calendar month.
-              payroll_tax_inflows_by_month:
-                type: array
-                description: Payroll tax inflows grouped by calendar month.
-              payroll_tax_outflows_by_month:
-                type: array
-                description: Payroll tax outflows grouped by calendar month.
-              internal_transfer_inflows_by_month:
-                type: array
-                description: Internal transfer inflows grouped by calendar month.
-              internal_transfer_outflows_by_month:
-                type: array
-                description: Internal transfer outflows grouped by calendar month.
-              merchant_service_transfer_inflows_by_month:
-                type: array
-                description: Merchant service transfer inflows grouped by calendar month.
-              merchant_service_transfer_outflows_by_month:
-                type: array
-                description: Merchant service transfer outflows grouped by calendar month.
-              wire_transfer_inflows_by_month:
-                type: array
-                description: Wire transfer inflows grouped by calendar month.
-              wire_transfer_outflows_by_month:
-                type: array
-                description: Wire transfer outflows grouped by calendar month.
-              other_transfer_inflows_by_month:
-                type: array
-                description: Other transfer inflows grouped by calendar month.
-              other_transfer_outflows_by_month:
-                type: array
-                description: Other transfer outflows grouped by calendar month.
-              truck_stop_inflows_by_month:
-                type: array
-                description: Truck stop inflows grouped by calendar month.
-              truck_stop_outflows_by_month:
-                type: array
-                description: Truck stop outflows grouped by calendar month.
-              federal_tax_inflows_by_month:
-                type: array
-                description: Federal tax inflows grouped by calendar month.
-              federal_tax_outflows_by_month:
-                type: array
-                description: Federal tax outflows grouped by calendar month.
-              bank_branch_inflows_by_month:
-                type: array
-                description: Bank branch inflows grouped by calendar month.
-              bank_branch_outflows_by_month:
-                type: array
-                description: Bank branch outflows grouped by calendar month.
-              credit_builder_inflows_by_month:
-                type: array
-                description: Credit builder inflows grouped by calendar month.
-              credit_builder_outflows_by_month:
-                type: array
-                description: Credit builder outflows grouped by calendar month.
-              rideshare_by_month:
-                type: array
-                description: List of transactions pertaining to rideshares grouped by calendar month.
-              expense_count_by_month:
-                type: array
-                description: Expense counts grouped by calendar month.
-              withdrawals_count_by_month:
-                type: array
-                description: Withdrawal counts grouped by calendar month.
-              revenue_count_by_month:
-                type: array
-                description: Revenue counts grouped by calendar month.
-              deposits_count_by_month:
-                type: array
-                description: Deposit counts grouped by calendar month.
-              nsf_fee_count_by_month:
-                type: array
-                description: The count of Non-Sufficient Funds (NSF) fees categorized by month of the calendar year.
-              nsf_divisor:
-                type: number
-                description: A metric used to calculate NSF frequency by dividing the number of NSF occurrences by a specified baseline, such as the total number of transactions or a time period.
-              nsf_raw_fee_count_by_month:
-                type: array
-                description: Non-sufficient funds (NSF) fee count (NOT including common divisor logic) grouped by calendar month.
-              overdraft_fee_count_by_month:
-                type: array
-                description: Overdraft fees count grouped by calendar month.
-              overdraft_divisor:
-                type: number
-                description: Calculated amount for a single overdraft fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with overdraft = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise overdraft = None and no scaling occurs.
-              overdraft_raw_fee_count_by_month:
-                type: array
-                description: Overdraft fee count (NOT including common divisor logic) grouped by calendar month.
-              returned_item_deposit_count_by_month:
-                type: array
-                description: Returned item deposit count grouped by calendar month.
-              returned_item_withdrawal_count_by_month:
-                type: array
-                description: Returned item withdrawal count grouped by calendar month.
-              nsf_paid_or_negative_balance_fee_count_by_month:
-                type: array
-                description: Non-sufficient funds (NSF) fees paid or negative balance fee count grouped by calendar month.
-              nsf_returned_or_not_paid_fee_count_by_month:
-                type: array
-                description: Non-sufficient funds (NSF) fees returned or not paid fees count grouped by calendar month.
-              periods:
-                type: object
-                description: 'A list of statement periods covered by the Book. Each period represents the date range of a single bank statement.
-
-
-                  **Reconciliation field behavior**
-
-                  When `reconciled` is `true`, `recon_error_absolute_amount` is `null` or `0` and all other recon fields are `null`.
-
-
-                  When `reconciled` is `false`, `recon_error_absolute_amount` is populated and remaining recon fields are populated where available.
-
-
-                  Reconciliation values are consistent with the transactions endpoint.
-
-                  '
-                properties:
-                  begin_date:
-                    type: string
-                    description: The start date of the statement period retrieved from the summary section of a bank statement.
-                  end_date:
-                    type: string
-                    description: The end date of the statement period retrieved from the summary section of a bank statement.
-                  begin_balance:
-                    type: number
-                    description: The initial balance of the statement period retrieved from the summary section of a bank statement.
-                  end_balance:
-                    type: number
-                    description: The final balance of the statement period retrieved from the summary section of a bank statement.
-                  txn_count:
-                    type: integer
-                    description: The count of transactions that were included in the analytics calculation for this particular period.
-                  uploaded_doc_pk:
-                    type: integer
-                    description: The unique identifier of the document from which this transaction is captured.
-                  average_amount:
-                    type: number
-                    description: The mean absolute amount of transactions within a given statement period.
-                  average_daily_balance:
-                    type: number
-                    description: The average daily ending balance including weekends.
-                  average_daily_cash_flow:
-                    type: number
-                    description: The mean daily net cash flow, calculated as the difference between total credits and total debits. The `Net Cash Flow = Credits - Debits`.
-                  average_deposit:
-                    type: number
-                    description: The average amount of credit transactions.
-                  deposit_sum:
-                    type: number
-                    description: The overall amount credit during the specified period.
-                  deposit_count:
-                    type: integer
-                    description: The total number of deposit occurrences during the specified period.
-                  withdrawal_sum:
-                    type: number
-                    description: The overall amount withdrawn during the specified period.
-                  withdrawal_count:
-                    type: integer
-                    description: The total count of withdrawals during the specified period.
-                  revenue:
-                    type: number
-                    description: Total revenue of the business.
-                  negative_balances_weekday:
-                    type: array
-                    description: Days in which the daily ending balance fell below zero.
-                  nsf_fee_sum:
-                    type: integer
-                    description: The sum of all NSF fee amounts in the statement period.
-                  nsf_fee_count:
-                    type: integer
-                    description: The number of NSF occurrences in the statement period.
-                  nsf_raw_fee_count:
-                    type: integer
-                    description: The total NSF fee count (NOT including common divisor logic) in statement period.
-                  overdraft_fee_sum:
-                    type: integer
-                    description: The sum of all overdraft fee amounts in the statement period.
-                  overdraft_fee_count:
-                    type: integer
-                    description: The number of overdraft occurrences in the statement period.
-                  overdraft_raw_fee_count:
-                    type: integer
-                    description: The total overdraft fee count (NOT including common divisor logic) in statement period.
-                  returned_item_deposit_count:
-                    type: integer
-                    description: The total number of returned item credits.
-                  returned_item_withdrawal_count:
-                    type: integer
-                    description: The total number of returned item debits.
-                  has_weekend_txn:
-                    type: boolean
-                    description: Indicates if any transactions occured on a weekend.
-                  nsf_divisor:
-                    type: integer
-                    description: The calculated amount for a single NSF fee.
-                  overdraft_divisor:
-                    type: integer
-                    description: The calculated amount for a single overdraft fee.
-                  max_deposit:
-                    type:
-                    - number
-                    - 'null'
-                    description: The highest single deposit amount recorded during the period.
-                  average_withdrawal:
-                    type:
-                    - number
-                    - 'null'
-                    description: The average withdrawal amount across all withdrawals during the period. Returned as a negative value.
-                  max_withdrawal:
-                    type:
-                    - number
-                    - 'null'
-                    description: The largest single withdrawal amount recorded during the period. Returned as a negative value.
-                  revenue_count:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The total number of transactions tagged as revenue during the period.
-                  revenue_deduction:
-                    type:
-                    - number
-                    - 'null'
-                    description: The total amount deducted from gross revenue during the period based on the active revenue formula.
-                  expense:
-                    type:
-                    - number
-                    - 'null'
-                    description: The total amount of transactions tagged as expenses during the period. Returned as a negative value.
-                  expense_count:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The total number of transactions tagged as expenses during the period.
-                  negative_balances:
-                    type:
-                    - array
-                    - 'null'
-                    description: A list of dates within the period on which the account balance was negative. Returns an empty array if no negative balances were recorded.
-                  nsf_days_count:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The number of days within the period on which a non-sufficient funds (NSF) event was recorded.
-                  overdraft_days_count:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The number of days within the period on which an overdraft event was recorded.
-                  nsf_or_overdraft_days_count:
-                    type:
-                    - integer
-                    - 'null'
-                    description: The total number of days within the period on which either an NSF or overdraft event was recorded.
-                  large_deposits:
-                    type:
-                    - number
-                    - 'null'
-                    description: The total amount of deposits considered large during the period, based on Ocrolus thresholds.
-                  reconciled:
-                    type: boolean
-                    description: Whether the statement period reconciled successfully. `true` means the opening and closing balances match the transactions, and `false` means a discrepancy was detected.
-                  recon_error_absolute_amount:
-                    type:
-                    - number
-                    - 'null'
-                    description: The dollar amount of the reconciliation discrepancy for the period. Returns null or 0 when the period reconciled or returns the discrepancy amount when it did not.
-                  recon_error_pct_of_average_daily_balance:
-                    type:
-                    - number
-                    - 'null'
-                    description: The reconciliation discrepancy expressed as a percentage of the average daily balance. Helps you identify the relative size of the error. Returns null when the period reconciled or when average daily balance is unavailable.
-                  primary_recon_error_reason:
-                    type:
-                    - string
-                    - 'null'
-                    description: The main reason the period did not reconcile, such as a balance mismatch or missing transactions. Returns null when the period reconciled.
-                  secondary_recon_error_reason:
-                    type:
-                    - string
-                    - 'null'
-                    description: An additional reason contributing to the reconciliation failure, where available. Returns null when the period reconciled or when no secondary reason is identified.
-                  high_amount_average_daily_balance:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if the average daily balance for this period is unusually high compared to typical activity. May indicate large deposits or infrequent withdrawals.
-                  balance_ending_with_zero:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if the account balance reached zero at the end of this period. May indicate the account was fully drawn down.
-                  high_txns_count_atm_over_cash:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if the number of ATM transactions is disproportionately high relative to cash transactions during this period.
-                  has_weekend_transactions:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if any transactions occurred on weekends during this period. Useful for identifying business type and activity patterns.
-                  no_txn_in_weekdays_within_period:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if no transactions were recorded on weekdays during this period. May indicate account inactivity or an unusual cash flow pattern.
-                  high_txns_amount_atm_over_cash:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: Returns `true` if the total amount of ATM transactions is disproportionately high relative to cash transactions during this period.
-        number_of_docs_in_book:
-          type: integer
-          description: The total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>.
-        number_of_docs_processed:
-          type: integer
-          description: The total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
-        uploaded_docs:
-          type: array
-          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
-          items:
-            type: object
-            properties:
-              pk:
-                type: integer
-                description: Unique personal key for the <<glossary:Document>>.
-              uuid:
-                type: string
-                description: Universal unique identifier for the <<glossary:Document>>.
-              status:
-                type: string
-                description: Processing status of the <<glossary:Document>>.
-              pages:
-                type: integer
-                description: The total number of pages present in the <<glossary:Document>>.
-              mixed_uploaded_doc_pk:
-                type: integer
-                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              mixed_uploaded_doc_uuid:
-                type: string
-                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              rejection_reason:
-                type: string
-                description: An optional attribute that briefly explains why a Document was rejected.
-        book_uuid:
-          type: integer
-          description: A unique numerical identifier for a <<glossary:Book>>, commonly referred to as the Book UUID.
-          example: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
     SuccessCashFlowFeaturesSchema:
       description: 'A detailed analysis of inflows and outflows of money to a bank account.
 
@@ -11251,6 +9502,1755 @@ components:
               rejection_reason:
                 type: string
                 description: An optional attribute that briefly explains why a Document was rejected.
+    SuccessEnrichedTxnsSchema:
+      properties:
+        book_uuid:
+          type: string
+          description: Unique identifier of the <<glossary:Book>>.
+          example:
+          - caaa57ba-8909-4a05-9dcc-e7cc057e3c48
+          format: uuid
+        filtered_total:
+          type: integer
+          description: The total number of transactions retrieved after applying `offset` and `limit`.
+          example: 50
+        offset:
+          type: integer
+          description: The starting index for paginated transactions result.
+          example: 1
+        limit:
+          type: integer
+          description: The maximum number of transactions returned per page starting from the specified `offset` value.
+          example: 50
+        enriched_transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              txn_pk:
+                type: integer
+                example:
+                - 2640590368
+                description: Unique identifier of the transaction
+              txn_date:
+                type: string
+                example: '2021-01-09'
+                description: Date of the transaction in ISO 8601-compliant YYYY-MM-DD format.
+              description:
+                type: string
+                example: CHECKCARD 0109 LIBERTY PAPER SUPPLIES
+                description: A brief description of the transaction.
+              bank_account_pk:
+                type: integer
+                example: 123246
+                description: The primary key of the bank account associated with the transaction.
+              uploaded_doc_pk:
+                type: integer
+                example: 123246
+                description: The primary key of the <<glossary:Document>> associated with the transaction.
+              uploaded_doc_name:
+                type: string
+                example: december_bank_statement
+                description: The name of the <<glossary:Document>> associated with the transaction.
+              amount:
+                type: string
+                example:
+                - -127.99
+                description: Transaction amount. Positive values represent credits, and negative values represent debits. This amount includes dollars and cents; to avoid floating-point precision errors, consider parsing this field with a decimal data type, as opposed to a native `float` or `double`.
+              atm:
+                type: boolean
+                example: true
+                description: Transaction at physical ATM locations
+              bank_branch:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction with a physical bank branch
+              bank_cash_advance:
+                type:
+                - boolean
+                - 'null'
+                description: Cash advance with traditional bank
+              bank_loan:
+                type:
+                - boolean
+                - 'null'
+                description: Loan transaction with a traditional bank
+              bank:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction associated with a traditional bank/depository institution
+              benefits:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction associated with government benefits
+              card_rewards:
+                type:
+                - boolean
+                - 'null'
+                description: 'Transaction associated with credit card rewards
+
+                  '
+              checks:
+                type: boolean
+                example: true
+                description: Transaction with a check (physical or electronic)
+              counterparty:
+                type: string
+                description: Standardized identifier of the transaction counterparty.
+              credit_builder:
+                type: boolean
+                example: false
+                description: Transaction with credit builder companies
+              credit_card:
+                type: boolean
+                example: true
+                description: Credit card transaction
+              crypto:
+                type: boolean
+                example: true
+                description: Transaction associated with cryptocurrency and related companies
+              debit_card:
+                type: boolean
+                example: true
+                description: Debit card transaction
+              debt_consolidator:
+                type: boolean
+                example: true
+                description: Transaction associated with debt refinancing and consolidation companies
+              deposits:
+                type: boolean
+                example: true
+                description: Amount greater than zero
+              equipment_lease:
+                type: boolean
+                example: true
+                description: Transaction associated with equipment leasing companies
+              expense:
+                type: boolean
+                example: true
+                description: Withdrawals that have been included as expense
+              factoring:
+                type: boolean
+                example: true
+                description: Transaction associated with factoring companies
+              federal_tax:
+                type: boolean
+                example: true
+                description: Federal tax transaction
+              fintech_loan:
+                type: boolean
+                example: true
+                description: Loan transaction with a fintech company
+              fintech_loan_source:
+                type:
+                - string
+                - 'null'
+                description: The source of a loan transaction with a fintech company
+              fintech_mca:
+                type: boolean
+                example: true
+                description: Merchant cash advance transaction with a fintech company
+              fintech_mca_source:
+                type:
+                - string
+                - 'null'
+                description: The source of a merchant cash advance transaction with a fintech company
+              fintech:
+                type: boolean
+                example: true
+                description: Transaction associated with a fintech company
+              gambling:
+                type: boolean
+                example: true
+                description: Transaction associated with gambling like casino and lottery
+              insurance:
+                type: boolean
+                example: true
+                description: Transaction associated with insurance premiums or payouts
+              internal_transfer:
+                type: boolean
+                example: true
+                description: Transfer between accounts with the same owner
+              investment:
+                type: boolean
+                example: true
+                description: Transaction associated with investment and brokerage companies
+              large_deposits:
+                type: boolean
+                example: true
+                description: Large amount of deposite in the account
+              merchant_service_transfer:
+                type: boolean
+                example: true
+                description: Transfer to/from a merchant service company
+              merchant_service:
+                type: boolean
+                example: true
+                description: Transaction associated with payment processing companies
+              nsf:
+                type: boolean
+                example: true
+                description: Non-sufficient funds transactions and fees
+              nsf_paid_or_negative_balance:
+                type: boolean
+                example: true
+                description: Indicates a paid transaction despite insufficient funds (NSF) or an account with a negative balance
+              nsf_returned_or_not_paid:
+                type: boolean
+                example: true
+                description: Indicates a transaction that was returned or declined due to non-sufficient funds (NSF) and was not successfully paid
+              other_loan:
+                type: boolean
+                example: true
+                description: Loan transaction that does not fit into `fintech_loan` or `bank_loan`
+              other_transfer:
+                type: boolean
+                example: true
+                description: Transfer that does not fit into other categories
+              outside_source_deposits:
+                type: boolean
+                example: true
+                description: Deposits that are not `internal_transfer` or `other_transfer`
+              overdraft:
+                type: boolean
+                example: true
+                description: Fees associated with overdraft events
+              paypal:
+                type: boolean
+                example: true
+                description: Transaction with PayPal
+              payroll_tax:
+                type: boolean
+                example: true
+                description: Payroll tax transaction
+              payroll:
+                type: boolean
+                example: true
+                description: Transaction associated with payroll activities and companies
+              probable_recurring_txns:
+                type: boolean
+                example: true
+                description: Transactions with two or more similar occurences
+              remote:
+                type: boolean
+                example: true
+                description: Remote or mobile transactions
+              returned_item:
+                type: boolean
+                example: true
+                description: Items that were returned due to a non-sufficent funds event
+              revenue_deduction_other:
+                type: boolean
+                example: true
+                description: Transaction that had been removed from revenue but does not fit into other categories
+              revenue_deduction:
+                type: boolean
+                example: true
+                description: Deposits that have not been included in revenue
+              revenue:
+                type: boolean
+                example: true
+                description: Deposits that have been included in revenue
+              reversed:
+                type: boolean
+                example: true
+                description: Transaction that has been reversed
+              sba:
+                type: boolean
+                example: true
+                description: Transaction associated with the Small Business Administration
+              state_tax:
+                type: boolean
+                example: true
+                description: State tax transaction
+              tolls:
+                type: boolean
+                example: true
+                description: Transaction associated with transportation tolls (bridges, highways, etc.)
+              truck_stop:
+                type: boolean
+                example: true
+                description: Transaction at truck stop areas
+              txn_five_zeros:
+                type: boolean
+                example: true
+                description: Amount is multiple of $1000.00
+              txn_four_zeros:
+                type: boolean
+                example: true
+                description: Amount is multiple of $100.00
+              venmo_zelle_cashapp:
+                type: boolean
+                example: true
+                description: Transaction with Venmo, Zelle, or Cash App
+              wire_transfer:
+                type: boolean
+                example: true
+                description: Wire transfer
+              withdrawals:
+                type: boolean
+                example: true
+                description: Amount less than zero
+              comment:
+                type: string
+                description: Additional notes or remarks about the transaction.
+              is_noteworthy:
+                type: boolean
+                description: Indicates whether the transaction is considered noteworthy based on internal business rules and risk factors. A value of `true` highlights transactions that may require additional attention or review.
+              page_idx:
+                type: integer
+                description: The page number of the Document where this transaction was recorded
+              unreconciled_internal_transfer:
+                type: boolean
+                description: Indicates that an internal transfer transaction could not be fully reconciled because one or both associated bank accounts were not identified within the Book.
+              reconciled_txn_pk:
+                type:
+                - string
+                - 'null'
+                description: A unique primary key (PK) of the transaction representing the other side of a reconciled internal transfer. It ensures that both sides of the transfer are connected within the Book.
+              rideshare:
+                type: boolean
+                description: A fee deducted by the rideshare platform from the driver's earnings as a service charge.
+              custom_tag:
+                type: boolean
+                description: Any user defined tag based on business needs.
+        total:
+          type: integer
+          description: The total number of enriched_transactions found in this <<glossary:Book>>
+        number_of_docs_in_book:
+          type: integer
+          description: the total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>
+        number_of_docs_processed:
+          type: integer
+          description: the total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
+        uploaded_docs:
+          type: array
+          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
+          items:
+            type: object
+            properties:
+              pk:
+                type: integer
+                description: Unique personal key for the <<glossary:Document>>.
+              uuid:
+                type: string
+                description: Universal unique identifier for the <<glossary:Document>>.
+              status:
+                type: string
+                description: Processing status of the <<glossary:Document>>.
+              pages:
+                type: integer
+                description: The total number of pages present in the <<glossary:Document>>.
+              mixed_uploaded_doc_pk:
+                type: integer
+                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              mixed_uploaded_doc_uuid:
+                type: string
+                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              rejection_reason:
+                type: string
+                description: An optional attribute that briefly explains why a Document was rejected.
+        mismatched_transactions:
+          type: array
+          description: "List of transactions that do not reconcile between Plaid and PDF bank statement data. \n"
+          items:
+            type: object
+            properties:
+              txn_pk:
+                type: integer
+                description: Unique identifier for the transaction.
+                example: 123
+              txn_date:
+                type: string
+                description: The date of the transaction (YYYY-MM-DD format).
+                example: '2024-01-01'
+              description:
+                type: string
+                description: Details of the transaction.
+                example: TRANSFER TO CHECKING
+              amount:
+                type: string
+                description: The transaction amount where negative indicates debit.
+                example: -2000.01
+              uploaded_doc_pk:
+                type: integer
+                description: Identifier for the associated uploaded document.
+                example: 123456
+              uploaded_doc_format:
+                type: string
+                description: Format of the uploaded document (e.g., PLAID, PDF, etc.).
+                example: PLAID
+              severity:
+                type: string
+                description: The risk level (High, Medium, or Low) assigned to each mismatched transaction, based on business rules that help you prioritize critical discrepancies such as NSFs, MCAs, overdrafts, and other high-risk activities.
+                example: High
+              reason_code:
+                type: string
+                description: The reason code indicating why a transaction was flagged as a mismatch (e.g., Posting Date Difference, Non-Critical Transaction, Critical Category Mismatch).
+                example: critical_category_mismatch
+              related_txn_pk:
+                type: integer
+                description: The primary key of the related transaction, if applicable.
+                example: 456
+              tags:
+                type: string
+                description: Comma-separated tags associated with the transaction used to identify the nature of the transaction.
+                example: fintech, fintech_loan
+              counterparty:
+                type: string
+                description: Standardized identifier of the transaction counterparty.
+                example: Credibly
+        bank_checks:
+          type: array
+          description: List of images within the bank statement that have been processed by the system for check detection.
+          items:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique identifier for the check entry.
+                example: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
+              bank_account_pk:
+                type: integer
+                description: Primary key of the associated bank account.
+                example: 290879
+              amount:
+                type: string
+                description: Amount associated with the check.
+                example: 100
+              pay_to:
+                type: string
+                description: Name of the check recipient.
+                example: Fake
+              txn_date:
+                type: string
+                description: Date the check was issued or processed (MM/DD/YYYY).
+                example: 01/01/2000
+              check_number:
+                type: string
+                description: Check number.
+                example: 34434
+              memo_number:
+                type: string
+                description: Reference number.
+                example: ''
+        pending_plaid_transactions:
+          type: array
+          description: List of pending transactions from Plaid. This section is included in the response only when the `include_pending_plaid_transactions` query parameter is set to `true`.
+          items:
+            type: object
+            properties:
+              amount:
+                type: string
+                description: The transaction amount.
+                example: '1714.65'
+              description:
+                type: string
+                description: Details of the transaction.
+                example: Payment Received
+              iso_currency_code:
+                type: string
+                description: The currency code for the transaction.
+                example: USD
+              plaid_account_id:
+                type: string
+                description: The Plaid account ID.
+                example: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
+              plaid_txn_id:
+                type: string
+                description: The Plaid transaction ID.
+                example: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
+              txn_date:
+                type: string
+                description: The date of the transaction in YYYY-MM-DD format.
+                example: '2025-01-01'
+              uploaded_doc_uuid:
+                type: string
+                description: The UUID of the uploaded document.
+                example: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
+        analytic_constants_version:
+          type: string
+          description: The version of the constants used in analytical calculations.
+          example: 1.0.6
+    SuccessBookSummarySchema:
+      title: Success
+      properties:
+        book_pk:
+          type: integer
+          description: A unique numerical identifier for a <<glossary:Book>>, commonly referred to as the Book primary key (Book pk).
+          example: 18843681
+        book_name:
+          type: string
+          description: The name of the Book used for the analytics calculation.
+          example: Jill's Coffee  (v.3)
+        txn_count:
+          type: integer
+          description: The number of transactions considered for analytics calculation.
+          example: 324
+        naics4_code:
+          type: integer
+          description: A 4-digit North American Industry Classification System (NAICS) code that represents the industry of the Book.
+          example: 7225
+        naics_description:
+          type: string
+          description: "\nThe description of the 4-digit NAICS code, indicating the industry classification of the Book category.\n\n  > \U0001F4D8 In Books with multiple businesses or fragmented merchant activity, the widget may show the following statuses as applicable:\n  > - **`Pending - Industry Data`**: Classification is in progress.  \n  > - **`Unable to find a unique SMB merchant`**: The system is not able to find a unique merchant mapped to the documents in the Book.  \n  > - **`Not Available`**: The system has found a unique merchant, but this merchant does not have industry classification data.\n"
+          example: Restaurants and Other Eating Places
+        naics6_code:
+          type: integer
+          description: A six-digit NAICS code that provides a more granular industry classification for the merchant. This code refines the broader NAICS category and is commonly used for detailed industry analysis, peer comparisons, and benchmarking.
+          example: 7225
+        naics6_description:
+          type: string
+          description: A human-readable description of the six-digit NAICS code that specifies the merchant’s exact industry segment within the broader NAICS classification.
+          example: Snack and Nonalcoholic Beverage Bars
+        naics_override:
+          type: boolean
+          description: Shows if the 4-digit NAICSA code was overriden by the lender.
+          example: true
+        mcc_code:
+          type: integer
+          description: A four-digit code assigned by payment networks that classifies a merchant based on the primary type of goods or services they provide. Merchant Category Code (MCC) are commonly derived from card transaction data and are used for transaction categorization, risk assessment, and analytics.
+          example: 7225
+        mcc_description_:
+          type: string
+          description: A human-readable description of the MCC that explains the merchant’s primary business activity as defined by the card network.
+          example: Snack and Nonalcoholic Beverage Bars
+        sic_code:
+          type: integer
+          description: A four-digit Standard Industrial Classification (SIC) code that identifies the merchant’s primary business activity using the legacy SIC system. SIC codes are derived from bank statement data and are used for industry classification, regulatory reporting, and analytics.
+          example: 172
+        sic_description_:
+          type: string
+          description: A human-readable description of the SIC code that explains the merchant’s primary industry classification under the SIC system.
+          example: GRAPES
+        loan_inquiries:
+          type: object
+          description: 'Summary of loan applications made by the SMB entity, including application history and application velocity over various time windows.
+
+            '
+          properties:
+            smb_entity_name:
+              type: string
+              description: Merchant name derived from the account holder name in the bank statement.
+              example: ABC Corp
+            total_applications:
+              type: integer
+              description: Total number of applications Ocrolus has seen for the merchant, up to the creation time of the current Book.
+              example: 3
+            application_history:
+              type: array
+              description: List of prior application timestamps for the merchant, shown in descending order.
+              items:
+                type: object
+                properties:
+                  created_ts:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the loan application was created.
+                    example: '2025-10-10T12:00:00Z'
+            velocity:
+              type: object
+              description: Number of applications the merchant has submitted within trailing time windows (30–365 days).
+              properties:
+                30_day_count:
+                  type: integer
+                  description: Number of applications in the last 30 days.
+                  example: 2
+                60_day_count:
+                  type: integer
+                  description: Number of applications in the last 60 days.
+                  example: 2
+                90_day_count:
+                  type: integer
+                  description: Number of applications in the last 90 days.
+                  example: 3
+                180_day_count:
+                  type: integer
+                  description: Number of applications in the last 180 days.
+                  example: 3
+                270_day_count:
+                  type: integer
+                  description: Number of applications in the last 270 days.
+                  example: 3
+                365_day_count:
+                  type: integer
+                  description: Number of applications in the last 365 days.
+                  example: 3
+        book_mismatch_severity:
+          type: string
+          description: 'The severity of mismatches detected in the Book, such as discrepancies between uploaded documents and extracted data. Possible values include Low, Medium, and High.
+
+            > 📘 **This attribute is in beta. If you encounter any bug, please reach out to support@ocrolus.com.**
+
+            '
+          example: high
+        daily_balances:
+          type: array
+          description: A time series showing the daily balances on a daily basis.
+        daily_cash_flows:
+          type: array
+          description: A daily time series of cash flows, calculated as the difference between total credits and total debits, arranged in chronological order.
+        average_daily_cash_flow:
+          type: number
+          description: The average value in `daily_cash_flows`.
+        net_cash_flows_by_month:
+          type: array
+          description: The cash flows resulting from the difference between total credits and total debits, categorized by calendar month.
+        minimum_balance_by_month:
+          type: array
+          description: The minimum daily balance grouped by calendar month.
+        maximum_balance_by_month:
+          type: array
+          description: The maximum daily balance grouped by calendar month.
+        average_daily_balance:
+          type: number
+          description: The average amount in `daily_balances`.
+        average_daily_balance_by_month:
+          type: array
+          description: The average daily balance grouped by calendar month.
+        average_daily_balance_weekday:
+          type: number
+          description: The average daily balance on weekdays
+        average_daily_balance_weekday_by_month:
+          type: array
+          description: The average daily balance on weekdays grouped by calendar month.
+        total_days:
+          type: number
+          description: Total number of days for which analytics is calculated.
+        negative_balances_by_month:
+          type: array
+          description: List of dates with negative ending balances grouped by calendar month.
+        negative_balances_weekday_by_month:
+          type: array
+          description: List of dates with negative ending balances on weekdays grouped by calendar month.
+        nnegative_balances_weekday_count_by_month:
+          type: array
+          description: List of dates with count of negative ending balances grouped by calendar month.
+        cash_balance_trend_30d:
+          type: number
+          description: Daily cash balance trend of 30 days. The calculation formula is `((Mean cash balance over first 15 days ) - (Mean cash balance over last 15 days) ) / standard deviation of cash balance over the period`.
+        cash_balance_trend_60d:
+          type: number
+          description: Daily cash balance trend of 60 days. The calculation formula is `((Mean cash balance over first 30 days ) - (Mean cash balance over last 30 days) ) / standard deviation of cash balance over the period`.
+        cash_balance_trend_90d:
+          type: number
+          description: Daily cash balance trend of 90 days. The calculation formula is `((Mean cash balance over first 45 days ) - (Mean cash balance over last 45 days) ) / standard deviation of cash balance over the period`.
+        cash_flow_trend_30d:
+          type: number
+          description: Daily cash flow trend of 30 days. The calculation formula is `((Mean cash flow over first 15 days ) - (Mean cash flow over last 15 days) ) / standard deviation of cash flow over the period`.
+        cash_flow_trend_60d:
+          type: number
+          description: Daily cash flow trend of 60 days. The calculation formula is `((Mean cash flow over first 30 days ) - (Mean cash flow over last 30 days) ) / standard deviation of cash flow over the period`.
+        cash_flow_trend_90d:
+          type: number
+          description: Daily cash flow trend of 90 days.  The calculation formula is `((Mean cash flow over first 45 days ) - (Mean cash flow over last 45 days) ) / standard deviation of cash flow over the period`.
+        average_txn_size_by_month:
+          type: object
+          description: The average transaction size grouped by month.
+        average_deposits_by_month:
+          type: object
+          description: The average number of deposits size grouped by month.
+        expense_by_month:
+          type: array
+          description: Expenses grouped by calendar month.
+        withdrawals_by_month:
+          type: array
+          description: Withdrawals grouped by calendar month.
+        revenue_by_month:
+          type: array
+          description: Revenue grouped by calendar month.
+        revenue_deduction_by_month:
+          type: array
+          description: Revenue deductions grouped by calendar month.
+        deposits_by_month:
+          type: array
+          description: Deposits grouped by calendar month.
+        outside_source_deposits_by_month:
+          type: array
+          description: Outside source deposits grouped by calendar month.
+        large_deposits_by_month:
+          type: array
+          description: List of large amount of deposits grouped by calendar month.
+        debt_consolidator_inflows_by_month:
+          type: array
+          description: Debt consolidator inflows grouped by calendar month.
+        debt_consolidator_outflows_by_month:
+          type: array
+          description: Debt consolidator outflows grouped by calendar month.
+        factoring_inflows_by_month:
+          type: array
+          description: Factoring inflows grouped by calendar month.
+        factoring_outflows_by_month:
+          type: array
+          description: Factoring outflows grouped by calendar month.
+        payroll_inflows_by_month:
+          type: array
+          description: Payroll inflows grouped by calendar month.
+        payroll_outflows_by_month:
+          type: array
+          description: Payroll outflows grouped by calendar month.
+        insurance_inflows_by_month:
+          type: array
+          description: Insurance inflows grouped by calendar month.
+        insurance_outflows_by_month:
+          type: array
+          description: Insurance outflows grouped by calendar month.
+        venmo_zelle_cashapp_inflows_by_month:
+          type: array
+          description: Venmo/Zelle/Cash App inflows grouped by calendar month.
+        venmo_zelle_cashapp_outflows_by_month:
+          type: array
+          description: Venmo/Zelle/Cash App outflows grouped by calendar month.
+        atm_inflows_by_month:
+          type: array
+          description: Automated teller machine (ATM) inflows grouped by calendar month.
+        atm_outflows_by_month:
+          type: array
+          description: Automated teller machine (ATM) outflows grouped by calendar month.
+        tolls_inflows_by_month:
+          type: array
+          description: Toll inflows grouped by calendar month.
+        tolls_outflows_by_month:
+          type: array
+          description: Toll outflows grouped by calendar month.
+        paypal_inflows_by_month:
+          type: array
+          description: PayPal inflows grouped by calendar month.
+        paypal_outflows_by_month:
+          type: array
+          description: Paypal outflows grouped by calendar month.
+        equipment_lease_inflows_by_month:
+          type: array
+          description: Equipment lease inflows grouped by calendar month.
+        equipment_lease_outflows_by_month:
+          type: array
+          description: Equipment lease outflows grouped by calendar month.
+        checks_inflows_by_month:
+          type: array
+          description: Check inflows grouped by calendar month.
+        checks_outflows_by_month:
+          type: array
+          description: Check outflows grouped by calendar month.
+        txn_four_zeros_inflows_by_month:
+          type: array
+          description: Transactions with four zeros inflows grouped by calendar month.
+        txn_four_zeros_outflows_by_month:
+          type: array
+          description: Transactions with four zeros outflows grouped by calendar month.
+        txn_five_zeros_inflows_by_month:
+          type: array
+          description: Transactions with five zeros inflows grouped by calendar month.
+        txn_five_zeros_outflows_by_month:
+          type: array
+          description: Transactions with five zeros outflows grouped by calendar month.
+        probable_recurring_txns_inflows_by_month:
+          type: array
+          description: Recurring transactions inflows grouped by calendar month.
+        probable_recurring_txns_outflows_by_month:
+          type: array
+          description: Recurring transactions outflows grouped by calendar month.
+        fintech_loan_inflows_by_month:
+          type: array
+          description: Fintech loan inflows grouped by calendar month.
+        fintech_loan_outflows_by_month:
+          type: array
+          description: Fintech loan outflows grouped by calendar month.
+        bank_loan_inflows_by_month:
+          type: array
+          description: Bank loan inflows grouped by calendar month.
+        bank_loan_outflows_by_month:
+          type: array
+          description: Bank loan outflows grouped by calendar month.
+        other_loan_inflows_by_month:
+          type: array
+          description: Other loan inflows grouped by calendar month.
+        other_loan_outflows_by_month:
+          type: array
+          description: Other loan outflows grouped by calendar month.
+        fintech_mca_inflows_by_month:
+          type: array
+          description: Fintech MCA (merchant cash adavance) inflows grouped by calendar month.
+        fintech_mca_outflows_by_month:
+          type: array
+          description: Fintech MCA (merchant cash adavance) outflows grouped by calendar month.
+        bank_cash_advance_inflows_by_month:
+          type: array
+          description: Bank cash advance inflows grouped by calendar month.
+        bank_cash_advance_outflows_by_month:
+          type: array
+          description: Bank cash advance outflows grouped by calendar month.
+        debit_card_inflows_by_month:
+          type: array
+          description: Debit card inflows grouped by calendar month.
+        debit_card_outflows_by_month:
+          type: array
+          description: Debit card outflows grouped by calendar month.
+        credit_card_inflows_by_month:
+          type: array
+          description: Credit card inflows grouped by calendar month.
+        credit_card_outflows_by_month:
+          type: array
+          description: Credit card outflows grouped by calendar month.
+        merchant_service_inflows_by_month:
+          type: array
+          description: Merchant service inflows grouped by calendar month.
+        merchant_service_outflows_by_month:
+          type: array
+          description: Merchant service outflows grouped by calendar month.
+        sba_inflows_by_month:
+          type: array
+          description: SBA inflows grouped by calendar month.
+        sba_outflows_by_month:
+          type: array
+          description: SBA outflows grouped by calendar month.
+        remote_inflows_by_month:
+          type: array
+          description: Remote inflows grouped by calendar month.
+        remote_outflows_by_month:
+          type: array
+          description: Remote outflows grouped by calendar month.
+        benefits_inflows_by_month:
+          type: array
+          description: Benefit inflows grouped by calendar month.
+        benefits_outflows_by_month:
+          type: array
+          description: Benefit outflows grouped by calendar month.
+        card_rewards_inflows_by_month:
+          type: array
+          description: Card reward inflows grouped by calendar month.
+        card_rewards_outflows_by_month:
+          type: array
+          description: Card reward outflows grouped by calendar month.
+        crypto_inflows_by_month:
+          type: array
+          description: Crypto inflows grouped by calendar month.
+        crypto_outflows_by_month:
+          type: array
+          description: Crypto outflows grouped by calendar month.
+        gambling_inflows_by_month:
+          type: array
+          description: Gambling inflows grouped by calendar month.
+        gambling_outflows_by_month:
+          type: array
+          description: Gambling outflows grouped by calendar month.
+        investment_inflows_by_month:
+          type: array
+          description: Investment inflows grouped by calendar month.
+        investment_outflows_by_month:
+          type: array
+          description: Investment outflows grouped by calendar month.
+        reversed_inflows_by_month:
+          type: array
+          description: Reversed inflows grouped by calendar month.
+        reversed_outflows_by_month:
+          type: array
+          description: Reversed outflows grouped by calendar month.
+        state_tax_inflows_by_month:
+          type: array
+          description: State tax inflows grouped by calendar month.
+        state_tax_outflows_by_month:
+          type: array
+          description: State tax outflows grouped by calendar month.
+        payroll_tax_inflows_by_month:
+          type: array
+          description: Payroll tax inflows grouped by calendar month.
+        payroll_tax_outflows_by_month:
+          type: array
+          description: Payroll tax outflows grouped by calendar month.
+        internal_transfer_inflows_by_month:
+          type: array
+          description: Internal transfer inflows grouped by calendar month.
+        internal_transfer_outflows_by_month:
+          type: array
+          description: Internal transfer outflows grouped by calendar month.
+        merchant_service_transfer_inflows_by_month:
+          type: array
+          description: Merchant service transfer inflows grouped by calendar month.
+        merchant_service_transfer_outflows_by_month:
+          type: array
+          description: Merchant service transfer outflows grouped by calendar month.
+        wire_transfer_inflows_by_month:
+          type: array
+          description: Wire transfer inflows grouped by calendar month.
+        wire_transfer_outflows_by_month:
+          type: array
+          description: Wire transfer outflows grouped by calendar month.
+        other_transfer_inflows_by_month:
+          type: array
+          description: Other transfer inflows grouped by calendar month.
+        other_transfer_outflows_by_month:
+          type: array
+          description: Other transfer outflows grouped by calendar month.
+        truck_stop_inflows_by_month:
+          type: array
+          description: Truck stop inflows grouped by calendar month.
+        truck_stop_outflows_by_month:
+          type: array
+          description: Truck stop outflows grouped by calendar month.
+        federal_tax_inflows_by_month:
+          type: array
+          description: Federal tax inflows grouped by calendar month.
+        federal_tax_outflows_by_month:
+          type: array
+          description: Federal tax outflows grouped by calendar month.
+        bank_branch_inflows_by_month:
+          type: array
+          description: Bank branch inflows grouped by calendar month.
+        bank_branch_outflows_by_month:
+          type: array
+          description: Bank branch outflows grouped by calendar month.
+        credit_builder_inflows_by_month:
+          type: array
+          description: Credit builder inflows grouped by calendar month.
+        credit_builder_outflows_by_month:
+          type: array
+          description: Credit builder outflows grouped by calendar month.
+        rideshare_by_month:
+          type: array
+          description: List of transactions pertaining to rideshares grouped by calendar month.
+        expense_count_by_month:
+          type: array
+          description: Expense counts grouped by calendar month.
+        withdrawals_count_by_month:
+          type: array
+          description: Withdrawal counts grouped by calendar month.
+        revenue_count_by_month:
+          type: array
+          description: Revenue counts grouped by calendar month.
+        deposits_count_by_month:
+          type: array
+          description: Deposit counts grouped by calendar month.
+        nsf_fee_count_by_month:
+          type: array
+          description: Non-sufficient funds (NSF) fees count grouped by calendar month.
+        nsf_divisor:
+          type: number
+          description: Calculated amount for a single NSF fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with nsf = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise nsf_divisor = None and no scaling occurs.
+        nsf_raw_fee_count_by_month:
+          type: array
+          description: Non-sufficient funds (NSF) fee count (NOT including common divisor logic) grouped by calendar month.
+        overdraft_fee_count_by_month:
+          type: array
+          description: Overdraft fees count grouped by calendar month.
+        overdraft_divisor:
+          type: number
+          description: Calculated amount for a single overdraft fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with overdraft = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise overdraft = None and no scaling occurs.
+        overdraft_raw_fee_count_by_month:
+          type: array
+          description: Overdraft fee count (NOT including common divisor logic) grouped by calendar month.
+        returned_item_deposit_count_by_month:
+          type: array
+          description: Returned item deposit count grouped by calendar month.
+        returned_item_withdrawal_count_by_month:
+          type: array
+          description: Returned item withdrawal count grouped by calendar month.
+        fintech_loan_sources:
+          type: array
+          description: An array summarizing fintech loan sources found in this Book.
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                description: The name of the lender.
+              deposit_sum:
+                type: integer
+                description: The total proceeds from the lender.
+              deposit_count:
+                type: integer
+                description: The number of proceed events from the lender.
+              deposit:
+                type: array
+                description: List of deposits for fintech loans.
+              pmt_sum:
+                type: integer
+                description: The total payments to the lender.
+              pmt_count:
+                type: integer
+                description: The number of payment events to the lender
+              pmt_frequency:
+                type: array
+                description: The average number of days between each payment to the lender
+              pmts:
+                type: array
+                description: List of payments from fintech loans.
+              events:
+                type: array
+                description: Used to make an informed evaluation of debt status based on payment patterns for fintech loans and fintech MCAs. The available options are PAID IN FULL, STOP PAYMENT, REDUCED PAYMENT, INCREASED PAYMENT, and PAYMENT FREQUENCY CHANGE.
+        fintech_mca_sources:
+          type: array
+          description: An array summarizing fintech mca sources found in this Book.
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+                description: The name of the lender.
+              deposit_sum:
+                type: integer
+                description: The total proceeds from the lender.
+              deposit_count:
+                type: integer
+                description: The number of proceed events from the lender.
+              pmt_sum:
+                type: integer
+                description: The total payments to the lender.
+              pmt_count:
+                type: integer
+                description: The number of payment events to the lender.
+              pmt_frequency:
+                type: array
+                description: The average number of days between each payment to the lender.
+        num_fintech_loan_sources:
+          type: integer
+          description: Number of unique fintech_loan_sources.
+        num_fintech_mca_sources:
+          type: integer
+          description: Number of unique fintech_mca_sources.
+        counterparties:
+          type: array
+          description: Distribution statistics of revenue and expense counterparties.
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+                description: The financial classification of the transactions associated with a counterparty.
+              distribution:
+                type: array
+                description: A breakdown of specific counterparties within a category, including their transaction details.
+                items:
+                  type: object
+                  properties:
+                    counterparty:
+                      type: string
+                      description: Standardized identifier of the transaction counterparty.
+                    rank:
+                      type: number
+                      description: The position of the counterparty within the category, based on the transaction amount.
+                    proportion:
+                      type: number
+                      description: The percentage of the total amount within the category attributed to the counterparty.
+                    amount:
+                      type: number
+                      description: The total monetary value of transactions associated with the counterparty in the specified category.
+              average_per_counteryparty:
+                type: number
+                description: The average monetary value of transactions per counterparty in the specified category.
+              num_counterparties:
+                type: number
+                description: The total number of counterparties within the specified category.
+        cash_flow_at_a_glance:
+          type: object
+          description: Summarized cash flow analytics.
+          properties:
+            total_revenue:
+              type: number
+              description: Sum total of all revenue found within this Book.
+            total_expense:
+              type: number
+              description: Sum total of all expenses found within this Book.
+            total_loan_proceeds:
+              type: number
+              description: Sum total of all loan proceeds found within this Book.
+            total_loan_payments:
+              type: number
+              description: Sum total of all loan proceeds found within this Book.
+            debt_coverage_ratio:
+              type: number
+              description: The overall debt coverage ratio of this Book.
+            total_nsf_fee_count:
+              type: number
+              description: Count of all Non-sufficient funds (NSF) fees within this Book.
+        missing_bank_accounts:
+          type: object
+          description: Unreconciled internal transfers showing bank accounts that were not submitted by borrowers during underwriting.
+          properties:
+            account_type:
+              type: string
+              description: The type of the missing bank account such CHECKING or SAVINGS.
+            account_number:
+              type: number
+              description: The missing bank account number.
+            total_transfered_to:
+              type: number
+              description: The total amount transferred to the missing bank account.
+            total_transfered_from:
+              type: number
+              description: The total amount transferred from the missing bank account.
+        bank_accounts:
+          type: array
+          description: An array of bank account level analytics JSONs.
+          items:
+            type: object
+            properties:
+              bank_account_pk:
+                type: number
+                description: Unique integer identifier for bank account.
+              bank_account_name:
+                type: string
+                description: The name of the bank account used to calculate analytics.
+              bank_name:
+                type: string
+                description: The name of bank issuing the bank statement.
+              account_type:
+                type: string
+                description: Indicates whether the account is a checking or savings account.
+              account_holder:
+                type: string
+                description: Name of the bank account holder.
+              account_number:
+                type: string
+                description: Bank account number used to calculate analytics.
+              holder_zip:
+                type: string
+                description: Zip code of the bank account holder.
+              holder_country:
+                type: string
+                description: Country of the bank account holder.
+              holder_state:
+                type: string
+                description: State of the bank account holder.
+              holder_city:
+                type: string
+                description: City of the bank account holder.
+              holder_address_1:
+                type: string
+                description: First line address of the bank account holder.
+              holder_address_2:
+                type: string
+                description: Second line address of the bank account holder.
+              account_category:
+                type: string
+                description: Indicates whether the account is a personal or business account.
+              txn_count:
+                type: integer
+                description: The number of transactions considered for analytics calculation on bank account level.
+                example: 244
+              daily_balances:
+                type: array
+                description: A time series showing the daily balances on a daily basis.
+              daily_cash_flows:
+                type: array
+                description: A daily time series of cash flows, calculated as the difference between total credits and total debits, arranged in chronological order.
+              average_daily_cash_flow:
+                type: number
+                description: The average value in `daily_cash_flows`.
+              net_cash_flows_by_month:
+                type: array
+                description: The cash flows resulting from the difference between total credits and total debits, categorized by calendar month.
+              minimum_balance_by_month:
+                type: array
+                description: The minimum daily balance grouped by calendar month.
+              average_daily_balance:
+                type: number
+                description: The average amount in `daily_balances`.
+              average_daily_balance_by_month:
+                type: array
+                description: The average daily balance grouped by calendar month.
+              average_daily_balance_weekday:
+                type: number
+                description: The average daily balance on weekdays
+              average_daily_balance_weekday_by_month:
+                type: array
+                description: The average daily balance on weekdays grouped by calendar month.
+              total_days:
+                type: number
+                description: Total number of days for which analytics is calculated.
+              negative_balances_by_month:
+                type: array
+                description: List of dates with negative ending balances grouped by calendar month.
+              negative_balances_count_by_month:
+                type: array
+                description: Count of negative ending balances grouped by calendar month
+              negative_balances_weekday_by_month:
+                type: array
+                description: List of weekdays with negative ending balances grouped by calendar month
+              negative_balances_weekday_count_by_month:
+                type: array
+                description: Count of weekdays with negative ending balances grouped by calendar month
+              cash_balance_trend_30d:
+                type: number
+                description: Daily cash balance trend of 30 days. The calculation formula is `((Mean cash balance over first 15 days ) - (Mean cash balance over last 15 days) ) / standard deviation of cash balance over the period`.
+              cash_balance_trend_60d:
+                type: number
+                description: Daily cash balance trend of 60 days. The calculation formula is `((Mean cash balance over first 30 days ) - (Mean cash balance over last 30 days) ) / standard deviation of cash balance over the period`.
+              cash_balance_trend_90d:
+                type: number
+                description: Daily cash balance trend of 90 days. The calculation formula is `((Mean cash balance over first 45 days ) - (Mean cash balance over last 45 days) ) / standard deviation of cash balance over the period`.
+              cash_flow_trend_30d:
+                type: number
+                description: Daily cash flow trend of 30 days. The calculation formula is `((Mean cash flow over first 15 days ) - (Mean cash flow over last 15 days) ) / standard deviation of cash flow over the period`.
+              cash_flow_trend_60d:
+                type: number
+                description: Daily cash flow trend of 60 days. The calculation formula is `((Mean cash flow over first 30 days ) - (Mean cash flow over last 30 days) ) / standard deviation of cash flow over the period`.
+              cash_flow_trend_90d:
+                type: number
+                description: Daily cash flow trend of 90 days.  The calculation formula is `((Mean cash flow over first 45 days ) - (Mean cash flow over last 45 days) ) / standard deviation of cash flow over the period`.
+              average_txn_size_by_month:
+                type: object
+                description: The average transaction size grouped by month.
+              average_deposits_by_month:
+                type: object
+                description: The average number of deposits size grouped by month.
+              expense_by_month:
+                type: array
+                description: Expenses grouped by calendar month.
+              withdrawals_by_month:
+                type: array
+                description: Withdrawals grouped by calendar month.
+              revenue_by_month:
+                type: array
+                description: Revenue grouped by calendar month.
+              revenue_deduction_by_month:
+                type: array
+                description: Revenue deductions grouped by calendar month.
+              deposits_by_month:
+                type: array
+                description: Deposits grouped by calendar month.
+              outside_source_deposits_by_month:
+                type: array
+                description: Outside source deposits grouped by calendar month.
+              debt_consolidator_inflows_by_month:
+                type: array
+                description: Debt consolidator inflows grouped by calendar month.
+              debt_consolidator_outflows_by_month:
+                type: array
+                description: Debt consolidator outflows grouped by calendar month.
+              factoring_inflows_by_month:
+                type: array
+                description: Factoring inflows grouped by calendar month.
+              factoring_outflows_by_month:
+                type: array
+                description: Factoring outflows grouped by calendar month.
+              payroll_inflows_by_month:
+                type: array
+                description: Payroll inflows grouped by calendar month.
+              payroll_outflows_by_month:
+                type: array
+                description: Payroll outflows grouped by calendar month.
+              insurance_inflows_by_month:
+                type: array
+                description: Insurance inflows grouped by calendar month.
+              insurance_outflows_by_month:
+                type: array
+                description: Insurance outflows grouped by calendar month.
+              venmo_zelle_cashapp_inflows_by_month:
+                type: array
+                description: Venmo/Zelle/Cash App inflows grouped by calendar month.
+              venmo_zelle_cashapp_outflows_by_month:
+                type: array
+                description: Venmo/Zelle/Cash App outflows grouped by calendar month.
+              atm_inflows_by_month:
+                type: array
+                description: Automated teller machine (ATM) inflows grouped by calendar month.
+              atm_outflows_by_month:
+                type: array
+                description: Automated teller machine (ATM) outflows grouped by calendar month.
+              tolls_inflows_by_month:
+                type: array
+                description: Toll inflows grouped by calendar month.
+              tolls_outflows_by_month:
+                type: array
+                description: Toll outflows grouped by calendar month.
+              paypal_inflows_by_month:
+                type: array
+                description: PayPal inflows grouped by calendar month.
+              paypal_outflows_by_month:
+                type: array
+                description: Paypal outflows grouped by calendar month.
+              equipment_lease_inflows_by_month:
+                type: array
+                description: Equipment lease inflows grouped by calendar month.
+              equipment_lease_outflows_by_month:
+                type: array
+                description: Equipment lease outflows grouped by calendar month.
+              checks_inflows_by_month:
+                type: array
+                description: Check inflows grouped by calendar month.
+              checks_outflows_by_month:
+                type: array
+                description: Check outflows grouped by calendar month.
+              txn_four_zeros_inflows_by_month:
+                type: array
+                description: Transactions with four zeros inflows grouped by calendar month.
+              txn_four_zeros_outflows_by_month:
+                type: array
+                description: Transactions with four zeros outflows grouped by calendar month.
+              txn_five_zeros_inflows_by_month:
+                type: array
+                description: Transactions with five zeros inflows grouped by calendar month.
+              txn_five_zeros_outflows_by_month:
+                type: array
+                description: Transactions with five zeros outflows grouped by calendar month.
+              probable_recurring_txns_inflows_by_month:
+                type: array
+                description: Recurring transactions inflows grouped by calendar month.
+              probable_recurring_txns_outflows_by_month:
+                type: array
+                description: Recurring transactions outflows grouped by calendar month.
+              fintech_loan_inflows_by_month:
+                type: array
+                description: Fintech loan inflows grouped by calendar month.
+              fintech_loan_outflows_by_month:
+                type: array
+                description: Fintech loan outflows grouped by calendar month.
+              bank_loan_inflows_by_month:
+                type: array
+                description: Bank loan inflows grouped by calendar month.
+              bank_loan_outflows_by_month:
+                type: array
+                description: Bank loan outflows grouped by calendar month.
+              other_loan_inflows_by_month:
+                type: array
+                description: Other loan inflows grouped by calendar month.
+              other_loan_outflows_by_month:
+                type: array
+                description: Other loan outflows grouped by calendar month.
+              fintech_mca_inflows_by_month:
+                type: array
+                description: Fintech MCA (merchant cash adavance) inflows grouped by calendar month.
+              fintech_mca_outflows_by_month:
+                type: array
+                description: Fintech MCA (merchant cash adavance) outflows grouped by calendar month.
+              bank_cash_advance_inflows_by_month:
+                type: array
+                description: Bank cash advance inflows grouped by calendar month.
+              bank_cash_advance_outflows_by_month:
+                type: array
+                description: Bank cash advance outflows grouped by calendar month.
+              debit_card_inflows_by_month:
+                type: array
+                description: Debit card inflows grouped by calendar month.
+              debit_card_outflows_by_month:
+                type: array
+                description: Debit card outflows grouped by calendar month.
+              credit_card_inflows_by_month:
+                type: array
+                description: Credit card inflows grouped by calendar month.
+              credit_card_outflows_by_month:
+                type: array
+                description: Credit card outflows grouped by calendar month.
+              merchant_service_inflows_by_month:
+                type: array
+                description: Merchant service inflows grouped by calendar month.
+              merchant_service_outflows_by_month:
+                type: array
+                description: Merchant service outflows grouped by calendar month.
+              sba_inflows_by_month:
+                type: array
+                description: SBA inflows grouped by calendar month.
+              sba_outflows_by_month:
+                type: array
+                description: SBA outflows grouped by calendar month.
+              remote_inflows_by_month:
+                type: array
+                description: Remote inflows grouped by calendar month.
+              remote_outflows_by_month:
+                type: array
+                description: Remote outflows grouped by calendar month.
+              benefits_inflows_by_month:
+                type: array
+                description: Benefit inflows grouped by calendar month.
+              benefits_outflows_by_month:
+                type: array
+                description: Benefit outflows grouped by calendar month.
+              card_rewards_inflows_by_month:
+                type: array
+                description: Card reward inflows grouped by calendar month.
+              card_rewards_outflows_by_month:
+                type: array
+                description: Card reward outflows grouped by calendar month.
+              crypto_inflows_by_month:
+                type: array
+                description: Crypto inflows grouped by calendar month.
+              crypto_outflows_by_month:
+                type: array
+                description: Crypto outflows grouped by calendar month.
+              gambling_inflows_by_month:
+                type: array
+                description: Gambling inflows grouped by calendar month.
+              gambling_outflows_by_month:
+                type: array
+                description: Gambling outflows grouped by calendar month.
+              investment_inflows_by_month:
+                type: array
+                description: Investment inflows grouped by calendar month.
+              investment_outflows_by_month:
+                type: array
+                description: Investment outflows grouped by calendar month.
+              reversed_inflows_by_month:
+                type: array
+                description: Reversed inflows grouped by calendar month.
+              reversed_outflows_by_month:
+                type: array
+                description: Reversed outflows grouped by calendar month.
+              state_tax_inflows_by_month:
+                type: array
+                description: State tax inflows grouped by calendar month.
+              state_tax_outflows_by_month:
+                type: array
+                description: State tax outflows grouped by calendar month.
+              payroll_tax_inflows_by_month:
+                type: array
+                description: Payroll tax inflows grouped by calendar month.
+              payroll_tax_outflows_by_month:
+                type: array
+                description: Payroll tax outflows grouped by calendar month.
+              internal_transfer_inflows_by_month:
+                type: array
+                description: Internal transfer inflows grouped by calendar month.
+              internal_transfer_outflows_by_month:
+                type: array
+                description: Internal transfer outflows grouped by calendar month.
+              merchant_service_transfer_inflows_by_month:
+                type: array
+                description: Merchant service transfer inflows grouped by calendar month.
+              merchant_service_transfer_outflows_by_month:
+                type: array
+                description: Merchant service transfer outflows grouped by calendar month.
+              wire_transfer_inflows_by_month:
+                type: array
+                description: Wire transfer inflows grouped by calendar month.
+              wire_transfer_outflows_by_month:
+                type: array
+                description: Wire transfer outflows grouped by calendar month.
+              other_transfer_inflows_by_month:
+                type: array
+                description: Other transfer inflows grouped by calendar month.
+              other_transfer_outflows_by_month:
+                type: array
+                description: Other transfer outflows grouped by calendar month.
+              truck_stop_inflows_by_month:
+                type: array
+                description: Truck stop inflows grouped by calendar month.
+              truck_stop_outflows_by_month:
+                type: array
+                description: Truck stop outflows grouped by calendar month.
+              federal_tax_inflows_by_month:
+                type: array
+                description: Federal tax inflows grouped by calendar month.
+              federal_tax_outflows_by_month:
+                type: array
+                description: Federal tax outflows grouped by calendar month.
+              bank_branch_inflows_by_month:
+                type: array
+                description: Bank branch inflows grouped by calendar month.
+              bank_branch_outflows_by_month:
+                type: array
+                description: Bank branch outflows grouped by calendar month.
+              credit_builder_inflows_by_month:
+                type: array
+                description: Credit builder inflows grouped by calendar month.
+              credit_builder_outflows_by_month:
+                type: array
+                description: Credit builder outflows grouped by calendar month.
+              rideshare_by_month:
+                type: array
+                description: List of transactions pertaining to rideshares grouped by calendar month.
+              expense_count_by_month:
+                type: array
+                description: Expense counts grouped by calendar month.
+              withdrawals_count_by_month:
+                type: array
+                description: Withdrawal counts grouped by calendar month.
+              revenue_count_by_month:
+                type: array
+                description: Revenue counts grouped by calendar month.
+              deposits_count_by_month:
+                type: array
+                description: Deposit counts grouped by calendar month.
+              nsf_fee_count_by_month:
+                type: array
+                description: The count of Non-Sufficient Funds (NSF) fees categorized by month of the calendar year.
+              nsf_divisor:
+                type: number
+                description: A metric used to calculate NSF frequency by dividing the number of NSF occurrences by a specified baseline, such as the total number of transactions or a time period.
+              nsf_raw_fee_count_by_month:
+                type: array
+                description: Non-sufficient funds (NSF) fee count (NOT including common divisor logic) grouped by calendar month.
+              overdraft_fee_count_by_month:
+                type: array
+                description: Overdraft fees count grouped by calendar month.
+              overdraft_divisor:
+                type: number
+                description: Calculated amount for a single overdraft fee.\nThe common divisor is defined as "the least common multiple (in 0.50 increments) of amount values corresponding to transactions with overdraft = True".\nThis multiple must fall between 25 and 60 (inclusive) otherwise overdraft = None and no scaling occurs.
+              overdraft_raw_fee_count_by_month:
+                type: array
+                description: Overdraft fee count (NOT including common divisor logic) grouped by calendar month.
+              returned_item_deposit_count_by_month:
+                type: array
+                description: Returned item deposit count grouped by calendar month.
+              returned_item_withdrawal_count_by_month:
+                type: array
+                description: Returned item withdrawal count grouped by calendar month.
+              nsf_paid_or_negative_balance_fee_count_by_month:
+                type: array
+                description: Non-sufficient funds (NSF) fees paid or negative balance fee count grouped by calendar month.
+              nsf_returned_or_not_paid_fee_count_by_month:
+                type: array
+                description: Non-sufficient funds (NSF) fees returned or not paid fees count grouped by calendar month.
+              periods:
+                type: object
+                description: 'A list of statement periods covered by the Book. Each period represents the date range of a single bank statement.
+
+
+                  **Reconciliation field behavior**
+
+                  When `reconciled` is `true`, `recon_error_absolute_amount` is `null` or `0` and all other recon fields are `null`.
+
+
+                  When `reconciled` is `false`, `recon_error_absolute_amount` is populated and remaining recon fields are populated where available.
+
+
+                  Reconciliation values are consistent with the transactions endpoint.
+
+                  '
+                properties:
+                  begin_date:
+                    type: string
+                    description: The start date of the statement period retrieved from the summary section of a bank statement.
+                  end_date:
+                    type: string
+                    description: The end date of the statement period retrieved from the summary section of a bank statement.
+                  begin_balance:
+                    type: number
+                    description: The initial balance of the statement period retrieved from the summary section of a bank statement.
+                  end_balance:
+                    type: number
+                    description: The final balance of the statement period retrieved from the summary section of a bank statement.
+                  txn_count:
+                    type: integer
+                    description: The count of transactions that were included in the analytics calculation for this particular period.
+                  uploaded_doc_pk:
+                    type: integer
+                    description: The unique identifier of the document from which this transaction is captured.
+                  average_amount:
+                    type: number
+                    description: The mean absolute amount of transactions within a given statement period.
+                  average_daily_balance:
+                    type: number
+                    description: The average daily ending balance including weekends.
+                  average_daily_cash_flow:
+                    type: number
+                    description: The mean daily net cash flow, calculated as the difference between total credits and total debits. The `Net Cash Flow = Credits - Debits`.
+                  average_deposit:
+                    type: number
+                    description: The average amount of credit transactions.
+                  deposit_sum:
+                    type: number
+                    description: The overall amount credit during the specified period.
+                  deposit_count:
+                    type: integer
+                    description: The total number of deposit occurrences during the specified period.
+                  withdrawal_sum:
+                    type: number
+                    description: The overall amount withdrawn during the specified period.
+                  withdrawal_count:
+                    type: integer
+                    description: The total count of withdrawals during the specified period.
+                  revenue:
+                    type: number
+                    description: Total revenue of the business.
+                  negative_balances_weekday:
+                    type: array
+                    description: Days in which the daily ending balance fell below zero.
+                  nsf_fee_sum:
+                    type: integer
+                    description: The sum of all NSF fee amounts in the statement period.
+                  nsf_fee_count:
+                    type: integer
+                    description: The number of NSF occurrences in the statement period.
+                  nsf_raw_fee_count:
+                    type: integer
+                    description: The total NSF fee count (NOT including common divisor logic) in statement period.
+                  overdraft_fee_sum:
+                    type: integer
+                    description: The sum of all overdraft fee amounts in the statement period.
+                  overdraft_fee_count:
+                    type: integer
+                    description: The number of overdraft occurrences in the statement period.
+                  overdraft_raw_fee_count:
+                    type: integer
+                    description: The total overdraft fee count (NOT including common divisor logic) in statement period.
+                  returned_item_deposit_count:
+                    type: integer
+                    description: The total number of returned item credits.
+                  returned_item_withdrawal_count:
+                    type: integer
+                    description: The total number of returned item debits.
+                  has_weekend_txn:
+                    type: boolean
+                    description: Indicates if any transactions occured on a weekend.
+                  nsf_divisor:
+                    type: integer
+                    description: The calculated amount for a single NSF fee.
+                  overdraft_divisor:
+                    type: integer
+                    description: The calculated amount for a single overdraft fee.
+                  max_deposit:
+                    type:
+                    - number
+                    - 'null'
+                    description: The highest single deposit amount recorded during the period.
+                  average_withdrawal:
+                    type:
+                    - number
+                    - 'null'
+                    description: The average withdrawal amount across all withdrawals during the period. Returned as a negative value.
+                  max_withdrawal:
+                    type:
+                    - number
+                    - 'null'
+                    description: The largest single withdrawal amount recorded during the period. Returned as a negative value.
+                  revenue_count:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The total number of transactions tagged as revenue during the period.
+                  revenue_deduction:
+                    type:
+                    - number
+                    - 'null'
+                    description: The total amount deducted from gross revenue during the period based on the active revenue formula.
+                  expense:
+                    type:
+                    - number
+                    - 'null'
+                    description: The total amount of transactions tagged as expenses during the period. Returned as a negative value.
+                  expense_count:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The total number of transactions tagged as expenses during the period.
+                  negative_balances:
+                    type:
+                    - array
+                    - 'null'
+                    description: A list of dates within the period on which the account balance was negative. Returns an empty array if no negative balances were recorded.
+                  nsf_days_count:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The number of days within the period on which a non-sufficient funds (NSF) event was recorded.
+                  overdraft_days_count:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The number of days within the period on which an overdraft event was recorded.
+                  nsf_or_overdraft_days_count:
+                    type:
+                    - integer
+                    - 'null'
+                    description: The total number of days within the period on which either an NSF or overdraft event was recorded.
+                  large_deposits:
+                    type:
+                    - number
+                    - 'null'
+                    description: The total amount of deposits considered large during the period, based on Ocrolus thresholds.
+                  reconciled:
+                    type: boolean
+                    description: Whether the statement period reconciled successfully. `true` means the opening and closing balances match the transactions, and `false` means a discrepancy was detected.
+                  recon_error_absolute_amount:
+                    type:
+                    - number
+                    - 'null'
+                    description: The dollar amount of the reconciliation discrepancy for the period. Returns null or 0 when the period reconciled or returns the discrepancy amount when it did not.
+                  recon_error_pct_of_average_daily_balance:
+                    type:
+                    - number
+                    - 'null'
+                    description: The reconciliation discrepancy expressed as a percentage of the average daily balance. Helps you identify the relative size of the error. Returns null when the period reconciled or when average daily balance is unavailable.
+                  primary_recon_error_reason:
+                    type:
+                    - string
+                    - 'null'
+                    description: The main reason the period did not reconcile, such as a balance mismatch or missing transactions. Returns null when the period reconciled.
+                  secondary_recon_error_reason:
+                    type:
+                    - string
+                    - 'null'
+                    description: An additional reason contributing to the reconciliation failure, where available. Returns null when the period reconciled or when no secondary reason is identified.
+                  high_amount_average_daily_balance:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if the average daily balance for this period is unusually high compared to typical activity. May indicate large deposits or infrequent withdrawals.
+                  balance_ending_with_zero:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if the account balance reached zero at the end of this period. May indicate the account was fully drawn down.
+                  high_txns_count_atm_over_cash:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if the number of ATM transactions is disproportionately high relative to cash transactions during this period.
+                  has_weekend_transactions:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if any transactions occurred on weekends during this period. Useful for identifying business type and activity patterns.
+                  no_txn_in_weekdays_within_period:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if no transactions were recorded on weekdays during this period. May indicate account inactivity or an unusual cash flow pattern.
+                  high_txns_amount_atm_over_cash:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: Returns `true` if the total amount of ATM transactions is disproportionately high relative to cash transactions during this period.
+        number_of_docs_in_book:
+          type: integer
+          description: The total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>.
+        number_of_docs_processed:
+          type: integer
+          description: The total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
+        uploaded_docs:
+          type: array
+          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
+          items:
+            type: object
+            properties:
+              pk:
+                type: integer
+                description: Unique personal key for the <<glossary:Document>>.
+              uuid:
+                type: string
+                description: Universal unique identifier for the <<glossary:Document>>.
+              status:
+                type: string
+                description: Processing status of the <<glossary:Document>>.
+              pages:
+                type: integer
+                description: The total number of pages present in the <<glossary:Document>>.
+              mixed_uploaded_doc_pk:
+                type: integer
+                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              mixed_uploaded_doc_uuid:
+                type: string
+                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              rejection_reason:
+                type: string
+                description: An optional attribute that briefly explains why a Document was rejected.
+        book_uuid:
+          type: integer
+          description: A unique numerical identifier for a <<glossary:Book>>, commonly referred to as the Book UUID.
+          example: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
+  parameters:
+    AsyncParameter:
+      name: async
+      in: query
+      required: false
+      description: "When `true`, runs the request as a background job and returns a `job_id` immediately instead of the analytics payload. Required for Books with more than 100,000 transactions. Books exceeding 1,000,000 transactions are rejected with `422` (error code `1100`). \n"
+      schema:
+        type: boolean
+        default: false
+      example: true
   securitySchemes:
     oauth:
       type: oauth2
