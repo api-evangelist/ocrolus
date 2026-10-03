@@ -402,14 +402,25 @@ paths:
                 $ref: '#/components/schemas/inline_response_400_5'
 components:
   schemas:
-    inline_response_200_4_response:
+    inline_response_200_5_response:
       type: object
       properties:
-        uuid:
-          type: string
-          description: The universally unique identification code (UUID) of the webhook.
-          format: uuid
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    inline_response_400_4:
+      allOf:
+      - $ref: '#/components/schemas/ErrorStructure'
+      - type: object
+        properties:
+          message:
+            type: string
+            description: The message pertaining to the error code.
+            example: Webhook with uuid {uuid} not found
+            default: Webhook with uuid {uuid} not found
+          meta:
+            $ref: '#/components/schemas/inline_response_400_4_meta'
     ErrorStructure:
       type: object
       properties:
@@ -431,22 +442,6 @@ components:
           example: null
         meta:
           $ref: '#/components/schemas/ErrorStructure_meta'
-    inline_response_200_6:
-      allOf:
-      - $ref: '#/components/schemas/SuccessStructure'
-      - type: object
-        properties:
-          response:
-            $ref: '#/components/schemas/Webhook'
-    inline_response_200_3:
-      allOf:
-      - $ref: '#/components/schemas/SuccessStructure'
-      - type: object
-        properties:
-          response:
-            type:
-            - object
-            - 'null'
     Event:
       type: object
       properties:
@@ -490,6 +485,105 @@ components:
           - LOW
           - MODERATE
           - HIGH
+    inline_response_200_4_response:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The universally unique identification code (UUID) of the webhook.
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    webhook_uuid_update_body:
+      type: object
+      properties:
+        webhook:
+          type: object
+          $ref: '#/components/schemas/Webhook'
+          description: An object containing information about the webhook you are configuring for.
+          properties:
+            url:
+              type: string
+              description: The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
+              example: https://webhook_endpoint_url.com/example
+            description:
+              type: string
+              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
+              example: Webhook notification testing
+            is_active:
+              type: boolean
+              description: Determines if notificiations will be sent to the provided webhook.
+        event_names:
+          minItems: 1
+          uniqueItems: true
+          description: 'An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
+
+
+            The event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.'
+          type: array
+          items:
+            type: string
+            example:
+            - book.verified
+    inline_response_200_4:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_4_response'
+    webhook_body:
+      type: object
+      properties:
+        webhook:
+          type: object
+          $ref: '#/components/schemas/Webhook'
+          description: An object containing information about the webhook you are configuring for.
+          properties:
+            url:
+              type: string
+              description: The URL of the endpoint that will receive notifications of Ocrolus events . This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
+              example: https://webhook_endpoint_url.com/example
+            description:
+              type: string
+              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
+              example: Webhook notification testing
+          required:
+          - url
+        event_names:
+          minItems: 1
+          uniqueItems: true
+          description: An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
+          type: array
+          items:
+            type: string
+            example:
+            - book.verified
+    ErrorStructure_meta:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The error response status received from the server.
+          example: '400'
+          default: '400'
+        code:
+          type: string
+          description: The error response code corresponding to the response status.
+          example: '1000'
+          default: '1000'
+    SuccessStructure:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The success response status received from the server.
+          example: '200'
+          default: '200'
+        message:
+          type: string
+          description: The success message received from the server corresponding to the response status.
+          example: OK
+          default: OK
     Webhook:
       type: object
       properties:
@@ -524,60 +618,6 @@ components:
           description: The timestamp at which the webhook was last modified.
           readOnly: true
           example: '2022-10-03T09:41:38.000Z'
-    inline_response_200_4:
-      allOf:
-      - $ref: '#/components/schemas/SuccessStructure'
-      - type: object
-        properties:
-          response:
-            $ref: '#/components/schemas/inline_response_200_4_response'
-    inline_response_200_1_response:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    inline_response_400_4_meta:
-      type: object
-      properties:
-        msg:
-          type: string
-          description: The message pertaining to the error code.
-          example: Webhook with uuid {uuid} not found
-          default: Webhook with uuid {uuid} not found
-    ErrorStructure_meta:
-      type: object
-      properties:
-        status:
-          type: string
-          description: The error response status received from the server.
-          example: '400'
-          default: '400'
-        code:
-          type: string
-          description: The error response code corresponding to the response status.
-          example: '1000'
-          default: '1000'
-    inline_response_400_5:
-      allOf:
-      - $ref: '#/components/schemas/ErrorStructure'
-      - type: object
-        properties:
-          message:
-            type: string
-            description: The message pertaining to the error code.
-            example: Webhook with uuid {uuid} not found
-            default: Webhook with url https://www.google.com/ already exists
-            enum:
-            - You need to pass both username and password
-            - Webhook with url https://www.google.com/ already exists
-            - 'url: URL host invalid, top level domain required'
-            - 'url: invalid or missing URL scheme'
-            - Event(s) with name book.verified doesnt exist
-            - 'description: length of value must be at least 3'
-          meta:
-            $ref: '#/components/schemas/inline_response_400_5_meta'
     inline_response_400_3:
       allOf:
       - $ref: '#/components/schemas/ErrorStructure'
@@ -597,34 +637,29 @@ components:
             - 'description: length of value must be at least 3'
           meta:
             $ref: '#/components/schemas/inline_response_400_3_meta'
-    webhook_body:
+    inline_response_400_4_meta:
       type: object
       properties:
-        webhook:
-          type: object
-          $ref: '#/components/schemas/Webhook'
-          description: An object containing information about the webhook you are configuring for.
-          properties:
-            url:
-              type: string
-              description: The URL of the endpoint that will receive notifications of Ocrolus events . This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
-              example: https://webhook_endpoint_url.com/example
-            description:
-              type: string
-              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
-              example: Webhook notification testing
-          required:
-          - url
-        event_names:
-          minItems: 1
-          uniqueItems: true
-          description: An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
-          type: array
-          items:
-            type: string
-            example:
-            - book.verified
-    inline_response_400_4:
+        msg:
+          type: string
+          description: The message pertaining to the error code.
+          example: Webhook with uuid {uuid} not found
+          default: Webhook with uuid {uuid} not found
+    inline_response_200_6:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/Webhook'
+    inline_response_200_1:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_1_response'
+    inline_response_400_5:
       allOf:
       - $ref: '#/components/schemas/ErrorStructure'
       - type: object
@@ -633,29 +668,16 @@ components:
             type: string
             description: The message pertaining to the error code.
             example: Webhook with uuid {uuid} not found
-            default: Webhook with uuid {uuid} not found
+            default: Webhook with url https://www.google.com/ already exists
+            enum:
+            - You need to pass both username and password
+            - Webhook with url https://www.google.com/ already exists
+            - 'url: URL host invalid, top level domain required'
+            - 'url: invalid or missing URL scheme'
+            - Event(s) with name book.verified doesnt exist
+            - 'description: length of value must be at least 3'
           meta:
-            $ref: '#/components/schemas/inline_response_400_4_meta'
-    SuccessStructure:
-      type: object
-      properties:
-        status:
-          type: string
-          description: The success response status received from the server.
-          example: '200'
-          default: '200'
-        message:
-          type: string
-          description: The success message received from the server corresponding to the response status.
-          example: OK
-          default: OK
-    inline_response_200_5_response:
-      type: object
-      properties:
-        webhooks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
+            $ref: '#/components/schemas/inline_response_400_5_meta'
     inline_response_400_3_meta:
       type: object
       properties:
@@ -671,6 +693,29 @@ components:
           - 'url: invalid or missing URL scheme'
           - Event(s) with name book.verified doesnt exist
           - 'description: length of value '
+    inline_response_200_1_response:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    inline_response_200_3:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            type:
+            - object
+            - 'null'
+    inline_response_200_5:
+      allOf:
+      - $ref: '#/components/schemas/SuccessStructure'
+      - type: object
+        properties:
+          response:
+            $ref: '#/components/schemas/inline_response_200_5_response'
     inline_response_400_5_meta:
       type: object
       properties:
@@ -686,51 +731,6 @@ components:
           - 'url: invalid or missing URL scheme'
           - Event(s) with name book.verified doesnt exist
           - 'description: length of value must be at least 3'
-    inline_response_200_1:
-      allOf:
-      - $ref: '#/components/schemas/SuccessStructure'
-      - type: object
-        properties:
-          response:
-            $ref: '#/components/schemas/inline_response_200_1_response'
-    webhook_uuid_update_body:
-      type: object
-      properties:
-        webhook:
-          type: object
-          $ref: '#/components/schemas/Webhook'
-          description: An object containing information about the webhook you are configuring for.
-          properties:
-            url:
-              type: string
-              description: The URL of the endpoint that will receive notifications of Ocrolus events. This should be on your own infrastructure, protected from the outside world on a network level. See [here](doc:allowlist-of-ip-addresses) for a list of IP addresses that you can add to your firewall's allowlist.
-              example: https://webhook_endpoint_url.com/example
-            description:
-              type: string
-              description: A written description of the configured webhook. A description is not required but if provided, a minimum of 3 characters is required with a maximum length of 255.
-              example: Webhook notification testing
-            is_active:
-              type: boolean
-              description: Determines if notificiations will be sent to the provided webhook.
-        event_names:
-          minItems: 1
-          uniqueItems: true
-          description: 'An array of events that will trigger a call to your webhook. Atleast one event is required per request. Please see our [guide on Org level webhooks](doc:organization-level-webhook#available-events) for a list of all possible events.
-
-
-            The event list given in this parameter will replace all existing subscriptions, i.e. providing a single event will subscribe *only* to that event while unsubscribing from the others.'
-          type: array
-          items:
-            type: string
-            example:
-            - book.verified
-    inline_response_200_5:
-      allOf:
-      - $ref: '#/components/schemas/SuccessStructure'
-      - type: object
-        properties:
-          response:
-            $ref: '#/components/schemas/inline_response_200_5_response'
   securitySchemes:
     oauth:
       type: oauth2

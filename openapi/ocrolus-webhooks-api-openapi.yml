@@ -296,43 +296,6 @@ paths:
                     type: string
                     description: A textual description that indicates details about this response's status.
 components:
-  examples:
-    SuccessfulWebhookTest:
-      summary: Success
-      value:
-        status: 200
-        response:
-          resp_code: 200
-          message: Success calling webhook endpoint
-        message: OK
-    FailedWebhookTest:
-      summary: Failed Test
-      value:
-        status: 200
-        response:
-          message: 'Error: Failed to invoke webhook end point 401 Client Error: UNAUTHORIZED for url: https://httpbin.org/status/401'
-        message: OK
-    FailedWebhookRegistration:
-      summary: Failed Registration
-      value:
-        status: 400
-        code: 1806
-        response: null
-        message: One of the input is invalid
-        meta:
-          status: 400
-          msg: One of the input is invalid
-          code: 1806
-    SuccessfulWebhookRegistration:
-      summary: Success
-      value:
-        status: 200
-        response:
-          webhook_endpoint: https://webhook_endpoint_url.com/example
-          events:
-          - DOC_VERIFIED
-          - BOOK_VERIFIED
-        message: OK
   schemas:
     WebhookRegistration:
       description: 'An object that describes the active webhook registration. Only one webhook can be registered at this time; if you need multiple event handlers, your implementation should inspect the request payload and direct events as needed.
@@ -411,6 +374,43 @@ components:
       - network.book.funded (BETA)
       - plaid.upload_failed
       - plaid.upload_succeeded
+  examples:
+    FailedWebhookTest:
+      summary: Failed Test
+      value:
+        status: 200
+        response:
+          message: 'Error: Failed to invoke webhook end point 401 Client Error: UNAUTHORIZED for url: https://httpbin.org/status/401'
+        message: OK
+    SuccessfulWebhookTest:
+      summary: Success
+      value:
+        status: 200
+        response:
+          resp_code: 200
+          message: Success calling webhook endpoint
+        message: OK
+    SuccessfulWebhookRegistration:
+      summary: Success
+      value:
+        status: 200
+        response:
+          webhook_endpoint: https://webhook_endpoint_url.com/example
+          events:
+          - DOC_VERIFIED
+          - BOOK_VERIFIED
+        message: OK
+    FailedWebhookRegistration:
+      summary: Failed Registration
+      value:
+        status: 400
+        code: 1806
+        response: null
+        message: One of the input is invalid
+        meta:
+          status: 400
+          msg: One of the input is invalid
+          code: 1806
   securitySchemes:
     oauth:
       type: oauth2
