@@ -1,0 +1,26 @@
+slug: ocrolus
+provider: Ocrolus
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Org Level Webhooks
+  spec_file: ocrolus-org-level-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: '''webhook crud operations'' — ''Add webhook'', ''List webhook events'', ''Configure webhook
+    secret'', ''Test webhook'''
+  reason: Full lifecycle management of outbound webhook subscriptions and their event delivery exposed
+    to API consumers, which matches Webhook & Event Subscription Management. Some risk this is viewed
+    as pure integration plumbing.

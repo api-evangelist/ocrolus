@@ -374,6 +374,9 @@ apis:
   - type: Webhooks
     url: asyncapi/ocrolus-webhooks.yml
 common:
+- type: CapabilityMap
+  url: capabilities/ocrolus-capability-edges.yml
+  name: Ocrolus Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/ocrolus/overview
 - type: Website
