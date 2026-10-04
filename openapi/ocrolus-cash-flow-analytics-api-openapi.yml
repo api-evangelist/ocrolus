@@ -6329,6 +6329,304 @@ paths:
                     status: 500
                     message: Internal Server Error.
 components:
+  examples:
+    BookNotFoundError:
+      summary: Book Not Found
+      value:
+        status: 404
+        code: 1401
+        message: Book not found
+    TransactionsNotFoundError:
+      summary: Transactions not found
+      value:
+        status: 404
+        message: No transactions found in the book
+        code: 9006
+    TxnLimitExceeded:
+      summary: Transaction Limit Exceeded
+      value:
+        status: 400
+        code: 1100
+        message: Book summary cannot be generated for these many transactions
+    AsyncJobPending:
+      summary: Accepted — still processing
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        status: PENDING
+    SMBEntityNotResolved:
+      summary: No SMB entity resolved for the Book
+      value:
+        status: 404
+        message: Confirm the Book finished processing and resolved to an SMB entity.
+    TxnLimitExceededError:
+      summary: Transaction Limit Exceeded
+      value:
+        status: 422
+        code: 1100
+        message: Book transaction limit exceeded
+    InvalidBookUUID:
+      summary: Invalid book_uuid
+      value:
+        status: 400
+        message: Confirm the book_uuid is well-formed and was submitted by your organization.
+    RiskScoreNotEnabled:
+      summary: Risk score not enabled
+      value:
+        status: 400
+        code: 1200
+        message: Risk score is not enabled for this org
+    AsyncJobNotFound:
+      summary: Job ID not found or has expired
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        error: Job not found or has expired
+    AsyncJobDone:
+      summary: OK - completed
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        status: DONE
+        result_url: https://.../async_jobs/0f2b9c3a...?X-Amz-Signature=...
+    MissingOrInvalidCredentials:
+      summary: Missing or invalid credentials
+      value:
+        status: 401
+        message: Provide or refresh your OAuth bearer token.
+    AsyncJobFailed:
+      summary: Job failed
+      value:
+        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
+        status: FAILED
+        error: Book transaction count exceeds the maximum supported by the async serving path
+    BookPermissionError:
+      summary: No Permission
+      value:
+        status: 403
+        code: 2102
+        message: No permission to access this book
+    SuccessEnrichedTxnsResponse:
+      value:
+        book_uuid: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
+        filtered_total: 50
+        offset: 1
+        limit: 50
+        enriched_transactions:
+        - txn_pk: 2640590368
+          txn_date: '2021-01-09'
+          description: 'CHECKCARD 0109 LIBERTY PAPER SUPPLIES # 633 COURT ST [... ]'
+          bank_account_pk: 9662788
+          uploaded_doc_pk: 41188513
+          uploaded_doc_name: Dec.pdf
+          amount: -127.99
+          atm: false
+          bank_branch: false
+          bank_cash_advance: false
+          bank_loan: false
+          bank: false
+          benefits: false
+          card_rewards: false
+          checks: false
+          counterparty: LIBERTY PAPER SUPPLIES
+          credit_builder: false
+          credit_card: false
+          crypto: false
+          debit_card: true
+          debt_consolidator: false
+          deposits: false
+          equipment_lease: false
+          expense: true
+          factoring: false
+          federal_tax: false
+          fintech_loan: false
+          fintech_loan_source: null
+          fintech_mca: false
+          fintech_mca_source: null
+          fintech: false
+          gambling: false
+          insurance: false
+          internal_transfer: false
+          investment: false
+          large_deposits: false
+          merchant_service_transfer: false
+          merchant_service: false
+          nsf: false
+          nsf_paid_or_negative_balance: false
+          nsf_returned_or_not_paid: false
+          other_loan: false
+          other_transfer: false
+          outside_source_deposits: false
+          overdraft: false
+          paypal: false
+          payroll_tax: false
+          payroll: false
+          probable_recurring_txns: false
+          remote: false
+          returned_item: false
+          revenue_deduction_other: false
+          revenue_deduction: false
+          revenue: false
+          reversed: false
+          sba: false
+          state_tax: false
+          tolls: false
+          truck_stop: false
+          txn_five_zeros: false
+          txn_four_zeros: false
+          venmo_zelle_cashapp: false
+          wire_transfer: false
+          withdrawals: true
+          comment: null
+          is_noteworthy: false
+          page_idx: 2
+          unreconciled_internal_transfer: false
+          reconciled_txn_pk: null
+          rideshare: false
+          custom_nike: false
+          custom_tag: false
+          sahil_sample: false
+        - txn_pk: 2640590370
+          txn_date: '2021-01-08'
+          description: 'BKOFAMERICA ATM 01/08 # 000003974 DEPOSIT 1608 AVE M BROOKLYN NY'
+          bank_account_pk: 9662788
+          uploaded_doc_pk: 41188513
+          uploaded_doc_name: Dec.pdf
+          amount: 1150
+          atm: true
+          bank_branch: false
+          bank_cash_advance: false
+          bank_loan: false
+          bank: false
+          benefits: false
+          card_rewards: false
+          checks: false
+          counterparty: null
+          credit_builder: false
+          credit_card: false
+          crypto: false
+          debit_card: false
+          debt_consolidator: false
+          deposits: true
+          equipment_lease: false
+          expense: false
+          factoring: false
+          federal_tax: false
+          fintech_loan: false
+          fintech_loan_source: null
+          fintech_mca: false
+          fintech_mca_source: null
+          fintech: false
+          gambling: false
+          insurance: false
+          internal_transfer: false
+          investment: false
+          large_deposits: false
+          merchant_service_transfer: false
+          merchant_service: false
+          nsf: false
+          nsf_paid_or_negative_balance: false
+          nsf_returned_or_not_paid: false
+          other_loan: false
+          other_transfer: false
+          outside_source_deposits: true
+          overdraft: false
+          paypal: false
+          payroll_tax: false
+          payroll: false
+          probable_recurring_txns: true
+          remote: false
+          returned_item: false
+          revenue_deduction_other: false
+          revenue_deduction: false
+          revenue: true
+          reversed: false
+          sba: false
+          state_tax: false
+          tolls: false
+          truck_stop: false
+          txn_five_zeros: false
+          txn_four_zeros: false
+          venmo_zelle_cashapp: false
+          wire_transfer: false
+          withdrawals: false
+          comment: null
+          is_noteworthy: false
+          page_idx: 2
+          unreconciled_internal_transfer: false
+          reconciled_txn_pk: null
+          rideshare: false
+          custom_nike: true
+          custom_tag: true
+          sahil_sample: false
+        total: 2
+        number_of_docs_in_book: 2
+        number_of_docs_processed: 2
+        uploaded_docs:
+        - pk: 41188518
+          uuid: c1224107-cb9f-472a-a6c2-cbb2fd497eee
+          status: VERIFICATION_COMPLETE
+          pages: 4
+          mixed_uploaded_doc_pk: null
+          mixed_uploaded_doc_uuid: null
+          rejection_reason: null
+        - pk: 41188515
+          uuid: c83f9bb2-e7f2-446d-96b2-4c5e0dc11d6b
+          status: VERIFICATION_COMPLETE
+          pages: 3
+          mixed_uploaded_doc_pk: null
+          mixed_uploaded_doc_uuid: null
+          rejection_reason: null
+        mismatched_transactions:
+        - txn_pk: 123
+          txn_date: '2024-01-01'
+          description: TRANSFER TO CHECKING
+          amount: -2000.01
+          uploaded_doc_pk: 123456
+          uploaded_doc_format: PLAID
+          severity: High
+          reason_code: critical_category_mismatch
+          related_txn_pk: 456
+          tags: fintech, fintech_loan
+          counterparty: Credibly
+        - txn_pk: 456
+          txn_date: '2024-02-01'
+          description: CHECK 12345
+          amount: 102.34
+          uploaded_doc_pk: 78922
+          uploaded_doc_format: BANK_STATEMENT
+          severity: High
+          reason_code: critical_category_mismatch
+          related_txn_pk: 456
+          tags: fintech, fintech_loan
+          counterparty: Credibly
+        bank_checks:
+        - uuid: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
+          bank_account_pk: 290879
+          amount: '100.00'
+          pay_to: TEST
+          txn_date: 01/01/2000
+          check_number: '34434'
+          memo_number: ''
+        - uuid: 4f7a0b3c-ad27-410c-8577-2ea2fa51c25e
+          bank_account_pk: 290879
+          amount: '200.00'
+          pay_to: TEST2
+          txn_date: 01/05/2000
+          check_number: '5555'
+          memo_number: ''
+        pending_plaid_transactions:
+        - amount: '1714.65'
+          description: Payment Received
+          iso_currency_code: USD
+          plaid_account_id: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
+          plaid_txn_id: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
+          txn_date: '2025-01-01'
+          uploaded_doc_uuid: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
+        analytic_constants_version: 1.0.6
+    TxnTagsProcessingError:
+      summary: Analytics Still Processing
+      value:
+        status: 425
+        code: 9004
+        message: Analytics are still being processed, please check back momentari
   schemas:
     SuccessCashFlowFeaturesSchema:
       description: 'A detailed analysis of inflows and outflows of money to a bank account.
@@ -9204,6 +9502,479 @@ components:
               rejection_reason:
                 type: string
                 description: An optional attribute that briefly explains why a Document was rejected.
+    SuccessEnrichedTxnsSchema:
+      properties:
+        book_uuid:
+          type: string
+          description: Unique identifier of the <<glossary:Book>>.
+          example:
+          - caaa57ba-8909-4a05-9dcc-e7cc057e3c48
+          format: uuid
+        filtered_total:
+          type: integer
+          description: The total number of transactions retrieved after applying `offset` and `limit`.
+          example: 50
+        offset:
+          type: integer
+          description: The starting index for paginated transactions result.
+          example: 1
+        limit:
+          type: integer
+          description: The maximum number of transactions returned per page starting from the specified `offset` value.
+          example: 50
+        enriched_transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              txn_pk:
+                type: integer
+                example:
+                - 2640590368
+                description: Unique identifier of the transaction
+              txn_date:
+                type: string
+                example: '2021-01-09'
+                description: Date of the transaction in ISO 8601-compliant YYYY-MM-DD format.
+              description:
+                type: string
+                example: CHECKCARD 0109 LIBERTY PAPER SUPPLIES
+                description: A brief description of the transaction.
+              bank_account_pk:
+                type: integer
+                example: 123246
+                description: The primary key of the bank account associated with the transaction.
+              uploaded_doc_pk:
+                type: integer
+                example: 123246
+                description: The primary key of the <<glossary:Document>> associated with the transaction.
+              uploaded_doc_name:
+                type: string
+                example: december_bank_statement
+                description: The name of the <<glossary:Document>> associated with the transaction.
+              amount:
+                type: string
+                example:
+                - -127.99
+                description: Transaction amount. Positive values represent credits, and negative values represent debits. This amount includes dollars and cents; to avoid floating-point precision errors, consider parsing this field with a decimal data type, as opposed to a native `float` or `double`.
+              atm:
+                type: boolean
+                example: true
+                description: Transaction at physical ATM locations
+              bank_branch:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction with a physical bank branch
+              bank_cash_advance:
+                type:
+                - boolean
+                - 'null'
+                description: Cash advance with traditional bank
+              bank_loan:
+                type:
+                - boolean
+                - 'null'
+                description: Loan transaction with a traditional bank
+              bank:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction associated with a traditional bank/depository institution
+              benefits:
+                type:
+                - boolean
+                - 'null'
+                description: Transaction associated with government benefits
+              card_rewards:
+                type:
+                - boolean
+                - 'null'
+                description: 'Transaction associated with credit card rewards
+
+                  '
+              checks:
+                type: boolean
+                example: true
+                description: Transaction with a check (physical or electronic)
+              counterparty:
+                type: string
+                description: Standardized identifier of the transaction counterparty.
+              credit_builder:
+                type: boolean
+                example: false
+                description: Transaction with credit builder companies
+              credit_card:
+                type: boolean
+                example: true
+                description: Credit card transaction
+              crypto:
+                type: boolean
+                example: true
+                description: Transaction associated with cryptocurrency and related companies
+              debit_card:
+                type: boolean
+                example: true
+                description: Debit card transaction
+              debt_consolidator:
+                type: boolean
+                example: true
+                description: Transaction associated with debt refinancing and consolidation companies
+              deposits:
+                type: boolean
+                example: true
+                description: Amount greater than zero
+              equipment_lease:
+                type: boolean
+                example: true
+                description: Transaction associated with equipment leasing companies
+              expense:
+                type: boolean
+                example: true
+                description: Withdrawals that have been included as expense
+              factoring:
+                type: boolean
+                example: true
+                description: Transaction associated with factoring companies
+              federal_tax:
+                type: boolean
+                example: true
+                description: Federal tax transaction
+              fintech_loan:
+                type: boolean
+                example: true
+                description: Loan transaction with a fintech company
+              fintech_loan_source:
+                type:
+                - string
+                - 'null'
+                description: The source of a loan transaction with a fintech company
+              fintech_mca:
+                type: boolean
+                example: true
+                description: Merchant cash advance transaction with a fintech company
+              fintech_mca_source:
+                type:
+                - string
+                - 'null'
+                description: The source of a merchant cash advance transaction with a fintech company
+              fintech:
+                type: boolean
+                example: true
+                description: Transaction associated with a fintech company
+              gambling:
+                type: boolean
+                example: true
+                description: Transaction associated with gambling like casino and lottery
+              insurance:
+                type: boolean
+                example: true
+                description: Transaction associated with insurance premiums or payouts
+              internal_transfer:
+                type: boolean
+                example: true
+                description: Transfer between accounts with the same owner
+              investment:
+                type: boolean
+                example: true
+                description: Transaction associated with investment and brokerage companies
+              large_deposits:
+                type: boolean
+                example: true
+                description: Large amount of deposite in the account
+              merchant_service_transfer:
+                type: boolean
+                example: true
+                description: Transfer to/from a merchant service company
+              merchant_service:
+                type: boolean
+                example: true
+                description: Transaction associated with payment processing companies
+              nsf:
+                type: boolean
+                example: true
+                description: Non-sufficient funds transactions and fees
+              nsf_paid_or_negative_balance:
+                type: boolean
+                example: true
+                description: Indicates a paid transaction despite insufficient funds (NSF) or an account with a negative balance
+              nsf_returned_or_not_paid:
+                type: boolean
+                example: true
+                description: Indicates a transaction that was returned or declined due to non-sufficient funds (NSF) and was not successfully paid
+              other_loan:
+                type: boolean
+                example: true
+                description: Loan transaction that does not fit into `fintech_loan` or `bank_loan`
+              other_transfer:
+                type: boolean
+                example: true
+                description: Transfer that does not fit into other categories
+              outside_source_deposits:
+                type: boolean
+                example: true
+                description: Deposits that are not `internal_transfer` or `other_transfer`
+              overdraft:
+                type: boolean
+                example: true
+                description: Fees associated with overdraft events
+              paypal:
+                type: boolean
+                example: true
+                description: Transaction with PayPal
+              payroll_tax:
+                type: boolean
+                example: true
+                description: Payroll tax transaction
+              payroll:
+                type: boolean
+                example: true
+                description: Transaction associated with payroll activities and companies
+              probable_recurring_txns:
+                type: boolean
+                example: true
+                description: Transactions with two or more similar occurences
+              remote:
+                type: boolean
+                example: true
+                description: Remote or mobile transactions
+              returned_item:
+                type: boolean
+                example: true
+                description: Items that were returned due to a non-sufficent funds event
+              revenue_deduction_other:
+                type: boolean
+                example: true
+                description: Transaction that had been removed from revenue but does not fit into other categories
+              revenue_deduction:
+                type: boolean
+                example: true
+                description: Deposits that have not been included in revenue
+              revenue:
+                type: boolean
+                example: true
+                description: Deposits that have been included in revenue
+              reversed:
+                type: boolean
+                example: true
+                description: Transaction that has been reversed
+              sba:
+                type: boolean
+                example: true
+                description: Transaction associated with the Small Business Administration
+              state_tax:
+                type: boolean
+                example: true
+                description: State tax transaction
+              tolls:
+                type: boolean
+                example: true
+                description: Transaction associated with transportation tolls (bridges, highways, etc.)
+              truck_stop:
+                type: boolean
+                example: true
+                description: Transaction at truck stop areas
+              txn_five_zeros:
+                type: boolean
+                example: true
+                description: Amount is multiple of $1000.00
+              txn_four_zeros:
+                type: boolean
+                example: true
+                description: Amount is multiple of $100.00
+              venmo_zelle_cashapp:
+                type: boolean
+                example: true
+                description: Transaction with Venmo, Zelle, or Cash App
+              wire_transfer:
+                type: boolean
+                example: true
+                description: Wire transfer
+              withdrawals:
+                type: boolean
+                example: true
+                description: Amount less than zero
+              comment:
+                type: string
+                description: Additional notes or remarks about the transaction.
+              is_noteworthy:
+                type: boolean
+                description: Indicates whether the transaction is considered noteworthy based on internal business rules and risk factors. A value of `true` highlights transactions that may require additional attention or review.
+              page_idx:
+                type: integer
+                description: The page number of the Document where this transaction was recorded
+              unreconciled_internal_transfer:
+                type: boolean
+                description: Indicates that an internal transfer transaction could not be fully reconciled because one or both associated bank accounts were not identified within the Book.
+              reconciled_txn_pk:
+                type:
+                - string
+                - 'null'
+                description: A unique primary key (PK) of the transaction representing the other side of a reconciled internal transfer. It ensures that both sides of the transfer are connected within the Book.
+              rideshare:
+                type: boolean
+                description: A fee deducted by the rideshare platform from the driver's earnings as a service charge.
+              custom_tag:
+                type: boolean
+                description: Any user defined tag based on business needs.
+        total:
+          type: integer
+          description: The total number of enriched_transactions found in this <<glossary:Book>>
+        number_of_docs_in_book:
+          type: integer
+          description: the total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>
+        number_of_docs_processed:
+          type: integer
+          description: the total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
+        uploaded_docs:
+          type: array
+          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
+          items:
+            type: object
+            properties:
+              pk:
+                type: integer
+                description: Unique personal key for the <<glossary:Document>>.
+              uuid:
+                type: string
+                description: Universal unique identifier for the <<glossary:Document>>.
+              status:
+                type: string
+                description: Processing status of the <<glossary:Document>>.
+              pages:
+                type: integer
+                description: The total number of pages present in the <<glossary:Document>>.
+              mixed_uploaded_doc_pk:
+                type: integer
+                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              mixed_uploaded_doc_uuid:
+                type: string
+                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
+              rejection_reason:
+                type: string
+                description: An optional attribute that briefly explains why a Document was rejected.
+        mismatched_transactions:
+          type: array
+          description: "List of transactions that do not reconcile between Plaid and PDF bank statement data. \n"
+          items:
+            type: object
+            properties:
+              txn_pk:
+                type: integer
+                description: Unique identifier for the transaction.
+                example: 123
+              txn_date:
+                type: string
+                description: The date of the transaction (YYYY-MM-DD format).
+                example: '2024-01-01'
+              description:
+                type: string
+                description: Details of the transaction.
+                example: TRANSFER TO CHECKING
+              amount:
+                type: string
+                description: The transaction amount where negative indicates debit.
+                example: -2000.01
+              uploaded_doc_pk:
+                type: integer
+                description: Identifier for the associated uploaded document.
+                example: 123456
+              uploaded_doc_format:
+                type: string
+                description: Format of the uploaded document (e.g., PLAID, PDF, etc.).
+                example: PLAID
+              severity:
+                type: string
+                description: The risk level (High, Medium, or Low) assigned to each mismatched transaction, based on business rules that help you prioritize critical discrepancies such as NSFs, MCAs, overdrafts, and other high-risk activities.
+                example: High
+              reason_code:
+                type: string
+                description: The reason code indicating why a transaction was flagged as a mismatch (e.g., Posting Date Difference, Non-Critical Transaction, Critical Category Mismatch).
+                example: critical_category_mismatch
+              related_txn_pk:
+                type: integer
+                description: The primary key of the related transaction, if applicable.
+                example: 456
+              tags:
+                type: string
+                description: Comma-separated tags associated with the transaction used to identify the nature of the transaction.
+                example: fintech, fintech_loan
+              counterparty:
+                type: string
+                description: Standardized identifier of the transaction counterparty.
+                example: Credibly
+        bank_checks:
+          type: array
+          description: List of images within the bank statement that have been processed by the system for check detection.
+          items:
+            type: object
+            properties:
+              uuid:
+                type: string
+                description: Unique identifier for the check entry.
+                example: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
+              bank_account_pk:
+                type: integer
+                description: Primary key of the associated bank account.
+                example: 290879
+              amount:
+                type: string
+                description: Amount associated with the check.
+                example: 100
+              pay_to:
+                type: string
+                description: Name of the check recipient.
+                example: Fake
+              txn_date:
+                type: string
+                description: Date the check was issued or processed (MM/DD/YYYY).
+                example: 01/01/2000
+              check_number:
+                type: string
+                description: Check number.
+                example: 34434
+              memo_number:
+                type: string
+                description: Reference number.
+                example: ''
+        pending_plaid_transactions:
+          type: array
+          description: List of pending transactions from Plaid. This section is included in the response only when the `include_pending_plaid_transactions` query parameter is set to `true`.
+          items:
+            type: object
+            properties:
+              amount:
+                type: string
+                description: The transaction amount.
+                example: '1714.65'
+              description:
+                type: string
+                description: Details of the transaction.
+                example: Payment Received
+              iso_currency_code:
+                type: string
+                description: The currency code for the transaction.
+                example: USD
+              plaid_account_id:
+                type: string
+                description: The Plaid account ID.
+                example: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
+              plaid_txn_id:
+                type: string
+                description: The Plaid transaction ID.
+                example: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
+              txn_date:
+                type: string
+                description: The date of the transaction in YYYY-MM-DD format.
+                example: '2025-01-01'
+              uploaded_doc_uuid:
+                type: string
+                description: The UUID of the uploaded document.
+                example: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
+        analytic_constants_version:
+          type: string
+          description: The version of the constants used in analytical calculations.
+          example: 1.0.6
     SuccessBookSummarySchema:
       title: Success
       properties:
@@ -10470,777 +11241,6 @@ components:
           type: integer
           description: A unique numerical identifier for a <<glossary:Book>>, commonly referred to as the Book UUID.
           example: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
-    SuccessEnrichedTxnsSchema:
-      properties:
-        book_uuid:
-          type: string
-          description: Unique identifier of the <<glossary:Book>>.
-          example:
-          - caaa57ba-8909-4a05-9dcc-e7cc057e3c48
-          format: uuid
-        filtered_total:
-          type: integer
-          description: The total number of transactions retrieved after applying `offset` and `limit`.
-          example: 50
-        offset:
-          type: integer
-          description: The starting index for paginated transactions result.
-          example: 1
-        limit:
-          type: integer
-          description: The maximum number of transactions returned per page starting from the specified `offset` value.
-          example: 50
-        enriched_transactions:
-          type: array
-          items:
-            type: object
-            properties:
-              txn_pk:
-                type: integer
-                example:
-                - 2640590368
-                description: Unique identifier of the transaction
-              txn_date:
-                type: string
-                example: '2021-01-09'
-                description: Date of the transaction in ISO 8601-compliant YYYY-MM-DD format.
-              description:
-                type: string
-                example: CHECKCARD 0109 LIBERTY PAPER SUPPLIES
-                description: A brief description of the transaction.
-              bank_account_pk:
-                type: integer
-                example: 123246
-                description: The primary key of the bank account associated with the transaction.
-              uploaded_doc_pk:
-                type: integer
-                example: 123246
-                description: The primary key of the <<glossary:Document>> associated with the transaction.
-              uploaded_doc_name:
-                type: string
-                example: december_bank_statement
-                description: The name of the <<glossary:Document>> associated with the transaction.
-              amount:
-                type: string
-                example:
-                - -127.99
-                description: Transaction amount. Positive values represent credits, and negative values represent debits. This amount includes dollars and cents; to avoid floating-point precision errors, consider parsing this field with a decimal data type, as opposed to a native `float` or `double`.
-              atm:
-                type: boolean
-                example: true
-                description: Transaction at physical ATM locations
-              bank_branch:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction with a physical bank branch
-              bank_cash_advance:
-                type:
-                - boolean
-                - 'null'
-                description: Cash advance with traditional bank
-              bank_loan:
-                type:
-                - boolean
-                - 'null'
-                description: Loan transaction with a traditional bank
-              bank:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction associated with a traditional bank/depository institution
-              benefits:
-                type:
-                - boolean
-                - 'null'
-                description: Transaction associated with government benefits
-              card_rewards:
-                type:
-                - boolean
-                - 'null'
-                description: 'Transaction associated with credit card rewards
-
-                  '
-              checks:
-                type: boolean
-                example: true
-                description: Transaction with a check (physical or electronic)
-              counterparty:
-                type: string
-                description: Standardized identifier of the transaction counterparty.
-              credit_builder:
-                type: boolean
-                example: false
-                description: Transaction with credit builder companies
-              credit_card:
-                type: boolean
-                example: true
-                description: Credit card transaction
-              crypto:
-                type: boolean
-                example: true
-                description: Transaction associated with cryptocurrency and related companies
-              debit_card:
-                type: boolean
-                example: true
-                description: Debit card transaction
-              debt_consolidator:
-                type: boolean
-                example: true
-                description: Transaction associated with debt refinancing and consolidation companies
-              deposits:
-                type: boolean
-                example: true
-                description: Amount greater than zero
-              equipment_lease:
-                type: boolean
-                example: true
-                description: Transaction associated with equipment leasing companies
-              expense:
-                type: boolean
-                example: true
-                description: Withdrawals that have been included as expense
-              factoring:
-                type: boolean
-                example: true
-                description: Transaction associated with factoring companies
-              federal_tax:
-                type: boolean
-                example: true
-                description: Federal tax transaction
-              fintech_loan:
-                type: boolean
-                example: true
-                description: Loan transaction with a fintech company
-              fintech_loan_source:
-                type:
-                - string
-                - 'null'
-                description: The source of a loan transaction with a fintech company
-              fintech_mca:
-                type: boolean
-                example: true
-                description: Merchant cash advance transaction with a fintech company
-              fintech_mca_source:
-                type:
-                - string
-                - 'null'
-                description: The source of a merchant cash advance transaction with a fintech company
-              fintech:
-                type: boolean
-                example: true
-                description: Transaction associated with a fintech company
-              gambling:
-                type: boolean
-                example: true
-                description: Transaction associated with gambling like casino and lottery
-              insurance:
-                type: boolean
-                example: true
-                description: Transaction associated with insurance premiums or payouts
-              internal_transfer:
-                type: boolean
-                example: true
-                description: Transfer between accounts with the same owner
-              investment:
-                type: boolean
-                example: true
-                description: Transaction associated with investment and brokerage companies
-              large_deposits:
-                type: boolean
-                example: true
-                description: Large amount of deposite in the account
-              merchant_service_transfer:
-                type: boolean
-                example: true
-                description: Transfer to/from a merchant service company
-              merchant_service:
-                type: boolean
-                example: true
-                description: Transaction associated with payment processing companies
-              nsf:
-                type: boolean
-                example: true
-                description: Non-sufficient funds transactions and fees
-              nsf_paid_or_negative_balance:
-                type: boolean
-                example: true
-                description: Indicates a paid transaction despite insufficient funds (NSF) or an account with a negative balance
-              nsf_returned_or_not_paid:
-                type: boolean
-                example: true
-                description: Indicates a transaction that was returned or declined due to non-sufficient funds (NSF) and was not successfully paid
-              other_loan:
-                type: boolean
-                example: true
-                description: Loan transaction that does not fit into `fintech_loan` or `bank_loan`
-              other_transfer:
-                type: boolean
-                example: true
-                description: Transfer that does not fit into other categories
-              outside_source_deposits:
-                type: boolean
-                example: true
-                description: Deposits that are not `internal_transfer` or `other_transfer`
-              overdraft:
-                type: boolean
-                example: true
-                description: Fees associated with overdraft events
-              paypal:
-                type: boolean
-                example: true
-                description: Transaction with PayPal
-              payroll_tax:
-                type: boolean
-                example: true
-                description: Payroll tax transaction
-              payroll:
-                type: boolean
-                example: true
-                description: Transaction associated with payroll activities and companies
-              probable_recurring_txns:
-                type: boolean
-                example: true
-                description: Transactions with two or more similar occurences
-              remote:
-                type: boolean
-                example: true
-                description: Remote or mobile transactions
-              returned_item:
-                type: boolean
-                example: true
-                description: Items that were returned due to a non-sufficent funds event
-              revenue_deduction_other:
-                type: boolean
-                example: true
-                description: Transaction that had been removed from revenue but does not fit into other categories
-              revenue_deduction:
-                type: boolean
-                example: true
-                description: Deposits that have not been included in revenue
-              revenue:
-                type: boolean
-                example: true
-                description: Deposits that have been included in revenue
-              reversed:
-                type: boolean
-                example: true
-                description: Transaction that has been reversed
-              sba:
-                type: boolean
-                example: true
-                description: Transaction associated with the Small Business Administration
-              state_tax:
-                type: boolean
-                example: true
-                description: State tax transaction
-              tolls:
-                type: boolean
-                example: true
-                description: Transaction associated with transportation tolls (bridges, highways, etc.)
-              truck_stop:
-                type: boolean
-                example: true
-                description: Transaction at truck stop areas
-              txn_five_zeros:
-                type: boolean
-                example: true
-                description: Amount is multiple of $1000.00
-              txn_four_zeros:
-                type: boolean
-                example: true
-                description: Amount is multiple of $100.00
-              venmo_zelle_cashapp:
-                type: boolean
-                example: true
-                description: Transaction with Venmo, Zelle, or Cash App
-              wire_transfer:
-                type: boolean
-                example: true
-                description: Wire transfer
-              withdrawals:
-                type: boolean
-                example: true
-                description: Amount less than zero
-              comment:
-                type: string
-                description: Additional notes or remarks about the transaction.
-              is_noteworthy:
-                type: boolean
-                description: Indicates whether the transaction is considered noteworthy based on internal business rules and risk factors. A value of `true` highlights transactions that may require additional attention or review.
-              page_idx:
-                type: integer
-                description: The page number of the Document where this transaction was recorded
-              unreconciled_internal_transfer:
-                type: boolean
-                description: Indicates that an internal transfer transaction could not be fully reconciled because one or both associated bank accounts were not identified within the Book.
-              reconciled_txn_pk:
-                type:
-                - string
-                - 'null'
-                description: A unique primary key (PK) of the transaction representing the other side of a reconciled internal transfer. It ensures that both sides of the transfer are connected within the Book.
-              rideshare:
-                type: boolean
-                description: A fee deducted by the rideshare platform from the driver's earnings as a service charge.
-              custom_tag:
-                type: boolean
-                description: Any user defined tag based on business needs.
-        total:
-          type: integer
-          description: The total number of enriched_transactions found in this <<glossary:Book>>
-        number_of_docs_in_book:
-          type: integer
-          description: the total count of <<glossary:Document>>s uploaded to this <<glossary:Book>>
-        number_of_docs_processed:
-          type: integer
-          description: the total count of <<glossary:Document>>s in this <<glossary:Book>> that completed verification.
-        uploaded_docs:
-          type: array
-          description: An array of objects containing information on the <<glossary:Document>>s uploaded to this <<glossary:Book>>.
-          items:
-            type: object
-            properties:
-              pk:
-                type: integer
-                description: Unique personal key for the <<glossary:Document>>.
-              uuid:
-                type: string
-                description: Universal unique identifier for the <<glossary:Document>>.
-              status:
-                type: string
-                description: Processing status of the <<glossary:Document>>.
-              pages:
-                type: integer
-                description: The total number of pages present in the <<glossary:Document>>.
-              mixed_uploaded_doc_pk:
-                type: integer
-                description: Unique personal key for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              mixed_uploaded_doc_uuid:
-                type: string
-                description: Universal unique identifier for the uploaded Mixed Document associated with this Document. A Mixed Document is a single or multipage PDF that contains more than one doc type.
-              rejection_reason:
-                type: string
-                description: An optional attribute that briefly explains why a Document was rejected.
-        mismatched_transactions:
-          type: array
-          description: "List of transactions that do not reconcile between Plaid and PDF bank statement data. \n"
-          items:
-            type: object
-            properties:
-              txn_pk:
-                type: integer
-                description: Unique identifier for the transaction.
-                example: 123
-              txn_date:
-                type: string
-                description: The date of the transaction (YYYY-MM-DD format).
-                example: '2024-01-01'
-              description:
-                type: string
-                description: Details of the transaction.
-                example: TRANSFER TO CHECKING
-              amount:
-                type: string
-                description: The transaction amount where negative indicates debit.
-                example: -2000.01
-              uploaded_doc_pk:
-                type: integer
-                description: Identifier for the associated uploaded document.
-                example: 123456
-              uploaded_doc_format:
-                type: string
-                description: Format of the uploaded document (e.g., PLAID, PDF, etc.).
-                example: PLAID
-              severity:
-                type: string
-                description: The risk level (High, Medium, or Low) assigned to each mismatched transaction, based on business rules that help you prioritize critical discrepancies such as NSFs, MCAs, overdrafts, and other high-risk activities.
-                example: High
-              reason_code:
-                type: string
-                description: The reason code indicating why a transaction was flagged as a mismatch (e.g., Posting Date Difference, Non-Critical Transaction, Critical Category Mismatch).
-                example: critical_category_mismatch
-              related_txn_pk:
-                type: integer
-                description: The primary key of the related transaction, if applicable.
-                example: 456
-              tags:
-                type: string
-                description: Comma-separated tags associated with the transaction used to identify the nature of the transaction.
-                example: fintech, fintech_loan
-              counterparty:
-                type: string
-                description: Standardized identifier of the transaction counterparty.
-                example: Credibly
-        bank_checks:
-          type: array
-          description: List of images within the bank statement that have been processed by the system for check detection.
-          items:
-            type: object
-            properties:
-              uuid:
-                type: string
-                description: Unique identifier for the check entry.
-                example: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
-              bank_account_pk:
-                type: integer
-                description: Primary key of the associated bank account.
-                example: 290879
-              amount:
-                type: string
-                description: Amount associated with the check.
-                example: 100
-              pay_to:
-                type: string
-                description: Name of the check recipient.
-                example: Fake
-              txn_date:
-                type: string
-                description: Date the check was issued or processed (MM/DD/YYYY).
-                example: 01/01/2000
-              check_number:
-                type: string
-                description: Check number.
-                example: 34434
-              memo_number:
-                type: string
-                description: Reference number.
-                example: ''
-        pending_plaid_transactions:
-          type: array
-          description: List of pending transactions from Plaid. This section is included in the response only when the `include_pending_plaid_transactions` query parameter is set to `true`.
-          items:
-            type: object
-            properties:
-              amount:
-                type: string
-                description: The transaction amount.
-                example: '1714.65'
-              description:
-                type: string
-                description: Details of the transaction.
-                example: Payment Received
-              iso_currency_code:
-                type: string
-                description: The currency code for the transaction.
-                example: USD
-              plaid_account_id:
-                type: string
-                description: The Plaid account ID.
-                example: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
-              plaid_txn_id:
-                type: string
-                description: The Plaid transaction ID.
-                example: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
-              txn_date:
-                type: string
-                description: The date of the transaction in YYYY-MM-DD format.
-                example: '2025-01-01'
-              uploaded_doc_uuid:
-                type: string
-                description: The UUID of the uploaded document.
-                example: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
-        analytic_constants_version:
-          type: string
-          description: The version of the constants used in analytical calculations.
-          example: 1.0.6
-  examples:
-    AsyncJobFailed:
-      summary: Job failed
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        status: FAILED
-        error: Book transaction count exceeds the maximum supported by the async serving path
-    SMBEntityNotResolved:
-      summary: No SMB entity resolved for the Book
-      value:
-        status: 404
-        message: Confirm the Book finished processing and resolved to an SMB entity.
-    MissingOrInvalidCredentials:
-      summary: Missing or invalid credentials
-      value:
-        status: 401
-        message: Provide or refresh your OAuth bearer token.
-    InvalidBookUUID:
-      summary: Invalid book_uuid
-      value:
-        status: 400
-        message: Confirm the book_uuid is well-formed and was submitted by your organization.
-    TxnLimitExceeded:
-      summary: Transaction Limit Exceeded
-      value:
-        status: 400
-        code: 1100
-        message: Book summary cannot be generated for these many transactions
-    TxnLimitExceededError:
-      summary: Transaction Limit Exceeded
-      value:
-        status: 422
-        code: 1100
-        message: Book transaction limit exceeded
-    AsyncJobDone:
-      summary: OK - completed
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        status: DONE
-        result_url: https://.../async_jobs/0f2b9c3a...?X-Amz-Signature=...
-    TxnTagsProcessingError:
-      summary: Analytics Still Processing
-      value:
-        status: 425
-        code: 9004
-        message: Analytics are still being processed, please check back momentari
-    RiskScoreNotEnabled:
-      summary: Risk score not enabled
-      value:
-        status: 400
-        code: 1200
-        message: Risk score is not enabled for this org
-    BookNotFoundError:
-      summary: Book Not Found
-      value:
-        status: 404
-        code: 1401
-        message: Book not found
-    SuccessEnrichedTxnsResponse:
-      value:
-        book_uuid: caaa57ba-8909-4a05-9dcc-e7cc057e3c48
-        filtered_total: 50
-        offset: 1
-        limit: 50
-        enriched_transactions:
-        - txn_pk: 2640590368
-          txn_date: '2021-01-09'
-          description: 'CHECKCARD 0109 LIBERTY PAPER SUPPLIES # 633 COURT ST [... ]'
-          bank_account_pk: 9662788
-          uploaded_doc_pk: 41188513
-          uploaded_doc_name: Dec.pdf
-          amount: -127.99
-          atm: false
-          bank_branch: false
-          bank_cash_advance: false
-          bank_loan: false
-          bank: false
-          benefits: false
-          card_rewards: false
-          checks: false
-          counterparty: LIBERTY PAPER SUPPLIES
-          credit_builder: false
-          credit_card: false
-          crypto: false
-          debit_card: true
-          debt_consolidator: false
-          deposits: false
-          equipment_lease: false
-          expense: true
-          factoring: false
-          federal_tax: false
-          fintech_loan: false
-          fintech_loan_source: null
-          fintech_mca: false
-          fintech_mca_source: null
-          fintech: false
-          gambling: false
-          insurance: false
-          internal_transfer: false
-          investment: false
-          large_deposits: false
-          merchant_service_transfer: false
-          merchant_service: false
-          nsf: false
-          nsf_paid_or_negative_balance: false
-          nsf_returned_or_not_paid: false
-          other_loan: false
-          other_transfer: false
-          outside_source_deposits: false
-          overdraft: false
-          paypal: false
-          payroll_tax: false
-          payroll: false
-          probable_recurring_txns: false
-          remote: false
-          returned_item: false
-          revenue_deduction_other: false
-          revenue_deduction: false
-          revenue: false
-          reversed: false
-          sba: false
-          state_tax: false
-          tolls: false
-          truck_stop: false
-          txn_five_zeros: false
-          txn_four_zeros: false
-          venmo_zelle_cashapp: false
-          wire_transfer: false
-          withdrawals: true
-          comment: null
-          is_noteworthy: false
-          page_idx: 2
-          unreconciled_internal_transfer: false
-          reconciled_txn_pk: null
-          rideshare: false
-          custom_nike: false
-          custom_tag: false
-          sahil_sample: false
-        - txn_pk: 2640590370
-          txn_date: '2021-01-08'
-          description: 'BKOFAMERICA ATM 01/08 # 000003974 DEPOSIT 1608 AVE M BROOKLYN NY'
-          bank_account_pk: 9662788
-          uploaded_doc_pk: 41188513
-          uploaded_doc_name: Dec.pdf
-          amount: 1150
-          atm: true
-          bank_branch: false
-          bank_cash_advance: false
-          bank_loan: false
-          bank: false
-          benefits: false
-          card_rewards: false
-          checks: false
-          counterparty: null
-          credit_builder: false
-          credit_card: false
-          crypto: false
-          debit_card: false
-          debt_consolidator: false
-          deposits: true
-          equipment_lease: false
-          expense: false
-          factoring: false
-          federal_tax: false
-          fintech_loan: false
-          fintech_loan_source: null
-          fintech_mca: false
-          fintech_mca_source: null
-          fintech: false
-          gambling: false
-          insurance: false
-          internal_transfer: false
-          investment: false
-          large_deposits: false
-          merchant_service_transfer: false
-          merchant_service: false
-          nsf: false
-          nsf_paid_or_negative_balance: false
-          nsf_returned_or_not_paid: false
-          other_loan: false
-          other_transfer: false
-          outside_source_deposits: true
-          overdraft: false
-          paypal: false
-          payroll_tax: false
-          payroll: false
-          probable_recurring_txns: true
-          remote: false
-          returned_item: false
-          revenue_deduction_other: false
-          revenue_deduction: false
-          revenue: true
-          reversed: false
-          sba: false
-          state_tax: false
-          tolls: false
-          truck_stop: false
-          txn_five_zeros: false
-          txn_four_zeros: false
-          venmo_zelle_cashapp: false
-          wire_transfer: false
-          withdrawals: false
-          comment: null
-          is_noteworthy: false
-          page_idx: 2
-          unreconciled_internal_transfer: false
-          reconciled_txn_pk: null
-          rideshare: false
-          custom_nike: true
-          custom_tag: true
-          sahil_sample: false
-        total: 2
-        number_of_docs_in_book: 2
-        number_of_docs_processed: 2
-        uploaded_docs:
-        - pk: 41188518
-          uuid: c1224107-cb9f-472a-a6c2-cbb2fd497eee
-          status: VERIFICATION_COMPLETE
-          pages: 4
-          mixed_uploaded_doc_pk: null
-          mixed_uploaded_doc_uuid: null
-          rejection_reason: null
-        - pk: 41188515
-          uuid: c83f9bb2-e7f2-446d-96b2-4c5e0dc11d6b
-          status: VERIFICATION_COMPLETE
-          pages: 3
-          mixed_uploaded_doc_pk: null
-          mixed_uploaded_doc_uuid: null
-          rejection_reason: null
-        mismatched_transactions:
-        - txn_pk: 123
-          txn_date: '2024-01-01'
-          description: TRANSFER TO CHECKING
-          amount: -2000.01
-          uploaded_doc_pk: 123456
-          uploaded_doc_format: PLAID
-          severity: High
-          reason_code: critical_category_mismatch
-          related_txn_pk: 456
-          tags: fintech, fintech_loan
-          counterparty: Credibly
-        - txn_pk: 456
-          txn_date: '2024-02-01'
-          description: CHECK 12345
-          amount: 102.34
-          uploaded_doc_pk: 78922
-          uploaded_doc_format: BANK_STATEMENT
-          severity: High
-          reason_code: critical_category_mismatch
-          related_txn_pk: 456
-          tags: fintech, fintech_loan
-          counterparty: Credibly
-        bank_checks:
-        - uuid: 520dc1b8-3475-4da3-8fa0-f2880b9ae2c3
-          bank_account_pk: 290879
-          amount: '100.00'
-          pay_to: TEST
-          txn_date: 01/01/2000
-          check_number: '34434'
-          memo_number: ''
-        - uuid: 4f7a0b3c-ad27-410c-8577-2ea2fa51c25e
-          bank_account_pk: 290879
-          amount: '200.00'
-          pay_to: TEST2
-          txn_date: 01/05/2000
-          check_number: '5555'
-          memo_number: ''
-        pending_plaid_transactions:
-        - amount: '1714.65'
-          description: Payment Received
-          iso_currency_code: USD
-          plaid_account_id: p9kUU7HLU5ok2R78UjqNn8vPfS1SDWdpaxpE
-          plaid_txn_id: mXNVUdPHn6jyFyJaCYrQoR293PaYlOmhqzwR
-          txn_date: '2025-01-01'
-          uploaded_doc_uuid: 733bddcd-0fb4-45e7-9f8d-ccdefd021a2d
-        analytic_constants_version: 1.0.6
-    AsyncJobPending:
-      summary: Accepted — still processing
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        status: PENDING
-    TransactionsNotFoundError:
-      summary: Transactions not found
-      value:
-        status: 404
-        message: No transactions found in the book
-        code: 9006
-    AsyncJobNotFound:
-      summary: Job ID not found or has expired
-      value:
-        job_id: 0f2b9c3a-9d1e-4c1a-9d2e-2c9a1b3c4d5e
-        error: Job not found or has expired
-    BookPermissionError:
-      summary: No Permission
-      value:
-        status: 403
-        code: 2102
-        message: No permission to access this book
   parameters:
     AsyncParameter:
       name: async

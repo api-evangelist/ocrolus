@@ -297,28 +297,6 @@ paths:
                     description: A textual description that indicates details about this response's status.
 components:
   schemas:
-    WebhookRegistration:
-      description: 'An object that describes the active webhook registration. Only one webhook can be registered at this time; if you need multiple event handlers, your implementation should inspect the request payload and direct events as needed.
-
-        '
-      required:
-      - webhook_endpoint
-      - events
-      properties:
-        webhook_endpoint:
-          type: string
-          format: url
-          description: 'The value of `webhook_endpoint` that was provided in the request. Can contain query parameters, port numbers, authentication credentials, and other URL components.
-
-            '
-        events:
-          type: array
-          description: 'The webhook events that were successfully registered. Invalid event names will not be included here.
-
-            '
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/WebhookEventType'
     JsonResponse:
       type: object
       required:
@@ -343,6 +321,28 @@ components:
           description: 'A textual description that indicates details about this response''s status. Will be "OK" for a successful request.
 
             '
+    WebhookRegistration:
+      description: 'An object that describes the active webhook registration. Only one webhook can be registered at this time; if you need multiple event handlers, your implementation should inspect the request payload and direct events as needed.
+
+        '
+      required:
+      - webhook_endpoint
+      - events
+      properties:
+        webhook_endpoint:
+          type: string
+          format: url
+          description: 'The value of `webhook_endpoint` that was provided in the request. Can contain query parameters, port numbers, authentication credentials, and other URL components.
+
+            '
+        events:
+          type: array
+          description: 'The webhook events that were successfully registered. Invalid event names will not be included here.
+
+            '
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
     WebhookEventType:
       type: string
       description: 'The type of event that Ocrolus broadcasts.
@@ -375,13 +375,6 @@ components:
       - plaid.upload_failed
       - plaid.upload_succeeded
   examples:
-    FailedWebhookTest:
-      summary: Failed Test
-      value:
-        status: 200
-        response:
-          message: 'Error: Failed to invoke webhook end point 401 Client Error: UNAUTHORIZED for url: https://httpbin.org/status/401'
-        message: OK
     SuccessfulWebhookTest:
       summary: Success
       value:
@@ -390,15 +383,12 @@ components:
           resp_code: 200
           message: Success calling webhook endpoint
         message: OK
-    SuccessfulWebhookRegistration:
-      summary: Success
+    FailedWebhookTest:
+      summary: Failed Test
       value:
         status: 200
         response:
-          webhook_endpoint: https://webhook_endpoint_url.com/example
-          events:
-          - DOC_VERIFIED
-          - BOOK_VERIFIED
+          message: 'Error: Failed to invoke webhook end point 401 Client Error: UNAUTHORIZED for url: https://httpbin.org/status/401'
         message: OK
     FailedWebhookRegistration:
       summary: Failed Registration
@@ -411,6 +401,16 @@ components:
           status: 400
           msg: One of the input is invalid
           code: 1806
+    SuccessfulWebhookRegistration:
+      summary: Success
+      value:
+        status: 200
+        response:
+          webhook_endpoint: https://webhook_endpoint_url.com/example
+          events:
+          - DOC_VERIFIED
+          - BOOK_VERIFIED
+        message: OK
   securitySchemes:
     oauth:
       type: oauth2
