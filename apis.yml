@@ -374,6 +374,8 @@ apis:
   - type: Webhooks
     url: asyncapi/ocrolus-webhooks.yml
 common:
+- type: RateLimits
+  url: rate-limits/ocrolus-rate-limits.yml
 - url: https://www.ocrolus.com/feed/
   type: BlogRSS
 - type: CapabilityMap
