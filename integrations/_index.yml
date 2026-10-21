@@ -33,3 +33,16 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: ocrolus-automation-anywhere-automation-anywhere-bot-store
+  label: Automation Anywhere (automation-anywhere-bot-store)
+  partner: automation-anywhere
+  partner_name: Automation Anywhere (automation-anywhere-bot-store)
+  category: RPA marketplace listing
+  type: marketplace
+  marketplace: automation-anywhere-bot-store
+  channel: partner-built
+  evidence: https://botstore.automationanywhere.com/vendor/ocrolus/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
